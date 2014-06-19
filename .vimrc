@@ -1,3 +1,4 @@
+" brew install ctags --with-exuberant-ctags
 " gem install haml-lint ruby-lint rubocop sass
 " pip install pylint
 " npm install -g js-yaml jsxhint eslint jsonlint
@@ -32,6 +33,13 @@ Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'tpope/vim-projectionist'
 Plugin 'tpope/vim-dispatch'
 
+Plugin 'elzr/vim-json'
+
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+
+Plugin 'Valloric/MatchTagAlways'
+
 Plugin 'plasticboy/vim-markdown'
 " Plugin 'greyblake/vim-preview'
 
@@ -42,8 +50,8 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 
 Plugin 'Shougo/neocomplcache.vim'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
+" Plugin 'Shougo/neosnippet'
+" Plugin 'Shougo/neosnippet-snippets'
 
 Plugin 'chase/vim-ansible-yaml'
 
@@ -100,13 +108,15 @@ if has('persistent_undo')
   set undofile
 endif
 
+let g:vim_json_syntax_conceal = 0
+
+let g:neocomplete#enable_at_startup = 1
+
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_sort_regime = "mru"
 
-" vim-markdown
 let g:vim_markdown_folding_disabled = 1
 
-" syntastic
 let g:syntastic_javascript_checkers = ['eslint', 'jsxhint']
 let g:syntastic_erlang_checkers = ['syntaxerl']
 
@@ -134,9 +144,10 @@ nmap <leader>u mQviwU`Q
 nmap <leader>l mQviwu`Q
 
 nmap <C-\> :NERDTreeFind<CR>
-map <silent> <C-n> :NERDTreeToggle<CR>
+nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
-nmap // :set hlsearch!<CR>
+nmap <silent> // :nohlsearch<CR>
+noremap ,hl :set hlsearch! hlsearch?<CR>
 
 " Allows you to enter sudo pass and save the file
 " " when you forgot to open your file with sudo
