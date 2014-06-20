@@ -1,3 +1,5 @@
+" brew install vim --with-lua
+
 " brew install ctags --with-exuberant-ctags
 " gem install haml-lint ruby-lint rubocop sass
 " pip install pylint
@@ -8,8 +10,6 @@ set nocompatible
 filetype off
 
 let mapleader=","
-
-" filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -49,19 +49,13 @@ Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 
-Plugin 'Shougo/neocomplcache.vim'
-" Plugin 'Shougo/neosnippet'
-" Plugin 'Shougo/neosnippet-snippets'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'Shougo/vimshell.vim'
 
 Plugin 'chase/vim-ansible-yaml'
 
-" snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-
-"Plugin 'tpope/vim-leiningen'
 Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-leiningen'
 Plugin 'tpope/vim-classpath'
@@ -110,7 +104,25 @@ endif
 
 let g:vim_json_syntax_conceal = 0
 
+let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+if !exists('g:neocomplete#keyword_patterns')
+	let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#CompleteTags
 
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_sort_regime = "mru"
@@ -119,6 +131,10 @@ let g:vim_markdown_folding_disabled = 1
 
 let g:syntastic_javascript_checkers = ['eslint', 'jsxhint']
 let g:syntastic_erlang_checkers = ['syntaxerl']
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
