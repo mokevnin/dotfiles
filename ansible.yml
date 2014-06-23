@@ -1,0 +1,40 @@
+---
+- hosts: localhost
+  vars:
+    dotfiles: ~/dotfiles
+  tasks:
+    - file: src={{ dotfiles }}/{{ item }} dest=~/.{{ item }} state=link
+      with_items:
+        - vimrc
+        - gitconfig
+    - git: repo=https://github.com/gmarik/Vundle.vim.git dest=~/.vim/bundle/Vundle.vim
+
+    - homebrew: state=present name=ctags install_options="--with-exuberant-ctags"
+    - homebrew: name={{ item }}
+      with_items:
+        - ruby
+        - npm
+
+    - gem: name={{ item }}
+      with_items:
+        - haml-lint
+        - ruby-lint
+        - rubocop
+        - sass
+
+    - npm: name={{ item }} global=yes
+      with_items:
+        - js-yaml
+        - jsxhint
+        - eslint
+        - jsonlint
+
+    - easy_install: name=pip
+      sudo: yes
+    - pip: name={{ item }}
+      sudo: yes
+      with_items:
+        - pylint
+
+    - lineinfile: dest="~/.bash_profile" state=present
+                  line="set -o vi"

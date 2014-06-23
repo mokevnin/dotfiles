@@ -49,7 +49,7 @@ Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 
-Plugin 'Shougo/neocomplete.vim'
+" Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Shougo/vimshell.vim'
@@ -90,7 +90,7 @@ set hlsearch
 set ignorecase
 set smartcase
 
-set background=dark
+" set background=dark
 colorscheme jellybeans
 
 " ================ Persistent Undo ==================
