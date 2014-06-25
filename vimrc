@@ -47,6 +47,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-git'
 
+Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 
@@ -74,7 +75,6 @@ set mouse=a
 set cursorline
 set hidden
 "set modelines=0
-" set shiftwidth=2
 set clipboard=unnamed
 "set synmaxcol=128
 "set ttyscroll=10
@@ -185,3 +185,5 @@ vmap <Leader>s <ESC><ESC>:w<CR>
 
 " Automatically removing all trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
+
+au FileType ruby setl sw=2 sts=2 et

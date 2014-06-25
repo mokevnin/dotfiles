@@ -17,6 +17,7 @@
         - redis
         - erlang
         - leiningen
+        - bash-completion
 
     - shell: ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
     - shell: ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
