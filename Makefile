@@ -6,6 +6,6 @@ pre:
 	git clone https://github.com/mokevnin/dotfiles.git ~/dotfiles
 
 ansible:
-	ansible-playbook ~/dotfiles/ansible.yml -i ~/dotfiles/local -K
+	ansible-playbook ~/dotfiles/ansible.yml -i ~/dotfiles/local -K -vv
 
 .PHONY: pre ansible

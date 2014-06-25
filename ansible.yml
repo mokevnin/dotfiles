@@ -12,11 +12,19 @@
     - homebrew: state=present name=ctags install_options="--with-exuberant-ctags"
     - homebrew: name={{ item }}
       with_items:
-        - ruby
         - npm
+        - postgresql
+        - redis
+        - erlang
+        - leiningen
 
-    - gem: name={{ item }}
+    - shell: ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+    - shell: ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+
+    - shell: curl -sSL https://get.rvm.io | bash -s stable --ruby creates=~/.rvm
+    - gem: name={{ item }} state=present
       with_items:
+        - bundler
         - haml-lint
         - ruby-lint
         - rubocop
@@ -28,6 +36,7 @@
         - jsxhint
         - eslint
         - jsonlint
+        - grunt-cli
 
     - easy_install: name=pip
       sudo: yes
