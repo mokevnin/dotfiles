@@ -16,6 +16,7 @@ call vundle#begin()
 
 Plugin 'gmarik/vundle'
 
+
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
@@ -72,23 +73,23 @@ filetype plugin indent on
 set mouse=a
 set cursorline
 set hidden
-"set expandtab
 "set modelines=0
-set shiftwidth=2
+" set shiftwidth=2
 set clipboard=unnamed
 "set synmaxcol=128
 "set ttyscroll=10
 "set encoding=utf-8
-set tabstop=2
 set nowrap
 set number
-"set expandtab
 "set nowritebackup
 "set noswapfile
 "set nobackup
 set hlsearch
 set ignorecase
 set smartcase
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
 " set background=dark
 colorscheme jellybeans
