@@ -12,12 +12,14 @@
     - homebrew: state=present name=ctags install_options="--with-exuberant-ctags"
     - homebrew: name={{ item }}
       with_items:
+        - ack
         - npm
         - postgresql
         - redis
         - erlang
         - leiningen
         - bash-completion
+        - https://raw.github.com/eugeneoden/homebrew/eca9de1/Library/Formula/sshpass.rb
 
     - shell: ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
     - shell: ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
@@ -33,6 +35,7 @@
 
     - npm: name={{ item }} global=yes
       with_items:
+        - bower
         - js-yaml
         - jsxhint
         - eslint
