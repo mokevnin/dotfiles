@@ -12,6 +12,7 @@
     - homebrew: state=present name=ctags install_options="--with-exuberant-ctags"
     - homebrew: name={{ item }}
       with_items:
+        - imagemagick
         - ack
         - npm
         - postgresql
