@@ -135,6 +135,7 @@ let g:buffergator_sort_regime = "mru"
 let g:vim_markdown_folding_disabled = 1
 
 let g:syntastic_javascript_checkers = ['eslint', 'jsxhint']
+let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_erlang_checkers = ['syntaxerl']
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -169,6 +170,7 @@ nmap <leader>l mQviwu`Q
 
 nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
 
 nmap <silent> // :nohlsearch<CR>
 noremap ,hl :set hlsearch! hlsearch?<CR>
@@ -194,3 +196,4 @@ vmap <Leader>s <ESC><ESC>:w<CR>
 autocmd BufWritePre * :%s/\s\+$//e
 
 au FileType ruby setl sw=2 sts=2 et
+au FileType yaml setl sw=2 sts=2 et
