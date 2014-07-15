@@ -39,6 +39,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'mbbill/undotree'
 
 Plugin 'elzr/vim-json'
+Plugin 'vim-scripts/JavaScript-Indent'
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
@@ -75,11 +76,11 @@ Plugin 'dotcloud/docker', {'rtp': 'contrib/syntax/vim'}
 call vundle#end()
 filetype plugin indent on
 
-set mouse=a
+" set mouse=a
 set cursorline
 set hidden
 "set modelines=0
-set clipboard=unnamed
+" set clipboard=unnamed
 "set synmaxcol=128
 "set ttyscroll=10
 "set encoding=utf-8
@@ -120,6 +121,8 @@ let g:vim_json_syntax_conceal = 0
 " 	let g:neocomplete#keyword_patterns = {}
 " endif
 " let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+let g:easytags_async = 1
 
 " Enable omni completion.
 " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
