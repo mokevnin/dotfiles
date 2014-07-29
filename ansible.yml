@@ -20,12 +20,21 @@
         - erlang
         - leiningen
         - bash-completion
-        - https://raw.github.com/eugeneoden/homebrew/eca9de1/Library/Formula/sshpass.rb
+        - rbenv
+        - ruby-build
+        - phantomjs
+        # - https://raw.github.com/eugeneoden/homebrew/eca9de1/Library/Formula/sshpass.rb
+
+    # - lineinfile: dest=~/.bash_profile state=present
+    #     line="eval \"$(rbenv init -)\""
+
+    - shell: rbenv install 2.1.2
+    - shell: rbenv global 2.1.2
+      tags: [ruby]
 
     - shell: ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
     - shell: ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 
-    - shell: curl -sSL https://get.rvm.io | bash -s stable --ruby creates=~/.rvm
     - gem: name={{ item }} state=present
       with_items:
         - bundler
@@ -33,6 +42,9 @@
         - ruby-lint
         - rubocop
         - sass
+      tags: [ruby]
+
+    - shell: rbenv rehash
 
     - npm: name={{ item }} global=yes
       with_items:
