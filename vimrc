@@ -37,6 +37,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'majutsushi/tagbar'
 Plugin 'godlygeek/tabular'
 Plugin 'mbbill/undotree'
+Plugin 'kchmck/vim-coffee-script'
 
 Plugin 'elzr/vim-json'
 Plugin 'vim-scripts/JavaScript-Indent'
@@ -61,7 +62,7 @@ Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Shougo/vimshell.vim'
 
-Plugin 'chase/vim-ansible-yaml'
+" Plugin 'chase/vim-ansible-yaml'
 
 Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-leiningen'
@@ -189,11 +190,6 @@ vmap <Leader>y :w! ~/.vbuf<CR>
 nmap <Leader>y :.w! ~/.vbuf<CR>
 " "paste the contents of the buffer file
 nmap <Leader>p :r ~/.vbuf<CR>
-
-" save changes
-map <Leader>s :w<CR>
-imap <Leader>s <ESC>:w<CR>
-vmap <Leader>s <ESC><ESC>:w<CR>
 
 " Automatically removing all trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
