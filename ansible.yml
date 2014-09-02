@@ -12,6 +12,7 @@
     - homebrew: state=present name=ctags install_options="--with-exuberant-ctags"
     - homebrew: name={{ item }}
       with_items:
+        - vim
         - imagemagick
         - ack
         - npm
@@ -23,6 +24,9 @@
         - rbenv
         - ruby-build
         - phantomjs
+        - elasticsearch
+        - brew install python
+        - brew install python3
         # - https://raw.github.com/eugeneoden/homebrew/eca9de1/Library/Formula/sshpass.rb
 
     # - lineinfile: dest=~/.bash_profile state=present
@@ -34,6 +38,7 @@
 
     - shell: ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
     - shell: ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+    - shell: ln -sfv /usr/local/opt/elasticsearch/*.plist ~/Library/LaunchAgents
 
     - gem: name={{ item }} state=present
       with_items:
@@ -62,5 +67,7 @@
       with_items:
         - pylint
 
-    - lineinfile: dest="~/.bash_profile" state=present
-                  line="set -o vi"
+    # - lineinfile: dest="~/.bash_profile" state=present
+    #               line="set -o vi"
+    #                 source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
+    #                  export PS1='$(__git_ps1) \w\$ '
