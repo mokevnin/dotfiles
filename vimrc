@@ -38,9 +38,14 @@ Plugin 'majutsushi/tagbar'
 Plugin 'godlygeek/tabular'
 Plugin 'mbbill/undotree'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'othree/html5.vim'
+Plugin 'digitaltoad/vim-jade'
 
 Plugin 'elzr/vim-json'
-Plugin 'vim-scripts/JavaScript-Indent'
+" Plugin 'vim-scripts/JavaScript-Indent'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'mattn/emmet-vim'
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
@@ -73,6 +78,7 @@ Plugin 'vim-scripts/paredit.vim'
 
 Plugin 'chrisbra/csv.vim'
 Plugin 'dotcloud/docker', {'rtp': 'contrib/syntax/vim'}
+Plugin 'nginx/nginx', {'rtp': 'contrib/vim'}
 
 call vundle#end()
 filetype plugin indent on
