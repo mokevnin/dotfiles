@@ -40,6 +40,7 @@ Plugin 'mbbill/undotree'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'othree/html5.vim'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'tmatilai/vim-monit'
 
 Plugin 'elzr/vim-json'
 " Plugin 'vim-scripts/JavaScript-Indent'
