@@ -17,7 +17,7 @@ call vundle#begin()
 
 Plugin 'gmarik/vundle'
 
-
+Plugin 'tpope/vim-rbenv'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
@@ -41,6 +41,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'othree/html5.vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'tmatilai/vim-monit'
+Plugin 'ervandew/supertab'
 
 Plugin 'elzr/vim-json'
 " Plugin 'vim-scripts/JavaScript-Indent'
@@ -56,7 +57,7 @@ Plugin 'Valloric/MatchTagAlways'
 Plugin 'plasticboy/vim-markdown'
 " Plugin 'greyblake/vim-preview'
 
-Plugin 'tpope/vim-haml'
+" Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-git'
 
 " Plugin 'vim-ruby/vim-ruby'
@@ -64,6 +65,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 
 " Plugin 'Shougo/neocomplete.vim'
+Plugin 'tpope/vim-endwise'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Shougo/vimshell.vim'
@@ -146,8 +148,9 @@ let g:buffergator_sort_regime = "mru"
 let g:vim_markdown_folding_disabled = 1
 
 let g:syntastic_javascript_checkers = ['eslint', 'jsxhint']
-let g:syntastic_haml_checkers = ['haml_lint']
-let g:syntastic_erlang_checkers = ['syntaxerl']
+let g:syntastic_haml_checkers = ['haml_lint', 'haml']
+let g:syntastic_ruby_checkers = ['rubocop', 'rubylint', 'mri']
+" let g:syntastic_erlang_checkers = ['syntaxerl']
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
