@@ -203,6 +203,7 @@ nmap <Leader>p :r ~/.vbuf<CR>
 
 " Automatically removing all trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
+au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 
 au FileType ruby setl sw=2 sts=2 et
 au FileType javascript setl sw=2 sts=2 et
