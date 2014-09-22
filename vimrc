@@ -42,6 +42,7 @@ Plugin 'othree/html5.vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'tmatilai/vim-monit'
 Plugin 'ervandew/supertab'
+Plugin 'jpalardy/vim-slime'
 
 Plugin 'elzr/vim-json'
 " Plugin 'vim-scripts/JavaScript-Indent'
@@ -76,7 +77,7 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-leiningen'
 Plugin 'tpope/vim-classpath'
 Plugin 'tpope/vim-fireplace'
-Plugin 'kien/rainbow_parentheses.vim'
+" Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'vim-scripts/paredit.vim'
 
 Plugin 'chrisbra/csv.vim'
@@ -117,6 +118,8 @@ if has('persistent_undo')
   set undodir=~/.vim/backups
   set undofile
 endif
+
+let g:slime_target = "tmux"
 
 let g:vim_json_syntax_conceal = 0
 
