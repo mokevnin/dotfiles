@@ -1,0 +1,74 @@
+---
+- hosts: all
+  vars:
+    dotfiles: /var/tmp/dotfiles
+    rvm1_install_flags: '--auto-dotfiles --user-install'
+    rvm1_install_path: '/home/{{ ansible_ssh_user }}/.rvm'
+
+  roles:
+      - { role: rvm_io.rvm1-ruby, tags: ruby }
+
+  tasks:
+    - apt: name={{ item }} state=latest
+      sudo: yes
+      with_items:
+        # - ack
+        - ack-grep
+        - exuberant-ctags
+        - vim
+        - git
+        - npm
+        # - python-setuptools
+        - python-pip
+        - python-apt
+        - python-pycurl
+
+    - pip: name={{ item }} state=latest
+      sudo: yes
+      with_items:
+        - pylint
+        - "https://github.com/docker/fig/archive/master.zip"
+      tags: python
+
+    - git: repo=https://github.com/mokevnin/dotfiles.git dest={{ dotfiles }}
+
+    - file: src={{ dotfiles }}/{{ item }} dest=~/.{{ item }} state=link
+      with_items:
+        - vimrc
+        - gitconfig
+
+    - git: repo=https://github.com/gmarik/Vundle.vim.git dest=~/.vim/bundle/Vundle.vim
+    # - shell: vim +PluginInstall +qall
+
+    - gem: name={{ item }} state=present
+      with_items:
+        - bundler
+        - haml-lint
+        - ruby-lint
+        - rubocop
+        - sass
+      tags: [ruby]
+
+    - npm: name={{ item }} global=yes
+      sudo: yes
+      with_items:
+        - bower
+        - js-yaml
+        - jsxhint
+        - eslint
+        - jsonlint
+        - grunt-cli
+
+    - lineinfile: dest="~/.bash_profile" state=present
+        line="set -o vi"
+
+    - lineinfile: dest="~/.bash_profile" state=present
+        line="export PS1='$(__git_ps1) \w\$ '"
+
+    # docker
+    - apt_key: url=https://get.docker.io/gpg state=present
+      sudo: yes
+    - apt_repository: repo='deb http://get.docker.io/ubuntu docker main' state=present
+      sudo: yes
+    - apt: pkg=lxc-docker state=latest update_cache=yes
+      sudo: yes

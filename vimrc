@@ -1,12 +1,3 @@
-" brew install vim --with-lua
-
-" brew install ack
-" brew install ctags --with-exuberant-ctags
-" gem install haml-lint ruby-lint rubocop sass
-" pip install pylint
-" npm install -g js-yaml jsxhint eslint jsonlint
-" https://github.com/ten0s/syntaxerl
-
 set nocompatible
 filetype off
 
@@ -17,7 +8,7 @@ call vundle#begin()
 
 Plugin 'gmarik/vundle'
 
-Plugin 'tpope/vim-rbenv'
+Plugin 'tpope/vim-rvm'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'

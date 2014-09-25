@@ -1,11 +1,14 @@
-install: pre ansible
+install: prepare provision
 
-pre:
-	ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-	brew install git ansible
-	git clone https://github.com/mokevnin/dotfiles.git ~/dotfiles
+prepare:
+	sudo apt-get install -y software-properties-common
+	sudo apt-add-repository ppa:ansible/ansible
+	sudo apt-get update
+	sudo apt-get install -y ansible
+	sudo ansible-galaxy install -ir roles.txt
+	# git clone https://github.com/mokevnin/dotfiles.git ~/dotfiles
 
-ansible:
-	ansible-playbook ~/dotfiles/ansible.yml -i ~/dotfiles/local -K -vv
+provision:
+	ansible-playbook $(CURDIR)/playbook.yml -i $(CURDIR)/local -K -vv
 
-.PHONY: pre ansible
+.PHONY: prepare ansible
