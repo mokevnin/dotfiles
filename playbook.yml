@@ -5,10 +5,7 @@
     rvm1_install_flags: '--auto-dotfiles --user-install'
     rvm1_install_path: '/home/{{ ansible_ssh_user }}/.rvm'
 
-  roles:
-      - { role: rvm_io.rvm1-ruby, tags: ruby }
-
-  tasks:
+  pre_tasks:
     - apt: name={{ item }} state=latest
       sudo: yes
       with_items:
@@ -18,16 +15,27 @@
         - vim
         - git
         - npm
+        - curl
         # - python-setuptools
-        - python-pip
         - python-apt
         - python-pycurl
+        - python-dev
+        - python-setuptools
+
+  roles:
+      - { role: rvm_io.rvm1-ruby, tags: ruby }
+
+  tasks:
+    - easy_install: name=pip
+      sudo: yes
 
     - pip: name={{ item }} state=latest
       sudo: yes
       with_items:
         - pylint
-        - "https://github.com/docker/fig/archive/master.zip"
+        - git+https://github.com/docker/fig.git#egg=fig
+        # - fig
+        # - "https://github.com/docker/fig/archive/master.zip"
       tags: python
 
     - git: repo=https://github.com/mokevnin/dotfiles.git dest={{ dotfiles }}
@@ -41,6 +49,8 @@
     # - shell: vim +PluginInstall +qall
 
     - gem: name={{ item }} state=present
+      environment:
+        PATH: /home/vagrant/.rvm/rubies/default/bin:{{ ansible_env.PATH }}
       with_items:
         - bundler
         - haml-lint
