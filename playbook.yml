@@ -38,9 +38,7 @@
         # - "https://github.com/docker/fig/archive/master.zip"
       tags: python
 
-    - git: repo=https://github.com/mokevnin/dotfiles.git dest={{ dotfiles }}
-
-    - file: src={{ dotfiles }}/{{ item }} dest=~/.{{ item }} state=link
+    - file: src={{ item }} dest=~/.{{ item }} state=link
       with_items:
         - vimrc
         - gitconfig
