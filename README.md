@@ -7,7 +7,8 @@
       git pull -f
       make
     SCRIPT
-    config.vm.provision 'shell', inline: ansible_script
+    config.vm.provision 'shell', inline: ansible_script,
+      privileged: false
 
     // Shell
     vagrant provision
