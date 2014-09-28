@@ -34,6 +34,7 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'tmatilai/vim-monit'
 Plugin 'ervandew/supertab'
 Plugin 'jpalardy/vim-slime'
+Plugin 'Matt-Deacalion/vim-systemd-syntax'
 
 Plugin 'elzr/vim-json'
 " Plugin 'vim-scripts/JavaScript-Indent'
