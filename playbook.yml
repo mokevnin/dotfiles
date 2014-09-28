@@ -48,7 +48,7 @@
 
     - gem: name={{ item }} state=present
       environment:
-        PATH: /home/vagrant/.rvm/rubies/default/bin:{{ ansible_env.PATH }}
+        PATH: /home/{{ ansible_user_id }}/.rvm/rubies/default/bin:{{ ansible_env.PATH }}
       with_items:
         - bundler
         - haml-lint
