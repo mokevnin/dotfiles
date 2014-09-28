@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars:
-    dotfiles: /var/tmp/dotfiles
+    dotfiles: ~/dotfiles
     rvm1_install_flags: '--auto-dotfiles --user-install'
     rvm1_install_path: '/home/{{ ansible_ssh_user }}/.rvm'
 
@@ -38,7 +38,7 @@
         # - "https://github.com/docker/fig/archive/master.zip"
       tags: python
 
-    - file: src={{ item }} dest=~/.{{ item }} state=link
+    - file: src={{ dotfiles }}/{{ item }} dest=~/.{{ item }} state=link
       with_items:
         - vimrc
         - gitconfig
