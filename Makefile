@@ -9,6 +9,6 @@ prepare:
 	# git clone https://github.com/mokevnin/dotfiles.git ~/dotfiles
 
 provision:
-	ansible-playbook $(CURDIR)/playbook.yml -i $(CURDIR)/local -K -vv
+	ansible-playbook $(CURDIR)/playbook.yml -i $(CURDIR)/local -vv # -K only without vagrant
 
 .PHONY: prepare ansible
