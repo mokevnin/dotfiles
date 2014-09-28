@@ -25,7 +25,7 @@
   roles:
       - { role: rvm_io.rvm1-ruby, tags: ruby }
 
-  tasks:
+  post_tasks:
     - easy_install: name=pip
       sudo: yes
 
