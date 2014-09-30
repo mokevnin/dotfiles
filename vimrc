@@ -100,6 +100,7 @@ set shiftwidth=4
 set expandtab
 
 " set background=dark
+set t_Co=256
 colorscheme jellybeans
 
 " ================ Persistent Undo ==================
