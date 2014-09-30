@@ -21,6 +21,7 @@
         - python-pycurl
         - python-dev
         - python-setuptools
+        - tmux
 
   roles:
       - { role: rvm_io.rvm1-ruby, tags: ruby }
