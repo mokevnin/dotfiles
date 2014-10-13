@@ -4,8 +4,7 @@
     dotfiles: /var/tmp/dotfiles
     rvm1_install_flags: '--auto-dotfiles --user-install'
     rvm1_install_path: '/home/{{ ansible_ssh_user }}/.rvm'
-    environment:
-      PATH: /home/{{ ansible_user_id }}/.rvm/rubies/default/bin:{{ ansible_env.PATH }}
+    rvm1_bin_path: '{{ rvm1_install_path }}/rubies/default/bin'
 
   pre_tasks:
     - apt: name={{ item }} state=latest
@@ -50,7 +49,7 @@
     # - shell: vim +PluginInstall +qall
 
     - gem: name={{ item }} state=present
-      environment: {{ environment }}
+      executable='{{ rvm1_bin_path }}/gem'
       with_items:
         - bundler
         - haml-lint
