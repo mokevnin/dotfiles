@@ -4,6 +4,8 @@
     dotfiles: /var/tmp/dotfiles
     rvm1_install_flags: '--auto-dotfiles --user-install'
     rvm1_install_path: '/home/{{ ansible_ssh_user }}/.rvm'
+    environment:
+      PATH: /home/{{ ansible_user_id }}/.rvm/rubies/default/bin:{{ ansible_env.PATH }}
 
   pre_tasks:
     - apt: name={{ item }} state=latest
@@ -27,17 +29,17 @@
       - { role: rvm_io.rvm1-ruby, tags: ruby }
 
   post_tasks:
-    - easy_install: name=pip
-      sudo: yes
+    # - easy_install: name=pip
+    #   sudo: yes
 
-    - pip: name={{ item }} state=latest
-      sudo: yes
-      with_items:
-        - pylint
-        - git+https://github.com/docker/fig.git#egg=fig
-        # - fig
-        # - "https://github.com/docker/fig/archive/master.zip"
-      tags: python
+    # - pip: name={{ item }} state=latest
+    #   sudo: yes
+    #   with_items:
+    #     - pylint
+    #     - git+https://github.com/docker/fig.git#egg=fig
+    #     # - fig
+    #     # - "https://github.com/docker/fig/archive/master.zip"
+    #   tags: python
 
     - file: src={{ dotfiles }}/{{ item }} dest=~/.{{ item }} state=link
       with_items:
@@ -48,8 +50,7 @@
     # - shell: vim +PluginInstall +qall
 
     - gem: name={{ item }} state=present
-      environment:
-        PATH: /home/{{ ansible_user_id }}/.rvm/rubies/default/bin:{{ ansible_env.PATH }}
+      environment: {{ environment }}
       with_items:
         - bundler
         - haml-lint
@@ -74,10 +75,10 @@
     - lineinfile: dest="~/.bash_profile" state=present
         line="export PS1='$(__git_ps1) \w\$ '"
 
-    # docker
-    - apt_key: url=https://get.docker.io/gpg state=present
-      sudo: yes
-    - apt_repository: repo='deb http://get.docker.io/ubuntu docker main' state=present
-      sudo: yes
-    - apt: pkg=lxc-docker state=latest update_cache=yes
-      sudo: yes
+    # # docker
+    # - apt_key: url=https://get.docker.io/gpg state=present
+    #   sudo: yes
+    # - apt_repository: repo='deb http://get.docker.io/ubuntu docker main' state=present
+    #   sudo: yes
+    # - apt: pkg=lxc-docker state=latest update_cache=yes
+    #   sudo: yes
