@@ -148,9 +148,9 @@ let g:buffergator_sort_regime = "mru"
 
 let g:vim_markdown_folding_disabled = 1
 
-let g:syntastic_javascript_checkers = ['eslint', 'jsxhint']
-let g:syntastic_haml_checkers = ['haml_lint', 'haml']
-let g:syntastic_ruby_checkers = ['rubocop', 'rubylint', 'mri']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_haml_checkers = ['haml_lint']
+let g:syntastic_ruby_checkers = ['rubocop']
 " let g:syntastic_erlang_checkers = ['syntaxerl']
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
