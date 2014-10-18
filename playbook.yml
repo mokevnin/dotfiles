@@ -49,9 +49,8 @@
     - git: repo=https://github.com/gmarik/Vundle.vim.git dest=~/.vim/bundle/Vundle.vim
     # - shell: vim +PluginInstall +qall
 
-    - gem: name={{ item }} state=present executable='{{ rvm1_bin_path }}/gem'
+    - gem: name={{ item }} state=present executable='{{ rvm1_bin_path }}/gem' user_install=no
       with_items:
-        - bundler
         - haml-lint
         - ruby-lint
         - rubocop
