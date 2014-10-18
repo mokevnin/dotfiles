@@ -10,5 +10,6 @@ install:
   # - pip install ansible
 
 script:
+  - rm -rf ~/.gitconfig
   - git clone https://github.com/mokevnin/dotfiles.git /var/tmp/dotfiles
   - make
