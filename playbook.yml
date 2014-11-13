@@ -2,6 +2,7 @@
 - hosts: all
   vars:
     dotfiles: /var/tmp/dotfiles
+    rvm1_rvm_check_for_updates: no
     rvm1_install_flags: '--auto-dotfiles --user-install'
     rvm1_install_path: '/home/{{ ansible_ssh_user }}/.rvm'
     rvm1_bin_path: '{{ rvm1_install_path }}/rubies/default/bin'
@@ -57,7 +58,7 @@
         - sass
       tags: [ruby]
 
-    - npm: name={{ item }} global=yes
+    - npm: name={{ item }} global=yes state=latest
       sudo: yes
       with_items:
         - bower
@@ -72,11 +73,3 @@
 
     - lineinfile: dest="~/.bash_profile" state=present
         line="export PS1='$(__git_ps1) \w\$ '"
-
-    # # docker
-    # - apt_key: url=https://get.docker.io/gpg state=present
-    #   sudo: yes
-    # - apt_repository: repo='deb http://get.docker.io/ubuntu docker main' state=present
-    #   sudo: yes
-    # - apt: pkg=lxc-docker state=latest update_cache=yes
-    #   sudo: yes
