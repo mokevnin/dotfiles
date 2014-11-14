@@ -7,7 +7,7 @@ prepare:
 	# sudo apt-get install -y ansible
 	sudo apt-get -y install python-pip
 	sudo pip install ansible
-	sudo ansible-galaxy install -ifr roles.txt
+	# sudo ansible-galaxy install -ifr roles.txt
 	# git clone https://github.com/mokevnin/dotfiles.git ~/dotfiles
 
 provision:
