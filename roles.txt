@@ -1,1 +1,0 @@
-rvm_io.rvm1-ruby,v1.3.1

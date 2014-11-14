@@ -2,10 +2,6 @@
 - hosts: all
   vars:
     dotfiles: /var/tmp/dotfiles
-    rvm1_rvm_check_for_updates: no
-    rvm1_install_flags: '--auto-dotfiles --user-install'
-    rvm1_install_path: '/home/{{ ansible_ssh_user }}/.rvm'
-    rvm1_bin_path: '{{ rvm1_install_path }}/rubies/default/bin'
 
   pre_tasks:
     - apt: name={{ item }} state=latest
@@ -16,7 +12,6 @@
         - exuberant-ctags
         - vim
         - git
-        - npm
         - curl
         # - python-setuptools
         - python-apt
@@ -25,10 +20,7 @@
         - python-setuptools
         - tmux
 
-  roles:
-      - { role: rvm_io.rvm1-ruby, tags: ruby }
-
-  post_tasks:
+  tasks:
     - easy_install: name=pip
       sudo: yes
 
@@ -50,7 +42,7 @@
     - git: repo=https://github.com/gmarik/Vundle.vim.git dest=~/.vim/bundle/Vundle.vim
     # - shell: vim +PluginInstall +qall
 
-    - gem: name={{ item }} state=present executable='{{ rvm1_bin_path }}/gem' user_install=no
+    - gem: name={{ item }} state=present user_install=no
       with_items:
         - haml-lint
         - ruby-lint
