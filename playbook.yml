@@ -35,14 +35,20 @@
       tags: python
 
     - file: src={{ dotfiles }}/{{ item }} dest=~/.{{ item }} state=link
+      sudo: yes
+      sudo_user: {{ ansible_user_id }}
       with_items:
         - vimrc
         - gitconfig
 
     - git: repo=https://github.com/gmarik/Vundle.vim.git dest=~/.vim/bundle/Vundle.vim
+      sudo: yes
+      sudo_user: {{ ansible_user_id }}
     # - shell: vim +PluginInstall +qall
 
     - gem: name={{ item }} state=present user_install=no
+      sudo: yes
+      sudo_user: {{ ansible_user_id }}
       with_items:
         - haml-lint
         - ruby-lint
@@ -51,7 +57,6 @@
       tags: [ruby]
 
     - npm: name={{ item }} global=yes state=latest
-      sudo: yes
       with_items:
         - bower
         - js-yaml
