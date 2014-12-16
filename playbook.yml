@@ -68,5 +68,5 @@
     - lineinfile: dest="~/.bash_profile" state=present create=yes
         line="set -o vi"
 
-    - lineinfile: dest="~/.bash_profile" state=present
+    - lineinfile: dest="~/.bash_profile" state=present create=yes
         line="export PS1='$(__git_ps1) \w\$ '"
