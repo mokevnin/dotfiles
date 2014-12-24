@@ -64,8 +64,8 @@ Plugin 'tpope/vim-bundler'
 
 " Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-endwise'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
+" Plugin 'Shougo/neosnippet'
+" Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Shougo/vimshell.vim'
 
 " Plugin 'chase/vim-ansible-yaml'
@@ -150,7 +150,7 @@ let g:vim_markdown_folding_disabled = 1
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_haml_checkers = ['haml_lint']
-let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 " let g:syntastic_erlang_checkers = ['syntaxerl']
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
