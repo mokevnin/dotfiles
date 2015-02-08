@@ -60,8 +60,7 @@
       with_items:
         - bower
         - js-yaml
-        - jsxhint
-        - eslint
+        - eslint # NOTE: http://eslint.org/docs/configuring/ for enabling jsx
         - jsonlint
         - grunt-cli
 
