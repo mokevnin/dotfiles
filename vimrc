@@ -117,6 +117,8 @@ if has('persistent_undo')
   set undofile
 endif
 
+let g:jsx_ext_required = 0
+
 let g:slime_target = "tmux"
 
 let g:vim_json_syntax_conceal = 0
