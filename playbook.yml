@@ -19,6 +19,8 @@
         - python-dev
         - python-setuptools
         - tmux
+        # - ocaml-nox
+        # - opam
 
   tasks:
     - easy_install: name=pip
@@ -46,7 +48,7 @@
       sudo_user: "{{ ansible_user_id }}"
     # - shell: vim +PluginInstall +qall
 
-    - gem: name={{ item }} state=present user_install=no
+    - gem: name={{ item }} state=latest user_install=no
       sudo: yes
       with_items:
         - haml-lint
@@ -63,6 +65,7 @@
         - eslint # NOTE: http://eslint.org/docs/configuring/ for enabling jsx
         - jsonlint
         - grunt-cli
+        - flow-bin
 
     - lineinfile: dest="~/.bash_profile" state=present create=yes
         line="set -o vi"

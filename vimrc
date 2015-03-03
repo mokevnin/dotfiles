@@ -39,6 +39,8 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'fatih/vim-go'
 Plugin 'jimenezrick/vimerl'
 Plugin 'wting/rust.vim'
+Plugin 'cespare/vim-toml'
+Plugin 'facebook/vim-flow'
 
 Plugin 'elzr/vim-json'
 " Plugin 'vim-scripts/JavaScript-Indent'
