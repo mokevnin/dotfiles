@@ -78,6 +78,7 @@ Plugin 'tpope/vim-classpath'
 Plugin 'tpope/vim-fireplace'
 " Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'vim-scripts/paredit.vim'
+Plugin 'wlangstroth/vim-racket'
 
 Plugin 'chrisbra/csv.vim'
 Plugin 'dotcloud/docker', {'rtp': 'contrib/syntax/vim'}
