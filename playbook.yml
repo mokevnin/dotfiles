@@ -67,6 +67,8 @@
         - bower
         - js-yaml
         - eslint # NOTE: http://eslint.org/docs/configuring/ for enabling jsx
+        - babel-eslint
+        - eslint-plugin-react
         - jsonlint
         - grunt-cli
         - flow-bin
