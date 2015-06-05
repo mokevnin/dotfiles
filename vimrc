@@ -8,6 +8,8 @@ call vundle#begin()
 
 Plugin 'gmarik/vundle'
 
+" Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Shougo/vimproc.vim'
 Plugin 'tpope/vim-rvm'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
@@ -41,6 +43,9 @@ Plugin 'jimenezrick/vimerl'
 Plugin 'wting/rust.vim'
 Plugin 'cespare/vim-toml'
 Plugin 'facebook/vim-flow'
+
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'raichoo/haskell-vim'
 
 Plugin 'elzr/vim-json'
 " Plugin 'vim-scripts/JavaScript-Indent'

@@ -19,6 +19,7 @@
         - python-dev
         - python-setuptools
         - tmux
+        - haskell-platform
         # - ocaml-nox
         # - opam
 
@@ -47,6 +48,9 @@
       sudo: yes
       sudo_user: "{{ ansible_user_id }}"
     # - shell: vim +PluginInstall +qall
+
+    - shell: cabal update
+    - shell: cabal install ghc-mod
 
     - gem: name={{ item }} state=latest user_install=no
       sudo: yes
