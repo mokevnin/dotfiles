@@ -52,7 +52,7 @@ Plugin 'elzr/vim-json'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'moll/vim-node'
-Plugin 'mattn/emmet-vim'
+" Plugin 'mattn/emmet-vim'
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'

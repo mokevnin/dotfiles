@@ -5,7 +5,7 @@
 
   pre_tasks:
     - apt: name={{ item }} state=latest
-      sudo: yes
+      become: yes
       with_items:
         # - ack
         - ack-grep
@@ -25,28 +25,29 @@
 
   tasks:
     - easy_install: name=pip
-      sudo: yes
+      become: yes
 
     - pip: name={{ item }} state=latest
-      sudo: yes
+      become: yes
       with_items:
         - pylint
+        - ansible-lint
         #- bashate
-        # - git+https://github.com/docker/fig.git#egg=fig
-        # - fig
-        # - "https://github.com/docker/fig/archive/master.zip"
       tags: python
 
     - file: src={{ dotfiles }}/{{ item }} dest=~/.{{ item }} state=link
-      sudo: yes
-      sudo_user: "{{ ansible_user_id }}"
+      # become: yes
+      # become_user: "{{ ansible_user_id }}"
       with_items:
         - vimrc
         - gitconfig
 
-    - git: repo=https://github.com/gmarik/Vundle.vim.git dest=~/.vim/bundle/Vundle.vim
-      sudo: yes
-      sudo_user: "{{ ansible_user_id }}"
+    - git:
+        repo: https://github.com/gmarik/Vundle.vim.git
+        dest: ~/.vim/bundle/Vundle.vim
+        version: v0.10.2
+      # become: yes
+      # become_user: "{{ ansible_user_id }}"
     # - shell: vim +PluginInstall +qall
 
     - shell: cabal update
@@ -73,8 +74,8 @@
         - grunt-cli
         - flow-bin
 
-    - lineinfile: dest="~/.bash_profile" state=present create=yes
-        line="set -o vi"
+    # - lineinfile: dest="~/.bash_profile" state=present create=yes
+    #     line="set -o vi"
 
     - lineinfile: dest="~/.bash_profile" state=present create=yes
         line="export PS1='$(__git_ps1) \w\$ '"
