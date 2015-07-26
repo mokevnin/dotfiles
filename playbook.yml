@@ -58,6 +58,7 @@
       with_items:
         - haml-lint
         - ruby-lint
+        - sqlint
         - rubocop
         - sass
       tags: [ruby]
