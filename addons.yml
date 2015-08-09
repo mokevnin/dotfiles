@@ -1,0 +1,57 @@
+---
+- hosts: all
+
+  tasks:
+    - apt: name={{ item }} state=latest
+      become: yes
+      with_items:
+        - ack-grep
+        - exuberant-ctags
+        - curl
+        - python-apt
+        - python-pycurl
+        - python-dev
+        - python-setuptools
+      when: ansible_distribution == 'Ubuntu'
+      tags: always
+
+    - easy_install: name=pip
+      become: yes
+      tags: always
+
+    - pip: name={{ item }} state=latest
+      become: yes
+      with_items:
+        - pylint
+        - ansible-lint
+        #- bashate
+      tags: always
+
+    - shell: cabal update && cabal install ghc-mod
+      tags:
+        - all
+        - haskell
+
+    - gem: name={{ item }} state=latest user_install=no
+      become: yes
+      with_items:
+        - haml-lint
+        - ruby-lint
+        - sqlint
+        - rubocop
+      tags:
+        - all
+        - ruby
+
+    - npm: name={{ item }} global=yes state=latest
+      become: yes
+      with_items:
+        - bower
+        - js-yaml
+        - eslint # NOTE: http://eslint.org/docs/configuring/ for enabling jsx
+        - babel-eslint
+        - eslint-plugin-react
+        - jsonlint
+      tags:
+        - all
+        - node

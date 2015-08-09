@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - file: src=dotfiles/files/{{ item }} dest=~/.{{ item }} state=link
+      with_items:
+        - vimrc
+
+    - git:
+        repo: https://github.com/gmarik/Vundle.vim.git
+        dest: ~/.vim/bundle/Vundle.vim
+        version: v0.10.2
+    - shell: vim -i NONE -c VundleUpdate -c quitall

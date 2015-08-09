@@ -4,13 +4,13 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = '2'
 
-ansible_script = <<SCRIPT
-  sudo apt-get install -y git
-  git clone https://github.com/mokevnin/dotfiles.git /var/tmp/dotfiles
-  cd /var/tmp/dotfiles
-  git pull -f
-  make
-SCRIPT
+# ansible_script = <<SCRIPT
+#   sudo apt-get install -y git
+#   git clone https://github.com/mokevnin/dotfiles.git /var/tmp/dotfiles
+#   cd /var/tmp/dotfiles
+#   git pull -f
+#   make
+# SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
@@ -27,8 +27,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # end
 
-  config.vm.provision 'shell', inline: ansible_script,
-    privileged: false
+  # config.vm.provision 'shell', inline: ansible_script,
+  #   privileged: false
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

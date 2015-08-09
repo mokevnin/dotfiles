@@ -44,6 +44,10 @@ Plugin 'wting/rust.vim'
 Plugin 'cespare/vim-toml'
 Plugin 'facebook/vim-flow'
 
+" Plugin 'StanAngeloff/php.vim'
+" Plugin '2072/PHP-Indenting-for-VIm'
+" Plugin 'shawncplus/phpcomplete.vim'
+
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'raichoo/haskell-vim'
 
