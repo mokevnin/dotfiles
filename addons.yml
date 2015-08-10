@@ -19,12 +19,18 @@
       become: yes
       tags: always
 
+    # - shell: composer global require "squizlabs/php_codesniffer=*"
+    #   # become: yes
+    #   tags:
+    #     - all
+    #     - php
+
     - pip: name={{ item }} state=latest
       become: yes
       with_items:
         - pylint
         - ansible-lint
-        #- bashate
+        - bashate
       tags: always
 
     - shell: cabal update && cabal install ghc-mod

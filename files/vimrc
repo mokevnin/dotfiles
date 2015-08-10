@@ -8,6 +8,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'tpope/vim-sleuth'
 " Plugin 'tpope/vim-rvm'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
@@ -69,27 +70,20 @@ Plugin 'tpope/vim-git'
 
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
-" Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-bundler'
 
-" Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-endwise'
-" Plugin 'Shougo/neosnippet'
-" Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Shougo/vimshell.vim'
-
-" Plugin 'chase/vim-ansible-yaml'
 
 Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-leiningen'
 Plugin 'tpope/vim-classpath'
 Plugin 'tpope/vim-fireplace'
-" Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'vim-scripts/paredit.vim'
 Plugin 'wlangstroth/vim-racket'
 
 Plugin 'chrisbra/csv.vim'
-Plugin 'dotcloud/docker', {'rtp': 'contrib/syntax/vim'}
-Plugin 'nginx/nginx', {'rtp': 'contrib/vim'}
+Plugin 'ekalinin/Dockerfile.vim'
 
 call vundle#end()
 syntax on
@@ -99,9 +93,27 @@ filetype plugin on
 
 let mapleader=","
 
-" set mouse=a
+" Sets how many lines of history VIM has to remember
+set history=500
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+
+" enhanced command completion
+set wildmenu
+
+set visualbell
+
+if has('mouse')
+  set mouse=a
+endif
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
 set cursorline
 set hidden
+set nofoldenable
 "set modelines=0
 " set clipboard=unnamed
 "set synmaxcol=128
@@ -109,16 +121,21 @@ set hidden
 "set encoding=utf-8
 set nowrap
 set number
-"set nowritebackup
-"set noswapfile
-"set nobackup
 set hlsearch
 set ignorecase
 set smartcase
-" set tabstop=4
-" set shiftwidth=4
-set expandtab
+
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+
 set autoindent
+set smartindent
+" set shiftwidth=2
+" set softtabstop=2
+set tabstop=4
+set expandtab
 
 " set background=dark
 set t_Co=256
@@ -135,7 +152,7 @@ endif
 
 let g:jsx_ext_required = 0
 
-let g:slime_target = "tmux"
+" let g:slime_target = "tmux"
 
 let g:vim_json_syntax_conceal = 0
 
@@ -228,6 +245,10 @@ au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 
 " autocmd FileType ruby compiler ruby
 
-au FileType ruby setl sw=2 sts=2 et
-au FileType javascript setl sw=2 sts=2 et
-au FileType yaml setl sw=2 sts=2 et
+" au FileType ruby setl sw=2 sts=2 et
+" au FileType javascript setl sw=2 sts=2 et
+" au FileType yaml setl sw=2 sts=2 et
+
+if filereadable(expand("~/.vimrc.after"))
+  source ~/.vimrc.after
+endif
