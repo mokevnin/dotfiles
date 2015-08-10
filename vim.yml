@@ -6,7 +6,7 @@
         - vimrc
 
     - git:
-        repo: https://github.com/gmarik/Vundle.vim.git
+        repo: https://github.com/VundleVim/Vundle.vim.git
         dest: ~/.vim/bundle/Vundle.vim
-        version: v0.10.2
+        # version: v0.10.2
     - shell: vim -i NONE -c VundleUpdate -c quitall
