@@ -12,6 +12,7 @@
         - python-pycurl
         - python-dev
         - python-setuptools
+        - flex
       when: ansible_distribution == 'Ubuntu'
       tags: always
 
@@ -19,11 +20,17 @@
       become: yes
       tags: always
 
-    # - shell: composer global require "squizlabs/php_codesniffer=*"
-    #   # become: yes
-    #   tags:
-    #     - all
-    #     - php
+    - shell: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+      become: yes
+      tags:
+        - all
+        - php
+
+    - shell: composer global require "squizlabs/php_codesniffer=*"
+      # become: yes
+      tags:
+        - all
+        - php
 
     - pip: name={{ item }} state=latest
       become: yes
@@ -39,7 +46,6 @@
         - haskell
 
     - gem: name={{ item }} state=latest user_install=no
-      become: yes
       with_items:
         - haml-lint
         - ruby-lint

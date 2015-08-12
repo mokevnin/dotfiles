@@ -42,10 +42,7 @@ Plugin 'jimenezrick/vimerl'
 Plugin 'wting/rust.vim'
 " Plugin 'cespare/vim-toml'
 Plugin 'facebook/vim-flow'
-
-" Plugin 'StanAngeloff/php.vim'
-" Plugin '2072/PHP-Indenting-for-VIm'
-" Plugin 'shawncplus/phpcomplete.vim'
+Plugin '2072/PHP-Indenting-for-VIm'
 
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'raichoo/haskell-vim'
@@ -131,11 +128,13 @@ set nowb
 set noswapfile
 
 set autoindent
-set smartindent
+" set smartindent
 " set shiftwidth=2
 " set softtabstop=2
 set tabstop=4
-set expandtab
+set shiftwidth=4
+" set tabstop=4
+" set expandtab
 
 " set background=dark
 set t_Co=256
@@ -149,6 +148,15 @@ if has('persistent_undo')
   set undodir=~/.vim/backups
   set undofile
 endif
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 let g:jsx_ext_required = 0
 
@@ -188,6 +196,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 " let g:syntastic_erlang_checkers = ['syntaxerl']
+
+let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_php_phpcs_exec='~/.composer/vendor/bin/phpcs'
+let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
 
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
