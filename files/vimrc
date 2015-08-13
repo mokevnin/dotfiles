@@ -127,14 +127,13 @@ set nobackup
 set nowb
 set noswapfile
 
-set autoindent
+" set autoindent
 " set smartindent
-" set shiftwidth=2
-" set softtabstop=2
+" set softtabstop=4
 set tabstop=4
 set shiftwidth=4
-" set tabstop=4
-" set expandtab
+" set smarttab
+set expandtab
 
 " set background=dark
 set t_Co=256
