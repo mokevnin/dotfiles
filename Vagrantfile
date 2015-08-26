@@ -10,6 +10,7 @@ VAGRANTFILE_API_VERSION = '2'
 #   cd /var/tmp/dotfiles
 #   git pull -f
 #   make
+#   make dotfiles
 # SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|

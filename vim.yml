@@ -1,7 +1,7 @@
 ---
 - hosts: all
   tasks:
-    - file: src=dotfiles/files/{{ item }} dest=~/.{{ item }} state=link
+    - file: src=/var/tmp/dotfiles/files/{{ item }} dest=~/.{{ item }} state=link
       with_items:
         - vimrc
 
@@ -9,4 +9,4 @@
         repo: https://github.com/VundleVim/Vundle.vim.git
         dest: ~/.vim/bundle/Vundle.vim
         # version: v0.10.2
-    - shell: vim -i NONE -c VundleUpdate -c quitall
+#    - shell: vim -i NONE -c VundleUpdate -c quitall

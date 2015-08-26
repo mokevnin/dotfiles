@@ -3,6 +3,32 @@
   tasks:
     - lineinfile: dest="~/.bash_profile" state=present create=yes
         line="set -o vi"
+      tags: always
 
     - lineinfile: dest="~/.bash_profile" state=present create=yes
         line="export PS1='$(__git_ps1) \w\$ '"
+      tags: always
+
+    - lineinfile: dest="~/.bash_profile" state=present create=yes
+        line="alias vundle_update='vim -i NONE -c VundleUpdate -c quitall'"
+      tags: always
+
+    - lineinfile: dest="~/.bash_profile" state=present create=yes
+        line="alias make_{{ item }}='cd /var/tmp/dotfiles && make {{ item }}'"
+      with_items:
+        - addons
+        - dotfiles
+        - vim
+      tags: always
+
+    - file: src=/var/tmp/dotfiles/files/rubymine dest=~/.rubymine state=link
+      tags:
+        - all
+        - rubymine
+
+    - lineinfile: dest="~/.bash_profile" state=present create=yes
+        line="source $HOME/.rubymine"
+      tags:
+        - all
+        - rubymine
+

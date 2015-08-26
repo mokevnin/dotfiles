@@ -16,6 +16,62 @@
       when: ansible_distribution == 'Ubuntu'
       tags: always
 
+    - command: mkdir -p $HOME/.go
+      tags:
+        - all
+        - go
+
+    - git: repo="{{ item.repo }}"
+        dest="/var/tmp/{{ item.name }}"
+        version="{{ item.version }}"
+        accept_hostkey=yes
+      with_items:
+        - { repo: 'git://github.com/pote/gpm.git', version: 'v1.3.2', name: 'gpm' }
+        - { repo: 'git://github.com/pote/gvp.git', version: 'v0.3.0', name: 'gvp' }
+      tags:
+        - all
+        - go
+
+    - shell: 'cd /var/tmp/{{ item }}; ./configure; sudo make install'
+      with_items:
+        - gpm
+        - gvp
+      tags:
+        - all
+        - go
+
+    - lineinfile: dest="~/.bash_profile" state=present create=yes line='{{ item }}'
+      with_items:
+       - 'export GOPATH=$HOME/.go'
+       - 'export GOROOT=/usr/lib/go'
+       - 'export PATH=$PATH:$GOPATH/bin'
+       - 'export PATH=$PATH:$GOROOT/bin'
+      tags:
+        - all
+        - go
+
+    - name: Install Go deps
+      shell: 'GOPATH=$HOME/.go /usr/bin/go get {{item}}'
+      with_items:
+        - github.com/nsf/gocode
+        - github.com/k0kubun/pp
+        - golang.org/x/tools/cmd/godoc
+      tags:
+        - all
+        - go
+
+    - git: repo=git://github.com/direnv/direnv.git
+        dest=/var/tmp/direnv
+        accept_hostkey=yes
+      tags:
+        - all
+        - direnv
+    - command: sudo make install
+        chdir=/var/tmp/direnv
+      tags:
+        - all
+        - direnv
+
     - easy_install: name=pip
       become: yes
       tags: always
@@ -51,6 +107,7 @@
         - ruby-lint
         - sqlint
         - rubocop
+        - brakeman
       tags:
         - all
         - ruby
