@@ -1,0 +1,5 @@
+# RubyMine-RUBYLIB
+if [[ -d "$HOME/.rubymine_helpers" ]]
+then
+  export RUBYLIB=$HOME/.rubymine_helpers/rb/testing/patch/common/:$HOME/.rubymine_helpers/rb/testing/patch/bdd/:$RUBYLIB
+fi
