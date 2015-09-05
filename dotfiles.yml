@@ -14,7 +14,7 @@
       tags: always
 
     - lineinfile: dest="~/.bash_profile" state=present create=yes
-        line="alias make_{{ item }}='cd /var/tmp/dotfiles && make {{ item }}'"
+        line="alias make_{{ item }}='(cd /var/tmp/dotfiles && make {{ item }})'"
       with_items:
         - addons
         - dotfiles
