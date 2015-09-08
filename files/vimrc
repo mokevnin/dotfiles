@@ -79,6 +79,8 @@ Plugin 'tpope/vim-fireplace'
 Plugin 'vim-scripts/paredit.vim'
 Plugin 'wlangstroth/vim-racket'
 
+Plugin 'stephpy/vim-yaml'
+
 Plugin 'chrisbra/csv.vim'
 Plugin 'ekalinin/Dockerfile.vim'
 
