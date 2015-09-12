@@ -40,12 +40,13 @@
         - bashate
       tags: always
 
-    - shell: cabal update && cabal install ghc-mod
-      tags:
-        - all
-        - haskell
+    # - shell: cabal update && cabal install ghc-mod
+    #   tags:
+    #     - all
+    #     - haskell
 
     - gem: name={{ item }} state=latest user_install=no
+      become: yes
       with_items:
         - haml-lint
         - ruby-lint
