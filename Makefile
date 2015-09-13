@@ -17,5 +17,4 @@ install_ansible:
 	sudo apt-get update
 	sudo apt-get install ansible
 
-
 # .PHONY:
