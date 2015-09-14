@@ -4,85 +4,85 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'                 " Vundle, the plug-in manager for Vim
 
-" Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'tpope/vim-sleuth'
-" Plugin 'tpope/vim-rvm'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'altercation/vim-colors-solarized'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-airline'
-Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'tpope/vim-projectionist'
-Plugin 'tpope/vim-dispatch'
-Plugin 'majutsushi/tagbar'
-Plugin 'godlygeek/tabular'
-Plugin 'mbbill/undotree'
-" Plugin 'kchmck/vim-coffee-script'
-Plugin 'othree/html5.vim'
-Plugin 'digitaltoad/vim-jade'
-" Plugin 'tmatilai/vim-monit'
-Plugin 'ervandew/supertab'
-" Plugin 'jpalardy/vim-slime'
-" Plugin 'Matt-Deacalion/vim-systemd-syntax'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'fatih/vim-go'
-Plugin 'jimenezrick/vimerl'
-Plugin 'wting/rust.vim'
-" Plugin 'cespare/vim-toml'
-Plugin 'facebook/vim-flow'
-Plugin '2072/PHP-Indenting-for-VIm'
+" Plugin 'nathanaelkane/vim-indent-guides'    " A Vim plugin for visually displaying indent levels in code
+Plugin 'Shougo/vimproc.vim'                   " Interactive command execution in Vim.
+Plugin 'tpope/vim-sleuth'                     " sleuth.vim: Heuristically set buffer options
+" Plugin 'tpope/vim-rvm'                      " rvm.vim: Switch Ruby versions from inside Vim
+Plugin 'tpope/vim-sensible'                   " sensible.vim: Defaults everyone can agree on
+Plugin 'tpope/vim-surround'                   " surround.vim: quoting/parenthesizing made simple
+Plugin 'scrooloose/syntastic'                 " Syntax checking hacks for vim
+Plugin 'scrooloose/nerdtree'                  " A tree explorer plugin for vim.
+Plugin 'tpope/vim-commentary'                 " commentary.vim: comment stuff out
+Plugin 'tpope/vim-repeat'                     " repeat.vim: enable repeating supported plugin maps with '.'
+Plugin 'tpope/vim-unimpaired'                 " unimpaired.vim: pairs of handy bracket mappings
+Plugin 'ctrlpvim/ctrlp.vim'                   " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder.
+" Plugin 'altercation/vim-colors-solarized'   " precision colorscheme for the vim text editor
+Plugin 'nanotech/jellybeans.vim'              " A colorful, dark color scheme for Vim.
+Plugin 'mileszs/ack.vim'                      " Vim plugin for the Perl module / CLI script 'ack'
+Plugin 'tpope/vim-fugitive'                   " fugitive.vim: a Git wrapper so awesome, it should be illegal
+Plugin 'bling/vim-airline'                    " lean & mean status/tabline for vim that's light as air
+Plugin 'jeetsukumaran/vim-buffergator'        " Vim plugin to list, select and switch between buffers.
+Plugin 'tpope/vim-projectionist'              " projectionist.vim: project configuration
+Plugin 'tpope/vim-dispatch'                   " dispatch.vim: asynchronous build and test dispatcher
+Plugin 'majutsushi/tagbar'                    " Vim plugin that displays tags in a window, ordered by scope
+Plugin 'godlygeek/tabular'                    " Vim script for text filtering and alignment
+Plugin 'mbbill/undotree'                      " The ultimate undo history visualizer for VIM
+" Plugin 'kchmck/vim-coffee-script'           " CoffeeScript support for vim
+Plugin 'othree/html5.vim'                     " HTML5 omnicomplete and syntax
+Plugin 'digitaltoad/vim-jade'                 " Vim Jade template engine syntax highlighting and indention
+" Plugin 'tmatilai/vim-monit'                 " Vim syntax highlight for Monit
+Plugin 'ervandew/supertab'                    " Perform all your vim insert mode completions with Tab
+" Plugin 'jpalardy/vim-slime'                 " A vim plugin to give you some slime. (Emacs)
+" Plugin 'Matt-Deacalion/vim-systemd-syntax'  " Syntax highlighting for systemd service files in Vim.
+Plugin 'editorconfig/editorconfig-vim'        " EditorConfig plugin for Vim
+Plugin 'fatih/vim-go'                         " Go development plugin for Vim
+Plugin 'jimenezrick/vimerl'                   " The Erlang plugin for Vim
+Plugin 'wting/rust.vim'                       " Vim support for Rust file detection and syntax highlighting.
+" Plugin 'cespare/vim-toml'                   " Vim syntax for TOML
+Plugin 'facebook/vim-flow'                    " A vim plugin for Flow
+Plugin '2072/PHP-Indenting-for-VIm'           " The official VIm indent script for PHP
 
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'raichoo/haskell-vim'
+Plugin 'eagletmt/ghcmod-vim'                  " Happy Haskell programming on Vim, powered by ghc-mod
+Plugin 'raichoo/haskell-vim'                  " Custom Haskell Vimscripts
 
-Plugin 'elzr/vim-json'
-" Plugin 'vim-scripts/JavaScript-Indent'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'moll/vim-node'
-" Plugin 'mattn/emmet-vim'
+Plugin 'elzr/vim-json'                        " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
+" Plugin 'vim-scripts/JavaScript-Indent'      " Javascript indenter (HTML indent is included)
+Plugin 'pangloss/vim-javascript'              " Vastly improved Javascript indentation and syntax support in Vim.
+Plugin 'mxw/vim-jsx'                          " React JSX syntax highlighting and indenting for vim.
+Plugin 'moll/vim-node'                        " Tools and environment to make Vim superb for developing with Node.js. Like Rails.vim for Node.
+" Plugin 'mattn/emmet-vim'                    " emmet for vim: http://emmet.io/
 
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-misc'                       " Miscellaneous auto-load Vim scripts
+Plugin 'xolox/vim-easytags'                   " Automated tag file generation and syntax highlighting of tags in Vim
 
-Plugin 'Valloric/MatchTagAlways'
+Plugin 'Valloric/MatchTagAlways'              " A Vim plugin that always highlights the enclosing html/xml tags
 
-Plugin 'plasticboy/vim-markdown'
-" Plugin 'greyblake/vim-preview'
+Plugin 'plasticboy/vim-markdown'              " Markdown Vim Mode
+" Plugin 'greyblake/vim-preview'              " Vim plugin for previewing markup files(markdown,rdoc,textile,html)
 
-" Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-git'
+" Plugin 'tpope/vim-haml'                     " Vim runtime files for Haml, Sass, and SCSS
+Plugin 'tpope/vim-git'                        " Vim Git runtime files
 
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-bundler'
+Plugin 'vim-ruby/vim-ruby'                    " Vim/Ruby Configuration Files
+Plugin 'tpope/vim-rails'                      " rails.vim: Ruby on Rails power tools
+Plugin 'tpope/vim-bundler'                    " bundler.vim: Lightweight support for Ruby's Bundler
 
-Plugin 'tpope/vim-endwise'
-Plugin 'Shougo/vimshell.vim'
+Plugin 'tpope/vim-endwise'                    " endwise.vim: wisely add 'end' in ruby, endfunction/endif/more in vim script, etc
+Plugin 'Shougo/vimshell.vim'                  " Powerful shell implemented by vim.
 
-Plugin 'guns/vim-clojure-static'
-Plugin 'tpope/vim-leiningen'
-Plugin 'tpope/vim-classpath'
-Plugin 'tpope/vim-fireplace'
-Plugin 'vim-scripts/paredit.vim'
-Plugin 'wlangstroth/vim-racket'
+Plugin 'guns/vim-clojure-static'              " Meikel Brandmeyer's excellent Clojure runtime files
+Plugin 'tpope/vim-leiningen'                  " salve.vim: static support for Leiningen and Boot
+Plugin 'tpope/vim-classpath'                  " classpath.vim: Set 'path' from the Java class path
+Plugin 'tpope/vim-fireplace'                  " fireplace.vim: Clojure REPL support
+Plugin 'vim-scripts/paredit.vim'              " Paredit Mode: Structured Editing of Lisp S-expressions
+Plugin 'wlangstroth/vim-racket'               " vim bundle for Racket, for use with Pathogen
 
-Plugin 'stephpy/vim-yaml'
+Plugin 'stephpy/vim-yaml'                     " Override vim syntax for yaml files
 
-Plugin 'chrisbra/csv.vim'
-Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'chrisbra/csv.vim'                     " A Filetype plugin for csv files
+Plugin 'ekalinin/Dockerfile.vim'              " Vim syntax file & snippets for Docker's Dockerfile
 
 call vundle#end()
 syntax on
