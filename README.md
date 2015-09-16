@@ -6,10 +6,11 @@
 
 ### Install
     git clone <this repo>
-    make
+    make install_ansible // if you don't have ansible yet
+    make configure_vim
 
 ### Install addons (linters, checkers)
-    make addons // optional TAGS variable accepted, see addons.yml for details
+    make install_addons // optional TAGS variable accepted, see addons.yml for details
 
 ### Setup dotfiles
-    make dotfiles
+    make install_dotfiles
