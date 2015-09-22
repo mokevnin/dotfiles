@@ -22,12 +22,14 @@
 
     - shell: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
       become: yes
+      ignore_errors: yes
       tags:
         - all
         - php
 
     - shell: composer global require "squizlabs/php_codesniffer=*"
       # become: yes
+      ignore_errors: yes
       tags:
         - all
         - php
@@ -47,6 +49,7 @@
 
     - gem: name={{ item }} state=latest user_install=no
       become: yes
+      ignore_errors: yes
       with_items:
         - haml-lint
         - ruby-lint
@@ -58,6 +61,7 @@
 
     - npm: name={{ item }} global=yes state=latest
       become: yes
+      ignore_errors: yes
       with_items:
         - bower
         - js-yaml
