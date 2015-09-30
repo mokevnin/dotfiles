@@ -196,7 +196,7 @@ let g:vim_markdown_folding_disabled = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-" let g:syntastic_erlang_checkers = ['syntaxerl']
+let g:syntastic_erlang_checkers = ['syntaxerl', 'escript']
 
 let g:syntastic_php_checkers=['php', 'phpcs']
 let g:syntastic_php_phpcs_exec='~/.composer/vendor/bin/phpcs'

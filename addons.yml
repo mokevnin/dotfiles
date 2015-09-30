@@ -20,6 +20,22 @@
       become: yes
       tags: always
 
+    - git: repo=git://github.com/ten0s/syntaxerl.git dest=/var/tmp/syntaxerl
+      tags:
+        - all
+        - erlang
+
+    - shell: cd /var/tmp/syntaxerl && make
+      tags:
+        - all
+        - erlang
+
+    - file: src=/var/tmp/syntaxerl/syntaxerl dest=/usr/local/bin/syntaxerl state=hard
+      become: yes
+      tags:
+        - all
+        - erlang
+
     - shell: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
       become: yes
       ignore_errors: yes
