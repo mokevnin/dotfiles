@@ -11,3 +11,4 @@
         # version: v0.10.2
 
     - command: vim -i NONE -c PluginUpdate -c quitall
+    # FIXME: compile https://github.com/Shougo/vimproc.vim
