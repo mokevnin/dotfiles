@@ -58,10 +58,30 @@
         - bashate
       tags: always
 
-    # - shell: cabal update && cabal install ghc-mod
-    #   tags:
-    #     - all
-    #     - haskell
+    - shell: cabal update
+      ignore_errors: yes
+      tags:
+        - all
+        - haskell
+
+    - shell: cabal install {{ item }}
+      ignore_errors: yes
+      with_items:
+        - ghc-mod
+        - hdevtools
+        - hlint
+      tags:
+        - all
+        - haskell
+
+    - lineinfile:
+        state: present
+        dest: ~/.bashrc
+        regexp: '.cabal/bin'
+        line: 'export PATH="$PATH:$HOME/.cabal/bin"'
+      tags:
+        - all
+        - haskell
 
     - gem: name={{ item }} state=latest user_install=no
       become: yes
