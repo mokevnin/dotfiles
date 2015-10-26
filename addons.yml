@@ -64,12 +64,10 @@
         - all
         - haskell
 
-    - shell: cabal install {{ item }}
+    - shell: stack install {{ item }}
       ignore_errors: yes
       with_items:
         - ghc-mod
-        - hdevtools
-        - hlint
       tags:
         - all
         - haskell
