@@ -196,7 +196,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " autocmd FileType ruby setlocal omnifunc=rubycomplete#CompleteTags
 " autocmd BufWritePost *.hs call s:check_and_lint()
-autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+" autocmd BufWritePost *.hs GhcModCheckAndLintAsync
 
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_sort_regime = "mru"
