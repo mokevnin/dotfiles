@@ -45,6 +45,7 @@ Plugin 'wting/rust.vim'
 " Plugin 'cespare/vim-toml'
 " Plugin 'facebook/vim-flow'
 Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'joonty/vdebug.git'
 
 " Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/ghcmod-vim'
