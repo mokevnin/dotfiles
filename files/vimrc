@@ -10,7 +10,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'tpope/vim-sleuth'
 " Plugin 'tpope/vim-rvm'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
@@ -53,8 +52,8 @@ Plugin 'neovimhaskell/haskell-vim'
 
 Plugin 'elzr/vim-json'
 " Plugin 'vim-scripts/JavaScript-Indent'
-Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
 Plugin 'moll/vim-node'
 " Plugin 'mattn/emmet-vim'
 
@@ -63,10 +62,11 @@ Plugin 'xolox/vim-easytags'
 
 Plugin 'Valloric/MatchTagAlways'
 
+Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'plasticboy/vim-markdown'
 " Plugin 'greyblake/vim-preview'
 
-" Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-git'
 
 Plugin 'vim-ruby/vim-ruby'
@@ -138,10 +138,10 @@ set noswapfile
 " set autoindent
 " set smartindent
 " set softtabstop=4
-set tabstop=4
-set shiftwidth=4
-" set smarttab
 set expandtab
+set tabstop=2
+set shiftwidth=2
+" set smarttab
 
 " set background=dark
 set t_Co=256
