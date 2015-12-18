@@ -44,6 +44,7 @@ Plugin 'wting/rust.vim'
 " Plugin 'cespare/vim-toml'
 " Plugin 'facebook/vim-flow'
 Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'joonty/vdebug.git'
 
 " Plugin 'eagletmt/ghcmod-vim'
@@ -91,10 +92,7 @@ Plugin 'chrisbra/csv.vim'
 Plugin 'ekalinin/Dockerfile.vim'
 
 call vundle#end()
-syntax on
-filetype on
 filetype plugin indent on
-" filetype plugin on
 
 let mapleader=","
 
@@ -139,7 +137,8 @@ set noswapfile
 " set smartindent
 " set softtabstop=4
 set expandtab
-set tabstop=2
+" set noexpandtab
+set softtabstop=2
 set shiftwidth=2
 " set smarttab
 
@@ -271,6 +270,7 @@ au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 " au FileType ruby setl sw=2 sts=2 et
 " au FileType javascript setl sw=2 sts=2 et
 " au FileType yaml setl sw=2 sts=2 et
+autocmd Filetype php setlocal ts=4 sw=4
 
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
