@@ -30,7 +30,7 @@
         - all
         - erlang
 
-    - file: src=/var/tmp/syntaxerl/syntaxerl dest=/usr/local/bin/syntaxerl state=hard
+    - copy: src=/var/tmp/syntaxerl/syntaxerl dest=/usr/local/bin/syntaxerl
       become: yes
       tags:
         - all
