@@ -55,6 +55,7 @@
       with_items:
         - pylint
         - ansible-lint
+        - grip
         - bashate
       tags: always
 

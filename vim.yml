@@ -10,5 +10,7 @@
         dest: ~/.vim/bundle/Vundle.vim
         # version: v0.10.2
 
+    - file: path=~/.vim/spell state=directory
+
     - command: vim -i NONE -c PluginUpdate -c quitall
     # FIXME: compile https://github.com/Shougo/vimproc.vim
