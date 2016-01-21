@@ -55,7 +55,7 @@ Plugin 'elzr/vim-json'
 Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
 Plugin 'moll/vim-node'
-" Plugin 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 Plugin 'reedes/vim-lexical'
 
 Plugin 'xolox/vim-misc'
