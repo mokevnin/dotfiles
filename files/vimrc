@@ -46,6 +46,7 @@ Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'joonty/vdebug.git'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'tpope/vim-ragtag'
 
 " Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/ghcmod-vim'
@@ -255,6 +256,7 @@ nmap <leader>l mQviwu`Q
 
 nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
+
 let NERDTreeIgnore = ['\.pyc$']
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
