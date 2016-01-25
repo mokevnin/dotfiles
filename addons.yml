@@ -6,6 +6,9 @@
       become: yes
       with_items:
         - ack-grep
+        - clang-format-3.6
+        - clang-3.6
+        - llvm
         - exuberant-ctags
         - curl
         - python-apt
