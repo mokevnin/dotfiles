@@ -45,6 +45,7 @@ Plugin 'wting/rust.vim'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'joonty/vdebug.git'
+Plugin 'rhysd/vim-clang-format'
 
 " Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/ghcmod-vim'
