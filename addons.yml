@@ -104,7 +104,7 @@
         - bower
         - js-yaml
         - eslint # NOTE: http://eslint.org/docs/configuring/ for enabling jsx
-        - babel-eslint
+        - eslint-config-airbnb
         - eslint-plugin-react
         - jsonlint
       tags:
