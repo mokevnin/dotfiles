@@ -88,3 +88,11 @@
       tags:
         - all
         - node
+
+    - copy:
+        src: files/eslintrc
+        dest: ~/.eslintrc
+        backup: yes
+      tags:
+        - node
+        - all
