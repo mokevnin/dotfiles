@@ -105,6 +105,7 @@
         - js-yaml
         - eslint # NOTE: http://eslint.org/docs/configuring/ for enabling jsx
         - eslint-config-airbnb
+        - stylelint
         - eslint-plugin-react
         - jsonlint
       tags:
