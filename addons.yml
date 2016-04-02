@@ -23,29 +23,6 @@
       become: yes
       tags: always
 
-    - git: repo=git://github.com/ten0s/syntaxerl.git dest=/var/tmp/syntaxerl
-      tags:
-        - all
-        - erlang
-
-    - shell: cd /var/tmp/syntaxerl && make
-      tags:
-        - all
-        - erlang
-
-    - copy: src=/var/tmp/syntaxerl/syntaxerl dest=/usr/local/bin/syntaxerl
-      become: yes
-      tags:
-        - all
-        - erlang
-
-    - shell: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-      become: yes
-      ignore_errors: yes
-      tags:
-        - all
-        - php
-
     - shell: composer global require "squizlabs/php_codesniffer=*"
       # become: yes
       ignore_errors: yes
@@ -53,14 +30,15 @@
         - all
         - php
 
-    - pip: name={{ item }} state=latest
+    - pip: name={{ item }} state=present
       become: yes
       with_items:
         - pylint
         - ansible-lint
-        - grip
+        # - grip
         - bashate
-      tags: always
+      tags:
+        - all
 
     - gem: name={{ item }} state=latest user_install=no
       become: yes
@@ -78,21 +56,18 @@
       become: yes
       ignore_errors: yes
       with_items:
-        - bower
         - js-yaml
-        - eslint # NOTE: http://eslint.org/docs/configuring/ for enabling jsx
-        - eslint-config-airbnb
         - stylelint
-        - eslint-plugin-react
         - jsonlint
+        - eslint
+        - eslint-config-airbnb
+        - eslint-plugin-react
       tags:
         - all
-        - node
 
     - copy:
-        src: files/eslintrc
+        src: ./files/eslintrc
         dest: ~/.eslintrc
         backup: yes
       tags:
-        - node
         - all
