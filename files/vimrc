@@ -172,6 +172,7 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
+let g:syntastic_aggregate_errors = 1
 
 let g:syntastic_check_on_wq = 0
 
@@ -217,7 +218,9 @@ let g:vim_markdown_folding_disabled = 1
 
 let g:syntastic_haskell_checkers = ['']
 
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint', 'flow']
+let g:syntastic_javascript_flow_exe = 'flow'
+
 let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 let g:syntastic_erlang_checkers = ['syntaxerl', 'escript']
@@ -259,7 +262,7 @@ nmap <leader>l mQviwu`Q
 nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '\.retry$']
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
