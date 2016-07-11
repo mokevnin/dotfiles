@@ -219,7 +219,8 @@ let g:vim_markdown_folding_disabled = 1
 let g:syntastic_haskell_checkers = ['']
 
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
-let g:syntastic_javascript_flow_exe = 'flow'
+let g:syntastic_javascript_flow_exe = 'npm run --silent flow -- --json'
+let g:syntastic_javascript_eslint_exe = 'npm run --silent eslint -- -f compact'
 
 let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']

@@ -2,3 +2,4 @@
 *.swo
 .vagrant
 *.retry
+*.log
