@@ -292,7 +292,6 @@ au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 " au FileType yaml setl sw=2 sts=2 et
 " autocmd Filetype html setlocal ts=2 sw=2
 autocmd Filetype php setlocal ts=4 sw=4 autoindent
-autocmd Filetype php setlocal ts=4 sw=4 autoindent
 
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
