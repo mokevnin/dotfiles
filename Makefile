@@ -1,5 +1,5 @@
 configure_vim:
-	ansible-playbook vim.yml -i local -vv -e curdir=$(CURDIR)
+	ansible-playbook vim.yml -i local -vv -e curdir=$(CURDIR) --ask-sudo
 
 update_plugins: vim
 
