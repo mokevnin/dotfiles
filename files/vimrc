@@ -292,7 +292,9 @@ map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 nnoremap <silent> <bs> <C-w><Left>
 
-nnoremap <silent>ff  :BufExplorer<CR>
+let g:bufExplorerDisableDefaultKeyMapping=1
+let g:bufExplorerShowRelativePath=1
+nnoremap <leader>b :BufExplorer<CR>
 
 au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 " au BufRead,BufNewFile *.phtml set ft=php
