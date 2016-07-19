@@ -5,6 +5,7 @@ let $PATH = $PATH . ':' . expand("~/.local/bin")
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'jlanzarotta/bufexplorer'
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Shougo/vimproc.vim'
 " Plug 'tpope/vim-rvm'
@@ -234,10 +235,10 @@ let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <C-[> <Plug>AirlineSelectPrevTab
-nmap <C-]> <Plug>AirlineSelectNextTab
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#buffer_idx_mode = 1
+" nmap <C-[> <Plug>AirlineSelectPrevTab
+" nmap <C-]> <Plug>AirlineSelectNextTab
 " nmap <leader>- <Plug>AirlineSelectPrevTab
 " nmap <leader>+ <Plug>AirlineSelectNextTab
 
@@ -290,6 +291,8 @@ map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 nnoremap <silent> <bs> <C-w><Left>
+
+nnoremap <silent>ff  :BufExplorer<CR>
 
 au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 " au BufRead,BufNewFile *.phtml set ft=php
