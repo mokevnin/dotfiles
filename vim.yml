@@ -5,11 +5,11 @@
       with_items:
         - vimrc
 
-    - file: src={{ curdir }}/files/vimrc dest=~/.config/nvim/init.vim state=link
-
     - file: path=~/.config/nvim/{{ item }} state=directory recurse=Yes
       with_items:
         - autoload
+
+    - file: src={{ curdir }}/files/vimrc dest=~/.config/nvim/init.vim state=link
 
     - pip: name=neovim state=latest
       become: yes
