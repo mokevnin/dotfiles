@@ -218,6 +218,7 @@ let g:vim_markdown_folding_disabled = 1
 " let g:syntastic_haskell_checkers = ['']
 
 let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
+let g:neomake_ruby_enabled_makers = ['rubocop']
 " let g:neomake_verbose = 3
 " let g:neomake_open_list = 2
 

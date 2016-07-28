@@ -45,7 +45,6 @@
       ignore_errors: yes
       with_items:
         - haml-lint
-        - ruby-lint
         - sqlint
         - rubocop
       tags:
