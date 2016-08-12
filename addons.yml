@@ -60,6 +60,7 @@
         - jsonlint
         - eslint
         - eslint-plugin-import
+        - eslint-import-resolver-webpack
         - eslint-plugin-jsx-a11y
         - eslint-config-airbnb
         - eslint-plugin-react
