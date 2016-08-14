@@ -59,6 +59,7 @@
         - stylelint
         - jsonlint
         - eslint
+        - eslint-plugin-flowtype
         - eslint-plugin-import
         - eslint-import-resolver-webpack
         - eslint-plugin-jsx-a11y
