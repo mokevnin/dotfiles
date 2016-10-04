@@ -55,6 +55,7 @@
       become: yes
       ignore_errors: yes
       with_items:
+        - livedown
         - js-yaml
         - stylelint
         - jsonlint

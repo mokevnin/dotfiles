@@ -68,6 +68,7 @@ Plug 'Valloric/MatchTagAlways'
 
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'plasticboy/vim-markdown'
+Plug 'shime/vim-livedown'
 " Plug 'JamshedVesuna/vim-markdown-preview'
 
 Plug 'tpope/vim-haml'
