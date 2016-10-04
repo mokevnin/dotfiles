@@ -35,7 +35,7 @@
       with_items:
         - pylint
         - ansible-lint
-        # - grip
+        - yamllint
         - bashate
       tags:
         - all
@@ -44,6 +44,7 @@
       become: yes
       ignore_errors: yes
       with_items:
+        - mdl
         - haml-lint
         - sqlint
         - rubocop
@@ -55,6 +56,7 @@
       become: yes
       ignore_errors: yes
       with_items:
+        - pug-lint
         - livedown
         - js-yaml
         - stylelint
