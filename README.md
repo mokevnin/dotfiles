@@ -1,4 +1,4 @@
-### Requrements
+### Requirements
 
 * ansible (see http://docs.ansible.com/ansible/intro_installation.html)
 * vim
