@@ -5,6 +5,9 @@ let $PATH = $PATH . ':' . expand("~/.local/bin")
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'fishbullet/deoplete-ruby'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja'
@@ -299,6 +302,8 @@ nnoremap <silent> <bs> <C-w><Left>
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowRelativePath=1
 nnoremap <leader>b :BufExplorer<CR>
+
+let g:deoplete#enable_at_startup = 1
 
 au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 " au BufRead,BufNewFile *.phtml set ft=php
