@@ -1,7 +1,11 @@
-configure_vim:
-	ansible-playbook vim.yml -i local -vv -e curdir=$(CURDIR) --ask-sudo
+all:
+	ansible-playbook all.yml -i local -vv -K
 
-update_plugins: vim
+
+configure_vim:
+	ansible-playbook vim.yml -i local -vv -e curdir=$(CURDIR) -K
+
+# update_plugins: vim
 
 TAGS := always
 

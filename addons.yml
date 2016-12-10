@@ -19,18 +19,15 @@
       when: ansible_distribution == 'Ubuntu'
       tags: always
 
-    - easy_install: name=pip
+    - composer:
+        command: "global require"
+        arguments: "squizlabs/php_codesniffer=*"
       become: yes
-      tags: always
-
-    - shell: composer global require "squizlabs/php_codesniffer=*"
-      # become: yes
-      ignore_errors: yes
       tags:
         - all
         - php
 
-    - pip: name={{ item }} state=present
+    - pip: name={{ item }} state=latest
       become: yes
       with_items:
         - pylint
