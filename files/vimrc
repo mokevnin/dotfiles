@@ -5,6 +5,7 @@ let $PATH = $PATH . ':' . expand("~/.local/bin")
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja'
 " Plug 'nathanaelkane/vim-indent-guides'
