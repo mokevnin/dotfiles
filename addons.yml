@@ -19,9 +19,11 @@
       when: ansible_distribution == 'Ubuntu'
       tags: always
 
-    - composer:
-        command: "global require"
-        arguments: "squizlabs/php_codesniffer=*"
+    # - composer:
+    #     command: "global"
+    #     arguments: "require squizlabs/php_codesniffer=*"
+    #     working_dir: "/tmp"
+    - shell: composer global require "squizlabs/php_codesniffer=*"
       become: yes
       tags:
         - all
@@ -30,6 +32,7 @@
     - pip: name={{ item }} state=latest
       become: yes
       with_items:
+        - neovim
         - pylint
         - ansible-lint
         - yamllint
@@ -41,6 +44,7 @@
       become: yes
       ignore_errors: yes
       with_items:
+        - neovim
         - mdl
         - haml-lint
         - sqlint
