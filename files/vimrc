@@ -45,7 +45,7 @@ Plug 'fatih/vim-go'
 Plug 'jimenezrick/vimerl'
 Plug 'wting/rust.vim'
 " Plug 'cespare/vim-toml'
-" Plug 'facebook/vim-flow'
+Plug 'facebook/vim-flow'
 Plug '2072/PHP-Indenting-for-VIm'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'joonty/vdebug'
@@ -224,7 +224,7 @@ let g:vim_markdown_folding_disabled = 1
 
 " let g:syntastic_haskell_checkers = ['']
 
-let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
+" let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
 let g:neomake_ruby_enabled_makers = ['rubocop']
 " let g:neomake_verbose = 3
 " let g:neomake_open_list = 2
