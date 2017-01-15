@@ -60,8 +60,9 @@ Plug 'neovimhaskell/haskell-vim'
 
 Plug 'elzr/vim-json'
 " Plug 'vim-scripts/JavaScript-Indent'
-Plug 'mxw/vim-jsx'
+" Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'moll/vim-node'
 Plug 'mattn/emmet-vim'
 Plug 'reedes/vim-lexical'
@@ -181,7 +182,7 @@ let g:syntastic_aggregate_errors = 1
 
 let g:syntastic_check_on_wq = 0
 
-let g:jsx_ext_required = 0
+" let g:jsx_ext_required = 0
 
 " let g:slime_target = "tmux"
 
