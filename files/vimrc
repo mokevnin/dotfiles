@@ -226,6 +226,9 @@ let g:vim_markdown_folding_disabled = 1
 
 " let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
 let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_php_enabled_makers = ['php', 'phpcs']
+let g:neomake_php_phpcs_args_standard = 'PSR2'
+" let g:neomake_php_phpcs_exe = '~/.composer/vendor/bin/phpcs'
 " let g:neomake_verbose = 3
 " let g:neomake_open_list = 2
 
