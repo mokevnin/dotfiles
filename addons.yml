@@ -24,6 +24,7 @@
     #     arguments: "require squizlabs/php_codesniffer=*"
     #     working_dir: "/tmp"
     - shell: composer global require "squizlabs/php_codesniffer=*"
+      ignore_errors: yes
       become: yes
       tags:
         - all
