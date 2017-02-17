@@ -5,6 +5,9 @@ all:
 configure_vim:
 	ansible-playbook vim.yml -i local -vv -e curdir=$(CURDIR) -K
 
+configure_vim:
+	ansible-playbook spacemacs.yml -i local -vv -e curdir=$(CURDIR) -K
+
 # update_plugins: vim
 
 TAGS := always
