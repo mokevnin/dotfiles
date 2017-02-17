@@ -6,7 +6,7 @@ configure_vim:
 	ansible-playbook vim.yml -i local -vv -e curdir=$(CURDIR) -K
 
 configure_spacemacs:
-	ansible-playbook spacemacs.yml -i local -vv -e curdir=$(CURDIR) -K
+	ansible-playbook spacemacs.yml -i local -vv -e curdir=$(CURDIR)
 
 # update_plugins: vim
 
