@@ -2,6 +2,10 @@
 
 - hosts: all
   tasks:
+    - git:
+        repo: 'https://github.com/syl20bnr/spacemacs'
+        dest: ~/.emacs.d
+
     - file: src={{ curdir }}/files/{{ item }} dest=~/.{{ item }} state=link
       with_items:
         - spacemacs
