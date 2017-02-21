@@ -58,6 +58,7 @@
       become: yes
       ignore_errors: yes
       with_items:
+        - tern
         - pug-lint
         - livedown
         - js-yaml

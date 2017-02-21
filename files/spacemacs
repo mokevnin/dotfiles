@@ -17,8 +17,18 @@ values."
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-   '(
+   '(themes-megapack
      yaml
+     html
+     php
+     python
+     shell-scripts
+     sql
+     ansible
+     docker
+     nginx
+     restclient
+     systemd
      javascript
      markdown
      ruby
@@ -251,6 +261,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
+  ;; (setq-default evil-escape-key-sequence "jk")
+   (setq neo-smart-open t)
+  ;; (evil-define-key 'normal neotree-mode-map (kbd "C-i") 'neotree-find)
+  (define-key evil-normal-state-map (kbd "C-i") 'neotree-show)
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration.
