@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(themes-megapack
+     vimscript
      yaml
      html
      php
@@ -43,6 +44,7 @@ values."
      ruby-on-rails
      react
      git
+     java
      ;; markdown
      ;; org
      ;; (shell :variables
@@ -271,6 +273,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; (evil-define-key 'normal neotree-mode-map (kbd "o") 'neotree-enter)
+  ;; (evil-define-key 'normal neotree-mode-map (kbd "u") 'neotree-hide)
+  (setq neo-smart-open t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
