@@ -63,6 +63,7 @@
         - livedown
         - js-yaml
         - stylelint
+        - js-beautify
         - jsonlint
         - eslint
         - babel-eslint
