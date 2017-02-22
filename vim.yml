@@ -24,5 +24,5 @@
 
     - file: path=~/.vim/spell state=directory
 
-    - command: nvim -i NONE -c PlugUpdate -c quitall
+    # - command: nvim -i NONE -c PlugUpdate -c quitall
     # FIXME: compile https://github.com/Shougo/vimproc.vim
