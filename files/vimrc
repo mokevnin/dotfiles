@@ -274,7 +274,7 @@ nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 nmap <leader>u mQviwU`Q
 nmap <leader>l mQviwu`Q
 
-nmap <C-\> :NERDTreeFind<CR>
+nmap <C-i> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
 let NERDTreeIgnore = ['\.pyc$', '\.retry$']
