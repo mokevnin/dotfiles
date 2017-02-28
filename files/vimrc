@@ -111,7 +111,7 @@ augroup lexical
   autocmd FileType text call lexical#init({ 'spell': 0 })
 augroup END
 
-let mapleader=","
+let mapleader = "\<Space>"
 
 " Sets how many lines of history VIM has to remember
 set history=500
@@ -274,6 +274,16 @@ nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 " upper/lower word
 nmap <leader>u mQviwU`Q
 nmap <leader>l mQviwu`Q
+
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
 
 nmap <C-i> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
