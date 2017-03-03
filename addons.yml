@@ -38,6 +38,8 @@
         - ansible-lint
         - yamllint
         - bashate
+        - sexpdata
+        - websocket-client
       tags:
         - all
 

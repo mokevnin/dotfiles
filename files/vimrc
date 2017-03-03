@@ -5,7 +5,9 @@ let $PATH = $PATH . ':' . expand("~/.local/bin")
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'tpope/vim-sensible'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ensime/ensime-vim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " Plug 'fishbullet/deoplete-ruby'
 Plug 'jiangmiao/auto-pairs'
@@ -14,7 +16,6 @@ Plug 'lepture/vim-jinja'
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Shougo/vimproc.vim'
 " Plug 'tpope/vim-rvm'
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdtree'
