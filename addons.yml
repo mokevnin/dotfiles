@@ -60,6 +60,8 @@
       become: yes
       ignore_errors: yes
       with_items:
+        - typescript
+        - typescript-formatter
         - tern
         - pug-lint
         - livedown
