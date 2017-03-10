@@ -1,0 +1,13 @@
+---
+- hosts: all
+
+  tasks:
+    - shell: curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+
+    - apt: name={{ item }} state=latest
+      become: yes
+      with_items:
+        - ruby
+        - ruby-dev
+        - php
+        - nodejs

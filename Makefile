@@ -1,6 +1,8 @@
 all:
 	ansible-playbook all.yml -i local -vv -K
 
+install:
+	ansible-playbook install.yml -i local -vv -e curdir=$(CURDIR) -K
 
 configure_vim:
 	ansible-playbook vim.yml -i local -vv -e curdir=$(CURDIR) -K
