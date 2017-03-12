@@ -27,7 +27,7 @@ install_ansible:
 	sudo apt-get install ansible
 
 install_nvim_ubuntu:
-	sudo apt install python-dev python-pip python3-dev python3-pip
+	sudo apt install python3-dev python3-pip
 	sudo add-apt-repository ppa:neovim-ppa/stable
 	sudo apt update
 	sudo apt install neovim
