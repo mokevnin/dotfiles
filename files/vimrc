@@ -6,6 +6,7 @@ let $PATH = $PATH . ':' . expand("~/.local/bin")
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
+Plug 'hashivim/vim-terraform'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ensime/ensime-vim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
