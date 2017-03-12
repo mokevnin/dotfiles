@@ -12,7 +12,7 @@ configure_spacemacs:
 
 # update_plugins: vim
 
-TAGS := always
+TAGS := all
 
 install_addons:
 	ansible-playbook addons.yml -i local -vv -K --tags $(TAGS)
