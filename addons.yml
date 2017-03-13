@@ -1,5 +1,9 @@
 ---
+
 - hosts: all
+  vars:
+    ansible_python_interpreter:
+      /usr/bin/python3
 
   tasks:
     - apt: name={{ item }} state=latest
