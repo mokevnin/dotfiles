@@ -6,6 +6,7 @@
       /usr/bin/python3
 
   tasks:
+    - shell: curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
     - apt: name={{ item }} state=latest
       become: yes
       with_items:
@@ -15,10 +16,10 @@
         - llvm
         - exuberant-ctags
         - curl
-        - python-apt
-        - python-pycurl
-        - python-dev
-        - python-setuptools
+        - python3-apt
+        - python3-pycurl
+        - python3-dev
+        - python3-setuptools
         - flex
       when: ansible_distribution == 'Ubuntu'
       tags: always
@@ -51,6 +52,7 @@
       become: yes
       ignore_errors: yes
       with_items:
+        - rake
         - neovim
         - mdl
         - haml-lint
