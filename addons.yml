@@ -10,6 +10,8 @@
     - apt: name={{ item }} state=latest
       become: yes
       with_items:
+        - openssl
+        - libssl-dev
         - ack-grep
         - clang-format-3.6
         - clang-3.6
