@@ -1,32 +1,30 @@
 all:
 	ansible-playbook all.yml -i local -vv -K
 
-install:
+install_languages:
 	ansible-playbook install.yml -i local -vv -e curdir=$(CURDIR) -K
-
-configure_nvim:
-	ansible-playbook vim.yml -i local -vvv -e curdir=$(CURDIR) -K
-
-configure_spacemacs:
-	ansible-playbook spacemacs.yml -i local -vv -e curdir=$(CURDIR)
-
-# update_plugins: vim
-
-TAGS := all
 
 install_addons:
 	ansible-playbook addons.yml -i local -vv -K --tags $(TAGS)
 
+nvim_configure:
+	ansible-playbook nvim.yml -i local -vvv -e curdir=$(CURDIR) -K
+
+spacemacs_configure:
+	ansible-playbook spacemacs.yml -i local -vv -e curdir=$(CURDIR)
+
+TAGS := all
+
 install_dotfiles:
 	ansible-playbook dotfiles.yml -i local -vv
 
-install_ansible:
+ansible_install_ubuntu:
 	sudo apt-get install software-properties-common
 	sudo apt-add-repository ppa:ansible/ansible
 	sudo apt-get update
 	sudo apt-get install ansible
 
-install_nvim_ubuntu:
+nvim_install_ubuntu:
 	sudo apt install -yq python3-dev python3-pip
 	sudo add-apt-repository ppa:neovim-ppa/stable
 	sudo apt update
