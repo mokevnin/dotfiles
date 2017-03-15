@@ -9,7 +9,7 @@ make ansible_install_ubuntu
 ```
 * nvim (see https://github.com/neovim/neovim/wiki/Installing-Neovim)
 ```
-make nivm_install_ubuntu
+make nvim_install_ubuntu
 ```
 
 ### Setup
