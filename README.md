@@ -1,5 +1,6 @@
 ### Requirements
 
+* Ubuntu 16.04
 * git
 * python3
 * ansible (see http://docs.ansible.com/ansible/intro_installation.html)
@@ -14,7 +15,7 @@ make nivm_install_ubuntu
 ### Setup
 
 1. Install deps and configs
-  ```
+  ```shell
   git clone <this repo>
   make install_languages // ruby and node for plugins
   make nvim_configure
