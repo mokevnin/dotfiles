@@ -14,15 +14,17 @@ make nivm_install_ubuntu
 ### Setup
 
 1. Install deps and configs
-```
-git clone <this repo>
-make install_languages // ruby and node for plugins
-make nvim_configure
-make install_addons
-```
+  ```
+  git clone <this repo>
+  make install_languages // ruby and node for plugins
+  make nvim_configure
+  make install_addons
+  ```
 
 1. Install plugins
-```
-$ nvim
-:PlugInstall
-```
+  ```
+  $ nvim
+  :PlugInstall
+  ```
+
+1. Restart nvim
