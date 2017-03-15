@@ -4,7 +4,7 @@ all:
 install:
 	ansible-playbook install.yml -i local -vv -e curdir=$(CURDIR) -K
 
-configure_vim:
+configure_nvim:
 	ansible-playbook vim.yml -i local -vvv -e curdir=$(CURDIR) -K
 
 configure_spacemacs:

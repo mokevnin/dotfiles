@@ -1,16 +1,22 @@
-### Requrements
+### Requirements
 
-* ansible (see http://docs.ansible.com/ansible/intro_installation.html)
-* vim
 * git
+* python3
+* ansible (see http://docs.ansible.com/ansible/intro_installation.html)
+* nvim (see https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
-### Install
-    git clone <this repo>
-    make install_ansible // if you don't have ansible yet
-    make configure_vim
+### Setup
 
-### Install addons (linters, checkers)
-    make install_addons // optional TAGS variable accepted, see addons.yml for details
+1. Install deps and configs
+```
+git clone <this repo>
+make install // ruby and node for plugins
+make configure_nvim
+make install_addons
+```
 
-### Setup dotfiles
-    make install_dotfiles
+1. Install plugins
+```
+$ nvim
+:PlugInstall
+```
