@@ -1,9 +1,8 @@
 ---
 - hosts: all
+  vars:
+    ansible_python_interpreter: '/usr/bin/env python3'
   gather_facts: no
-  vars: 
-    ansible_python_interpreter:
-      /usr/bin/python3
   tasks:
     - file: src={{ curdir }}/files/{{ item }} dest=~/.{{ item }} state=link
       with_items:
