@@ -274,6 +274,7 @@ you should place your code here."
   (setq neo-smart-open t)
   (setq-default js2-basic-offset 2)
   (define-key evil-normal-state-map (kbd "C-i") 'neotree-show)
+  (define-key 'normal neotree-mode-map (kbd "o") 'neotree-enter)
   (setq neo-smart-open t)
   (setq eclim-eclipse-dirs "/Applications/Eclipse.app/Contents/Eclipse/"
         eclim-executable "/Applications/Eclipse.app/Contents/Eclipse/eclim")
