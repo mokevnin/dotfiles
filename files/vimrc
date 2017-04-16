@@ -55,6 +55,7 @@ Plug 'joonty/vdebug'
 Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-ragtag'
 Plug 'zah/nimrod.vim'
+Plug 'OmniSharp/omnisharp-vim'
 Plug 'rgrinberg/vim-ocaml'
 
 " Plug 'eagletmt/ghcmod-vim'
