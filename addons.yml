@@ -31,9 +31,12 @@
     #     command: "global"
     #     arguments: "require squizlabs/php_codesniffer=*"
     #     working_dir: "/tmp"
-    - shell: composer global require "squizlabs/php_codesniffer=*"
+    - shell: composer global require {{ item }}
       ignore_errors: yes
       become: yes
+      with_items:
+        - "squizlabs/php_codesniffer=*"
+        - "mkusher/padawan=*"
       tags:
         - all
         - php
