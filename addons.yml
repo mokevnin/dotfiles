@@ -33,7 +33,7 @@
     #     working_dir: "/tmp"
     - shell: composer global require {{ item }}
       ignore_errors: yes
-      become: yes
+      # become: yes
       with_items:
         - "squizlabs/php_codesniffer=*"
         - "mkusher/padawan=*"
