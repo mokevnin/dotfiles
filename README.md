@@ -24,8 +24,11 @@ make nvim_install_ubuntu
 
 1. Install plugins
   ```
-  $ nvim
+  $ vim
   :PlugInstall
+
+  cd ~/.vim/plugged/YouCompleteMe
+  ./install.py --all
   ```
 
 1. Restart nvim

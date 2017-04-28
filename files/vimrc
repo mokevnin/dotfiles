@@ -7,11 +7,13 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'hashivim/vim-terraform'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'padawan-php/deoplete-padawan'
+" Plug 'ervandew/supertab'
+Plug 'ternjs/tern_for_vim'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'padawan-php/deoplete-padawan'
 " Plug 'ensime/ensime-vim'
-Plug 'carlitux/deoplete-ternjs' ", { 'do': 'npm install -g tern' }
-Plug 'fishbullet/deoplete-ruby'
+" Plug 'carlitux/deoplete-ternjs' ", { 'do': 'npm install -g tern' }
+" Plug 'fishbullet/deoplete-ruby'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja'
@@ -40,7 +42,6 @@ Plug 'mbbill/undotree'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-jade'
 " Plug 'tmatilai/vim-monit'
-Plug 'ervandew/supertab'
 " Plug 'jpalardy/vim-slime'
 " Plug 'Matt-Deacalion/vim-systemd-syntax'
 Plug 'editorconfig/editorconfig-vim'
@@ -48,9 +49,12 @@ Plug 'fatih/vim-go'
 Plug 'jimenezrick/vimerl'
 Plug 'wting/rust.vim'
 " Plug 'cespare/vim-toml'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'facebook/vim-flow'
 Plug '2072/PHP-Indenting-for-VIm'
 Plug 'shawncplus/phpcomplete.vim'
+Plug 'Valloric/YouCompleteMe'
 Plug 'joonty/vdebug'
 Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-ragtag'
@@ -162,7 +166,9 @@ set softtabstop=2
 set shiftwidth=2
 " set smarttab
 
+set splitbelow
 " set background=dark
+set cmdheight=2
 set t_Co=256
 colorscheme jellybeans
 
@@ -191,24 +197,60 @@ endif
 let g:lexical#spelllang = ['en_us', 'ru_ru']
 
 " let g:acp_enableAtStartup = 0
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#enable_smart_case = 1
-
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" if !exists('g:neocomplete#keyword_patterns')
-" 	let g:neocomplete#keyword_patterns = {}
-" endif
-" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 let g:easytags_async = 1
 
 " Automatically removing all trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
+" let g:SuperTabDefaultCompletionType = 'context'
+" let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+" let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
+" let g:SuperTabClosePreviewOnPopupClose = 1
+
 let g:OmniSharp_server_type = 'v1'
 let g:OmniSharp_server_type = 'roslyn'
+let g:OmniSharp_want_snippet = 1
+
+augroup omnisharp_commands
+  autocmd!
+
+  "Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
+  autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+
+  " Synchronous build (blocks Vim)
+  "autocmd FileType cs nnoremap <F5> :wa!<cr>:OmniSharpBuild<cr>
+  " Builds can also run asynchronously with vim-dispatch installed
+  autocmd FileType cs nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
+  " automatic syntax check on events (TextChanged requires Vim 7.4)
+  " autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+
+  " Automatically add new cs files to the nearest project on save
+  autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+
+  "show type information automatically when the cursor stops moving
+  autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+  "The following commands are contextual, based on the current cursor position.
+
+  autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
+  autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
+  autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
+  autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<cr>
+  autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
+  "finds members in the current buffer
+  autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<cr>
+  " cursor can be anywhere on the line containing an issue
+  autocmd FileType cs nnoremap <leader>x  :OmniSharpFixIssue<cr>
+  autocmd FileType cs nnoremap <leader>fx :OmniSharpFixUsings<cr>
+  autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
+  autocmd FileType cs nnoremap <leader>dc :OmniSharpDocumentation<cr>
+  "navigate up by method/property/field
+  autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr>
+  "navigate down by method/property/field
+  autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
+
+augroup END
 " Enable omni completion.
 " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
