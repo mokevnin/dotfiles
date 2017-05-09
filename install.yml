@@ -13,3 +13,4 @@
         - ruby-dev
         - php
         - nodejs
+        - cmake
