@@ -41,6 +41,7 @@ Plug 'godlygeek/tabular'
 Plug 'mbbill/undotree'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-jade'
+" Plug 'rhysd/vim-grammarous'
 " Plug 'tmatilai/vim-monit'
 " Plug 'jpalardy/vim-slime'
 " Plug 'Matt-Deacalion/vim-systemd-syntax'
@@ -61,6 +62,10 @@ Plug 'tpope/vim-ragtag'
 Plug 'zah/nimrod.vim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'rgrinberg/vim-ocaml'
+Plug 'fsharp/vim-fsharp', {
+      \ 'for': 'fsharp',
+      \ 'do':  'make fsautocomplete',
+      \}
 
 " Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/ghcmod-vim'
@@ -194,6 +199,8 @@ endif
 
 " let g:vim_json_syntax_conceal = 0
 
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toc_autofit = 1
 let g:lexical#spelllang = ['en_us', 'ru_ru']
 
 " let g:acp_enableAtStartup = 0
@@ -210,7 +217,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 let g:OmniSharp_server_type = 'v1'
 let g:OmniSharp_server_type = 'roslyn'
-let g:OmniSharp_want_snippet = 1
+" let g:OmniSharp_want_snippet = 1
 
 augroup omnisharp_commands
   autocmd!
