@@ -14,3 +14,4 @@
         - php
         - nodejs
         - cmake
+        - python-dev
