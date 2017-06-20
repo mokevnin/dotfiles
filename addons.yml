@@ -72,8 +72,9 @@
       become: yes
       ignore_errors: yes
       with_items:
+        - prettier
         - typescript
-        - typescript-formatter
+        - typings
         - tern
         - pug-lint
         - livedown
