@@ -50,9 +50,8 @@ Plug 'fatih/vim-go'
 Plug 'jimenezrick/vimerl'
 Plug 'wting/rust.vim'
 " Plug 'cespare/vim-toml'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'facebook/vim-flow'
+Plug 'flowtype/vim-flow'
 Plug '2072/PHP-Indenting-for-VIm'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'Valloric/YouCompleteMe'
@@ -233,6 +232,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " autocmd FileType ruby setlocal omnifunc=rubycomplete#CompleteTags
 " autocmd BufWritePost *.hs call s:check_and_lint()
 " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+let g:javascript_plugin_flow = 1
 
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_sort_regime = "mru"
