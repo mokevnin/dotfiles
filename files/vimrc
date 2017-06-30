@@ -8,7 +8,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'hashivim/vim-terraform'
 " Plug 'ervandew/supertab'
-Plug 'ternjs/tern_for_vim'
+" Plug 'ternjs/tern_for_vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'padawan-php/deoplete-padawan'
 " Plug 'ensime/ensime-vim'
