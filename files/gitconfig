@@ -2,3 +2,11 @@
 # See the README for examples.
 [color]
   ui = auto
+
+[alias]
+  up = pull --rebase
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --graph --decorate --oneline
