@@ -64,6 +64,7 @@
         - eslint-import-resolver-webpack
         - eslint-plugin-jsx-a11y
         - eslint-config-airbnb
+        - eslint-config-airbnb-base
         - eslint-plugin-react
       tags:
         - all
