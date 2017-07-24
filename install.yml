@@ -4,10 +4,12 @@
     ansible_python_interpreter: '/usr/bin/env python3'
 
   tasks:
-    - shell: curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+    - shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+
     - shell: |
         sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
         echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
+      when: ansible_distribution == 'Ubuntu'
 
     - apt: name={{ item }} state=latest
       become: yes
@@ -19,3 +21,18 @@
         - nodejs
         - cmake
         - python-dev
+        - openssl
+        - libssl-dev
+        - ack-grep
+        - clang-format-3.6
+        - clang-3.6
+        - llvm
+        - exuberant-ctags
+        - curl
+        - python3-apt
+        - python3-pycurl
+        - python3-dev
+        - python3-setuptools
+        - flex
+      when: ansible_distribution == 'Ubuntu'
+      tags: always
