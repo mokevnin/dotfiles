@@ -16,6 +16,7 @@
         - php
 
     - pip:
+        extra_args: "--user"
         name: '{{ item }}'
         state: latest
       with_items:
