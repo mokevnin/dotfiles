@@ -4,6 +4,11 @@
     ansible_python_interpreter: '/usr/bin/env python3'
 
   tasks:
+    - lineinfile:
+        regexp: ~/.local
+        path: ~/.bashrc
+        line: "export PATH=$PATH:~/.local/bin;"
+
     - shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
     - shell: |
@@ -36,3 +41,7 @@
         - flex
       when: ansible_distribution == 'Ubuntu'
       tags: always
+
+    - shell:
+        cd /tmp/ && curl -s https://getcomposer.org/installer | php && \
+        sudo mv /tmp/composer.phar /usr/local/bin/composer
