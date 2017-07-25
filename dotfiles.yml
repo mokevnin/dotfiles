@@ -2,18 +2,19 @@
 - hosts: all
   vars:
     ansible_python_interpreter: '/usr/bin/env python3'
+    config: ~/.bashrc
   tasks:
-    - lineinfile: dest="~/.bash_profile" state=present create=yes
+    - lineinfile: dest="{{ config }}" state=present create=yes
         line="set -o vi"
 
     - lineinfile:
-        dest: "~/.bash_profile"
+        dest: "{{ config }}"
         state: present
         create: yes
         regexp: "fixssh"
         line: "alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'"
 
-    - lineinfile: dest="~/.bash_profile" state=present create=yes
+    - lineinfile: dest="{{ config }}" state=present create=yes
         line="export PS1='$(__git_ps1) \W\$ '"
 
     - copy:
