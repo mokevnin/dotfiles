@@ -2,8 +2,16 @@
 - hosts: all
   vars:
     ansible_python_interpreter: '/usr/bin/env python3'
-  gather_facts: no
+
   tasks:
+    - apt_repository:
+        repo: "ppa:jonathonf/vim"
+      when: ansible_distribution == 'Ubuntu'
+      become: yes
+
+    - package: name=vim-nox state=latest
+      become: yes
+
     - file: src={{ curdir }}/files/{{ item }} dest=~/.{{ item }} state=link
       with_items:
         - vimrc

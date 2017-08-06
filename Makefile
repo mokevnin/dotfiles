@@ -24,9 +24,4 @@ ansible_install_ubuntu:
 	sudo apt-get update
 	sudo apt-get install ansible
 
-vim_install_ubuntu:
-	sudo apt install -yq python3-dev python3-pip
-	sudo apt update
-	sudo apt install -yq vim
-
 # .PHONY:

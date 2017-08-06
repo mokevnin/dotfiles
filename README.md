@@ -18,7 +18,7 @@ make nvim_install_ubuntu
   ```shell
   git clone <this repo>
   make install_languages // ruby and node for plugins
-  make nvim_configure
+  make vim_configure
   make install_addons
   ```
 
