@@ -30,8 +30,8 @@
       tags:
         - all
 
-    - gem: name={{ item }} state=latest user_install=no
-      become: yes
+    - gem: name={{ item }} state=latest
+      # become: yes
       ignore_errors: yes
       with_items:
         - rake
