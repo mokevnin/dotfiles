@@ -4,13 +4,7 @@
 * git
 * python3
 * ansible (see http://docs.ansible.com/ansible/intro_installation.html)
-```
-make ansible_install_ubuntu
-```
-* nvim (see https://github.com/neovim/neovim/wiki/Installing-Neovim)
-```
-make nvim_install_ubuntu
-```
+* vim
 
 ### Setup
 
@@ -31,4 +25,4 @@ make nvim_install_ubuntu
   ./install.py --all
   ```
 
-1. Restart nvim
+1. Restart vim
