@@ -77,7 +77,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mitermayer/vim-prettier', {
 	\ 'do': 'yarn install',
 	\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'maxmellon/vim-jsx-pretty'
+Plug 'chemzqm/vim-jsx-improve'
 Plug 'moll/vim-node'
 Plug 'mattn/emmet-vim'
 Plug 'reedes/vim-lexical'
@@ -157,7 +158,8 @@ set nofoldenable
 "set synmaxcol=128
 "set ttyscroll=10
 "set encoding=utf-8
-set nowrap
+set wrap
+set linebreak
 set number
 set hlsearch
 set ignorecase
