@@ -9,11 +9,13 @@ Plug 'tpope/vim-sensible'
 Plug 'hashivim/vim-terraform'
 " Plug 'ervandew/supertab'
 " Plug 'ternjs/tern_for_vim'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'padawan-php/deoplete-padawan'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'carlitux/deoplete-ternjs' ", { 'do': 'npm install -g tern' }
+Plug 'fishbullet/deoplete-ruby'
+Plug 'padawan-php/deoplete-padawan'
 " Plug 'ensime/ensime-vim'
-" Plug 'carlitux/deoplete-ternjs' ", { 'do': 'npm install -g tern' }
-" Plug 'fishbullet/deoplete-ruby'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja'
@@ -21,12 +23,14 @@ Plug 'lepture/vim-jinja'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Plug 'tpope/vim-rvm'
 Plug 'tpope/vim-surround'
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
 Plug 'dyng/ctrlsf.vim'
@@ -53,9 +57,8 @@ Plug 'wting/rust.vim'
 Plug 'honza/vim-snippets'
 Plug 'flowtype/vim-flow'
 Plug '2072/PHP-Indenting-for-VIm'
-Plug 'shawncplus/phpcomplete.vim'
+" Plug 'shawncplus/phpcomplete.vim'
 Plug 'jwalton512/vim-blade'
-Plug 'Valloric/YouCompleteMe'
 Plug 'joonty/vdebug'
 Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-ragtag'
@@ -242,27 +245,6 @@ let g:buffergator_sort_regime = "mru"
 
 let g:vim_markdown_folding_disabled = 1
 
-" let g:syntastic_haskell_checkers = ['']
-
-" let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
-let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:neomake_php_enabled_makers = ['php', 'phpcs']
-let g:neomake_php_phpcs_args_standard = 'PSR2'
-let g:neomake_javascript_enabled_makers = ['eslint']
-" let g:neomake_php_phpcs_exe = expand('~/.composer/vendor/bin/phpcs')
-" let g:neomake_verbose = 3
-" let g:neomake_open_list = 2
-
-" let g:syntastic_javascript_checkers = ['eslint', 'flow']
-" let g:neomake_javascript_flow_exe = 'npm run --silent flow -- --json'
-" let g:neomake_javascript_eslint_exe = 'npm run --silent eslint -- -f compact'
-" let g:syntastic_haml_checkers = ['haml_lint']
-" let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-" let g:syntastic_erlang_checkers = ['syntaxerl', 'escript']
-" let g:syntastic_php_checkers=['phpcs', 'php']
-" let g:syntastic_php_phpcs_exec='~/.composer/vendor/bin/phpcs'
-" let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
-
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -295,7 +277,7 @@ nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 nmap <leader>u mQviwU`Q
 nmap <leader>l mQviwu`Q
 
-nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>o :Files .<CR>
 nnoremap <Leader>w :w<CR>
 
 vmap <Leader>y "+y
@@ -310,7 +292,7 @@ nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
 let NERDTreeIgnore = ['\.pyc$', '\.retry$']
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 nmap <silent> // :nohlsearch<CR>
 noremap ,hl :set hlsearch! hlsearch?<CR>
@@ -350,7 +332,17 @@ au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 " au FileType yaml setl sw=2 sts=2 et
 " autocmd Filetype html setlocal ts=2 sw=2
 autocmd Filetype php setlocal ts=4 sw=4 autoindent
-autocmd! BufWritePost * Neomake
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
