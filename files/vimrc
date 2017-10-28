@@ -217,6 +217,10 @@ let g:lexical#spelllang = ['en_us', 'ru_ru']
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
+let g:ale_linters = {
+\   'markdown': [],
+\}
+
 " let g:acp_enableAtStartup = 0
 
 let g:easytags_async = 1
@@ -322,6 +326,9 @@ nnoremap <leader>b :BufExplorer<CR>
 
 let g:deoplete#enable_at_startup = 1
 
+let g:ale_completion_enabled = 1
+let g:airline#extensions#ale#enabled = 1
+
 au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 " au BufRead,BufNewFile *.phtml set ft=php
 
@@ -347,3 +354,12 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
 endif
+
+" Put these lines at the very end of your vimrc file.
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
