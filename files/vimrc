@@ -217,6 +217,7 @@ let g:lexical#spelllang = ['en_us', 'ru_ru']
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
+let g:ale_php_phpcs_standard = 'PSR2'
 let g:ale_linters = {
 \   'markdown': [],
 \}
