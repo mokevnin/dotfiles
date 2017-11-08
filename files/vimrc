@@ -220,6 +220,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:ale_php_phpcs_standard = 'PSR2'
 let g:ale_linters = {
 \   'markdown': [],
+\   'javascript': ['eslint', 'flow'],
 \}
 
 " let g:acp_enableAtStartup = 0
