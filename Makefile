@@ -10,6 +10,9 @@ install_addons:
 vim_configure:
 	ansible-playbook vim.yml -i local -vvv -e curdir=$(CURDIR) -K
 
+nvim_configure:
+	ansible-playbook nvim.yml -i local -vvv -e curdir=$(CURDIR) -K
+
 spacemacs_configure:
 	ansible-playbook spacemacs.yml -i local -vv -e curdir=$(CURDIR)
 
