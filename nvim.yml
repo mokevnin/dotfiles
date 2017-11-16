@@ -2,6 +2,11 @@
 - hosts: all
 
   tasks:
+
+    - file:
+        dest: ~/.config/nvim
+        state: directory
+
     - file:
         src: "{{ curdir }}/files/vimrc"
         dest: ~/.config/nvim/init.vim
