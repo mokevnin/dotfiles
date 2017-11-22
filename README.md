@@ -1,28 +1,27 @@
 ### Requirements
 
-* Ubuntu 16.04
+* Linux Or Mac
 * git
 * python3
 * ansible (see http://docs.ansible.com/ansible/intro_installation.html)
-* vim
+* nvim
 
 ### Setup
 
 1. Install deps and configs
-  ```shell
-  git clone <this repo>
-  make install_languages // ruby and node for plugins
-  make vim_configure
-  make install_addons
-  ```
 
-1. Install plugins
-  ```
-  $ vim
-  :PlugInstall
+```sh
+$ git clone <this repo>
+$ make install_languages # ruby and node for plugins
+$ make nvim_configure
+$ make install_addons
+```
 
-  cd ~/.vim/plugged/YouCompleteMe
-  ./install.py --all
-  ```
+2. Install plugins
 
-1. Restart vim
+```sh
+$ nvim
+:PlugInstall
+```
+
+3. Restart vim
