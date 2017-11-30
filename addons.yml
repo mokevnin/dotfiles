@@ -11,6 +11,7 @@
       with_items:
         - "squizlabs/php_codesniffer=*"
         - "mkusher/padawan=*"
+        # - "felixfbecker/language-server"
       tags:
         - all
         - php

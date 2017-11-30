@@ -9,6 +9,9 @@ Plug 'tpope/vim-sensible'
 Plug 'hashivim/vim-terraform'
 " Plug 'ervandew/supertab'
 " Plug 'ternjs/tern_for_vim'
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/LanguageServer-php-neovim',  { 'do': 'composer install && composer run-script parse-stubs' }
+Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
@@ -128,6 +131,7 @@ Plug 'ekalinin/Dockerfile.vim'
 
 Plug 'ervandew/supertab'
 
+
 call plug#end()
 " filetype plugin indent on
 
@@ -213,6 +217,8 @@ endif
 " let g:slime_target = "tmux"
 
 " let g:vim_json_syntax_conceal = 0
+
+let g:LanguageClient_autoStart = 1
 
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
@@ -345,6 +351,7 @@ au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 " au FileType yaml setl sw=2 sts=2 et
 " autocmd Filetype html setlocal ts=2 sw=2
 autocmd Filetype php setlocal ts=4 sw=4 autoindent
+autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
