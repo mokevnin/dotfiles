@@ -7,17 +7,13 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'hashivim/vim-terraform'
-" Plug 'ervandew/supertab'
-" Plug 'ternjs/tern_for_vim'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/nvim-completion-manager'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-Plug 'roxma/LanguageServer-php-neovim',  { 'do': 'composer install && composer run-script parse-stubs' }
+Plug 'felixfbecker/php-language-server', {'do': 'composer install && composer run-script parse-stubs'}
+Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
 Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'carlitux/deoplete-ternjs' ", { 'do': 'npm install -g tern' }
-Plug 'fishbullet/deoplete-ruby'
-Plug 'padawan-php/deoplete-padawan'
+Plug 'fatih/vim-nginx'
 " Plug 'ensime/ensime-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
@@ -95,7 +91,7 @@ Plug 'mattn/emmet-vim'
 Plug 'reedes/vim-lexical'
 
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
+" Plug 'xolox/vim-easytags'
 
 Plug 'Valloric/MatchTagAlways'
 
@@ -129,7 +125,6 @@ Plug 'stephpy/vim-yaml'
 Plug 'chrisbra/csv.vim'
 Plug 'ekalinin/Dockerfile.vim'
 
-Plug 'ervandew/supertab'
 
 
 call plug#end()
@@ -218,14 +213,23 @@ endif
 
 " let g:vim_json_syntax_conceal = 0
 
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 let g:LanguageClient_autoStart = 1
+
+let g:LanguageClient_serverCommands = {
+    \ 'php': ['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')],
+    \ 'javascript': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
+    \ 'ruby': ['language_server-ruby'],
+    \ }
+
 
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
 let g:lexical#spelllang = ['en_us', 'ru_ru']
 
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+" let g:ale_elixir_credo_executable='make'
 
 let g:ale_php_phpcs_standard = 'PSR2'
 let g:ale_linters = {
@@ -235,25 +239,11 @@ let g:ale_linters = {
 
 " let g:acp_enableAtStartup = 0
 
-let g:easytags_async = 1
+" let g:easytags_async = 1
 
 " Automatically removing all trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
-" let g:SuperTabDefaultCompletionType = 'context'
-" let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-" let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
-" let g:SuperTabClosePreviewOnPopupClose = 1
-
-" Enable omni completion.
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" autocmd FileType ruby setlocal omnifunc=rubycomplete#CompleteTags
-" autocmd BufWritePost *.hs call s:check_and_lint()
-" autocmd BufWritePost *.hs GhcModCheckAndLintAsync
 let g:javascript_plugin_flow = 1
 
 let g:buffergator_viewport_split_policy = "B"
@@ -272,6 +262,9 @@ let g:vim_markdown_folding_disabled = 1
 " nmap <leader>- <Plug>AirlineSelectPrevTab
 " nmap <leader>+ <Plug>AirlineSelectNextTab
 
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 nmap <F8> :TagbarToggle<CR>
 nnoremap <F5> :UndotreeToggle<cr>
@@ -336,9 +329,8 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowRelativePath=1
 nnoremap <leader>b :BufExplorer<CR>
 
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
-let g:ale_completion_enabled = 1
 let g:airline#extensions#ale#enabled = 1
 
 au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby

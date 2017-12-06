@@ -5,19 +5,20 @@
     ansible_python_interpreter: '/usr/bin/env python3'
 
   tasks:
-    - shell: composer global require {{ item }}
+    - composer:
+        global_command: yes
+        command: require
       ignore_errors: yes
       # become: yes
       with_items:
         - "squizlabs/php_codesniffer=*"
         - "mkusher/padawan=*"
-        # - "felixfbecker/language-server"
       tags:
         - all
         - php
 
     - pip:
-        extra_args: "--user"
+        # extra_args: "--user"
         name: '{{ item }}'
         state: latest
       with_items:
@@ -28,6 +29,9 @@
         - bashate
         - sexpdata
         - websocket-client
+        - jedi
+        - psutil
+        - setproctitle
       tags:
         - all
 
@@ -41,6 +45,8 @@
         - haml-lint
         - sqlint
         - rubocop
+        - language_server-ruby
+        - fastri
       tags:
         - all
         - ruby
