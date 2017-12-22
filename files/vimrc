@@ -183,6 +183,7 @@ set splitbelow
 " set background=dark
 set cmdheight=2
 " set t_Co=256
+set scrolloff=3
 
 colorscheme jellybeans
 
@@ -210,6 +211,10 @@ map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
+
+" Auto indent pasted text
+nnoremap p p=`]<C-o>
+nnoremap P P=`]<C-o>
 
 " Edit .vimrc
 map <leader>v :vsp $MYVIMRC<CR>
