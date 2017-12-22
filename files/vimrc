@@ -53,9 +53,10 @@ Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
 Plug 'honza/vim-snippets'
 " Plug 'flowtype/vim-flow'
 
-Plug 'felixfbecker/php-language-server', {'do': 'composer install && composer run-script parse-stubs'}
+Plug 'felixfbecker/php-language-server', { 'for': 'php', 'do': 'composer install && composer run-script parse-stubs'}
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 
 Plug 'joonty/vdebug', { 'on': 'VdebugStart' }
 Plug 'rhysd/vim-clang-format'
@@ -220,8 +221,8 @@ nnoremap p p=`]<C-o>
 nnoremap P P=`]<C-o>
 
 " Edit .vimrc
-map <leader>v :vsp $MYVIMRC<CR>
-map <leader>V :source $MYVIMRC<CR>
+map <leader>vl :vsp $MYVIMRC<CR>
+map <leader>vr :source $MYVIMRC<CR>
 
 """ Plugins Keymaps
 
@@ -352,4 +353,21 @@ if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
 endif
 
-autocmd BufEnter * EnableStripWhitespaceOnSave
+augroup common
+  autocmd BufEnter * EnableStripWhitespaceOnSave
+augroup END
+
+augroup filetypedetect
+  " au BufEnter *.markdown,*.mkd,*.md setl wrap tw=79
+  " au BufEnter *.json setl ft=javascript
+  " au BufEnter *.coffee setl sw=2 expandtab
+  " au BufEnter *.py setl ts=4 sw=4 sts=4
+  au BufEnter *.php setl ts=4 sw=4 sts=4
+  " au BufEnter *.js setl ts=2 sw=2 sts=2
+  " au BufEnter *.html setl ts=4 sw=4 sts=4
+  " au BufEnter *.tex setl wrap tw=79 fo=tcqor
+  " au BufEnter *.[ch] setl cindent
+  " au BufEnter *.[ch]pp setl cindent
+  " au BufEnter Makefile setl ts=4 sts=4 sw=4 noet list
+  " au BufEnter *.es6 setf javascript
+augroup END
