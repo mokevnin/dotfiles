@@ -6,9 +6,9 @@ Plug 'tpope/vim-sensible'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'roxma/nvim-completion-manager'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/nvim-completion-manager'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-nginx'
@@ -216,6 +216,12 @@ map <leader>V :source $MYVIMRC<CR>
 nmap <C-i> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
+nnoremap <leader>b :BufExplorer<CR>
+
+" nvim-completion-manager
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 
 """ Plugin Settings
 
@@ -224,6 +230,7 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'php': ['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')],
     \ 'javascript': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
+    \ 'javascript.jsx': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
     \ 'ruby': ['language_server-ruby'],
     \ }
 
@@ -299,17 +306,16 @@ cmap w!! %!sudo tee > /dev/null %
 
 " Allow to copy/paste between VIM instances
 " "copy the current visual selection to ~/.vbuf
-vmap <Leader>y :w! ~/.vbuf<CR>
-" "copy the current line to the buffer file if no visual selection
-nmap <Leader>y :.w! ~/.vbuf<CR>
-" "paste the contents of the buffer file
-nmap <Leader>p :r ~/.vbuf<CR>
+" vmap <Leader>y :w! ~/.vbuf<CR>
+" " "copy the current line to the buffer file if no visual selection
+" nmap <Leader>y :.w! ~/.vbuf<CR>
+" " "paste the contents of the buffer file
+" nmap <Leader>p :r ~/.vbuf<CR>
 
-nnoremap <silent> <bs> <C-w><Left>
+" nnoremap <silent> <bs> <C-w><Left>
 
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowRelativePath=1
-nnoremap <leader>b :BufExplorer<CR>
 
 " let g:deoplete#enable_at_startup = 1
 
@@ -321,10 +327,10 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+" imap <c-x><c-k> <plug>(fzf-complete-word)
+" imap <c-x><c-f> <plug>(fzf-complete-path)
+" imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+" imap <c-x><c-l> <plug>(fzf-complete-line)
 
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
