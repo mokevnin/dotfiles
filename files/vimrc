@@ -150,6 +150,9 @@ endif
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
+set ttyfast
+
+set shortmess=atI
 
 set cursorline
 set hidden
