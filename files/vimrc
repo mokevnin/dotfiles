@@ -47,9 +47,6 @@ Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 " Plug 'rhysd/vim-grammarous'
-" Plug 'tmatilai/vim-monit'
-" Plug 'jpalardy/vim-slime'
-" Plug 'Matt-Deacalion/vim-systemd-syntax'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
 " Plug 'cespare/vim-toml'
@@ -77,8 +74,8 @@ Plug 'elzr/vim-json'
 " Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'mitermayer/vim-prettier', {
-	\ 'do': 'yarn install',
-	\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+      \ 'do': 'yarn install',
+      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 " Plug 'maxmellon/vim-jsx-pretty'
 Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
 Plug 'moll/vim-node'
@@ -166,8 +163,15 @@ set smartcase
 
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
+set nowritebackup
 set nowb
 set noswapfile
+
+set showcmd       " display incomplete commands
+set autowrite     " Automatically :write before running commands
+
+" Use one space, not two, after punctuation.
+" set nojoinspaces
 
 " set softtabstop=4
 set expandtab
@@ -222,17 +226,21 @@ nnoremap <leader>b :BufExplorer<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" Move between linting errors
+nnoremap ]r :ALENextWrap<CR>
+nnoremap [r :ALEPreviousWrap<CR>
+
 
 """ Plugin Settings
 
 let g:LanguageClient_autoStart = 1
 
 let g:LanguageClient_serverCommands = {
-    \ 'php': ['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')],
-    \ 'javascript': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
-    \ 'javascript.jsx': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
-    \ 'ruby': ['language_server-ruby'],
-    \ }
+      \ 'php': ['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')],
+      \ 'javascript': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
+      \ 'javascript.jsx': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
+      \ 'ruby': ['language_server-ruby'],
+      \ }
 
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
@@ -242,9 +250,9 @@ let g:lexical#spelllang = ['en_us', 'ru_ru']
 
 let g:ale_php_phpcs_standard = 'PSR2'
 let g:ale_linters = {
-\   'markdown': [],
-\   'javascript': ['eslint', 'flow'],
-\}
+      \   'markdown': [],
+      \   'javascript': ['eslint', 'flow'],
+      \}
 
 " let g:acp_enableAtStartup = 0
 
@@ -253,7 +261,7 @@ let g:ale_linters = {
 " Automatically removing all trailing whitespace
 " autocmd BufWritePre * :%s/\s\+$//e
 
-let g:javascript_plugin_flow = 1
+" let g:javascript_plugin_flow = 1
 
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_sort_regime = "mru"
@@ -270,12 +278,12 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 nmap <F8> :TagbarToggle<CR>
 
-" Toggle paste mode
-nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
-imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
+" " Toggle paste mode
+" nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
+" imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
 
 " format the entire file
-nnoremap <leader>fef :normal! gg=G``<CR>
+nnoremap ff :normal! gg=G``<CR>
 
 " set text wrapping toggles
 nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
