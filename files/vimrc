@@ -1,29 +1,27 @@
-set nocompatible
-" filetype off
-
-let $PATH = $PATH . ':' . expand("~/.local/bin") . ':' . expand("~/.composer/vendor/bin")
+" set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'roxma/nvim-completion-manager'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-Plug 'felixfbecker/php-language-server', {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-nginx'
 " Plug 'ensime/ensime-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'lepture/vim-jinja'
+Plug 'lepture/vim-jinja', { 'for': 'jinja' }
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Plug 'tpope/vim-rvm'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
@@ -39,43 +37,40 @@ Plug 'vim-airline/vim-airline'
 " Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-dispatch'
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 Plug 'godlygeek/tabular'
-Plug 'mbbill/undotree'
+" Plug 'mbbill/undotree'
 Plug 'othree/html5.vim'
-Plug 'digitaltoad/vim-jade'
-Plug 'slim-template/vim-slim'
-Plug 'elixir-editors/vim-elixir'
-Plug 'c-brenn/phoenix.vim'
-Plug 'slashmili/alchemist.vim'
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
+Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
+Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 " Plug 'rhysd/vim-grammarous'
 " Plug 'tmatilai/vim-monit'
 " Plug 'jpalardy/vim-slime'
 " Plug 'Matt-Deacalion/vim-systemd-syntax'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'fatih/vim-go'
-Plug 'jimenezrick/vimerl'
-Plug 'wting/rust.vim'
+Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
 " Plug 'cespare/vim-toml'
 Plug 'honza/vim-snippets'
 " Plug 'flowtype/vim-flow'
-Plug '2072/PHP-Indenting-for-VIm'
-" Plug 'shawncplus/phpcomplete.vim'
-Plug 'jwalton512/vim-blade'
-Plug 'joonty/vdebug'
+
+Plug 'felixfbecker/php-language-server', {'do': 'composer install && composer run-script parse-stubs'}
+Plug 'jwalton512/vim-blade', { 'for': 'php' }
+Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+
+Plug 'joonty/vdebug', { 'on': 'VdebugStart' }
 Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-ragtag'
-Plug 'zah/nimrod.vim'
-Plug 'rgrinberg/vim-ocaml'
 Plug 'Quramy/tsuquyomi'
-Plug 'leafgarland/typescript-vim'
 Plug 'mhartington/vim-typings'
 
-Plug 'Shougo/unite.vim'
+" Plug 'Shougo/unite.vim'
 
 " Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/ghcmod-vim'
-Plug 'neovimhaskell/haskell-vim'
+" Plug 'neovimhaskell/haskell-vim'
 
 Plug 'elzr/vim-json'
 " Plug 'vim-scripts/JavaScript-Indent'
@@ -85,7 +80,7 @@ Plug 'mitermayer/vim-prettier', {
 	\ 'do': 'yarn install',
 	\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 " Plug 'maxmellon/vim-jsx-pretty'
-Plug 'chemzqm/vim-jsx-improve'
+Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
 Plug 'moll/vim-node'
 Plug 'mattn/emmet-vim'
 Plug 'reedes/vim-lexical'
@@ -96,62 +91,64 @@ Plug 'xolox/vim-misc'
 Plug 'Valloric/MatchTagAlways'
 
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'plasticboy/vim-markdown'
-Plug 'shime/vim-livedown'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'shime/vim-livedown', { 'for': 'markdown' }
 " Plug 'JamshedVesuna/vim-markdown-preview'
 
-Plug 'tpope/vim-haml'
+Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'tpope/vim-git'
 
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-bundler'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 
 Plug 'tpope/vim-endwise'
 Plug 'Shougo/vimshell.vim'
 Plug 'michaeljsmith/vim-indent-object'
 
-Plug 'guns/vim-clojure-static'
-Plug 'tpope/vim-leiningen'
-Plug 'tpope/vim-classpath'
-Plug 'tpope/vim-fireplace'
-Plug 'venantius/vim-eastwood'
+" Clojure
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
+Plug 'tpope/vim-classpath', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
 
-Plug 'vim-scripts/paredit.vim'
-Plug 'wlangstroth/vim-racket'
+Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'scheme', 'racket'] }
+Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
-Plug 'stephpy/vim-yaml'
+Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 
-Plug 'chrisbra/csv.vim'
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim'
-
-
 
 call plug#end()
 " filetype plugin indent on
 
-augroup lexical
-  autocmd!
-  autocmd FileType markdown,mkd call lexical#init()
-  autocmd FileType textile call lexical#init()
-  autocmd FileType text call lexical#init({ 'spell': 0 })
-augroup END
+" augroup lexical
+"   autocmd!
+"   autocmd FileType markdown,mkd call lexical#init()
+"   autocmd FileType textile call lexical#init()
+"   autocmd FileType text call lexical#init({ 'spell': 0 })
+" augroup END
 
 let mapleader = "\<Space>"
 
-" Sets how many lines of history VIM has to remember
-set history=500
+" https://github.com/vim/vim/blob/master/runtime/doc/russian.txt
+" Enable hotkeys for Russian layout
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-
-" enhanced command completion
-set wildmenu
-
-set visualbell
+" set visualbell
 
 if has('mouse')
   set mouse=a
+endif
+
+if has("clipboard")
+  set clipboard=unnamed " copy to the system clipboard
+
+  if has("unnamedplus") " X11 support
+    set clipboard+=unnamedplus
+  endif
 endif
 
 " Don't redraw while executing macros (good performance config)
@@ -160,11 +157,6 @@ set lazyredraw
 set cursorline
 set hidden
 set nofoldenable
-"set modelines=0
-" set clipboard=unnamed
-"set synmaxcol=128
-"set ttyscroll=10
-"set encoding=utf-8
 set wrap
 set linebreak
 set number
@@ -177,18 +169,17 @@ set nobackup
 set nowb
 set noswapfile
 
-set autoindent
 " set softtabstop=4
 set expandtab
 " set noexpandtab
 set softtabstop=2
 set shiftwidth=2
-" set smarttab
 
 set splitbelow
 " set background=dark
 set cmdheight=2
-set t_Co=256
+" set t_Co=256
+
 colorscheme jellybeans
 
 " ================ Persistent Undo ==================
@@ -200,21 +191,33 @@ if has('persistent_undo')
   set undofile
 endif
 
-" let g:syntastic_always_populate_loc_list = 0
-" let g:syntastic_auto_loc_list = 0
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_aggregate_errors = 1
+""" Basics Keymaps
 
-" let g:syntastic_check_on_wq = 0
+" Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with line wrapping on, this can cause the cursor to actually skip a few lines on the screen because it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down' to mean the next line on the screen
+nmap j gj
+nmap k gk
 
-" let g:jsx_ext_required = 0
+" upper/lower word
+nmap <leader>u mQviwU`Q
+nmap <leader>l mQviwu`Q
 
-" let g:slime_target = "tmux"
+" Map ctrl-movement keys to window switching
+map <C-k> <C-w><Up>
+map <C-j> <C-w><Down>
+map <C-l> <C-w><Right>
+map <C-h> <C-w><Left>
 
-" let g:vim_json_syntax_conceal = 0
+" Edit .vimrc
+map <leader>v :vsp $MYVIMRC<CR>
+map <leader>V :source $MYVIMRC<CR>
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+""" Plugins Keymaps
+
+nmap <C-i> :NERDTreeFind<CR>
+nmap <silent> <leader><leader> :NERDTreeToggle<CR>
+
+
+""" Plugin Settings
 
 let g:LanguageClient_autoStart = 1
 
@@ -223,7 +226,6 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
     \ 'ruby': ['language_server-ruby'],
     \ }
-
 
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
@@ -242,7 +244,7 @@ let g:ale_linters = {
 " let g:easytags_async = 1
 
 " Automatically removing all trailing whitespace
-autocmd BufWritePre * :%s/\s\+$//e
+" autocmd BufWritePre * :%s/\s\+$//e
 
 let g:javascript_plugin_flow = 1
 
@@ -255,19 +257,11 @@ let g:vim_markdown_folding_disabled = 1
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#buffer_idx_mode = 1
-" nmap <C-[> <Plug>AirlineSelectPrevTab
-" nmap <C-]> <Plug>AirlineSelectNextTab
-" nmap <leader>- <Plug>AirlineSelectPrevTab
-" nmap <leader>+ <Plug>AirlineSelectNextTab
-
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 nmap <F8> :TagbarToggle<CR>
-nnoremap <F5> :UndotreeToggle<cr>
 
 " Toggle paste mode
 nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
@@ -282,10 +276,6 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 " find merge conflict markers
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
-" upper/lower word
-nmap <leader>u mQviwU`Q
-nmap <leader>l mQviwu`Q
-
 nnoremap <Leader>o :Files .<CR>
 nnoremap <Leader>w :w<CR>
 
@@ -295,9 +285,6 @@ nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
-
-nmap <C-i> :NERDTreeFind<CR>
-nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
 let NERDTreeIgnore = ['\.pyc$', '\.retry$']
 
@@ -318,11 +305,6 @@ nmap <Leader>y :.w! ~/.vbuf<CR>
 " "paste the contents of the buffer file
 nmap <Leader>p :r ~/.vbuf<CR>
 
-" Map ctrl-movement keys to window switching
-map <C-k> <C-w><Up>
-map <C-j> <C-w><Down>
-map <C-l> <C-w><Right>
-map <C-h> <C-w><Left>
 nnoremap <silent> <bs> <C-w><Left>
 
 let g:bufExplorerDisableDefaultKeyMapping=1
@@ -332,18 +314,6 @@ nnoremap <leader>b :BufExplorer<CR>
 " let g:deoplete#enable_at_startup = 1
 
 let g:airline#extensions#ale#enabled = 1
-
-au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
-" au BufRead,BufNewFile *.phtml set ft=php
-
-" autocmd FileType ruby compiler ruby
-
-" au FileType ruby setl sw=2 sts=2 et
-" au FileType javascript setl sw=2 sts=2 et
-" au FileType yaml setl sw=2 sts=2 et
-" autocmd Filetype html setlocal ts=2 sw=2
-autocmd Filetype php setlocal ts=4 sw=4 autoindent
-autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -360,11 +330,4 @@ if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
 endif
 
-" Put these lines at the very end of your vimrc file.
-
-" Load all plugins now.
-" Plugins need to be added to runtimepath before helptags can be generated.
-packloadall
-" Load all of the helptags now, after plugins have been loaded.
-" All messages and errors will be ignored.
-silent! helptags ALL
+autocmd BufEnter * EnableStripWhitespaceOnSave
