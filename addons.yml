@@ -13,6 +13,7 @@
       with_items:
         - "squizlabs/php_codesniffer=*"
         - "mkusher/padawan=*"
+        - "phpmd/phpmd=*"
       tags:
         - all
         - php
