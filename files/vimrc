@@ -227,7 +227,7 @@ map <leader>vr :source $MYVIMRC<CR>
 
 """ Plugins Keymaps
 
-nmap <C-i> :NERDTreeFind<CR>
+nmap <C-l> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
 nnoremap <leader>b :BufExplorer<CR>
@@ -303,12 +303,10 @@ nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 nnoremap <Leader>o :Files .<CR>
 nnoremap <Leader>w :w<CR>
 
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+nmap <Leader>p "0p
+vmap <Leader>p "0p
+nmap <Leader>P "0P
+vmap <Leader>P "0P
 
 let NERDTreeIgnore = ['\.pyc$', '\.retry$']
 
@@ -320,14 +318,6 @@ noremap ,hl :set hlsearch! hlsearch?<CR>
 " Allows you to enter sudo pass and save the file
 " " when you forgot to open your file with sudo
 cmap w!! %!sudo tee > /dev/null %
-
-" Allow to copy/paste between VIM instances
-" "copy the current visual selection to ~/.vbuf
-" vmap <Leader>y :w! ~/.vbuf<CR>
-" " "copy the current line to the buffer file if no visual selection
-" nmap <Leader>y :.w! ~/.vbuf<CR>
-" " "paste the contents of the buffer file
-" nmap <Leader>p :r ~/.vbuf<CR>
 
 " nnoremap <silent> <bs> <C-w><Left>
 
