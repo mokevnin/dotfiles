@@ -231,9 +231,8 @@ nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
 nnoremap <leader>b :BufExplorer<CR>
 
-" nvim-completion-manager
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
 
 " Move between linting errors
 nnoremap ]r :ALENextWrap<CR>
