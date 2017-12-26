@@ -48,6 +48,7 @@
         - rubocop
         - language_server
         - fastri
+        - slim_lint
       tags:
         - all
         - ruby

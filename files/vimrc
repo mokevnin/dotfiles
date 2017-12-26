@@ -43,7 +43,7 @@ Plug 'godlygeek/tabular'
 " Plug 'mbbill/undotree'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
-Plug 'slim-template/vim-slim', { 'for': 'slim' }
+Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
@@ -344,11 +344,14 @@ augroup common
 augroup END
 
 augroup filetypedetect
+  " autocmd!
   " au BufEnter *.markdown,*.mkd,*.md setl wrap tw=79
   " au BufEnter *.json setl ft=javascript
   " au BufEnter *.coffee setl sw=2 expandtab
   " au BufEnter *.py setl ts=4 sw=4 sts=4
-  au BufEnter *.php setl ts=4 sw=4 sts=4
+  autocmd BufEnter *.php setlocal ts=4 sw=4 sts=4
+  autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
+  autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
   " au BufEnter *.js setl ts=2 sw=2 sts=2
   " au BufEnter *.html setl ts=4 sw=4 sts=4
   " au BufEnter *.tex setl wrap tw=79 fo=tcqor
