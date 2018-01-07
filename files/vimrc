@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'ervandew/supertab'
+Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
@@ -142,13 +143,13 @@ if has('mouse')
   set mouse=a
 endif
 
-if has("clipboard")
-  set clipboard=unnamed " copy to the system clipboard
+" if has("clipboard")
+"   set clipboard=unnamed " copy to the system clipboard
 
-  if has("unnamedplus") " X11 support
-    set clipboard+=unnamedplus
-  endif
-endif
+"   if has("unnamedplus") " X11 support
+"     set clipboard+=unnamedplus
+"   endif
+" endif
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -214,8 +215,8 @@ map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
 " Auto indent pasted text
-nnoremap p p=`]<C-o>
-nnoremap P P=`]<C-o>
+" nnoremap p p=`]<C-o>
+" nnoremap P P=`]<C-o>
 
 " Edit .vimrc
 map <leader>vl :vsp $MYVIMRC<CR>
@@ -298,11 +299,6 @@ nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <Leader>o :Files .<CR>
 nnoremap <Leader>w :w<CR>
-
-nmap <Leader>p "0p
-vmap <Leader>p "0p
-nmap <Leader>P "0P
-vmap <Leader>P "0P
 
 let NERDTreeIgnore = ['\.pyc$', '\.retry$']
 
