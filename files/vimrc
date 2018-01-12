@@ -297,7 +297,7 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 " find merge conflict markers
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
-nnoremap <Leader>o :Files .<CR>
+nnoremap <Leader>o :GFiles .<CR>
 nnoremap <Leader>w :w<CR>
 
 let NERDTreeIgnore = ['\.pyc$', '\.retry$']
