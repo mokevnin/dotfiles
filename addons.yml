@@ -60,7 +60,6 @@
         - prettier
         - typescript
         - typings
-        - tern
         - pug-lint
         - livedown
         - js-yaml
