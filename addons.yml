@@ -5,6 +5,11 @@
     ansible_python_interpreter: '/usr/bin/env python3'
 
   tasks:
+    - homebrew:
+        name: the_silver_searcher
+        state: present
+      ignore_errors: yes
+
     - composer:
         global_command: yes
         command: require

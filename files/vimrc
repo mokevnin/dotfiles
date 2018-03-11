@@ -10,6 +10,7 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 Plug 'roxma/nvim-completion-manager'
+Plug 'rhysd/vim-grammarous'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
 Plug 'Shougo/echodoc.vim'
@@ -299,6 +300,9 @@ nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <Leader>o :GFiles .<CR>
 nnoremap <Leader>w :w<CR>
+nnoremap <leader>fc :Commits<CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fa :Ag<CR>
 
 let NERDTreeIgnore = ['\.pyc$', '\.retry$']
 
