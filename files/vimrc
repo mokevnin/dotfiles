@@ -23,6 +23,7 @@ Plug 'lepture/vim-jinja', { 'for': 'jinja' }
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Plug 'tpope/vim-rvm'
 Plug 'tpope/vim-surround'
+Plug 'wellle/targets.vim'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-commentary'
