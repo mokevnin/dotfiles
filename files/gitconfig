@@ -10,4 +10,4 @@
   st = status
   br = branch
   hist = log --graph --decorate --oneline
-  lt = git describe --abbrev=0 --tags
+  lt = describe --abbrev=0 --tags
