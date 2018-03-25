@@ -8,6 +8,7 @@
 
 ### Setup
 
+1. install https://github.com/ggreer/the_silver_searcher
 1. Install deps and configs
 
 ```sh
