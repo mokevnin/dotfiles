@@ -8,13 +8,13 @@
     - homebrew:
         name: the_silver_searcher
         state: present
-      ignore_errors: yes
+      ignore_errors: true
 
     - composer:
-        global_command: yes
+        global_command: true
         command: require
-      ignore_errors: yes
-      # become: yes
+      ignore_errors: true
+      # become: true
       with_items:
         - "squizlabs/php_codesniffer=*"
         - "mkusher/padawan=*"
@@ -42,8 +42,8 @@
         - all
 
     - gem: name={{ item }} state=latest
-      # become: yes
-      ignore_errors: yes
+      # become: true
+      ignore_errors: true
       with_items:
         - rake
         - neovim
@@ -58,9 +58,9 @@
         - all
         - ruby
 
-    - npm: name={{ item }} global=yes state=latest
-      become: yes
-      ignore_errors: yes
+    - npm: name={{ item }} global=true state=latest
+      become: true
+      ignore_errors: true
       with_items:
         - prettier
         - typescript
@@ -82,6 +82,8 @@
         - eslint-config-airbnb
         - eslint-config-airbnb-base
         - eslint-plugin-react
+        - eslint-plugin-babel
+        - eslint-plugin-jest
       tags:
         - all
         - eslint
@@ -89,7 +91,7 @@
     - copy:
         src: ./files/eslintrc
         dest: ~/.eslintrc
-        backup: yes
+        backup: true
       tags:
         - all
         - eslint
