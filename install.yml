@@ -4,22 +4,22 @@
     ansible_python_interpreter: '/usr/bin/env python3'
 
   tasks:
-    - lineinfile:
-        regexp: ~/.local
-        path: ~/.bashrc
-        line: "export PATH=$PATH:~/.local/bin;"
+    # - lineinfile:
+    #     regexp: ~/.local
+    #     path: ~/.bashrc
+    #     line: "export PATH=$PATH:~/.local/bin;"
 
     - shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
-    - shell: |
-        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-        echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
-      when: ansible_distribution == 'Ubuntu'
+    # - shell: |
+    #     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+    #     echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
+    #   when: ansible_distribution == 'Ubuntu'
 
     - apt: name={{ item }} state=latest
-      become: yes
+      become: true
       with_items:
-        - mono-runtime
+        # - mono-runtime
         - ruby
         - ruby-dev
         - php
