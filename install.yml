@@ -16,7 +16,7 @@
     - homebrew_tap:
         name: "{{ item }}"
       with_items:
-        - homebrew/dupes
+        # - homebrew/dupes
         - homebrew/php
       when: ansible_os_family == 'Darwin'
 
