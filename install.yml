@@ -9,7 +9,26 @@
     #     path: ~/.bashrc
     #     line: "export PATH=$PATH:~/.local/bin;"
 
-    - shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+    - homebrew:
+        update_homebrew: true
+      when: ansible_os_family == 'Darwin'
+
+    - homebrew_tap:
+        name: "{{ item }}"
+      with_items:
+        - homebrew/dupes
+        - homebrew/php
+      when: ansible_os_family == 'Darwin'
+
+    - homebrew:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - node
+        - php71
+        - composer
+
+      when: ansible_os_family == 'Darwin'
 
     # - shell: |
     #     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
@@ -39,9 +58,4 @@
         - python3-dev
         - python3-setuptools
         - flex
-      when: ansible_distribution == 'Ubuntu'
-      tags: always
-
-    - shell:
-        cd /tmp/ && curl -s https://getcomposer.org/installer | php && \
-        sudo mv /tmp/composer.phar /usr/local/bin/composer
+      when: ansible_os_family == 'Ubuntu'
