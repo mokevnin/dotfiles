@@ -18,6 +18,7 @@
       with_items:
         # - homebrew/dupes
         - homebrew/php
+        - homebrew/completions
       when: ansible_os_family == 'Darwin'
 
     - homebrew:

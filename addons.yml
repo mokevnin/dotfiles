@@ -6,9 +6,17 @@
 
   tasks:
     - homebrew:
-        name: the_silver_searcher
-        state: present
+        name: "{{ item }}"
+        state: latest
       ignore_errors: true
+      with_items:
+        - the_silver_searcher
+        # add this lines to ~/.bash_profile
+        # if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        #   . $(brew --prefix)/etc/bash_completion
+        # fi
+        - bash-completion
+      when: ansible_os_family == 'Darwin'
 
     - composer:
         global_command: true
