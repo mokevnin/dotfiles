@@ -78,7 +78,7 @@ Plug 'elzr/vim-json'
 " Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'mitermayer/vim-prettier', {
-      \ 'do': 'yarn install',
+      \ 'do': 'npm install',
       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 " Plug 'maxmellon/vim-jsx-pretty'
 Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
