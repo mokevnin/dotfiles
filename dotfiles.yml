@@ -1,7 +1,6 @@
 ---
 - hosts: all
   vars:
-    ansible_python_interpreter: '/usr/bin/env python3'
     config: ~/.bash_profile
   tasks:
     - lineinfile: dest="{{ config }}" state=present create=yes
