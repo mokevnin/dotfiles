@@ -1,5 +1,8 @@
 ---
 - hosts: all
+  vars:
+    nodejs_version: node_10.x
+
   tasks:
     # - lineinfile:
     #     regexp: ~/.local
@@ -28,12 +31,28 @@
 
       when: ansible_os_family == 'Darwin'
 
-    # - shell: |
-    #     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-    #     echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
-    #   when: ansible_distribution == 'Ubuntu'
+    - name: Ensure apt-transport-https is installed.
+      apt: name=apt-transport-https state=present
+      when: ansible_distribution == 'Ubuntu'
 
-    - apt: name={{ item }} state=latest
+    - name: Add Nodesource apt key.
+      apt_key:
+        url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+        state: present
+      become: yes
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Add NodeSource repositories for Node.js.
+      apt_repository:
+        repo: "{{ item }}"
+        state: present
+      with_items:
+        - "deb https://deb.nodesource.com/{{ nodejs_version }} {{ ansible_distribution_release }} main"
+        - "deb-src https://deb.nodesource.com/{{ nodejs_version }} {{ ansible_distribution_release }} main"
+      become: yes
+      when: ansible_distribution == 'Ubuntu'
+
+    - apt: name={{ item }} state=latest update_cache=yes
       become: true
       with_items:
         # - mono-runtime
