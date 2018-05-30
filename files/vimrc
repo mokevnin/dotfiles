@@ -8,7 +8,10 @@ Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'roxma/nvim-completion-manager'
 Plug 'rhysd/vim-grammarous'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -56,7 +59,8 @@ Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
 Plug 'honza/vim-snippets'
 " Plug 'flowtype/vim-flow'
 
-Plug 'felixfbecker/php-language-server', { 'for': 'php', 'do': 'composer install && composer run-script parse-stubs'}
+" Plug 'felixfbecker/php-language-server', { 'for': 'php', 'do': 'composer install && composer run-script parse-stubs'}
+Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }

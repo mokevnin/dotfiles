@@ -55,6 +55,7 @@
         - neovim
         - mdl
         - haml-lint
+        - neovim
         - sqlint
         - rubocop
         - language_server
@@ -78,6 +79,7 @@
         - js-beautify
         - jsonlint
         - eslint
+        - neovim
         - babel-eslint
         - eslint-plugin-jest
         - eslint-plugin-flowtype
