@@ -48,7 +48,7 @@
         - all
 
     - gem: name={{ item }} state=latest
-      # become: true
+      become: true
       ignore_errors: true
       with_items:
         - rake
