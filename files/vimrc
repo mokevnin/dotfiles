@@ -260,6 +260,7 @@ let g:lexical#spelllang = ['en_us', 'ru_ru']
 
 " let g:ale_elixir_credo_executable='make'
 
+let g:ale_completion_enabled = 1
 let g:ale_php_phpcs_standard = 'PSR2'
 let g:ale_linters = {
       \   'markdown': [],
