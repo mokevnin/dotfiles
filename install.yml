@@ -4,10 +4,10 @@
     nodejs_version: node_10.x
 
   tasks:
-    # - lineinfile:
-    #     regexp: ~/.local
-    #     path: ~/.bashrc
-    #     line: "export PATH=$PATH:~/.local/bin;"
+    - lineinfile:
+        regexp: ~/.local
+        path: ~/.bash_profile
+        line: "export PATH=$PATH:~/.local/bin;"
 
     - homebrew:
         update_homebrew: true
