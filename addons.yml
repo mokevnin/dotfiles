@@ -91,7 +91,6 @@
         - eslint-config-airbnb-base
         - eslint-plugin-react
         - eslint-plugin-babel
-        - eslint-plugin-jest
       tags:
         - all
         - eslint
