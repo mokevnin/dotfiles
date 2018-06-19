@@ -65,6 +65,7 @@
         - openssl
         - libssl-dev
         - ack-grep
+        - silversearcher-ag
         - clang-format-3.6
         - clang-3.6
         - llvm
