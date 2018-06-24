@@ -4,6 +4,13 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'ervandew/supertab'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ConradIrwin/vim-bracketed-paste'
@@ -12,9 +19,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'roxma/nvim-completion-manager'
 Plug 'rhysd/vim-grammarous'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-nginx'
@@ -326,7 +331,7 @@ cmap w!! %!sudo tee > /dev/null %
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowRelativePath=1
 
-" let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 let g:airline#extensions#ale#enabled = 1
 
