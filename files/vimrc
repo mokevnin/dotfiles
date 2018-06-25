@@ -24,7 +24,7 @@ Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm 
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-nginx'
 " Plug 'ensime/ensime-vim'
-" Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja', { 'for': 'jinja' }
 " Plug 'nathanaelkane/vim-indent-guides'
