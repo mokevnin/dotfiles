@@ -81,6 +81,7 @@
         - eslint
         - neovim
         - babel-eslint
+        - flow-language-server
         - eslint-plugin-jest
         - eslint-plugin-flowtype
         - eslint-plugin-import
