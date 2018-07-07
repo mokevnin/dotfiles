@@ -3,7 +3,15 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'ervandew/supertab'
+Plug 'lxhillwind/leader-clipboard'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'hashivim/vim-terraform'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -11,14 +19,6 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-Plug 'lxhillwind/leader-clipboard'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'hashivim/vim-terraform'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'rhysd/vim-grammarous'
 Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
 Plug 'Shougo/echodoc.vim'
