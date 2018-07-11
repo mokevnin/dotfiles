@@ -272,7 +272,10 @@ let g:ale_linters = {
       \   'markdown': [],
       \   'javascript': ['eslint', 'flow'],
       \}
-let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_fixers = {
+      \ 'javascript': ['eslint'],
+      \ 'ruby': ['rubocop'],
+      \ }
 
 " let g:acp_enableAtStartup = 0
 
