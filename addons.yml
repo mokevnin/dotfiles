@@ -2,6 +2,22 @@
 
 - hosts: all
 
+  vars:
+    gems:
+      - rake
+      - neovim
+      - mdl
+      - haml-lint
+      - neovim
+      - sqlint
+      - rubocop
+      - language_server
+      - fastri
+      - slim_lint
+      - brakeman
+      - rails_best_practices
+      - reek
+
   tasks:
     - homebrew:
         name: "{{ item }}"
@@ -47,26 +63,28 @@
       tags:
         - all
 
-    - gem: name={{ item }} state=latest
+    - gem:
+        name: "{{ item }}"
+        state: latest
+        user_install: false
       become: true
       ignore_errors: true
-      with_items:
-        - rake
-        - neovim
-        - mdl
-        - haml-lint
-        - neovim
-        - sqlint
-        - rubocop
-        - language_server
-        - fastri
-        - slim_lint
-        - brakeman
-        - rails_best_practices
-        - reek
+      with_items: "{{ gems }}"
       tags:
         - all
         - ruby
+      when: ansible_os_family == "Debian"
+
+    - gem:
+        name: "{{ item }}"
+        state: latest
+        user_install: false
+      ignore_errors: true
+      with_items: "{{ gems }}"
+      tags:
+        - all
+        - ruby
+      when: ansible_os_family == 'Darwin'
 
     - npm: name={{ item }} global=true state=latest
       become: true
