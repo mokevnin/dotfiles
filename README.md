@@ -26,3 +26,31 @@ $ nvim
 ```
 
 3. Restart vim
+
+### VIM
+
+#### Main
+
+* Switch ctrl and caps lock
+* Use <kbd>ctrl + [</kbd> instead of <kbd>esc</kdb>
+
+#### Moving between opened buffers
+
+* `ctrl h` - left
+* `ctrl l` - right
+* `ctrl k` - up
+* `ctrl j` - down
+
+#### File Tree
+
+* `<leader><leader>` - toggle filetree
+
+#### Searching
+
+* `<leader> o` - fuzzy search (files under git)
+* `<leader> ff` - fuzzy search (all files)
+* `<leader> fa` - fuzzy search (content in files)
+
+#### Code
+
+* `gcc` - toggle commenting
