@@ -275,6 +275,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \ 'javascript': ['eslint'],
       \ 'ruby': ['rubocop'],
+      \ 'elixir': ['mix_format'],
       \ }
 
 " let g:acp_enableAtStartup = 0
