@@ -40,6 +40,7 @@ $ nvim
 * `ctrl l` - right
 * `ctrl k` - up
 * `ctrl j` - down
+* `<leader> b` - show buffer list
 
 #### File Tree
 
