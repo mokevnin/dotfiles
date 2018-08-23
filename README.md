@@ -34,7 +34,7 @@ $ nvim
 * Switch ctrl and caps lock
 * Use <kbd>ctrl + [</kbd> instead of <kbd>esc</kdb>
 
-#### Moving between opened buffers
+#### Moving between visible buffers
 
 * `ctrl h` - left
 * `ctrl l` - right
