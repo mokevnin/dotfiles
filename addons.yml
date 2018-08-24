@@ -96,6 +96,7 @@
         - pug-lint
         - livedown
         - js-yaml
+        - import-js
         - stylelint
         - js-beautify
         - jsonlint
