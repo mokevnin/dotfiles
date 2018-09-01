@@ -147,7 +147,7 @@ let mapleader = "\<Space>"
 " https://github.com/vim/vim/blob/master/runtime/doc/russian.txt
 " Enable hotkeys for Russian layout
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-setlocal spell spelllang=en_us,ru_ru
+" setlocal spell spelllang=en_us,ru_ru
 
 " set visualbell
 
