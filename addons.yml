@@ -3,6 +3,9 @@
 - hosts: all
 
   vars:
+    lsp:
+      java:
+        repository_path: /var/tmp/java-lsp
     gems:
       - rake
       - neovim
@@ -63,6 +66,28 @@
       tags:
         - all
 
+    - git:
+        repo: 'https://github.com/eclipse/eclipse.jdt.ls'
+        dest: "{{ lsp.java.repository_path }}"
+        clone: yes
+        update: yes
+      tags:
+        - java
+
+    - shell: "./mvnw verify"
+      args:
+        chdir: "{{ lsp.java.repository_path }}"
+      tags:
+        - java
+
+    - template:
+        src: templates/jdtls.j2
+        dest: /usr/local/bin/jdtls
+        mode: '755'
+      become: true
+      tags:
+        - java
+
     - gem:
         name: "{{ item }}"
         state: latest
@@ -90,6 +115,7 @@
       become: true
       ignore_errors: true
       with_items:
+        - yaml-language-server
         - prettier
         - typescript
         - typings
@@ -116,7 +142,7 @@
         - eslint-plugin-babel
       tags:
         - all
-        - eslint
+        - npm
 
     - copy:
         src: ./files/eslintrc

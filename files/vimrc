@@ -254,10 +254,12 @@ map <leader>cr :GrammarousCheck --lang=ru --preview<CR>
 
 let g:LanguageClient_autoStart = 1
 
+" \ 'yaml': ['yaml-language-server', '--stdio']
 let g:LanguageClient_serverCommands = {
       \ 'php': ['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')],
       \ 'javascript': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
       \ 'javascript.jsx': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
+      \ 'java': ['/usr/local/bin/jdtls'],
       \ 'ruby': ['language_server-ruby'],
       \ }
 
@@ -373,6 +375,7 @@ augroup filetypedetect
   autocmd BufEnter *.php setlocal ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
   autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
+  autocmd BufNewFile,BufRead *.jsh setlocal filetype=java
   " au BufEnter *.js setl ts=2 sw=2 sts=2
   " au BufEnter *.html setl ts=4 sw=4 sts=4
   " au BufEnter *.tex setl wrap tw=79 fo=tcqor
