@@ -32,5 +32,7 @@ nvim_install_ubuntu:
 	sudo add-apt-repository ppa:neovim-ppa/stable
 	sudo apt-get update
 	sudo apt-get install neovim
+	
+install_ubuntu: nvim_install_ubuntu install_languages install_dotfiles nvim_install_ubuntu nvim_configure install_addons
 
 # .PHONY:
