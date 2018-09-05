@@ -28,11 +28,11 @@ ansible_install_ubuntu:
 	sudo apt-get install ansible
 
 nvim_install_ubuntu:
-	sudo apt-get install software-properties-common
-	sudo add-apt-repository ppa:neovim-ppa/stable
+	sudo apt-get install -y software-properties-common
+	sudo add-apt-repository -y ppa:neovim-ppa/stable
 	sudo apt-get update
-	sudo apt-get install neovim
-	
+	sudo apt-get install -y neovim
+
 install_ubuntu: nvim_install_ubuntu install_languages install_dotfiles nvim_install_ubuntu nvim_configure install_addons
 
 # .PHONY:
