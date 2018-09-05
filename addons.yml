@@ -66,27 +66,27 @@
       tags:
         - all
 
-    - git:
-        repo: 'https://github.com/eclipse/eclipse.jdt.ls'
-        dest: "{{ lsp.java.repository_path }}"
-        clone: yes
-        update: yes
-      tags:
-        - java
+    # - git:
+    #     repo: 'https://github.com/eclipse/eclipse.jdt.ls'
+    #     dest: "{{ lsp.java.repository_path }}"
+    #     clone: yes
+    #     update: yes
+    #   tags:
+    #     - java
 
-    - shell: "./mvnw verify"
-      args:
-        chdir: "{{ lsp.java.repository_path }}"
-      tags:
-        - java
+    # - shell: "./mvnw verify"
+    #   args:
+    #     chdir: "{{ lsp.java.repository_path }}"
+    #   tags:
+    #     - java
 
-    - template:
-        src: templates/jdtls.j2
-        dest: /usr/local/bin/jdtls
-        mode: '755'
-      become: true
-      tags:
-        - java
+    # - template:
+    #     src: templates/jdtls.j2
+    #     dest: /usr/local/bin/jdtls
+    #     mode: '755'
+    #   become: true
+    #   tags:
+    #     - java
 
     - gem:
         name: "{{ item }}"
