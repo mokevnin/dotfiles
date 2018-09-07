@@ -63,6 +63,7 @@
         - jedi
         - psutil
         - setproctitle
+        - python-language-server
       tags:
         - all
 

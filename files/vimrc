@@ -261,6 +261,7 @@ let g:LanguageClient_serverCommands = {
       \ 'javascript.jsx': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
       \ 'java': ['/usr/local/bin/jdtls'],
       \ 'ruby': ['language_server-ruby'],
+      \ 'python': ['/usr/local/bin/pyls'],
       \ }
 
 let g:vim_markdown_frontmatter = 1
