@@ -64,6 +64,9 @@
         - psutil
         - setproctitle
         - python-language-server
+        - autopep8
+        - rope
+        - yapf
       tags:
         - all
 
