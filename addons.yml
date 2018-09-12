@@ -14,6 +14,7 @@
       - neovim
       - sqlint
       - rubocop
+      - rubocop-rspec
       - language_server
       - fastri
       - slim_lint
