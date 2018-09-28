@@ -20,6 +20,7 @@
         - homebrew/php
         - homebrew/completions
       when: ansible_os_family == 'Darwin'
+      ignore_errors: yes
 
     - homebrew:
         name: "{{ item }}"
