@@ -270,6 +270,8 @@ let g:lexical#spelllang = ['en_us', 'ru_ru']
 
 " let g:ale_elixir_credo_executable='make'
 
+let g:airline#extensions#ale#enabled = 1
+let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
 " let g:ale_completion_enabled = 1
 let g:ale_php_phpcs_standard = 'PSR2'
