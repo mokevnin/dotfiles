@@ -134,6 +134,7 @@
         - eslint
         - neovim
         - babel-eslint
+        - javascript-typescript-langserver
         - flow-language-server
         - eslint-plugin-jest
         - eslint-plugin-flowtype
