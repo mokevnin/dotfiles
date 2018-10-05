@@ -256,8 +256,8 @@ let g:LanguageClient_autoStart = 1
 " \ 'yaml': ['yaml-language-server', '--stdio']
 let g:LanguageClient_serverCommands = {
       \ 'php': ['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')],
-      \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'javascript.jsx': ['javascript-typescript-stdio'],
+      \ 'javascript': ['flow-language-server', '--stdio'],
+      \ 'javascript.jsx': ['flow-language-server', '--stdio'],
       \ 'java': ['/usr/local/bin/jdtls'],
       \ 'ruby': ['language_server-ruby'],
       \ 'python': ['pyls'],
