@@ -55,7 +55,6 @@
         state: latest
       with_items:
         - neovim
-        - pylint
         - ansible-lint
         - yamllint
         - bashate
@@ -65,9 +64,9 @@
         - psutil
         - setproctitle
         - python-language-server
-        - autopep8
         - rope
-        - yapf
+        - isort
+        - black
       tags:
         - all
 

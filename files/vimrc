@@ -277,9 +277,11 @@ let g:ale_php_phpcs_standard = 'PSR2'
 let g:ale_linters = {
       \   'markdown': [],
       \   'javascript': ['eslint', 'flow'],
+      \   'python': ['flake8'],
       \}
 let g:ale_fixers = {
       \ 'javascript': ['eslint'],
+      \ 'python': ['black'],
       \ 'ruby': ['rubocop'],
       \ 'elixir': ['mix_format'],
       \ }
