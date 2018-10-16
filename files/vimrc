@@ -3,46 +3,44 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
-Plug 'airblade/vim-gitgutter'
+Plug 'ervandew/supertab'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'ervandew/supertab'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'w0rp/ale'
 Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
 Plug 'rhysd/vim-grammarous'
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-nginx'
 " Plug 'ensime/ensime-vim'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja', { 'for': 'jinja' }
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-" Plug 'tpope/vim-rvm'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
-Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-" Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-" Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
 Plug 'dyng/ctrlsf.vim'
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 " Plug 'jeetsukumaran/vim-buffergator'
@@ -61,6 +59,8 @@ Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
 " Plug 'cespare/vim-toml'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Plug 'flowtype/vim-flow'
 
@@ -149,6 +149,7 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNO
 " setlocal spell spelllang=en_us,ru_ru
 
 " set visualbell
+set completeopt=noinsert,menuone,noselect
 
 if has('mouse')
   set mouse=a
@@ -166,7 +167,7 @@ endif
 set lazyredraw
 set ttyfast
 
-set shortmess=atI
+set shortmess+=c
 
 set cursorline
 set hidden
@@ -304,6 +305,13 @@ let g:vim_markdown_folding_disabled = 1
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " xmap <C-k>     <Plug>(neosnippet_expand_target)
+let g:SuperTabDefaultCompletionType    = '<C-n>'
+" let g:SuperTabCrMapping                = 0
+let g:UltiSnipsExpandTrigger           = '<tab>'
+let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
@@ -389,3 +397,4 @@ augroup filetypedetect
   " au BufEnter Makefile setl ts=4 sts=4 sw=4 noet list
   " au BufEnter *.es6 setf javascript
 augroup END
+
