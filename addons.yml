@@ -115,6 +115,17 @@
         - ruby
       when: ansible_os_family == 'Darwin'
 
+    - file:
+        dest: ~/.elixir.d/elixir-ls
+        state: directory
+      tags: elixir
+
+    - unarchive:
+        src: "https://github.com/JakeBecker/elixir-ls/releases/download/v0.2.24/elixir-ls.zip"
+        dest: ~/.elixir.d/elixir-ls
+        remote_src: true
+      tags: elixir
+
     - npm: name={{ item }} global=true state=latest
       become: true
       ignore_errors: true
@@ -133,8 +144,7 @@
         - eslint
         - neovim
         - babel-eslint
-        # - javascript-typescript-langserver
-        - flow-language-server
+        - javascript-typescript-langserver
         - eslint-plugin-jest
         - eslint-plugin-flowtype
         - eslint-plugin-import

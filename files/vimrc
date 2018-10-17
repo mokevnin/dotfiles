@@ -55,7 +55,7 @@ Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
-Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+" Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
 " Plug 'cespare/vim-toml'
@@ -65,6 +65,7 @@ Plug 'honza/vim-snippets'
 " Plug 'flowtype/vim-flow'
 
 " Plug 'felixfbecker/php-language-server', { 'for': 'php', 'do': 'composer install && composer run-script parse-stubs'}
+Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
@@ -262,6 +263,7 @@ let g:LanguageClient_serverCommands = {
       \ 'java': ['/usr/local/bin/jdtls'],
       \ 'ruby': ['solargraph', 'stdio'],
       \ 'python': ['pyls'],
+      \ 'elixir': ['sh', expand('~/.elixir.d/elixir-ls/language_server.sh')],
       \ }
 
 let g:vim_markdown_frontmatter = 1
@@ -274,12 +276,14 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
 " let g:ale_completion_enabled = 1
+let g:ale_elixir_elixir_ls_release = expand('~/.elixir.d/elixir-ls')
 let g:ale_php_phpcs_standard = 'PSR12'
 let g:ale_linters = {
       \   'ruby': ['rubocop', 'brakeman'],
       \   'markdown': [],
       \   'javascript': ['eslint', 'flow'],
       \   'python': ['flake8'],
+      \   'elixir': ['elixir-ls', 'mix', 'credo'],
       \}
 let g:ale_fixers = {
       \ 'javascript': ['eslint'],
@@ -287,15 +291,6 @@ let g:ale_fixers = {
       \ 'ruby': ['rubocop'],
       \ 'elixir': ['mix_format'],
       \ }
-
-" let g:acp_enableAtStartup = 0
-
-" let g:easytags_async = 1
-
-" Automatically removing all trailing whitespace
-" autocmd BufWritePre * :%s/\s\+$//e
-
-" let g:javascript_plugin_flow = 1
 
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_sort_regime = "mru"
