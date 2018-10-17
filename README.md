@@ -4,7 +4,7 @@
 * git
 * python3
 * ansible (see http://docs.ansible.com/ansible/intro_installation.html)
-* nvim
+* nvim (min. 0.3.1)
 
 ### Setup
 
