@@ -260,7 +260,7 @@ let g:LanguageClient_serverCommands = {
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'javascript.jsx': ['javascript-typescript-stdio'],
       \ 'java': ['/usr/local/bin/jdtls'],
-      \ 'ruby': ['language_server-ruby'],
+      \ 'ruby': ['solargraph', 'stdio'],
       \ 'python': ['pyls'],
       \ }
 

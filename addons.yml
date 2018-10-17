@@ -15,7 +15,7 @@
       - sqlint
       - rubocop
       - rubocop-rspec
-      - language_server
+      - solargraph
       - fastri
       - slim_lint
       - brakeman
