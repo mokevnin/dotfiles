@@ -1,4 +1,4 @@
-set nocompatible
+" set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
@@ -23,14 +23,11 @@ Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
-Plug 'rhysd/vim-grammarous'
+Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-nginx'
-" Plug 'ensime/ensime-vim'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja', { 'for': 'jinja' }
-" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
@@ -43,22 +40,16 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
-" Plug 'jeetsukumaran/vim-buffergator'
-" Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-dispatch'
-" Plug 'majutsushi/tagbar'
 Plug 'godlygeek/tabular'
-" Plug 'mbbill/undotree'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
-" Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
-" Plug 'cespare/vim-toml'
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -98,21 +89,15 @@ Plug 'reedes/vim-lexical'
 
 Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-easytags'
-
 Plug 'Valloric/MatchTagAlways'
-
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
-" Plug 'JamshedVesuna/vim-markdown-preview'
-
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'tpope/vim-git'
-
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-
 Plug 'tpope/vim-endwise'
 Plug 'Shougo/vimshell.vim'
 Plug 'michaeljsmith/vim-indent-object'
@@ -133,14 +118,6 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim'
 
 call plug#end()
-" filetype plugin indent on
-
-" augroup lexical
-"   autocmd!
-"   autocmd FileType markdown,mkd call lexical#init()
-"   autocmd FileType textile call lexical#init()
-"   autocmd FileType text call lexical#init({ 'spell': 0 })
-" augroup END
 
 let mapleader = "\<Space>"
 
@@ -199,9 +176,7 @@ set softtabstop=2
 set shiftwidth=2
 
 set splitbelow
-" set background=dark
 set cmdheight=2
-" set t_Co=256
 set scrolloff=3
 
 colorscheme jellybeans
@@ -370,12 +345,13 @@ if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
 endif
 
-augroup common
+augroup Common
+  autocmd!
   autocmd BufEnter * EnableStripWhitespaceOnSave
 augroup END
 
-augroup filetypedetect
-  " autocmd!
+augroup FileTypeTetect
+  autocmd!
   " au BufEnter *.markdown,*.mkd,*.md setl wrap tw=79
   " au BufEnter *.json setl ft=javascript
   " au BufEnter *.coffee setl sw=2 expandtab
@@ -392,4 +368,3 @@ augroup filetypedetect
   " au BufEnter Makefile setl ts=4 sts=4 sw=4 noet list
   " au BufEnter *.es6 setf javascript
 augroup END
-
