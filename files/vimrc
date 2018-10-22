@@ -255,6 +255,7 @@ let g:ale_php_phpcs_standard = 'PSR12'
 let g:ale_linters = {
       \   'ruby': ['rubocop', 'brakeman'],
       \   'markdown': [],
+      \   'yaml': ['yamllint'],
       \   'javascript': ['eslint', 'flow'],
       \   'python': ['flake8'],
       \   'elixir': ['elixir-ls', 'mix', 'credo'],
