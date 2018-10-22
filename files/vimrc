@@ -278,8 +278,8 @@ let g:vim_markdown_folding_disabled = 1
 let g:SuperTabDefaultCompletionType    = '<C-n>'
 " " let g:SuperTabCrMapping                = 0
 " " let g:UltiSnipsExpandTrigger           = '<tab>'
-" let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-" let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
 
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
