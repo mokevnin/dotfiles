@@ -3,7 +3,7 @@
 * Linux Or Mac
 * git
 * python3
-* ansible (see http://docs.ansible.com/ansible/intro_installation.html)
+* install ansible via `pip3 install ansible` (correct way to make ansible to use python3 - see [this link](https://docs.ansible.com/ansible/2.6/reference_appendices/python_3_support.html#on-the-controller-side) for explanations)
 * nvim (min. 0.3.1)
 
 ### Setup
