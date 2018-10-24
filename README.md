@@ -45,6 +45,7 @@ $ nvim
 #### File Tree
 
 * `<leader><leader>` - toggle filetree
+* `m` - to create new file/folder, etc
 
 #### Searching
 
@@ -55,3 +56,7 @@ $ nvim
 #### Code
 
 * `gcc` - toggle commenting
+* `gj` - navigate through blocks of code - (), {}, [], etс
+* `gf` - open a file corresponding to a word under the cursor
+* `(???)` - jump to the test of a file in Rails project, and vice versa
+* `gd` - go to definition
