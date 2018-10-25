@@ -52,11 +52,18 @@ $ nvim
 * `<leader> o` - fuzzy search (files under git)
 * `<leader> ff` - fuzzy search (all files)
 * `<leader> fa` - fuzzy search (content in files)
+* `<leader> fc` - fuzzy search (content in files)
 
 #### Code
 
 * `gcc` - toggle commenting
 * `gj` - navigate through blocks of code - (), {}, [], etс
 * `gf` - open a file corresponding to a word under the cursor
-* `(???)` - jump to the test of a file in Rails project, and vice versa
 * `gd` - go to definition
+
+#### Not sure how yet
+
+* `(???)` - jump to the test of a file in Rails project, and vice versa
+* ? Copy text to system clipboard
+
+
