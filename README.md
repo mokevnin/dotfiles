@@ -51,7 +51,13 @@ $ nvim
 * `<leader> o` - fuzzy search (files under git)
 * `<leader> ff` - fuzzy search (all files)
 * `<leader> fa` - fuzzy search (content in files)
+* `<leader> fc` - fuzzy search (content in files)
 
-#### Code
+#### Code editing and navigation
 
 * `gcc` - toggle commenting
+* `gj` - navigate through blocks of code - (), {}, [], etс
+* `gf` - open a file corresponding to a word under the cursor
+* `gd` - go to definition
+* `]r` and `[r` - go through linter errors
+* `<leader>y` & `<leader>p` Copy text to system clipboard
