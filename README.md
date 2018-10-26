@@ -45,7 +45,6 @@ $ nvim
 #### File Tree
 
 * `<leader><leader>` - toggle filetree
-* `m` - to create new file/folder, etc
 
 #### Searching
 
@@ -54,16 +53,11 @@ $ nvim
 * `<leader> fa` - fuzzy search (content in files)
 * `<leader> fc` - fuzzy search (content in files)
 
-#### Code
+#### Code editing and navigation
 
 * `gcc` - toggle commenting
 * `gj` - navigate through blocks of code - (), {}, [], etс
 * `gf` - open a file corresponding to a word under the cursor
 * `gd` - go to definition
-
-#### Not sure how yet
-
-* `(???)` - jump to the test of a file in Rails project, and vice versa
-* ? Copy text to system clipboard
-
-
+* `]r` and `[r` - go through linter errors
+* `<leader>y` & `<leader>p` Copy text to system clipboard
