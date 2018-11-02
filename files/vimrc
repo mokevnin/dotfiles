@@ -328,8 +328,6 @@ let g:bufExplorerShowRelativePath=1
 
 let g:deoplete#enable_at_startup = 1
 
-let g:airline#extensions#ale#enabled = 1
-
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
