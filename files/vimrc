@@ -23,10 +23,11 @@ Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
+Plug 'janko-m/vim-test'
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-nginx'
-Plug 'jlanzarotta/bufexplorer'
+" Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja', { 'for': 'jinja' }
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-surround'
@@ -201,6 +202,12 @@ map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
+nmap <silent> <leader>t :TestNearest<CR>
+" nmap <silent> t<C-f> :TestFile<CR>
+" nmap <silent> t<C-s> :TestSuite<CR>
+" nmap <silent> t<C-l> :TestLast<CR>
+" nmap <silent> t<C-g> :TestVisit<CR>
+
 " Auto indent pasted text
 " nnoremap p p=`]<C-o>
 " nnoremap P P=`]<C-o>
@@ -214,7 +221,7 @@ map <leader>vr :source $MYVIMRC<CR>
 nmap <C-m> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
-nnoremap <leader>b :BufExplorer<CR>
+nnoremap <leader>b :Buffers<CR>
 
 inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
@@ -267,8 +274,8 @@ let g:ale_fixers = {
       \ 'elixir': ['mix_format'],
       \ }
 
-let g:buffergator_viewport_split_policy = "B"
-let g:buffergator_sort_regime = "mru"
+" let g:buffergator_viewport_split_policy = "B"
+" let g:buffergator_sort_regime = "mru"
 
 let g:vim_markdown_folding_disabled = 1
 
@@ -304,11 +311,11 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 " find merge conflict markers
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
-nnoremap <Leader>o :GFiles .<CR>
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>o :GFiles .<CR>
 nnoremap <leader>fc :Commits<CR>
 nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fa :Ag<CR>
+nnoremap <leader>fa :Rg<CR>
 
 let NERDTreeIgnore = ['\.pyc$', '\.retry$']
 
@@ -323,8 +330,8 @@ cmap w!! %!sudo tee > /dev/null %
 
 " nnoremap <silent> <bs> <C-w><Left>
 
-let g:bufExplorerDisableDefaultKeyMapping=1
-let g:bufExplorerShowRelativePath=1
+" let g:bufExplorerDisableDefaultKeyMapping=1
+" let g:bufExplorerShowRelativePath=1
 
 let g:deoplete#enable_at_startup = 1
 
