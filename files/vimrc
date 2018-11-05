@@ -16,6 +16,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
@@ -273,6 +274,8 @@ let g:ale_fixers = {
       \ 'ruby': ['rubocop'],
       \ 'elixir': ['mix_format'],
       \ }
+
+let test#strategy = "neovim"
 
 " let g:buffergator_viewport_split_policy = "B"
 " let g:buffergator_sort_regime = "mru"
