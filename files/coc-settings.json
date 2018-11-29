@@ -1,4 +1,5 @@
 {
+  "eslint.autoFixOnSave": true,
   "languageserver": {
     "phplang": {
       "command": "php",
