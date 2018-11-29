@@ -12,6 +12,11 @@
         dest: ~/.config/nvim/init.vim
         state: link
 
+    - file:
+        src: "{{ curdir }}/files/coc-settings.json"
+        dest: ~/.config/nvim/coc-settings.json
+        state: link
+
     - pip: name=neovim state=latest
       become: yes
 

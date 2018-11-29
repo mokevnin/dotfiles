@@ -1,0 +1,9 @@
+{
+  "languageserver": {
+    "phplang": {
+      "command": "php",
+      "args": ["~/.composer/vendor/bin/php-language-server.php"],
+      "filetypes": ["php"]
+    }
+  }
+}

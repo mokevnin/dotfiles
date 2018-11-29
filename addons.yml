@@ -38,9 +38,9 @@
       ignore_errors: true
       # become: true
       with_items:
-        - "squizlabs/php_codesniffer=*"
-        - "mkusher/padawan=*"
-        - "phpmd/phpmd=*"
+        - "squizlabs/php_codesniffer"
+        - "phpmd/phpmd"
+        - "felixfbecker/language-server"
       tags:
         - all
         - php

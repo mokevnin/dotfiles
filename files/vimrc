@@ -3,23 +3,18 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
-Plug 'ervandew/supertab'
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ConradIrwin/vim-bracketed-paste'
@@ -52,13 +47,12 @@ Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
-Plug 'ncm2/ncm2-ultisnips'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 " Plug 'flowtype/vim-flow'
 
 " Plug 'felixfbecker/php-language-server', { 'for': 'php', 'do': 'composer install && composer run-script parse-stubs'}
-Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+" Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
@@ -99,7 +93,7 @@ Plug 'tpope/vim-git'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 Plug 'Shougo/vimshell.vim'
 Plug 'michaeljsmith/vim-indent-object'
 
@@ -178,6 +172,7 @@ set shiftwidth=2
 
 set splitbelow
 set cmdheight=2
+set signcolumn=yes
 set scrolloff=3
 
 colorscheme jellybeans
@@ -228,25 +223,27 @@ inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
 
 " Move between linting errors
-nnoremap ]r :ALENextWrap<CR>
-nnoremap [r :ALEPreviousWrap<CR>
+" nnoremap ]r :ALENextWrap<CR>
+" nnoremap [r :ALEPreviousWrap<CR>
 
 map <leader>cr :GrammarousCheck --lang=ru --preview<CR>
 
+" inoremap <silent><expr> <tab> coc#refresh()
+
 """ Plugin Settings
 
-let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_autoStart = 1
 
-" \ 'yaml': ['yaml-language-server', '--stdio']
-let g:LanguageClient_serverCommands = {
-      \ 'php': ['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')],
-      \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'javascript.jsx': ['javascript-typescript-stdio'],
-      \ 'java': ['/usr/local/bin/jdtls'],
-      \ 'ruby': ['solargraph', 'stdio'],
-      \ 'python': ['pyls'],
-      \ 'elixir': ['sh', expand('~/.elixir.d/elixir-ls/language_server.sh')],
-      \ }
+" " \ 'yaml': ['yaml-language-server', '--stdio']
+" let g:LanguageClient_serverCommands = {
+"       \ 'php': ['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')],
+"       \ 'javascript': ['javascript-typescript-stdio'],
+"       \ 'javascript.jsx': ['javascript-typescript-stdio'],
+"       \ 'java': ['/usr/local/bin/jdtls'],
+"       \ 'ruby': ['solargraph', 'stdio'],
+"       \ 'python': ['pyls'],
+"       \ 'elixir': ['sh', expand('~/.elixir.d/elixir-ls/language_server.sh')],
+"       \ }
 
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
@@ -254,26 +251,26 @@ let g:lexical#spelllang = ['en_us', 'ru_ru']
 
 " let g:ale_elixir_credo_executable='make'
 
-let g:airline#extensions#ale#enabled = 1
-let g:ale_sign_column_always = 1
-let g:ale_fix_on_save = 1
+" let g:airline#extensions#ale#enabled = 1
+" let g:ale_sign_column_always = 1
+" let g:ale_fix_on_save = 1
 " let g:ale_completion_enabled = 1
-let g:ale_elixir_elixir_ls_release = expand('~/.elixir.d/elixir-ls')
-let g:ale_php_phpcs_standard = 'PSR12'
-let g:ale_linters = {
-      \   'ruby': ['rubocop', 'brakeman'],
-      \   'markdown': [],
-      \   'yaml': ['yamllint'],
-      \   'javascript': ['eslint', 'flow'],
-      \   'python': ['flake8'],
-      \   'elixir': ['elixir-ls', 'mix', 'credo'],
-      \}
-let g:ale_fixers = {
-      \ 'javascript': ['eslint'],
-      \ 'python': ['black'],
-      \ 'ruby': ['rubocop'],
-      \ 'elixir': ['mix_format'],
-      \ }
+" let g:ale_elixir_elixir_ls_release = expand('~/.elixir.d/elixir-ls')
+" let g:ale_php_phpcs_standard = 'PSR12'
+" let g:ale_linters = {
+      " \   'ruby': ['rubocop', 'brakeman'],
+      " \   'markdown': [],
+      " \   'yaml': ['yamllint'],
+      " \   'javascript': ['eslint', 'flow'],
+      " \   'python': ['flake8'],
+      " \   'elixir': ['elixir-ls', 'mix', 'credo'],
+      " \}
+" let g:ale_fixers = {
+"       \ 'javascript': ['eslint'],
+"       \ 'python': ['black'],
+"       \ 'ruby': ['rubocop'],
+"       \ 'elixir': ['mix_format'],
+"       \ }
 
 let test#strategy = "neovim"
 
@@ -285,21 +282,19 @@ let g:vim_markdown_folding_disabled = 1
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " xmap <C-k>     <Plug>(neosnippet_expand_target)
-let g:SuperTabDefaultCompletionType    = '<C-n>'
+" let g:SuperTabDefaultCompletionType    = '<C-n>'
 " " let g:SuperTabCrMapping                = 0
 " " let g:UltiSnipsExpandTrigger           = '<tab>'
-let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+" let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+" let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
 
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 nmap <F8> :TagbarToggle<CR>
 
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 " " Toggle paste mode
 " nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
@@ -336,7 +331,7 @@ cmap w!! %!sudo tee > /dev/null %
 " let g:bufExplorerDisableDefaultKeyMapping=1
 " let g:bufExplorerShowRelativePath=1
 
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -376,3 +371,78 @@ augroup FileTypeTetect
   " au BufEnter Makefile setl ts=4 sts=4 sw=4 noet list
   " au BufEnter *.es6 setf javascript
 augroup END
+
+" >> COC
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Setup formatexpr specified filetype(s).
+augroup mygroup
+  autocmd!
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+vmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+
+" Use `:Format` for format current buffer
+" command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` for fold current buffer
+" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" <<
