@@ -7,6 +7,11 @@
       "host": "127.0.0.1",
       "port": 12345,
       "filetypes": ["php~"]
+    },
+    "sql": {
+      "command": "sql-language-server",
+      "args": ["up", "--method", "stdio"],
+      "filetypes": ["sql"]
     }
   }
 }

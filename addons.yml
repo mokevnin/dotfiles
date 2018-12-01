@@ -128,6 +128,7 @@
       ignore_errors: true
       with_items:
         - yaml-language-server
+        - sql-language-server
         - prettier
         - typescript
         - typings
