@@ -108,7 +108,7 @@ Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'scheme', 'racket'] }
 Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
-Plug 'Einenlum/yaml-revealer'
+Plug 'henrik/vim-yaml-flattener'
 
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim'
