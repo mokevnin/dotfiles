@@ -47,6 +47,7 @@ Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
+Plug 'jiangmiao/auto-pairs'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 " Plug 'flowtype/vim-flow'
