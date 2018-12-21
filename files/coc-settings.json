@@ -3,10 +3,8 @@
   "languageserver": {
     "phplang": {
       "command": "php",
-      "args": ["~/.composer/vendor/bin/php-language-server.php", "--tcp-server=127.0.0.1:12345"],
-      "host": "127.0.0.1",
-      "port": 12345,
-      "filetypes": ["php~"]
+      "args": ["vendor/bin/php-language-server.php"],
+      "filetypes": ["php"]
     },
     "sql": {
       "command": "sql-language-server",

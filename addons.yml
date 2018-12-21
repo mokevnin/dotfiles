@@ -35,12 +35,18 @@
     - composer:
         global_command: true
         command: require
+        arguments: "{{ item }}"
       ignore_errors: true
       # become: true
       with_items:
         - "squizlabs/php_codesniffer"
         - "phpmd/phpmd"
         - "felixfbecker/language-server"
+      tags:
+        - all
+        - php
+
+    - shell: "composer run-script --working-dir=`composer config --global home`/vendor/felixfbecker/language-server parse-stubs"
       tags:
         - all
         - php
