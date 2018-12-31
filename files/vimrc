@@ -4,8 +4,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'ervandew/supertab'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Plug 'autozimu/LanguageClient-neovim', {
 "     \ 'branch': 'next',
@@ -362,6 +362,7 @@ augroup FileTypeTetect
   " au BufEnter *.coffee setl sw=2 expandtab
   " au BufEnter *.py setl ts=4 sw=4 sts=4
   autocmd BufEnter *.php setlocal ts=4 sw=4 sts=4
+  autocmd BufEnter *.java setlocal ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
   autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
   autocmd BufNewFile,BufRead *.jsh setlocal filetype=java
@@ -398,6 +399,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Coc only does snippet and additional edit on confirm.
 
 " Use `[c` and `]c` for navigate diagnostics
+imap <C-l> <Plug>(coc-snippets-expand)
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
