@@ -21,19 +21,13 @@ TAGS := all
 install_dotfiles:
 	ansible-playbook dotfiles.yml -i local -vv
 
-ansible_install_ubuntu:
-	sudo apt-get install software-properties-common
-	sudo apt-add-repository ppa:ansible/ansible
-	sudo apt-get update
-	sudo apt-get install ansible
+docker-build:
+	docker build . -t mokevnin/dotfiles
 
-nvim_install_ubuntu:
-	sudo apt-get install -y software-properties-common
-	sudo add-apt-repository -y ppa:neovim-ppa/stable
-	sudo apt-get update
-	sudo apt-get install python-dev python-pip python3-dev python3-pip
-	sudo apt-get install -y neovim
+docker-run:
+	docker run -it mokevnin/dotfiles bash
 
-install_ubuntu: nvim_install_ubuntu install_languages install_dotfiles nvim_install_ubuntu nvim_configure install_addons
+myvim-install:
+	docker run -v $(HOME):/host/home -v $(CURDIR):/dotfiles -w /dotfiles williamyeh/ansible:ubuntu18.04 ansible-playbook myvim.yml -i inventory -vv
 
 # .PHONY:

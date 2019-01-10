@@ -6,12 +6,8 @@ Plug 'tpope/vim-sensible'
 Plug 'ervandew/supertab'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
 Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Plug 'w0rp/ale'
@@ -109,7 +105,7 @@ Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'scheme', 'racket'] }
 Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
-Plug 'henrik/vim-yaml-flattener'
+" Plug 'henrik/vim-yaml-flattener'
 
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim'
@@ -230,8 +226,6 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
 
 map <leader>cr :GrammarousCheck --lang=ru --preview<CR>
 
-" inoremap <silent><expr> <tab> coc#refresh()
-
 """ Plugin Settings
 
 " let g:LanguageClient_autoStart = 1
@@ -253,12 +247,12 @@ let g:lexical#spelllang = ['en_us', 'ru_ru']
 
 " let g:ale_elixir_credo_executable='make'
 
-" let g:airline#extensions#ale#enabled = 1
-" let g:ale_sign_column_always = 1
-" let g:ale_fix_on_save = 1
-" let g:ale_completion_enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_completion_enabled = 1
 " let g:ale_elixir_elixir_ls_release = expand('~/.elixir.d/elixir-ls')
-" let g:ale_php_phpcs_standard = 'PSR12'
+let g:ale_php_phpcs_standard = 'PSR12'
+let g:ale_php_phpcs_executable = expand('~/.composer/vendor/bin/phpcs')
+let g:ale_php_phpcs_use_global = 1
 " let g:ale_linters = {
       " \   'ruby': ['rubocop', 'brakeman'],
       " \   'markdown': [],
@@ -273,6 +267,10 @@ let g:lexical#spelllang = ['en_us', 'ru_ru']
 "       \ 'ruby': ['rubocop'],
 "       \ 'elixir': ['mix_format'],
 "       \ }
+let g:ale_php_langserver_use_global = 1
+let g:ale_php_langserver_executable = expand('~/.composer/vendor/bin/php-language-server.php')
+
+let g:ale_javascript_eslint_use_global = 1
 
 let test#strategy = "neovim"
 
@@ -374,78 +372,3 @@ augroup FileTypeTetect
   " au BufEnter Makefile setl ts=4 sts=4 sw=4 noet list
   " au BufEnter *.es6 setf javascript
 augroup END
-
-" >> COC
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> for trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-
-" Use `[c` and `]c` for navigate diagnostics
-imap <C-l> <Plug>(coc-snippets-expand)
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-" Setup formatexpr specified filetype(s).
-augroup mygroup
-  autocmd!
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-
-" Use `:Format` for format current buffer
-" command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` for fold current buffer
-" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-" <<

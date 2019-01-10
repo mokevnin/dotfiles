@@ -1,31 +1,22 @@
 ### Requirements
 
 * Linux Or Mac
+* make
 * git
-* python3
-* install ansible via `pip3 install ansible` (correct way to make ansible to use python3 - see [this link](https://docs.ansible.com/ansible/2.6/reference_appendices/python_3_support.html#on-the-controller-side) for explanations)
-* nvim (min. 0.3.1)
+* docker
 
 ### Setup
 
-1. install https://github.com/ggreer/the_silver_searcher
-1. Install deps and configs
-
 ```sh
 $ git clone <this repo>
-$ make install_languages # ruby and node for plugins
-$ make nvim_configure
-$ make install_addons
-```
+$ make myvim-install
+# open new terminal
+$ myvim
 
-2. Install plugins
-
-```sh
-$ nvim
+# only first time, run inside nvim
 :PlugInstall
+# restart vim
 ```
-
-3. Restart vim
 
 ### VIM
 
