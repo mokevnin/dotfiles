@@ -21,9 +21,9 @@
         line: "{{ myvim }}"
         regexp: "myvim"
         state: present
-          # owner=foo
+        owner: "{{ lookup('env','HOST_USER') }}"
         # insertafter=EOF
-        # create=True
+        create=True
 
     # - lineinfile:
     #     regexp: ~/.local
