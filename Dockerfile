@@ -49,6 +49,9 @@ RUN composer run-script --working-dir=/root/.composer/vendor/felixfbecker/langua
 RUN apt-get install -y php-xml
 RUN composer global require "squizlabs/php_codesniffer=3.4"
 
+RUN apt-get install -y erlang-inets erlang-ssl elixir
+RUN mix local.hex --force
+
 
 RUN curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
