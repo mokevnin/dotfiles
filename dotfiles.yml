@@ -2,7 +2,9 @@
 
 - hosts: localhost
   vars:
-    config: ~/.bash_profile
+    home: /host/home
+    config: "{{ home }}"/.bash_profile
+
   tasks:
     - lineinfile: dest="{{ config }}" state=present create=yes
         line="set -o vi"
@@ -19,4 +21,4 @@
 
     - copy:
         src: gitconfig
-        dest: ~/.gitconfig
+        dest: "{{ home }}"/.gitconfig
