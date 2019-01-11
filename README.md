@@ -15,7 +15,8 @@ $ myvim
 
 # only first time, run inside nvim
 :PlugInstall
-# restart vim
+# exit
+$ myvim
 ```
 
 ### VIM
