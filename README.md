@@ -1,6 +1,6 @@
 ### Requirements
 
-* Linux Or Mac
+* Linux or Mac
 * make
 * git
 * docker

@@ -1,6 +1,6 @@
 ---
 
-- hosts: all
+- hosts: localhost
 
   vars:
     myvim: "alias myvim='docker run -it --rm -v /tmp:/tmp:cached -v $HOME/myvim/backups:/root/.vim/backups:cached -v $HOME/myvim/plugged:/root/.vim/plugged:delegated -v `pwd`:/app:delegated -w /app mokevnin/dotfiles nvim'"

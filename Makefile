@@ -1,3 +1,5 @@
+ANSIBLE_PREFIX := docker run -e "HOST_USER=$(USER)" -v $(HOME):/host/home -v $(CURDIR):/dotfiles -w /dotfiles williamyeh/ansible:ubuntu18.04 ansible-playbook -i local -vv
+
 all: myvim-install
 	# ansible-playbook all.yml -i local -vv -K
 
@@ -19,7 +21,7 @@ spacemacs_configure:
 TAGS := all
 
 install_dotfiles:
-	ansible-playbook dotfiles.yml -i local -vv
+	$(ANSIBLE_PREFIX) dotfiles.yml
 
 docker-build:
 	docker build . -t mokevnin/dotfiles
@@ -28,6 +30,6 @@ docker-run:
 	docker run -it mokevnin/dotfiles bash
 
 myvim-install:
-	docker run -e "HOST_USER=$(USER)" -v $(HOME):/host/home -v $(CURDIR):/dotfiles -w /dotfiles williamyeh/ansible:ubuntu18.04 ansible-playbook myvim.yml -i inventory -vv
+	$(ANSIBLE_PREFIX) myvim.yml
 
 # .PHONY:

@@ -1,5 +1,6 @@
 ---
-- hosts: all
+
+- hosts: localhost
   vars:
     config: ~/.bash_profile
   tasks:
