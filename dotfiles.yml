@@ -3,7 +3,7 @@
 - hosts: localhost
   vars:
     home: /host/home
-    config: "{{ home }}"/.bash_profile
+    config: "{{ home }}/.bash_profile"
 
   tasks:
     - lineinfile: dest="{{ config }}" state=present create=yes
@@ -21,4 +21,4 @@
 
     - copy:
         src: gitconfig
-        dest: "{{ home }}"/.gitconfig
+        dest: "{{ home }}/.gitconfig"
