@@ -8,7 +8,7 @@
 ### Setup
 
 ```sh
-$ git clone git@github.com:mokevnin/dotfiles.git
+$ git clone git@github.com:mokevnin/dotfiles.git && cd dotfiles
 $ make myvim-install
 # open new terminal
 $ myvim
