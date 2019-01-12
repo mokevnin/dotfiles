@@ -1,11 +1,24 @@
 ### Requirements
 
 * Linux or Mac
-* make
-* git
+* make (for automatic installation)
+* git (for automatic installation)
 * docker
 
 ### Setup
+
+#### Manual
+
+1. Create alias _myvim_ using your shell (bash/zsh/whatever) for:
+
+    ```sh
+    docker run -it --rm -v /tmp:/tmp:cached -v $HOME/myvim/backups:/root/.vim/backups:cached -v $HOME/myvim/plugged:/root/.vim/plugged:delegated -v `pwd`:/app:delegated -w /app mokevnin/dotfiles nvim'
+    ```
+
+1. Run _myvim_ and call `:PlugInstall`.
+1. Restart _myvim_
+
+#### Automatic
 
 ```sh
 $ git clone git@github.com:mokevnin/dotfiles.git && cd dotfiles
