@@ -26,6 +26,9 @@ install_dotfiles:
 docker-build:
 	docker build . -t mokevnin/dotfiles
 
+docker-push:
+	docker push mokevnin/dotfiles
+
 docker-run:
 	docker run -it mokevnin/dotfiles bash
 
