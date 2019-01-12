@@ -11,7 +11,7 @@ Plug 'w0rp/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Plug 'w0rp/ale'
-Plug 'lxhillwind/leader-clipboard'
+" Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
@@ -219,6 +219,10 @@ nnoremap <leader>b :Buffers<CR>
 
 inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
+
+vmap <leader>y :w! /tmp/.vbuf<CR>
+nmap <leader>y :.w! /tmp/.vbuf<CR>
+nmap <leader>p :r /tmp/.vbuf<CR>
 
 " Move between linting errors
 " nnoremap ]r :ALENextWrap<CR>
