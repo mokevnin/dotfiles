@@ -23,33 +23,34 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN apt-get update && apt-get install -y \
-      neovim
-
-RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+RUN apt-get install -y ruby-dev zlib1g-dev php-xml
+RUN apt-get install -y php-xml
 
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
+      neovim \
       composer \
       nodejs \
-      ruby
+      ruby \
+      erlang-inets \
+      erlang-ssl \
+      elixir
+
+RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 
 RUN composer global config minimum-stability dev
 RUN composer global require felixfbecker/language-server
+RUN composer run-script --working-dir=/root/.composer/vendor/felixfbecker/language-server parse-stubs
+RUN composer global require "squizlabs/php_codesniffer=3.4"
 
 RUN npm install -g eslint babel-eslint \
       eslint-config-airbnb eslint-plugin-jest eslint-plugin-flowtype \
       eslint-plugin-babel eslint-plugin-import eslint-plugin-lodash-fp \
       eslint-plugin-jsx-a11y eslint-plugin-react
 
-RUN apt-get install -y ruby-dev zlib1g-dev
 RUN gem install solargraph
-RUN composer run-script --working-dir=/root/.composer/vendor/felixfbecker/language-server parse-stubs
-RUN apt-get install -y php-xml
-RUN composer global require "squizlabs/php_codesniffer=3.4"
 
-RUN apt-get install -y erlang-inets erlang-ssl elixir
 RUN mix local.hex --force
 
 
