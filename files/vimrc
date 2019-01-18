@@ -265,12 +265,12 @@ let g:ale_php_phpcs_use_global = 1
       " \   'python': ['flake8'],
       " \   'elixir': ['elixir-ls', 'mix', 'credo'],
       " \}
-" let g:ale_fixers = {
-"       \ 'javascript': ['eslint'],
-"       \ 'python': ['black'],
-"       \ 'ruby': ['rubocop'],
-"       \ 'elixir': ['mix_format'],
-"       \ }
+let g:ale_fixers = {
+      \ 'javascript': ['eslint'],
+      \ 'python': ['black'],
+      \ 'ruby': ['rubocop'],
+      \ 'elixir': ['mix_format'],
+      \ }
 let g:ale_php_langserver_use_global = 1
 let g:ale_php_langserver_executable = expand('~/.composer/vendor/bin/php-language-server.php')
 
