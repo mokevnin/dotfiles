@@ -53,6 +53,13 @@ RUN gem install solargraph
 
 RUN mix local.hex --force
 
+RUN pip3 install neovim yamllint bashate
+        # - sexpdata
+        # - python-language-server
+        # - rope
+        # - isort
+        # - black
+
 
 RUN curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

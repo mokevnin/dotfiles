@@ -20,7 +20,7 @@ spacemacs_configure:
 
 TAGS := all
 
-install_dotfiles:
+dotfiles-install:
 	$(ANSIBLE_PREFIX) dotfiles.yml
 
 docker-build:

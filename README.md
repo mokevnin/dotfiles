@@ -30,6 +30,8 @@ $ myvim
 :PlugInstall
 # exit
 $ myvim
+
+$ make dotfiles-install # optional
 ```
 
 ### VIM
