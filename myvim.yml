@@ -3,7 +3,7 @@
 - hosts: localhost
 
   vars:
-    myvim: "alias myvim='docker run --net -it --rm -v /tmp:/tmp:cached -v $HOME/myvim/backups:/root/.vim/backups:cached -v $HOME/myvim/plugged:/root/.vim/plugged:cached -v `pwd`:/app:cached -w /app mokevnin/dotfiles nvim'"
+    myvim: "alias myvim='docker run --net host -it --rm -v /tmp:/tmp:cached -v $HOME/myvim/backups:/root/.vim/backups:cached -v $HOME/myvim/plugged:/root/.vim/plugged:cached -v `pwd`:/app:cached -w /app mokevnin/dotfiles nvim'"
 
   tasks:
 
