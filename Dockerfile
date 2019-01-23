@@ -60,6 +60,8 @@ RUN pip3 install neovim yamllint bashate
         # - isort
         # - black
 
+RUN apt-get install -yqq openjdk-11-jdk
+
 
 RUN curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
