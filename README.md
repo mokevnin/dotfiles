@@ -43,10 +43,10 @@ $ make dotfiles-install # optional
 
 #### Moving between visible buffers
 
-* `ctrl h` - left
-* `ctrl l` - right
-* `ctrl k` - up
-* `ctrl j` - down
+* `ctrl h` - move left or open new left split
+* `ctrl l` - move right or open new right split
+* `ctrl k` - move up or open new top split
+* `ctrl j` - move down or open new bottom split
 * `<leader> b` - show buffer list
 
 #### File Tree
