@@ -29,25 +29,25 @@ RUN apt-get install -y php-xml
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 
 RUN apt-get update && apt-get install -y \
-      neovim \
       composer \
       nodejs \
       ruby \
       erlang-inets \
       erlang-ssl \
-      elixir
+      elixir \
+      openjdk-11-jdk
 
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 
 RUN composer global config minimum-stability dev
 RUN composer global require felixfbecker/language-server
 RUN composer run-script --working-dir=/root/.composer/vendor/felixfbecker/language-server parse-stubs
-RUN composer global require "squizlabs/php_codesniffer=3.4"
+RUN composer global require squizlabs/php_codesniffer
 
 RUN npm install -g eslint babel-eslint \
       eslint-config-airbnb eslint-plugin-jest eslint-plugin-flowtype \
       eslint-plugin-babel eslint-plugin-import eslint-plugin-lodash-fp \
-      eslint-plugin-jsx-a11y eslint-plugin-react
+      eslint-plugin-jsx-a11y eslint-plugin-react eslint-config-airbnb-base
 
 RUN gem install solargraph
 
@@ -60,8 +60,12 @@ RUN pip3 install neovim yamllint bashate
         # - isort
         # - black
 
-RUN apt-get install -yqq openjdk-11-jdk
+RUN curl -LO https://github.com/neovim/neovim/releases/download/v0.3.4/nvim.appimage \
+      && chmod u+x nvim.appimage \
+      && ./nvim.appimage --appimage-extract
+      # && mv ./squashfs-root/usr/bin/nvim /usr/local/bin/nvim
 
+ENV PATH /squashfs-root/usr/bin:$PATH
 
 RUN curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
