@@ -257,14 +257,16 @@ let g:ale_completion_enabled = 1
 let g:ale_php_phpcs_standard = 'PSR12'
 let g:ale_php_phpcs_executable = expand('~/.composer/vendor/bin/phpcs')
 let g:ale_php_phpcs_use_global = 1
-" let g:ale_linters = {
+let g:ale_linters = {
+      \   'javascript': ['eslint', 'tsserver'],
+      \}
+
+      " \   'elixir': ['elixir-ls', 'mix', 'credo'],
+      " \   'python': ['flake8'],
       " \   'ruby': ['rubocop', 'brakeman'],
       " \   'markdown': [],
       " \   'yaml': ['yamllint'],
-      " \   'javascript': ['eslint', 'flow'],
-      " \   'python': ['flake8'],
-      " \   'elixir': ['elixir-ls', 'mix', 'credo'],
-      " \}
+
 let g:ale_fixers = {
       \ 'javascript': ['eslint'],
       \ 'python': ['black'],
@@ -274,6 +276,7 @@ let g:ale_fixers = {
 let g:ale_php_langserver_use_global = 1
 let g:ale_php_langserver_executable = expand('~/.composer/vendor/bin/php-language-server.php')
 
+let g:ale_javascript_tsserver_use_global = 1
 let g:ale_javascript_eslint_use_global = 1
 
 let test#strategy = "neovim"

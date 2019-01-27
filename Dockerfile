@@ -67,6 +67,8 @@ RUN curl -LO https://github.com/neovim/neovim/releases/download/v0.3.4/nvim.appi
 
 ENV PATH /squashfs-root/usr/bin:$PATH
 
+RUN npm i -g typescript
+
 RUN curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
