@@ -269,6 +269,7 @@ let g:ale_linters = {
 
 let g:ale_fixers = {
       \ 'javascript': ['eslint'],
+      \ 'html': ['tidy'],
       \ 'python': ['black'],
       \ 'ruby': ['rubocop'],
       \ 'elixir': ['mix_format'],
