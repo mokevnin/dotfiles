@@ -3,21 +3,6 @@ ANSIBLE_PREFIX := docker run -e "HOST_USER=$(USER)" -v $(HOME):/host/home -v $(C
 all: myvim-install
 	# ansible-playbook all.yml -i local -vv -K
 
-install_languages:
-	ansible-playbook install.yml -i local -vv -e curdir=$(CURDIR) -K
-
-install_addons:
-	ansible-playbook addons.yml -i local -vv -K --tags $(TAGS)
-
-vim_configure:
-	ansible-playbook vim.yml -i local -vvv -e curdir=$(CURDIR) -K
-
-nvim_configure:
-	ansible-playbook nvim.yml -i local -vvv -e curdir=$(CURDIR) -K
-
-spacemacs_configure:
-	ansible-playbook spacemacs.yml -i local -vv -e curdir=$(CURDIR)
-
 TAGS := all
 
 dotfiles-install:
@@ -29,10 +14,14 @@ docker-build:
 docker-push:
 	docker push mokevnin/dotfiles
 
-docker-run:
+docker-bash:
 	docker run -it mokevnin/dotfiles bash
 
 myvim-install:
 	$(ANSIBLE_PREFIX) myvim.yml
+
+myvim-test:
+	docker run -it -w /app -v `pwd`/fixtures:/app -v `pwd`/files/vimrc:/root/.config/nvim/init.vim mokevnin/dotfiles bash
+
 
 # .PHONY:

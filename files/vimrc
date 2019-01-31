@@ -259,6 +259,7 @@ let g:vim_markdown_toc_autofit = 1
 let g:lexical#spelllang = ['en_us', 'ru_ru']
 
 " let g:ale_elixir_credo_executable='make'
+let g:ale_elixir_elixir_ls_release = '/root/elixir-ls'
 
 let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 1
@@ -267,7 +268,9 @@ let g:ale_php_phpcs_standard = 'PSR12'
 let g:ale_php_phpcs_executable = expand('~/.composer/vendor/bin/phpcs')
 let g:ale_php_phpcs_use_global = 1
 let g:ale_linters = {
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
       \   'javascript': ['eslint', 'tsserver'],
+      \   'elixir': ['elixir-ls', 'mix'],
       \}
 
       " \   'elixir': ['elixir-ls', 'mix', 'credo'],

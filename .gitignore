@@ -4,3 +4,5 @@
 *.retry
 *.log
 TAGS
+
+fixtures/_build

@@ -1,13 +1,18 @@
-FROM python:3.7.2-alpine3.8
+FROM alpine:3.9
 
 RUN apk update && apk upgrade && \
     apk add --no-cache build-base git curl wget bash
 RUN apk add --no-cache libxml2-dev libxslt-dev libgcrypt-dev
 
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
+RUN apk update && apk upgrade
+
 RUN apk add --no-cache the_silver_searcher
+RUN apk add --no-cache python3 py-pip
 RUN apk add --no-cache ruby ruby-dev ruby-bundler ruby-json ruby-irb ruby-rake ruby-bigdecimal
 RUN apk add --no-cache nodejs-current nodejs-npm
 RUN apk add --no-cache composer php7-simplexml php7-tokenizer php7-xmlwriter
+RUN apk add --no-cache inotify-tools elixir erlang erlang-inets erlang-ssl
 
 RUN composer global config minimum-stability dev
 RUN composer global require felixfbecker/language-server
@@ -27,6 +32,10 @@ RUN apk add --no-cache tidyhtml
 RUN apk add --no-cache neovim
 RUN pip install yamllint
 
+RUN wget -qO- -O ~/elixir-ls.zip https://github.com/JakeBecker/elixir-ls/releases/download/v0.2.24/elixir-ls.zip \
+      && mkdir ~/elixir-ls \
+      && unzip ~/elixir-ls.zip -d ~/elixir-ls
+
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf \
       && ~/.fzf/install --key-bindings --update-rc --completion \
       && cp /root/.fzf/bin/fzf /usr/local/bin
@@ -34,13 +43,10 @@ RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf \
 RUN curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-
 COPY files/vimrc /root/.config/nvim/init.vim
 
 ENV PATH ~/.composer/vendor/bin:$PATH
-# ENV FZF_DEFAULT_COMMAND 'ag -g ""'
 
 RUN nvim -i NONE -c PlugInstall -c quitall
 
 CMD ["nvim"]
-# # RUN nvim -i NONE -c PlugInstall -c quitall > /dev/null 2>&1
