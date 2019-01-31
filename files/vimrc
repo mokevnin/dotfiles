@@ -1,30 +1,39 @@
 " set nocompatible
 
+setglobal nocompatible
+setglobal pastetoggle=<F2>
+
+set ttyfast
+set lazyredraw
+
+let g:python_host_skip_check=1
+let g:loaded_python3_provider=1
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'ervandew/supertab'
+Plug 'ajh17/VimCompletesMe'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
-Plug 'neomake/neomake'
+" Plug 'neomake/neomake'
 Plug 'w0rp/ale'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Plug 'w0rp/ale'
 " Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'hashivim/vim-terraform'
+" Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'janko-m/vim-test'
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'Shougo/echodoc.vim'
-Plug 'fatih/vim-nginx'
+Plug 'fatih/vim-nginx', { 'for': 'nginx' }
 " Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja', { 'for': 'jinja' }
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
@@ -34,8 +43,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-dispatch'
-Plug 'godlygeek/tabular'
+" Plug 'tpope/vim-dispatch'
+" Plug 'godlygeek/tabular'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }
@@ -48,14 +57,12 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'honza/vim-snippets'
 " Plug 'flowtype/vim-flow'
 
-" Plug 'felixfbecker/php-language-server', { 'for': 'php', 'do': 'composer install && composer run-script parse-stubs'}
-" Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 
 Plug 'joonty/vdebug', { 'on': 'VdebugStart' }
-Plug 'rhysd/vim-clang-format'
+Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 Plug 'tpope/vim-ragtag'
 Plug 'Quramy/tsuquyomi'
 Plug 'mhartington/vim-typings'
@@ -63,35 +70,35 @@ Plug 'mhartington/vim-typings'
 " Plug 'Shougo/unite.vim'
 
 " Plug 'eagletmt/ghcmod-vim'
-Plug 'eagletmt/ghcmod-vim'
+" Plug 'eagletmt/ghcmod-vim'
 " Plug 'neovimhaskell/haskell-vim'
 
 Plug 'elzr/vim-json'
 " Plug 'vim-scripts/JavaScript-Indent'
 " Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'mitermayer/vim-prettier', {
-      \ 'do': 'npm install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+" Plug 'mitermayer/vim-prettier', {
+"       \ 'do': 'npm install',
+"       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 " Plug 'maxmellon/vim-jsx-pretty'
 Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
-Plug 'moll/vim-node'
-Plug 'mattn/emmet-vim'
+" Plug 'moll/vim-node'
+Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'reedes/vim-lexical'
 
-Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-easytags'
-Plug 'Valloric/MatchTagAlways'
+" Plug 'Valloric/MatchTagAlways'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
-Plug 'tpope/vim-git'
+" Plug 'tpope/vim-git'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+" Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 " Plug 'tpope/vim-endwise'
-Plug 'Shougo/vimshell.vim'
+" Plug 'Shougo/vimshell.vim'
 Plug 'michaeljsmith/vim-indent-object'
 
 " Clojure
@@ -108,9 +115,11 @@ Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 " Plug 'henrik/vim-yaml-flattener'
 
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
-Plug 'ekalinin/Dockerfile.vim'
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
 call plug#end()
+
+set rtp+=/root/.fzf
 
 let mapleader = "\<Space>"
 
@@ -173,7 +182,7 @@ set cmdheight=2
 set signcolumn=yes
 set scrolloff=3
 
-colorscheme jellybeans
+silent! colorscheme jellybeans
 
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
@@ -352,14 +361,14 @@ omap <leader><tab> <plug>(fzf-maps-o)
 " imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 " imap <c-x><c-l> <plug>(fzf-complete-line)
 
-if filereadable(expand("~/.vimrc.after"))
-  source ~/.vimrc.after
-endif
+" if filereadable(expand("~/.vimrc.after"))
+"   source ~/.vimrc.after
+" endif
 
-augroup Common
-  autocmd!
-  autocmd BufEnter * EnableStripWhitespaceOnSave
-augroup END
+" augroup Common
+"   autocmd!
+"   autocmd BufEnter * EnableStripWhitespaceOnSave
+" augroup END
 
 augroup FileTypeTetect
   autocmd!
