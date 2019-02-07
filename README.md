@@ -12,7 +12,7 @@
 1. Create alias _myvim_ using your shell (bash/zsh/whatever) for:
 
     ```sh
-    docker run -it --rm -v /tmp:/tmp:cached -v $HOME/myvim/backups:/root/.vim/backups:cached -v `pwd`:/app:delegated -w /app mokevnin/dotfiles'
+    'docker run -it --rm -v /tmp:/tmp:cached -v $HOME/myvim/backups:/root/.vim/backups:cached -v `pwd`:/app:delegated -w /app mokevnin/dotfiles'
     ```
 
 1. Run _myvim_
