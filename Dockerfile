@@ -27,14 +27,19 @@ RUN npm install -g eslint babel-eslint \
       eslint-config-airbnb eslint-plugin-jest eslint-plugin-flowtype \
       eslint-plugin-babel eslint-plugin-import eslint-plugin-lodash-fp \
       eslint-plugin-jsx-a11y eslint-plugin-react eslint-config-airbnb-base
+RUN npm install -g yaml-language-server typings pug-lint js-yaml stylelint js-beautify jsonlint neovim
+# import-js
 
 RUN gem install pkg-config solargraph --no-document -- --use-system-libraries
 RUN solargraph download-core
 RUN gem install rubocop rubocop-rspec rubocop-performance --no-document
+RUN gem install haml-lint slim_lint rake neovim --no-document
+
+RUN apk add --no-cache libffi python2-dev python3-dev openssl-dev libffi-dev
+RUN pip install yamllint ansible-lint python-language-server bashate neovim jedi rope isort # black
 
 RUN apk add --no-cache tidyhtml
 RUN apk add --no-cache neovim
-RUN pip install yamllint
 
 RUN wget -qO- -O ~/elixir-ls.zip https://github.com/JakeBecker/elixir-ls/releases/download/v0.2.24/elixir-ls.zip \
       && mkdir ~/elixir-ls \
