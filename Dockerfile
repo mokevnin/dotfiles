@@ -14,6 +14,8 @@ RUN apk add --no-cache nodejs-current nodejs-npm
 RUN apk add --no-cache composer php7-simplexml php7-tokenizer php7-xmlwriter
 RUN apk add --no-cache inotify-tools elixir erlang erlang-inets erlang-ssl
 
+ENV VERSION 11022019
+
 RUN composer global config minimum-stability dev
 RUN composer global require felixfbecker/language-server
 RUN composer run-script --working-dir=/root/.composer/vendor/felixfbecker/language-server parse-stubs
@@ -27,6 +29,7 @@ RUN npm install -g eslint babel-eslint \
       eslint-plugin-jsx-a11y eslint-plugin-react eslint-config-airbnb-base
 
 RUN gem install pkg-config solargraph --no-document -- --use-system-libraries
+RUN solargraph download-core
 
 RUN apk add --no-cache tidyhtml
 RUN apk add --no-cache neovim
@@ -46,8 +49,6 @@ RUN curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 COPY files/vimrc /root/.config/nvim/init.vim
 
 ENV PATH ~/.composer/vendor/bin:$PATH
-
-ENV VERSION 11022019
 
 RUN nvim -i NONE -c PlugInstall -c quitall
 
