@@ -30,6 +30,7 @@ RUN npm install -g eslint babel-eslint \
 
 RUN gem install pkg-config solargraph --no-document -- --use-system-libraries
 RUN solargraph download-core
+RUN gem install rubocop rubocop-rspec rubocop-performance --no-document
 
 RUN apk add --no-cache tidyhtml
 RUN apk add --no-cache neovim
