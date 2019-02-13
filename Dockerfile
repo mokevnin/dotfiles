@@ -56,6 +56,8 @@ COPY files/vimrc /root/.config/nvim/init.vim
 
 ENV PATH ~/.composer/vendor/bin:$PATH
 
+ENV VERSION 13022019
+
 RUN nvim -i NONE -c PlugInstall -c quitall
 
 ENV FZF_DEFAULT_COMMAND 'ag -g ""'
