@@ -10,11 +10,13 @@ RUN apk update && apk upgrade
 RUN apk add --no-cache the_silver_searcher
 RUN apk add --no-cache python3 py-pip
 RUN apk add --no-cache ruby ruby-dev ruby-bundler ruby-json ruby-irb ruby-rake ruby-bigdecimal
-RUN apk add --no-cache nodejs-current nodejs-npm
 RUN apk add --no-cache composer php7-simplexml php7-tokenizer php7-xmlwriter
 RUN apk add --no-cache inotify-tools elixir erlang erlang-inets erlang-ssl
 
-ENV VERSION 11022019
+ENV VERSION 18022019
+
+RUN apk add --no-cache nodejs-current nodejs-npm
+
 
 RUN composer global config minimum-stability dev
 RUN composer global require felixfbecker/language-server
@@ -27,7 +29,8 @@ RUN npm install -g eslint babel-eslint \
       eslint-config-airbnb eslint-plugin-jest eslint-plugin-flowtype \
       eslint-plugin-babel eslint-plugin-import eslint-plugin-lodash-fp \
       eslint-plugin-jsx-a11y eslint-plugin-react eslint-config-airbnb-base
-RUN npm install -g yaml-language-server typings pug-lint js-yaml stylelint js-beautify jsonlint neovim
+RUN npm install -g yaml-language-server typings pug-lint js-yaml js-beautify jsonlint neovim
+RUN npm install -g stylelint stylelint-config-recommended
 # import-js
 
 RUN gem install pkg-config solargraph --no-document -- --use-system-libraries
