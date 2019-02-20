@@ -12,10 +12,7 @@ RUN apk add --no-cache python3 py-pip
 RUN apk add --no-cache ruby ruby-dev ruby-bundler ruby-json ruby-irb ruby-rake ruby-bigdecimal
 RUN apk add --no-cache composer php7-simplexml php7-tokenizer php7-xmlwriter
 RUN apk add --no-cache inotify-tools elixir erlang erlang-inets erlang-ssl
-
-ENV VERSION 18022019
-
-RUN apk add --no-cache nodejs-current nodejs-npm
+RUN apk add --no-cache nodejs nodejs-npm
 
 
 RUN composer global config minimum-stability dev
