@@ -64,7 +64,6 @@ Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'joonty/vdebug', { 'on': 'VdebugStart' }
 Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 Plug 'tpope/vim-ragtag'
-Plug 'Quramy/tsuquyomi'
 Plug 'mhartington/vim-typings'
 
 " Plug 'Shougo/unite.vim'
