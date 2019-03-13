@@ -11,3 +11,4 @@
   br = branch
   hist = log --graph --decorate --oneline
   lt = describe --abbrev=0 --tags
+  put = !git up && git push origin HEAD
