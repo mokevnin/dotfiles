@@ -11,7 +11,6 @@ RUN apk add --no-cache python3 py-pip python2-dev python3-dev
 RUN apk add --no-cache ruby ruby-dev ruby-bundler ruby-json ruby-irb ruby-rake ruby-bigdecimal
 RUN apk add --no-cache composer php7-simplexml php7-tokenizer php7-xmlwriter
 RUN apk add --no-cache inotify-tools elixir erlang erlang-inets erlang-ssl
-RUN apk add --no-cache nodejs nodejs-npm
 RUN apk add --no-cache openjdk8-jre
 RUN apk add --no-cache neovim
 RUN apk add --no-cache tidyhtml
@@ -23,6 +22,8 @@ RUN composer run-script --working-dir=/root/.composer/vendor/felixfbecker/langua
 RUN composer global require squizlabs/php_codesniffer
 RUN composer global require vimeo/psalm
 
+RUN apk add --no-cache nodejs nodejs-npm
+RUN npm config set unsafe-perm true
 RUN npm install -g typescript vale
 RUN npm install -g eslint babel-eslint \
       eslint-config-airbnb eslint-plugin-jest eslint-plugin-flowtype \
@@ -56,7 +57,7 @@ COPY files/vimrc /root/.config/nvim/init.vim
 
 ENV PATH ~/.composer/vendor/bin:$PATH
 
-ENV VERSION 10032019
+ENV VERSION 14032019
 
 RUN nvim -i NONE -c PlugInstall -c quitall
 
