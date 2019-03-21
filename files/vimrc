@@ -107,7 +107,7 @@ Plug 'tpope/vim-classpath', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
 
-Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'scheme', 'racket'] }
+Plug 'kovisoft/slimv', { 'for': ['clojure', 'scheme', 'racket'] }
 Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
