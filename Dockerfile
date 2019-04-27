@@ -57,7 +57,7 @@ COPY files/vimrc /root/.config/nvim/init.vim
 
 ENV PATH ~/.composer/vendor/bin:$PATH
 
-ENV VERSION 14042019
+ENV VERSION 27042019
 
 RUN nvim -i NONE -c PlugInstall -c quitall
 
