@@ -392,21 +392,3 @@ augroup FileTypeTetect
   " au BufEnter Makefile setl ts=4 sts=4 sw=4 noet list
   " au BufEnter *.es6 setf javascript
 augroup END
-
-" Open new split for C+hjkl, if split doesnt exist
-map <silent> <C-h> :call WinMove('h')<CR>
-map <silent> <C-j> :call WinMove('j')<CR>
-map <silent> <C-k> :call WinMove('k')<CR>
-map <silent> <C-l> :call WinMove('l')<CR>
-function! WinMove(key)
-  let t:curwin = winnr()
-  exec "wincmd ".a:key
-    if (t:curwin == winnr())
-      if (match(a:key,'[jk]'))
-        wincmd v
-      else
-        wincmd s
-      endif
-   exec "wincmd ".a:key
-  endif
-endfunction
