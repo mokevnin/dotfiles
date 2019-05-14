@@ -1,0 +1,10 @@
+{
+  "diagnostic-languageserver.filetypes": {
+    "md": "languagetool",
+    "elixir": ["mix_credo", "mix_credo_compile"],
+    "php": "phpcs"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "elixir": "mix_format"
+  }
+}
