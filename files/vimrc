@@ -131,7 +131,6 @@ Plug 'neoclide/coc-lists', {'do': 'yarn install'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install'}
 Plug 'neoclide/coc-pairs', {'do': 'yarn install'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install'}
 Plug 'neoclide/coc-solargraph', {'do': 'yarn install'}
 Plug 'neoclide/coc-docker', {'do': 'yarn install'}
 Plug 'neoclide/coc-sh', {'do': 'yarn install'}
