@@ -12,12 +12,11 @@ let g:loaded_python3_provider=1
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 " Plug 'ajh17/VimCompletesMe'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 " Plug 'neomake/neomake'
-Plug 'w0rp/ale'
 Plug 'junegunn/fzf.vim'
 " Plug 'w0rp/ale'
 " Plug 'lxhillwind/leader-clipboard'
@@ -25,7 +24,7 @@ Plug 'ntpeters/vim-better-whitespace'
 " Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'janko-m/vim-test'
-Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
+" Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-nginx', { 'for': 'nginx' }
 " Plug 'jlanzarotta/bufexplorer'
@@ -39,9 +38,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'nanotech/jellybeans.vim'
 Plug 'dyng/ctrlsf.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
+" Plug 'airblade/vim-gitgutter'
+" Plug 'tpope/vim-fugitive'
+" Plug 'vim-airline/vim-airline'
+Plug 'liuchengxu/eleline.vim'
 Plug 'tpope/vim-projectionist'
 " Plug 'tpope/vim-dispatch'
 " Plug 'godlygeek/tabular'
@@ -60,7 +60,7 @@ Plug 'cohama/lexima.vim'
 
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
-Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+" Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 
 Plug 'joonty/vdebug', { 'on': 'VdebugStart' }
 Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
@@ -73,7 +73,7 @@ Plug 'mhartington/vim-typings'
 " Plug 'eagletmt/ghcmod-vim'
 " Plug 'neovimhaskell/haskell-vim'
 
-Plug 'elzr/vim-json'
+" Plug 'elzr/vim-json'
 " Plug 'vim-scripts/JavaScript-Indent'
 " Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
@@ -83,7 +83,7 @@ Plug 'pangloss/vim-javascript'
 " Plug 'maxmellon/vim-jsx-pretty'
 Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
 " Plug 'moll/vim-node'
-Plug 'mattn/emmet-vim', { 'for': 'html' }
+" Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'reedes/vim-lexical'
 
 " Plug 'xolox/vim-misc'
@@ -116,6 +116,26 @@ Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install'}
+Plug 'marlonfan/coc-phpls', {'do': 'yarn install'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install'}
+Plug 'neoclide/coc-json', {'do': 'yarn install'}
+Plug 'neoclide/coc-html', {'do': 'yarn install'}
+Plug 'neoclide/coc-css', {'do': 'yarn install'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install'}
+Plug 'neoclide/coc-python', {'do': 'yarn install'}
+Plug 'neoclide/coc-java', {'do': 'yarn install'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install'}
+Plug 'neoclide/coc-pairs', {'do': 'yarn install'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install'}
+Plug 'neoclide/coc-solargraph', {'do': 'yarn install'}
+Plug 'neoclide/coc-docker', {'do': 'yarn install'}
+Plug 'neoclide/coc-sh', {'do': 'yarn install'}
+Plug 'iamcco/coc-diagnostic', {'do': 'yarn install'}
 
 call plug#end()
 
@@ -177,6 +197,7 @@ set expandtab
 set softtabstop=2
 set shiftwidth=2
 
+set updatetime=300
 set splitbelow
 set cmdheight=2
 set signcolumn=yes
@@ -188,8 +209,8 @@ silent! colorscheme jellybeans
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
 if has('persistent_undo')
-  silent !mkdir ~/.vim/backups > /dev/null 2>&1
-  set undodir=~/.vim/backups
+  silent !mkdir /tmp/.vim/backups > /dev/null 2>&1
+  set undodir=/tmp/.vim/backups
   set undofile
 endif
 
@@ -226,18 +247,15 @@ nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
 nnoremap <leader>b :Buffers<CR>
 
-inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
-
-vmap <leader>y :w! /tmp/.vbuf<CR>
-nmap <leader>y :.w! /tmp/.vbuf<CR>
-nmap <leader>p :r /tmp/.vbuf<CR>
+vmap <leader>y :w! /tmp/.vim/.vbuf<CR>
+nmap <leader>y :.w! /tmp/.vim/.vbuf<CR>
+nmap <leader>p :r /tmp/.vim/.vbuf<CR>
 
 " Move between linting errors
 " nnoremap ]r :ALENextWrap<CR>
 " nnoremap [r :ALEPreviousWrap<CR>
 
-map <leader>cr :GrammarousCheck --lang=ru --preview<CR>
+" map <leader>cr :GrammarousCheck --lang=ru --preview<CR>
 
 """ Plugin Settings
 
@@ -259,19 +277,20 @@ let g:vim_markdown_toc_autofit = 1
 let g:lexical#spelllang = ['en_us', 'ru_ru']
 
 " let g:ale_elixir_credo_executable='make'
-let g:ale_elixir_elixir_ls_release = '/root/elixir-ls'
+" let g:ale_elixir_elixir_ls_release = '/root/elixir-ls'
 
-let g:airline#extensions#ale#enabled = 1
-let g:ale_completion_enabled = 1
+" " let g:airline#extensions#ale#enabled = 1
+" let g:ale_completion_enabled = 1
 " let g:ale_elixir_elixir_ls_release = expand('~/.elixir.d/elixir-ls')
-let g:ale_php_phpcs_standard = 'PSR12'
-let g:ale_php_phpcs_executable = expand('~/.composer/vendor/bin/phpcs')
-let g:ale_php_phpcs_use_global = 1
-let g:ale_linters = {
-      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \   'javascript': ['eslint', 'tsserver'],
-      \   'elixir': ['elixir-ls', 'mix'],
-      \}
+" let g:ale_php_phpcs_standard = 'PSR12'
+" let g:ale_php_phpcs_executable = expand('~/.composer/vendor/bin/phpcs')
+" let g:ale_php_phpcs_use_global = 1
+" let g:ale_linters = {
+"       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+"       \   'javascript': ['eslint', 'tsserver'],
+"       \   'elixir': ['elixir-ls', 'mix'],
+"       \   'php': ['langserver', 'phpcs'],
+"       \}
 
       " \   'elixir': ['elixir-ls', 'mix', 'credo'],
       " \   'python': ['flake8'],
@@ -279,18 +298,18 @@ let g:ale_linters = {
       " \   'markdown': [],
       " \   'yaml': ['yamllint'],
 
-let g:ale_fixers = {
-      \ 'javascript': ['eslint'],
-      \ 'html': ['tidy'],
-      \ 'python': ['black'],
-      \ 'ruby': ['rubocop'],
-      \ 'elixir': ['mix_format'],
-      \ }
-let g:ale_php_langserver_use_global = 1
-let g:ale_php_langserver_executable = expand('~/.composer/vendor/bin/php-language-server.php')
+" let g:ale_fixers = {
+"       \ 'javascript': ['eslint'],
+"       \ 'html': ['tidy'],
+"       \ 'python': ['black'],
+"       \ 'ruby': ['rubocop'],
+"       \ 'elixir': ['mix_format'],
+"       \ }
+" " let g:ale_php_langserver_use_global = 1
+" " let g:ale_php_langserver_executable = expand('~/.composer/vendor/bin/php-language-server.php')
 
-let g:ale_javascript_tsserver_use_global = 1
-let g:ale_javascript_eslint_use_global = 1
+" let g:ale_javascript_tsserver_use_global = 1
+" let g:ale_javascript_eslint_use_global = 1
 
 let test#strategy = "neovim"
 
@@ -302,7 +321,7 @@ let g:vim_markdown_folding_disabled = 1
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " xmap <C-k>     <Plug>(neosnippet_expand_target)
-let g:SuperTabDefaultCompletionType    = '<C-n>'
+" let g:SuperTabDefaultCompletionType    = '<C-n>'
 " " let g:SuperTabCrMapping                = 0
 " " let g:UltiSnipsExpandTrigger           = '<tab>'
 " let g:UltiSnipsJumpForwardTrigger      = '<tab>'
@@ -312,7 +331,7 @@ let g:SuperTabDefaultCompletionType    = '<C-n>'
 " nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 " nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
-nmap <F8> :TagbarToggle<CR>
+" nmap <F8> :TagbarToggle<CR>
 
 " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
@@ -392,3 +411,112 @@ augroup FileTypeTetect
   " au BufEnter Makefile setl ts=4 sts=4 sw=4 noet list
   " au BufEnter *.es6 setf javascript
 augroup END
+
+""" COC
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+
+" Add diagnostic info for https://github.com/itchyny/lightline.vim
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
+
+" Using CocList
+" Show all diagnostics
+" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" " Manage extensions
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" " Show commands
+" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" " Find symbol of current document
+" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" " Search workspace symbols
+" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" " Do default action for next item.
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" " Do default action for previous item.
+" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" " Resume latest coc list
+" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
