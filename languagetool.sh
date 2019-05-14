@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -jar /LanguageTool-4.4/languagetool-commandline.jar $@
+java -jar /LanguageTool-4.5/languagetool-commandline.jar $@
