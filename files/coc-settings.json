@@ -1,6 +1,6 @@
 {
   "diagnostic-languageserver.filetypes": {
-    "md": "languagetool",
+    "markdown": "languagetool",
     "elixir": ["mix_credo", "mix_credo_compile"],
     "php": "phpcs"
   },
