@@ -118,23 +118,25 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install'}
-Plug 'marlonfan/coc-phpls', {'do': 'yarn install'}
-Plug 'neoclide/coc-yaml', {'do': 'yarn install'}
-Plug 'neoclide/coc-json', {'do': 'yarn install'}
-Plug 'neoclide/coc-html', {'do': 'yarn install'}
-Plug 'neoclide/coc-css', {'do': 'yarn install'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install'}
-Plug 'neoclide/coc-python', {'do': 'yarn install'}
-Plug 'neoclide/coc-java', {'do': 'yarn install'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install'}
-Plug 'neoclide/coc-pairs', {'do': 'yarn install'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install'}
-Plug 'neoclide/coc-solargraph', {'do': 'yarn install'}
-Plug 'neoclide/coc-docker', {'do': 'yarn install'}
-Plug 'neoclide/coc-sh', {'do': 'yarn install'}
-Plug 'iamcco/coc-diagnostic', {'do': 'yarn install'}
+let g:coc_global_extensions = [
+      \ 'coc-tsserver',
+      \ 'coc-html',
+      \ 'coc-lists',
+      \ 'coc-phpls',
+      \ 'coc-sh',
+      \ 'coc-css',
+      \ 'coc-json',
+      \ 'coc-eslint',
+      \ 'coc-python',
+      \ 'coc-java',
+      \ 'coc-solargraph',
+      \ 'coc-yaml',
+      \ 'coc-highlight',
+      \ 'coc-snippets',
+      \ 'coc-pairs',
+      \ 'coc-docker',
+      \ 'coc-diagnostic',
+      \]
 
 call plug#end()
 
