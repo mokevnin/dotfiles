@@ -6,5 +6,25 @@
   },
   "diagnostic-languageserver.formatFiletypes": {
     "elixir": "mix_format"
+  },
+  "diagnostic-languageserver.linters": {
+    "languagetool": {
+      "command": "languagetool",
+      "filetypes": [],
+      "debounce": 200,
+      "args": ["--language", "ru-RU", "-"],
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "sourceName": "languagetool",
+      "formatLines": 2,
+      "formatPattern": [
+        "^\\d+?\\.\\)\\s+Line\\s+(\\d+),\\s+column\\s+(\\d+),\\s+([^\\n]+)\nMessage:\\s+(.*)$",
+        {
+          "line": 1,
+          "column": 2,
+          "message": [4, 3]
+        }
+      ]
+    }
   }
 }
