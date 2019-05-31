@@ -116,6 +116,7 @@ Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 let g:coc_global_extensions = [
