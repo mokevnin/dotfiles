@@ -46,9 +46,11 @@ RUN pip install yamllint ansible-lint python-language-server bashate neovim jedi
 RUN curl https://languagetool.org/download/LanguageTool-stable.zip --output languagetool.zip
 RUN unzip languagetool.zip && rm -rf languagetool.zip
 
-# # RUN wget -qO- -O ~/elixir-ls.zip https://github.com/JakeBecker/elixir-ls/releases/download/v0.2.24/elixir-ls.zip \
-# #       && mkdir ~/elixir-ls \
-# #       && unzip ~/elixir-ls.zip -d ~/elixir-ls
+RUN wget -qO- -O ~/elixir-ls.zip https://github.com/JakeBecker/elixir-ls/releases/download/v0.2.25/elixir-ls.zip \
+      && mkdir ~/elixir-ls \
+      && unzip ~/elixir-ls.zip -d ~/elixir-ls \
+      && rm ~/elixir-ls.zip \
+      && chmod +x /root/elixir-ls/language_server.sh
 
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf \
       && ~/.fzf/install --key-bindings --update-rc --completion \
