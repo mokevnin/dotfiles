@@ -52,6 +52,8 @@ RUN wget -qO- -O ~/elixir-ls.zip https://github.com/JakeBecker/elixir-ls/release
       && rm ~/elixir-ls.zip \
       && chmod +x /root/elixir-ls/language_server.sh
 
+RUN mix local.hex --force
+
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf \
       && ~/.fzf/install --key-bindings --update-rc --completion \
       && cp /root/.fzf/bin/fzf /usr/local/bin
