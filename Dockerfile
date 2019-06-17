@@ -1,4 +1,4 @@
-FROM alpine:3.9.3
+FROM alpine:3.9.4
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 RUN apk update && apk upgrade
@@ -62,7 +62,7 @@ COPY files/vimrc /root/.config/nvim/init.vim
 ENV PATH $HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 ENV PATH $HOME/.composer/vendor/bin:$PATH
 
-ENV VERSION 14062019
+ENV VERSION 17062019
 
 RUN nvim -i NONE -c PlugInstall -c quitall
 
