@@ -38,9 +38,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'nanotech/jellybeans.vim'
 Plug 'dyng/ctrlsf.vim'
-" Plug 'airblade/vim-gitgutter'
-" Plug 'tpope/vim-fugitive'
-" Plug 'vim-airline/vim-airline'
 Plug 'liuchengxu/eleline.vim'
 Plug 'tpope/vim-projectionist'
 " Plug 'tpope/vim-dispatch'
@@ -93,7 +90,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
-" Plug 'tpope/vim-git'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 " Plug 'tpope/vim-bundler', { 'for': 'ruby' }
@@ -118,18 +114,21 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
       \ 'coc-tsserver',
+      \ 'coc-git',
       \ 'coc-html',
       \ 'coc-lists',
       \ 'coc-phpls',
       \ 'coc-sh',
       \ 'coc-css',
+      \ 'coc-stylelint',
       \ 'coc-json',
       \ 'coc-eslint',
       \ 'coc-python',
       \ 'coc-java',
+      \ 'coc-jest',
       \ 'coc-solargraph',
       \ 'coc-yaml',
       \ 'coc-highlight',
@@ -357,8 +356,6 @@ nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fa :Ag<CR>
 
 let NERDTreeIgnore = ['\.pyc$', '\.retry$']
-
-" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 nmap <silent> // :nohlsearch<CR>
 noremap ,hl :set hlsearch! hlsearch?<CR>

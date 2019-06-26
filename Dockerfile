@@ -66,7 +66,7 @@ COPY files/vimrc /root/.config/nvim/init.vim
 ENV PATH $HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 ENV PATH $HOME/.composer/vendor/bin:$PATH
 
-ENV VERSION 17062019
+ENV VERSION 26062019
 
 RUN nvim -i NONE -c PlugInstall -c quitall
 
