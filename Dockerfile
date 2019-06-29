@@ -1,4 +1,4 @@
-FROM alpine:3.9.4
+FROM alpine:3.10.0
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 RUN apk update && apk upgrade
@@ -26,6 +26,9 @@ RUN composer global require vimeo/psalm
 
 RUN apk add --no-cache nodejs nodejs-npm
 RUN npm config set unsafe-perm true
+
+ENV VERSION 26062019
+
 RUN npm install -g typescript vale
 RUN npm install -g eslint babel-eslint \
       eslint-config-airbnb eslint-plugin-jest eslint-plugin-flowtype \
@@ -46,11 +49,11 @@ RUN pip install yamllint ansible-lint python-language-server bashate neovim jedi
 RUN curl https://languagetool.org/download/LanguageTool-stable.zip --output languagetool.zip
 RUN unzip languagetool.zip && rm -rf languagetool.zip
 
-RUN wget -qO- -O ~/elixir-ls.zip https://github.com/JakeBecker/elixir-ls/releases/download/v0.2.25/elixir-ls.zip \
-      && mkdir ~/elixir-ls \
-      && unzip ~/elixir-ls.zip -d ~/elixir-ls \
-      && rm ~/elixir-ls.zip \
-      && chmod +x /root/elixir-ls/language_server.sh
+# RUN wget -qO- -O ~/elixir-ls.zip https://github.com/JakeBecker/elixir-ls/releases/download/v0.2.25/elixir-ls.zip \
+#       && mkdir ~/elixir-ls \
+#       && unzip ~/elixir-ls.zip -d ~/elixir-ls \
+#       && rm ~/elixir-ls.zip \
+#       && chmod +x /root/elixir-ls/language_server.sh
 
 RUN mix local.hex --force
 
@@ -65,8 +68,6 @@ COPY files/vimrc /root/.config/nvim/init.vim
 
 ENV PATH $HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 ENV PATH $HOME/.composer/vendor/bin:$PATH
-
-ENV VERSION 26062019
 
 RUN nvim -i NONE -c PlugInstall -c quitall
 

@@ -45,7 +45,7 @@ Plug 'tpope/vim-projectionist'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }
-Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+" Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
@@ -124,6 +124,7 @@ let g:coc_global_extensions = [
       \ 'coc-sh',
       \ 'coc-css',
       \ 'coc-stylelint',
+      \ 'coc-elixir',
       \ 'coc-json',
       \ 'coc-eslint',
       \ 'coc-python',
