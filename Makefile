@@ -25,8 +25,4 @@ nvim-install:
 macos-install:
 	brew install ripgrep fzf bat htop fd ncdu tldr httpie bash-completion
 
-myvim-test:
-	docker run -it -w /app -v `pwd`/fixtures:/app -v `pwd`/files/vimrc:/root/.config/nvim/init.vim mokevnin/dotfiles bash
-
-
 # .PHONY:
