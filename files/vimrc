@@ -16,6 +16,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
 " Plug 'ervandew/supertab'
 " Plug 'ajh17/VimCompletesMe'
 " Plug 'SirVer/ultisnips'
@@ -122,7 +123,7 @@ Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
       \ 'coc-tsserver',
-      \ 'coc-git',
+      " \ 'coc-git',
       \ 'coc-html',
       \ 'coc-lists',
       \ 'coc-phpls',
