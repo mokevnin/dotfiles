@@ -21,6 +21,7 @@ Plug 'tpope/vim-sensible'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 " Plug 'neomake/neomake'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Plug 'w0rp/ale'
 " Plug 'lxhillwind/leader-clipboard'
@@ -145,7 +146,7 @@ let g:coc_global_extensions = [
 
 call plug#end()
 
-set rtp+=/root/.fzf
+" set rtp+=/root/.fzf
 
 let mapleader = "\<Space>"
 
