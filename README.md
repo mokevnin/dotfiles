@@ -8,6 +8,14 @@
 
     curl -sL install-node.now.sh | sh
 
+#### Ruby
+
+* gem install solargraph rubocop
+
+#### PHP
+
+* composer global require "squizlabs/php_codesniffer=*"
+
 ### Setup
 
 ```sh
