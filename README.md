@@ -1,30 +1,17 @@
 ### Requirements
 
 * Linux or Mac
+* [Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 * make (for automatic installation)
 * git (for automatic installation)
-* docker
+* [Node.js](https://nodejs.org/en/download/package-manager/) 
 
 ### Setup
 
-#### Manual
-
-1. Create alias _myvim_ using your shell (bash/zsh/whatever) for:
-
-    ```sh
-    'docker run -it --rm -v /tmp:/tmp:cached -v $(pwd):/app:delegated -v $HOME/.config/coc:/root/.config/coc -w /app mokevnin/dotfiles'
-    ```
-
-1. Run _myvim_
-
-#### Automatic
-
 ```sh
-$ git clone git@github.com:mokevnin/dotfiles.git && cd dotfiles
-$ make myvim-install
-# open new terminal
-$ myvim
-
+$ git clone git@github.com:mokevnin/dotfiles.git ~/dotfiles 
+$ cd dotfiles
+$ make nvim-install
 $ make dotfiles-install # optional
 ```
 

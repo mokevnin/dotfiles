@@ -27,7 +27,7 @@ RUN composer global require vimeo/psalm
 RUN apk add --no-cache nodejs nodejs-npm
 RUN npm config set unsafe-perm true
 
-ENV VERSION 26062019
+ENV VERSION 01072019
 
 RUN npm install -g typescript vale
 RUN npm install -g eslint babel-eslint \

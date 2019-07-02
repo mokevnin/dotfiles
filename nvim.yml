@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+
+  # vars:
+    # myvim: "alias myvim='docker run --net host -it --rm -v /tmp:/tmp:cached -v $(pwd):/app -v $HOME/.config/coc:/root/.config/coc -w /app mokevnin/dotfiles'"
+
+  tasks:
+
+    - file:
+        path: ~/.config
+        state: directory
+
+    - file:
+        src: /dotfiles/files/vimrc
+        dest: /host/home/.config/nvim
+        state: link

@@ -1,4 +1,4 @@
-ANSIBLE_PREFIX := docker run -e "HOST_USER=$(USER)" -v $(HOME):/host/home -v $(CURDIR):/dotfiles -w /dotfiles williamyeh/ansible:ubuntu18.04 ansible-playbook -i local -vv
+ANSIBLE_PREFIX := docker run -v $(HOME):/host/home -v $(CURDIR):/dotfiles -w /dotfiles williamyeh/ansible:ubuntu18.04 ansible-playbook -i local -vv
 
 all: myvim-install
 	# ansible-playbook all.yml -i local -vv -K
@@ -17,8 +17,9 @@ docker-push:
 docker-bash:
 	docker run -it mokevnin/dotfiles bash
 
-myvim-install:
-	$(ANSIBLE_PREFIX) myvim.yml
+nvim-install:
+	mkdir -p ~/.config/nvim
+	ln -s $(PWD)/files/vimrc ~/.config/nvim/init.vim
 
 macos-install:
 	brew install ripgrep fzf bat htop fd ncdu tldr httpie bash-completion
