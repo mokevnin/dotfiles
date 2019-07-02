@@ -1,5 +1,4 @@
 {
-  "solargraph.useBundler": true,
   "solargraph.diagnostics": true,
   "diagnostic-languageserver.filetypes": {
     "php": "phpcs"

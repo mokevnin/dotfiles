@@ -1,6 +1,0 @@
----
-
-- include: 'spacemacs.yml'
-- include: 'vim.yml'
-- include: 'dotfiles.yml'
-- include: 'addons.yml'
