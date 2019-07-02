@@ -123,7 +123,6 @@ Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
       \ 'coc-tsserver',
-      " \ 'coc-git',
       \ 'coc-html',
       \ 'coc-lists',
       \ 'coc-phpls',
