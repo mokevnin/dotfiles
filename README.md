@@ -6,6 +6,8 @@
 * git (for automatic installation)
 * [Node.js](https://nodejs.org/en/download/package-manager/) 
 
+    curl -sL install-node.now.sh | sh
+
 ### Setup
 
 ```sh
