@@ -19,7 +19,8 @@ docker-bash:
 
 nvim-install:
 	mkdir -p ~/.config/nvim
-	ln -s $(PWD)/files/vimrc ~/.config/nvim/init.vim
+	ln -s $(PWD)/files/vimrc ~/.config/nvim/init.vim | true
+	ln -s $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json | true
 
 macos-install:
 	brew install ripgrep fzf bat htop fd ncdu tldr httpie bash-completion
