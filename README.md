@@ -8,9 +8,10 @@
 
     curl -sL install-node.now.sh | sh
 
-#### Ruby
+#### Ruby/Rails
 
 * gem install solargraph rubocop
+* gem install rubocop-rspec rubocop-rails rubocop-performance
 
 #### PHP
 
