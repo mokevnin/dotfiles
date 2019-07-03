@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
+Plug 'liuchengxu/vista.vim'
 " Plug 'ervandew/supertab'
 " Plug 'ajh17/VimCompletesMe'
 " Plug 'SirVer/ultisnips'
