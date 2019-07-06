@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'liuchengxu/vista.vim'
 " Plug 'ervandew/supertab'
 " Plug 'ajh17/VimCompletesMe'
@@ -235,14 +236,10 @@ map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
 nmap <silent> <leader>t :TestNearest<CR>
-" nmap <silent> t<C-f> :TestFile<CR>
-" nmap <silent> t<C-s> :TestSuite<CR>
-" nmap <silent> t<C-l> :TestLast<CR>
-" nmap <silent> t<C-g> :TestVisit<CR>
-
-" Auto indent pasted text
-" nnoremap p p=`]<C-o>
-" nnoremap P P=`]<C-o>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
 " Edit .vimrc
 map <leader>vl :vsp $MYVIMRC<CR>
@@ -284,68 +281,20 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
 let g:lexical#spelllang = ['en_us', 'ru_ru']
 
-" let g:ale_elixir_credo_executable='make'
-" let g:ale_elixir_elixir_ls_release = '/root/elixir-ls'
+let g:vista_default_executive = 'coc'
 
-" " let g:airline#extensions#ale#enabled = 1
-" let g:ale_completion_enabled = 1
-" let g:ale_elixir_elixir_ls_release = expand('~/.elixir.d/elixir-ls')
-" let g:ale_php_phpcs_standard = 'PSR12'
-" let g:ale_php_phpcs_executable = expand('~/.composer/vendor/bin/phpcs')
-" let g:ale_php_phpcs_use_global = 1
-" let g:ale_linters = {
-"       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-"       \   'javascript': ['eslint', 'tsserver'],
-"       \   'elixir': ['elixir-ls', 'mix'],
-"       \   'php': ['langserver', 'phpcs'],
-"       \}
-
-      " \   'elixir': ['elixir-ls', 'mix', 'credo'],
-      " \   'python': ['flake8'],
-      " \   'ruby': ['rubocop', 'brakeman'],
-      " \   'markdown': [],
-      " \   'yaml': ['yamllint'],
-
-" let g:ale_fixers = {
-"       \ 'javascript': ['eslint'],
-"       \ 'html': ['tidy'],
-"       \ 'python': ['black'],
-"       \ 'ruby': ['rubocop'],
-"       \ 'elixir': ['mix_format'],
-"       \ }
-" " let g:ale_php_langserver_use_global = 1
-" " let g:ale_php_langserver_executable = expand('~/.composer/vendor/bin/php-language-server.php')
-
-" let g:ale_javascript_tsserver_use_global = 1
-" let g:ale_javascript_eslint_use_global = 1
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 let test#strategy = "neovim"
 
-" let g:buffergator_viewport_split_policy = "B"
-" let g:buffergator_sort_regime = "mru"
-
 let g:vim_markdown_folding_disabled = 1
-
-" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" xmap <C-k>     <Plug>(neosnippet_expand_target)
-" let g:SuperTabDefaultCompletionType    = '<C-n>'
-" " let g:SuperTabCrMapping                = 0
-" " let g:UltiSnipsExpandTrigger           = '<tab>'
-" let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-" let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
-
-" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-
-" nmap <F8> :TagbarToggle<CR>
-
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-
-" " Toggle paste mode
-" nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
-" imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
 
 " format the entire file
 nnoremap ff :normal! gg=G``<CR>
@@ -365,7 +314,7 @@ nnoremap <leader>fa :Ag<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.retry$']
 
 nmap <silent> // :nohlsearch<CR>
-noremap ,hl :set hlsearch! hlsearch?<CR>
+noremap <leader>hl :set hlsearch! hlsearch?<CR>
 
 " Allows you to enter sudo pass and save the file
 " " when you forgot to open your file with sudo
@@ -373,21 +322,16 @@ cmap w!! %!sudo tee > /dev/null %
 
 " nnoremap <silent> <bs> <C-w><Left>
 
-" let g:bufExplorerDisableDefaultKeyMapping=1
-" let g:bufExplorerShowRelativePath=1
-
-" let g:deoplete#enable_at_startup = 1
-
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
-" imap <c-x><c-k> <plug>(fzf-complete-word)
-" imap <c-x><c-f> <plug>(fzf-complete-path)
-" imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-" imap <c-x><c-l> <plug>(fzf-complete-line)
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " if filereadable(expand("~/.vimrc.after"))
 "   source ~/.vimrc.after
