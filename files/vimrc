@@ -19,26 +19,27 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'liuchengxu/vista.vim'
-" Plug 'ervandew/supertab'
-" Plug 'ajh17/VimCompletesMe'
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'w0rp/ale'
 " Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
 " Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'janko-m/vim-test'
-" Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
-Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-nginx', { 'for': 'nginx' }
 " Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja', { 'for': 'jinja' }
 " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-surround'
+
+" Targets.vim comes with five kinds for text objects:
+" Pair text objects
+" Quote text objects
+" Separator text objects
+" Argument text objects
+" Tag text objects
 Plug 'wellle/targets.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
@@ -48,8 +49,6 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-projectionist'
-" Plug 'tpope/vim-dispatch'
-" Plug 'godlygeek/tabular'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }
@@ -58,52 +57,39 @@ Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
 Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
+" Auto close parentheses and repeat by dot dot dot...
 Plug 'cohama/lexima.vim'
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
-" Plug 'flowtype/vim-flow'
 
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
-" Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 
 Plug 'joonty/vdebug', { 'on': 'VdebugStart' }
 Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
-Plug 'tpope/vim-ragtag'
-Plug 'mhartington/vim-typings'
-
-" Plug 'Shougo/unite.vim'
+" Plug 'tpope/vim-ragtag'
 
 " Plug 'eagletmt/ghcmod-vim'
 " Plug 'eagletmt/ghcmod-vim'
 " Plug 'neovimhaskell/haskell-vim'
 
-" Plug 'elzr/vim-json'
-" Plug 'vim-scripts/JavaScript-Indent'
-" Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-" Plug 'mitermayer/vim-prettier', {
-"       \ 'do': 'npm install',
-"       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
-" Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+" vim-javascript included
 Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
 " Plug 'moll/vim-node'
 " Plug 'mattn/emmet-vim', { 'for': 'html' }
-Plug 'reedes/vim-lexical'
 
 " Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-easytags'
 " Plug 'Valloric/MatchTagAlways'
-Plug 'nathanaelkane/vim-indent-guides'
+
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
+
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
-" Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-" Plug 'tpope/vim-endwise'
-" Plug 'Shougo/vimshell.vim'
-Plug 'michaeljsmith/vim-indent-object'
+Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+" Plug 'michaeljsmith/vim-indent-object'
 
 " Clojure
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
@@ -115,12 +101,11 @@ Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
 Plug 'kovisoft/slimv', { 'for': ['clojure', 'scheme', 'racket'] }
 Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
-Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+" Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 " Plug 'henrik/vim-yaml-flattener'
 
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
-Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
@@ -131,6 +116,9 @@ let g:coc_global_extensions = [
       \ 'coc-sh',
       \ 'coc-css',
       \ 'coc-stylelint',
+      \ 'coc-xml',
+      \ 'coc-vimlsp',
+      \ 'coc-go',
       \ 'coc-elixir',
       \ 'coc-json',
       \ 'coc-eslint',
@@ -141,7 +129,6 @@ let g:coc_global_extensions = [
       \ 'coc-yaml',
       \ 'coc-highlight',
       \ 'coc-snippets',
-      \ 'coc-pairs',
       \ 'coc-docker',
       \ 'coc-diagnostic',
       \]
@@ -155,10 +142,10 @@ let mapleader = "\<Space>"
 " https://github.com/vim/vim/blob/master/runtime/doc/russian.txt
 " Enable hotkeys for Russian layout
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-" setlocal spell spelllang=en_us,ru_ru
 
 " set visualbell
 set completeopt=noinsert,menuone,noselect
+set complete+=kspell
 
 if has('mouse')
   set mouse=a
@@ -256,30 +243,10 @@ vmap <leader>y :w! /tmp/.vim/.vbuf<CR>
 nmap <leader>y :.w! /tmp/.vim/.vbuf<CR>
 nmap <leader>p :r /tmp/.vim/.vbuf<CR>
 
-" Move between linting errors
-" nnoremap ]r :ALENextWrap<CR>
-" nnoremap [r :ALEPreviousWrap<CR>
-
-" map <leader>cr :GrammarousCheck --lang=ru --preview<CR>
-
 """ Plugin Settings
-
-" let g:LanguageClient_autoStart = 1
-
-" " \ 'yaml': ['yaml-language-server', '--stdio']
-" let g:LanguageClient_serverCommands = {
-"       \ 'php': ['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')],
-"       \ 'javascript': ['javascript-typescript-stdio'],
-"       \ 'javascript.jsx': ['javascript-typescript-stdio'],
-"       \ 'java': ['/usr/local/bin/jdtls'],
-"       \ 'ruby': ['solargraph', 'stdio'],
-"       \ 'python': ['pyls'],
-"       \ 'elixir': ['sh', expand('~/.elixir.d/elixir-ls/language_server.sh')],
-"       \ }
 
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
-let g:lexical#spelllang = ['en_us', 'ru_ru']
 
 let g:vista_default_executive = 'coc'
 
@@ -337,9 +304,11 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 "   source ~/.vimrc.after
 " endif
 
-" augroup Common
-"   autocmd!
-"   autocmd BufEnter * EnableStripWhitespaceOnSave
+" https://thoughtbot.com/blog/vim-spell-checking
+" augroup markdownSpell
+"     autocmd!
+"     autocmd FileType markdown setlocal spell
+"     autocmd BufRead,BufNewFile *.md setlocal spell
 " augroup END
 
 augroup FileTypeTetect
@@ -348,11 +317,12 @@ augroup FileTypeTetect
   " au BufEnter *.json setl ft=javascript
   " au BufEnter *.coffee setl sw=2 expandtab
   " au BufEnter *.py setl ts=4 sw=4 sts=4
-  autocmd BufEnter *.php setlocal ts=4 sw=4 sts=4
+  " autocmd BufEnter *.php setlocal ts=4 sw=4 sts=4
   autocmd BufEnter *.java setlocal ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
   autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
   autocmd BufNewFile,BufRead *.jsh setlocal filetype=java
+
   " au BufEnter *.js setl ts=2 sw=2 sts=2
   " au BufEnter *.html setl ts=4 sw=4 sts=4
   " au BufEnter *.tex setl wrap tw=79 fo=tcqor
@@ -364,8 +334,24 @@ augroup END
 
 """ COC
 
+let g:coc_snippet_next = '<tab>'
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+"
+" " Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" inoremap <silent><expr <>TAB>
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ? "\<C-r=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<>CR" :
+"       \ <"SID>check_back_space() ? "\<TAB" :
+"       \ coc#refresh()">
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
