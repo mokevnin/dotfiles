@@ -8,6 +8,10 @@
 
     curl -sL install-node.now.sh | sh
 
+#### Global
+
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
+
 #### Ruby/Rails
 
 * gem install solargraph rubocop
