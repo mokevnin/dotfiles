@@ -318,7 +318,9 @@ augroup FileTypeTetect
   " au BufEnter *.coffee setl sw=2 expandtab
   " au BufEnter *.py setl ts=4 sw=4 sts=4
   " autocmd BufEnter *.php setlocal ts=4 sw=4 sts=4
+  filetype plugin indent on
   autocmd BufEnter *.java setlocal ts=4 sw=4 sts=4
+  autocmd BufEnter Makefile setlocal ts=4 sw=4 noexpandtab
   autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
   autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
   autocmd BufNewFile,BufRead *.jsh setlocal filetype=java
