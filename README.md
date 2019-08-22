@@ -62,5 +62,5 @@ $ make dotfiles-install # optional
 * `gj` - navigate through blocks of code - (), {}, [], etс
 * `gf` - open a file corresponding to a word under the cursor
 * `gd` - go to definition
-* `]r` and `[r` - go through linter errors
+* `]с` and `[с` - go through linter errors
 * `<leader>y` & `<leader>p` Copy text to system clipboard
