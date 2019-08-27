@@ -21,6 +21,11 @@
 
 * composer global require "squizlabs/php_codesniffer=*"
 
+#### JS
+
+* npm install -g eslint babel-eslint
+* npx install-peerdeps -g eslint-config-airbnb
+
 ### Setup
 
 ```sh
