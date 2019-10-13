@@ -21,6 +21,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'liuchengxu/vista.vim'
 Plug 'honza/vim-snippets'
 " Plug 'neomake/neomake'
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Plug 'lxhillwind/leader-clipboard'
@@ -63,6 +64,8 @@ Plug 'cohama/lexima.vim'
 
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+Plug 'noahfrederick/vim-composer', { 'for': 'php' }
+Plug 'noahfrederick/vim-laravel', { 'for': 'php' }
 
 Plug 'joonty/vdebug', { 'on': 'VdebugStart' }
 Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
@@ -88,7 +91,6 @@ Plug 'shime/vim-livedown', { 'for': 'markdown' }
 
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 " Plug 'michaeljsmith/vim-indent-object'
 
