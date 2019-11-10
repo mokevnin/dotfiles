@@ -26,6 +26,10 @@
 * npm install -g eslint babel-eslint
 * npx install-peerdeps -g eslint-config-airbnb
 
+#### HTML/CSS
+
+* npm install -g stylelint stylelint-config-recommended stylelint-config-standard
+
 ### Setup
 
 ```sh
