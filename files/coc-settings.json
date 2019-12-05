@@ -2,5 +2,10 @@
   "solargraph.diagnostics": true,
   "diagnostic-languageserver.filetypes": {
     "php": "phpcs"
-  }
+  },
+  "prettier.printWidth": 120,
+  "prettier.trailingComma": "all",
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true,
+  "prettier.singleQuote": true
 }

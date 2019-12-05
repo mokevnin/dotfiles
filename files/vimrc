@@ -114,6 +114,7 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
       \ 'coc-tsserver',
+      \ 'coc-prettier',
       \ 'coc-html',
       \ 'coc-lists',
       \ 'coc-phpls',
@@ -338,6 +339,7 @@ augroup FileTypeTetect
 augroup END
 
 """ COC
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 let g:coc_snippet_next = '<tab>'
 
@@ -405,8 +407,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -448,3 +450,4 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " " Resume latest coc list
 " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
