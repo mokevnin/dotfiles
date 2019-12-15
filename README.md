@@ -6,7 +6,7 @@
 * git (for automatic installation)
 * [Node.js](https://nodejs.org/en/download/package-manager/) 
 
-    curl -sL install-node.now.sh | sh
+    snap install node --classic --channel=13
 
 #### Global
 
