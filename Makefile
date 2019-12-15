@@ -1,11 +1,12 @@
-ANSIBLE_PREFIX := docker run -v $(HOME):/host/home -v $(CURDIR):/dotfiles -w /dotfiles williamyeh/ansible:ubuntu18.04 ansible-playbook -i local -vv
+# ANSIBLE_PREFIX := docker run -v $(HOME):/host/home -v $(CURDIR):/dotfiles -w /dotfiles williamyeh/ansible:ubuntu18.04 ansible-playbook -i local -vv
 
 all: nvim-install dotfiles-install
 
 TAGS := all
 
 dotfiles-install:
-	$(ANSIBLE_PREFIX) dotfiles.yml
+	# $(ANSIBLE_PREFIX) dotfiles.yml
+	docker run --rm -e RUNNER_PLAYBOOK=dotfiles.yml -v $(HOME):/host/home -v $(CURDIR):/runner/project ansible/ansible-runner
 
 nvim-install:
 	mkdir -p ~/.config/nvim
