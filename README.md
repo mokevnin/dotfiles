@@ -10,7 +10,7 @@
 
 #### Global
 
-* [ripgrep](https://github.com/BurntSushi/ripgrep)
+* [Silver Searcher (ag)](https://github.com/ggreer/the_silver_searcher)
 
 #### Ruby/Rails
 
