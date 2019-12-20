@@ -14,7 +14,7 @@ nvim-install:
 	ln -s $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json | true
 
 macos-prepare:
-	brew install ripgrep fzf bat htop fd ncdu tldr httpie bash-completion
+	brew install the_silver_searcher fzf bat htop fd ncdu tldr httpie bash-completion
 
 # docker-build:
 # 	docker build . -t mokevnin/dotfiles
