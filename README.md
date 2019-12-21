@@ -63,7 +63,7 @@ $ make dotfiles-install # optional
 * `<leader> o` - fuzzy search (files under git)
 * `<leader> ff` - fuzzy search (all files)
 * `<leader> fa` - fuzzy search (content in files)
-* `<leader> fc` - fuzzy search (content in files)
+* `<leader> fc` - fuzzy search (git commits)
 
 #### Code editing and navigation
 
