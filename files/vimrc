@@ -20,6 +20,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'liuchengxu/vista.vim'
 Plug 'honza/vim-snippets'
+Plug 'mhinz/vim-startify'
 " Plug 'neomake/neomake'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
