@@ -245,10 +245,6 @@ nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
 nnoremap <leader>b :Buffers<CR>
 
-vmap <leader>y :w! /tmp/.vim/.vbuf<CR>
-nmap <leader>y :.w! /tmp/.vim/.vbuf<CR>
-nmap <leader>p :r /tmp/.vim/.vbuf<CR>
-
 """ Plugin Settings
 
 let g:vim_markdown_frontmatter = 1
@@ -466,3 +462,7 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+vmap <leader>y :w! /tmp/.vim/.vbuf<CR>
+nmap <leader>y :.w! /tmp/.vim/.vbuf<CR>
+nmap <leader>p :r /tmp/.vim/.vbuf<CR>
