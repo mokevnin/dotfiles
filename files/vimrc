@@ -31,7 +31,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'chr4/nginx.vim'
 Plug 'janko-m/vim-test'
-Plug 'fatih/vim-nginx', { 'for': 'nginx' }
 " Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja', { 'for': 'jinja' }
 " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
