@@ -4,9 +4,7 @@
 * [Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 * make (for automatic installation)
 * git (for automatic installation)
-* [Node.js](https://nodejs.org/en/download/package-manager/) 
-
-    snap install node --classic --channel=13
+* [Node.js](https://github.com/nodesource/distributions/blob/master/README.md#installation-instructions)
 
 #### Global
 
