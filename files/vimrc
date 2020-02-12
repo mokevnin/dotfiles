@@ -114,8 +114,9 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
       \ 'coc-tabnine',
+      \ 'coc-cspell-dicts',
+      \ 'coc-spell-checker',
       \ 'coc-tsserver',
-      \ 'coc-prettier',
       \ 'coc-html',
       \ 'coc-lists',
       \ 'coc-phpls',
@@ -336,6 +337,10 @@ augroup FileTypeTetect
 augroup END
 
 """" COC
+
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 let g:coc_snippet_next = '<tab>'

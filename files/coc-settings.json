@@ -3,6 +3,8 @@
   "diagnostic-languageserver.filetypes": {
     "php": "phpcs"
   },
+  "cSpellExt.enableDictionaries": ["russian"],
+  "cSpell.language": "en,ru",
   "prettier.printWidth": 120,
   "prettier.trailingComma": "all",
   "prettier.eslintIntegration": true,
