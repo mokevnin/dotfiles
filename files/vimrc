@@ -76,9 +76,8 @@ Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 " Plug 'eagletmt/ghcmod-vim'
 " Plug 'neovimhaskell/haskell-vim'
 
-" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-" vim-javascript included
-Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
 " Plug 'moll/vim-node'
 " Plug 'mattn/emmet-vim', { 'for': 'html' }
