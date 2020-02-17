@@ -202,7 +202,7 @@ set shiftwidth=2
 set updatetime=300
 set splitbelow
 set cmdheight=2
-set signcolumn=yes
+set signcolumn=no
 set scrolloff=3
 
 silent! colorscheme jellybeans
