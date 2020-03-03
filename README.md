@@ -1,7 +1,7 @@
 ### Requirements
 
 * Linux or Mac
-* [Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+* [Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) (version >= 0.3.x)
 * make (for automatic installation)
 * git (for automatic installation)
 * [Node.js](https://github.com/nodesource/distributions/blob/master/README.md#installation-instructions)
