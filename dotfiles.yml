@@ -3,7 +3,7 @@
 - hosts: localhost
   vars:
     home: /host/home
-    config: "{{ home }}/.bash_profile"
+    config: "{{ home }}/.zprofile"
 
   tasks:
     - lineinfile: dest="{{ config }}" state=present create=yes
