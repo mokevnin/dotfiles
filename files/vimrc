@@ -88,7 +88,7 @@ Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
 
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
-Plug 'shime/vim-livedown', { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
