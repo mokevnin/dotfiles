@@ -9,6 +9,9 @@
 #### Global
 
 * [Silver Searcher (ag)](https://github.com/ggreer/the_silver_searcher)
+* [fzf](https://github.com/junegunn/fzf)
+* [bat](https://github.com/sharkdp/bat)
+* [fd](https://github.com/sharkdp/fd)
 
 #### Ruby/Rails
 
