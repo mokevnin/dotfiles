@@ -13,24 +13,6 @@
 * [bat](https://github.com/sharkdp/bat)
 * [fd](https://github.com/sharkdp/fd)
 
-#### Ruby/Rails
-
-* gem install solargraph rubocop
-* gem install rubocop-rspec rubocop-rails rubocop-performance
-
-#### PHP
-
-* composer global require "squizlabs/php_codesniffer=*"
-
-#### JS
-
-* npm install -g eslint babel-eslint
-* npx install-peerdeps -g eslint-config-airbnb
-
-#### HTML/CSS
-
-* npm install -g stylelint stylelint-config-recommended stylelint-config-standard
-
 ### Setup
 
 ```sh
@@ -38,6 +20,8 @@ $ git clone git@github.com:mokevnin/dotfiles.git ~/dotfiles
 $ cd dotfiles
 $ make nvim-install
 $ make dotfiles-install # optional
+# install additional packages for some languages (see Makefile)
+$ make deps-all #optional
 ```
 
 ### VIM
