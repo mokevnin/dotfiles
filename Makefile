@@ -26,6 +26,6 @@ deps-composer:
 	composer global require "squizlabs/php_codesniffer=*"
 
 deps-npm:
-	npm install -g eslint babel-eslint
+	npm install -g prettier eslint babel-eslint
 	npx install-peerdeps -g eslint-config-airbnb
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
