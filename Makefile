@@ -16,16 +16,21 @@ nvim-install:
 macos-prepare:
 	brew install the_silver_searcher fzf bat htop fd ncdu tldr httpie
 
-deps-all: deps-gem deps-composer deps-npm
+deps: deps-gem deps-composer deps-npm deps-pip
+
+deps-pip:
+	pip2 install pynvim
+	pip3 install neovim
 
 deps-gem:
-	gem install solargraph rubocop
+	gem install solargraph rubocop neovim
 	gem install rubocop-rspec rubocop-rails rubocop-performance
 
 deps-composer:
 	composer global require "squizlabs/php_codesniffer=*"
 
 deps-npm:
+	npm install -g neovim
 	npm install -g prettier eslint babel-eslint
 	npx install-peerdeps -g eslint-config-airbnb
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
