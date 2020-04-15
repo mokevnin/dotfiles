@@ -4,8 +4,8 @@ setglobal pastetoggle=<F2>
 set ttyfast
 set lazyredraw
 
-let g:python_host_skip_check=1
-let g:loaded_python3_provider=1
+" let g:python_host_skip_check=1
+" let g:loaded_python3_provider=1
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
