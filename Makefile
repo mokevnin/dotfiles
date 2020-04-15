@@ -19,8 +19,8 @@ macos-prepare:
 deps: deps-gem deps-composer deps-npm deps-pip
 
 deps-pip:
-	pip2 install pynvim
-	pip3 install neovim
+	pip2 install --upgrade pynvim
+	pip3 install --upgrade pynvim
 
 deps-gem:
 	gem install solargraph rubocop neovim
