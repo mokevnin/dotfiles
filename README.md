@@ -5,6 +5,7 @@
 * make (for automatic installation)
 * git (for automatic installation)
 * [Node.js](https://github.com/nodesource/distributions/blob/master/README.md#installation-instructions)
+* [Docker](https://www.docker.com/get-started) (optional)
 
 #### Global
 
