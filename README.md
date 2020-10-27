@@ -18,7 +18,7 @@
 ```bash
     sudo apt-get install neovim make git gcc fzf bat silversearcher-ag
     curl -sL https://deb.nodesource.com/setup_14.x | bash -
-    sudo apt-get install -y nodejs
+    apt-get install -y nodejs
 ```
 
 ## Setup
