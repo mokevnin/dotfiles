@@ -1,4 +1,4 @@
-### Requirements
+## Requirements
 
 * Linux or Mac
 * [Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) (version >= 0.3.x)
@@ -14,7 +14,14 @@
 * [bat](https://github.com/sharkdp/bat)
 * [fd](https://github.com/sharkdp/fd)
 
-### Setup
+### Debian
+```bash
+    sudo apt-get install neovim make git gcc fzf bat silversearcher-ag
+    curl -sL https://deb.nodesource.com/setup_14.x | bash -
+    apt-get install -y nodejs
+```
+
+## Setup
 
 ```sh
 $ git clone git@github.com:mokevnin/dotfiles.git ~/dotfiles 
@@ -25,7 +32,7 @@ $ make dotfiles-install # optional
 $ make deps-all #optional
 ```
 
-### VIM
+## VIM
 
 #### Main
 
