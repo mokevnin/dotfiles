@@ -3,21 +3,33 @@
 - hosts: localhost
   vars:
     home: /host/home
-    config: "{{ home }}/.zprofile"
+    configs:
+      - "{{ home }}/.zprofile"
+      - "{{ home }}/.bashrc"
 
   tasks:
-    - lineinfile: dest="{{ config }}" state=present create=yes
-        line="set -o vi"
+    - lineinfile:
+        dest: "{{ item }}"
+        state: present
+        create: yes
+        line: "set -o vi"
+      loop: "{{ configs }}"
 
     - lineinfile:
-        dest: "{{ config }}"
+        dest: "{{ item }}"
         state: present
         create: true
         regexp: "fixssh"
         line: "alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'"
+      loop: "{{ configs }}"
 
-    - lineinfile: dest="{{ config }}" state=present create=yes
-        line="export PS1='$(__git_ps1) \W\$ '"
+    - lineinfile:
+        dest: "{{ item }}"
+        state: present
+        create: yes
+        line: |
+          export PS1='$(__git_ps1) \W\$ '
+      loop: "{{ configs }}"
 
     - copy:
         src: gitconfig
