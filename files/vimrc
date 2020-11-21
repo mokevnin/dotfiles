@@ -117,6 +117,7 @@ let g:coc_global_extensions = [
       \ 'coc-cspell-dicts',
       \ 'coc-spell-checker',
       \ 'coc-tsserver',
+      \ 'coc-prettier',
       \ 'coc-html',
       \ 'coc-lists',
       \ 'coc-phpls',
