@@ -19,7 +19,7 @@ macos-prepare:
 deps: deps-gem deps-composer deps-npm deps-pip
 
 deps-pip:
-	pip2 install --upgrade pynvim
+	# pip2 install --upgrade pynvim
 	pip3 install --upgrade pynvim
 
 deps-gem:
@@ -27,7 +27,9 @@ deps-gem:
 	gem install rubocop-rspec rubocop-rails rubocop-performance
 
 deps-composer:
-	composer global require "squizlabs/php_codesniffer=*"
+	composer --no-interaction global require \
+		squizlabs/php_codesniffer \
+		phpstan/phpstan
 
 deps-npm:
 	npm install -g neovim
