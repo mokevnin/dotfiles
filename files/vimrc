@@ -138,6 +138,7 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-docker',
       \ 'coc-diagnostic',
+      \ 'coc-yank',
       \]
 
 call plug#end()
@@ -263,6 +264,9 @@ nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 let test#strategy = "neovim"
+
+" coc-yank
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 let g:vim_markdown_folding_disabled = 1
 
