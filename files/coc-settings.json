@@ -3,7 +3,7 @@
   "diagnostic.virtualTextPrefix": "# ",
   "solargraph.diagnostics": true,
   "diagnostic-languageserver.filetypes": {
-    "php": "phpcs",
+    "php": ["phpcs", "phpstan"],
     "elixir": ["mix_credo"],
     "eelixir": ["mix_credo"]
   },
