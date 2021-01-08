@@ -472,6 +472,6 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "" Resume latest coc list
 "nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-vmap <leader>y :w! /tmp/.vim/.vbuf<CR>
-nmap <leader>y :.w! /tmp/.vim/.vbuf<CR>
-nmap <leader>p :r /tmp/.vim/.vbuf<CR>
+vmap <leader>y "*y
+nmap <leader>y "*y
+nmap <leader>p "*p
