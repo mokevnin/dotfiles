@@ -38,3 +38,4 @@ deps-npm:
 	npm install -g prettier eslint babel-eslint eslint-plugin-import eslint-plugin-node
 	npx install-peerdeps -g eslint-config-airbnb
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
+	npm install -g yaml-language-server
