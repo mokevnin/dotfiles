@@ -24,9 +24,10 @@ deps-pip:
 
 deps-gem:
 	gem install solargraph rubocop neovim
-	gem install rubocop-rspec rubocop-rails rubocop-performance
+	gem install rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
 	gem install sorbet sorbet-runtime
 	gem install haml_lint slim_lint
+	gem install brakeman reek
 
 deps-composer:
 	composer --no-interaction global require \
