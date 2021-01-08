@@ -31,7 +31,7 @@ ENV VERSION 01072019
 
 RUN npm install -g typescript vale
 RUN npm install -g eslint babel-eslint \
-      eslint-config-airbnb eslint-plugin-jest eslint-plugin-flowtype \
+      eslint-config-airbnb eslint-plugin-jest \
       eslint-plugin-babel eslint-plugin-import eslint-plugin-lodash-fp \
       eslint-plugin-jsx-a11y eslint-plugin-react eslint-config-airbnb-base
 RUN npm install -g yaml-language-server typings pug-lint js-yaml js-beautify jsonlint neovim
