@@ -26,6 +26,7 @@ deps-gem:
 	gem install solargraph rubocop neovim
 	gem install rubocop-rspec rubocop-rails rubocop-performance
 	gem install sorbet sorbet-runtime
+	gem install haml_lint slim_lint
 
 deps-composer:
 	composer --no-interaction global require \

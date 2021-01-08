@@ -13,6 +13,8 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+let g:ale_disable_lsp = 1
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
@@ -111,6 +113,7 @@ Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
+Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
       \ 'coc-tabnine',
@@ -289,6 +292,14 @@ let NERDTreeIgnore = ['\.pyc$', '\.retry$']
 
 nmap <silent> // :nohlsearch<CR>
 noremap <leader>hl :set hlsearch! hlsearch?<CR>
+
+" let g:airline#extensions#ale#enabled = 1
+let g:ale_sign_column_always = 1
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+\   'haml': ['hamlint'],
+\   'slim': ['slimlint'],
+\}
 
 " Allows you to enter sudo pass and save the file
 " " when you forgot to open your file with sudo
