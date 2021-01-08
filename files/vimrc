@@ -342,6 +342,7 @@ augroup FileTypeTetect
   autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
   autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
   autocmd BufNewFile,BufRead *.jsh setlocal filetype=java
+  autocmd FileType scss setl iskeyword+=@-@
 
   " au BufEnter *.js setl ts=2 sw=2 sts=2
   " au BufEnter *.html setl ts=4 sw=4 sts=4
