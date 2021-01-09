@@ -21,6 +21,7 @@ deps: deps-gem deps-composer deps-npm deps-pip
 deps-pip:
 	# pip2 install --upgrade pynvim
 	pip3 install --upgrade pynvim
+	pip install --upgrade vim-vint
 
 deps-gem:
 	gem install solargraph rubocop neovim
@@ -39,4 +40,4 @@ deps-npm:
 	npm install -g prettier eslint babel-eslint eslint-plugin-import eslint-plugin-node
 	npx install-peerdeps -g eslint-config-airbnb
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
-	npm install -g yaml-language-server
+	npm install -g yaml-language-server markdownlint
