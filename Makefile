@@ -14,7 +14,10 @@ nvim-install:
 	ln -s $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json | true
 
 macos-prepare:
-	brew install the_silver_searcher fzf bat htop fd ncdu tldr httpie
+	brew install neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie
+
+ubuntu-prepare:
+	apt install neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie
 
 deps: deps-gem deps-composer deps-npm deps-pip
 

@@ -1,10 +1,9 @@
 ## Requirements
 
 * Linux or Mac
-* [Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) (version >= 0.3.x)
-* make (for automatic installation)
 * git (for automatic installation)
-* [Node.js](https://github.com/nodesource/distributions/blob/master/README.md#installation-instructions)
+* make (for automatic installation)
+* [Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) (version >= 0.3.x)
 * [Docker](https://www.docker.com/get-started) (optional)
 
 ### Global
@@ -16,17 +15,22 @@
 
 ### Debian
 
-```bash
-sudo apt-get install neovim make git gcc fzf bat silversearcher-ag
-curl -sL https://deb.nodesource.com/setup_15.x | bash -
-apt-get install -y nodejs
-```
 
 ## Setup
 
 ```sh
+# or https://github.com/asdf-vm/asdf
+$ curl -sL https://deb.nodesource.com/setup_15.x | bash -
+
+# ubuntu
+$ make ubuntu-prepare
+
+# macos
+$ make macos-prepare
+
 $ git clone git@github.com:mokevnin/dotfiles.git ~/dotfiles 
 $ cd dotfiles
+# configs
 $ make nvim-install
 $ make dotfiles-install # optional
 # install additional packages for some languages (see Makefile)
@@ -50,7 +54,8 @@ $ make deps-all #optional
 
 ### File Tree
 
-* `<leader><leader>` - toggle filetree
+* `<leader><leader>` – toggle filetree
+* `ctrl m` – locate open file in the filetree
 
 ### Searching
 
@@ -65,5 +70,6 @@ $ make deps-all #optional
 * `gj` - navigate through blocks of code - (), {}, [], etс
 * `gf` - open a file corresponding to a word under the cursor
 * `gd` - go to definition
+* `g;` - go to the last edited line in the current opened buffer
 * `]g` and `[g` - go through linter errors
 * `<leader>y` & `<leader>p` Copy text to system clipboard
