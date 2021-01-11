@@ -20,22 +20,23 @@
 
 ```sh
 # or https://github.com/asdf-vm/asdf
-$ curl -sL https://deb.nodesource.com/setup_15.x | bash -
+curl -sL https://deb.nodesource.com/setup_15.x | bash -
 
-$ git clone git@github.com:mokevnin/dotfiles.git ~/dotfiles 
-$ cd dotfiles
+git clone git@github.com:mokevnin/dotfiles.git ~/dotfiles 
+cd dotfiles
 
 # ubuntu
-$ make ubuntu-prepare
+make ubuntu-prepare
 
 # macos
-$ make macos-prepare
+make macos-prepare
 
 # configs
-$ make nvim-install
-$ make dotfiles-install # optional
+make nvim-install
+make dotfiles-install # optional
+
 # install additional packages for some languages (see Makefile)
-$ make deps-all #optional
+make deps-all #optional
 ```
 
 ## VIM
