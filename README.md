@@ -22,14 +22,15 @@
 # or https://github.com/asdf-vm/asdf
 $ curl -sL https://deb.nodesource.com/setup_15.x | bash -
 
+$ git clone git@github.com:mokevnin/dotfiles.git ~/dotfiles 
+$ cd dotfiles
+
 # ubuntu
 $ make ubuntu-prepare
 
 # macos
 $ make macos-prepare
 
-$ git clone git@github.com:mokevnin/dotfiles.git ~/dotfiles 
-$ cd dotfiles
 # configs
 $ make nvim-install
 $ make dotfiles-install # optional
