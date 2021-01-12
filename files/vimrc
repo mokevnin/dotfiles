@@ -65,6 +65,8 @@ Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
 " Auto close parentheses and repeat by dot dot dot...
 Plug 'cohama/lexima.vim'
 
+Plug 'jpalardy/vim-slime'
+
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
 Plug 'noahfrederick/vim-composer', { 'for': 'php' }
@@ -257,6 +259,8 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
 
 let g:vista_default_executive = 'coc'
+
+let g:slime_target = "neovim"
 
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
