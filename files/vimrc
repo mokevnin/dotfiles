@@ -117,6 +117,8 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" \ 'coc-docker', https://github.com/neoclide/coc.nvim/pull/2756
 let g:coc_global_extensions = [
       \ 'coc-tabnine',
       \ 'coc-cspell-dicts',
