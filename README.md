@@ -57,7 +57,7 @@ make deps-all #optional
 ### File Tree
 
 * `<leader><leader>` – toggle filetree
-* `ctrl m` – locate open file in the filetree
+* `ctrl m` – locate opened file in the filetree
 
 ### Searching
 
