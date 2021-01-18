@@ -35,8 +35,8 @@ make macos-prepare
 make nvim-install
 make dotfiles-install # optional
 
-# install additional packages for some languages (see Makefile)
-make deps-all #optional
+# install all additional packages for languages (See Makefile for install packages for some language)
+make deps #optional
 ```
 
 ## VIM
