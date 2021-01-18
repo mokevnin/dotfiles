@@ -502,4 +502,6 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 vmap <leader>y "*y
 nmap <leader>y "*y
+nmap <leader>Y "*Y
 nmap <leader>p "*p
+nmap <leader>P "*P
