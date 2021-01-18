@@ -44,3 +44,5 @@ deps-npm:
 	npx install-peerdeps -g eslint-config-airbnb
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
 	npm install -g yaml-language-server markdownlint
+	
+deps-all: deps-gem deps-npm deps-composer
