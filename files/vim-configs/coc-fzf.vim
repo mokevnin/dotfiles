@@ -1,6 +1,6 @@
 " Mappings for CoCList + CocFzf
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>d  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>d  :<C-u>CocFzfList diagnostics<cr>
 " Manage extensions.
 " nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
