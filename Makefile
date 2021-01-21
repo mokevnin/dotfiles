@@ -4,9 +4,9 @@ all: nvim-install dotfiles-install
 
 TAGS := all
 
-dotfiles-install:
-	# $(ANSIBLE_PREFIX) dotfiles.yml
-	docker run --rm -e RUNNER_PLAYBOOK=dotfiles.yml -v $(HOME):/host/home -v $(CURDIR):/runner/project ansible/ansible-runner
+# dotfiles-install:
+# 	# $(ANSIBLE_PREFIX) dotfiles.yml
+# 	docker run --rm -e RUNNER_PLAYBOOK=dotfiles.yml -v $(HOME):/host/home -v $(CURDIR):/runner/project ansible/ansible-runner
 
 nvim-install:
 	mkdir -p ~/.config/nvim
@@ -14,10 +14,10 @@ nvim-install:
 	ln -s $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json | true
 
 macos-prepare:
-	brew install neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie
+	brew upgrade neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep ctags
 
 ubuntu-prepare:
-	apt install neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie
+	apt install neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie ripgrep git-delta ctags
 
 deps: deps-gem deps-composer deps-npm deps-pip
 

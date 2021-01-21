@@ -61,17 +61,15 @@ make deps #optional
 
 ### Searching
 
-* `<leader> o` - fuzzy search (files under git)
-* `<leader> ff` - fuzzy search (all files)
-* `<leader> fa` - fuzzy search (content in files)
-* `<leader> fc` - fuzzy search (git commits)
+* `<leader> o` - current buffer tags
+* `<leader> f` - fuzzy search (files under git)
 
 ### Code editing and navigation
 
-* `gcc` - toggle commenting
+* `<leader>ci` - toggle commenting
 * `gj` - navigate through blocks of code - (), {}, [], etс
 * `gf` - open a file corresponding to a word under the cursor
 * `gd` - go to definition
 * `g;` - go to the last edited line in the current opened buffer
 * `]g` and `[g` - go through linter errors
-* `<leader>y` & `<leader>p` Copy text to system clipboard
+* `"y` & `"p` Copy text to system clipboard
