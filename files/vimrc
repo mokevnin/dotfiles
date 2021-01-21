@@ -25,7 +25,7 @@ Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-startify'
 " Plug 'neomake/neomake'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Plug 'lxhillwind/leader-clipboard'
 Plug 'ntpeters/vim-better-whitespace'
