@@ -24,7 +24,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-unimpaired'
 Plug 'nanotech/jellybeans.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'vim-airline/vim-airline'
@@ -41,7 +40,7 @@ Plug 'tpope/vim-dadbod'
 Plug 'cohama/lexima.vim'
 Plug 'jpalardy/vim-slime'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'joonty/vdebug', { 'on': 'VdebugStart' }
+Plugin 'puremourning/vimspector'
 Plug 'wellle/targets.vim'
 
 ""LANGAUGE SPECIFIC
