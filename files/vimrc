@@ -287,6 +287,8 @@ nmap <silent> // :nohlsearch<CR>
 
 let g:PHP_default_indenting = 1
 
+nmap     <leader>fr <Plug>CtrlSFPrompt
+
 source ~/dotfiles/files/vim-configs/ale.vim
 source ~/dotfiles/files/vim-configs/coc.vim
 source ~/dotfiles/files/vim-configs/fzf.vim

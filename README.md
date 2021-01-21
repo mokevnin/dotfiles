@@ -83,5 +83,7 @@ make deps #optional
 * `gd` - go to definition
 * `g;` - go to the last edited line in the current opened buffer
 * `]g` and `[g` - go through linter errors
+* `]<space>` and `[<space>` - add  empty line  above and under cursor
 * `"y` & `"p` Copy text to system clipboard
-* `<leader> f` - format (prettier)
+* `<leader> f` - format in visual mode (prettier)
+* `<leader> fr` - search & replace
