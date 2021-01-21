@@ -59,24 +59,27 @@ make deps #optional
 * `ctrl l` - move right or open new right split
 * `ctrl k` - move up or open new top split
 * `ctrl j` - move down or open new bottom split
-* `<leader> b` - show buffer list
 
 ### File Tree
 
 * `<leader><leader>` – toggle filetree
 * `ctrl m` – locate opened file in the filetree
 
-### Searching
+### Searching and Navigation
 
 * `<leader> o` - current buffer tags
-* `<leader> f` - fuzzy search (files under git)
+* `<leader> p` - fuzzy search (files under git)
+* `<leader> g` - git grep
+* `<leader> b` - show buffer list
 
-### Code editing and navigation
+### Code editing and code navigation
 
-* `<leader>ci` - toggle commenting
+* `<leader> d` - coc diagnostic
+* `<leader> ci` - toggle commenting
 * `gj` - navigate through blocks of code - (), {}, [], etс
 * `gf` - open a file corresponding to a word under the cursor
 * `gd` - go to definition
 * `g;` - go to the last edited line in the current opened buffer
 * `]g` and `[g` - go through linter errors
 * `"y` & `"p` Copy text to system clipboard
+* `<leader> f` - format (prettier)

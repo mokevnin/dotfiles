@@ -18,7 +18,9 @@ nnoremap <silent> <space>l :<C-u>CocFzfList location<CR>
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 call coc_fzf#common#add_list_source('fzf-buffers', 'display open buffers', 'Buffers')
-call coc_fzf#common#add_list_source('fzf-gfiles', 'display git files', 'GFiles')
+call coc_fzf#common#add_list_source('fzf-ggrep', 'git grep', 'GGrep')
+call coc_fzf#common#add_list_source('fzf-gfiles', 'display git files', 'GFiles --cached --others --exclude-standard')
 
 nnoremap <silent><nowait> <leader>b  :<C-u>CocFzfList fzf-buffers<CR>
-nnoremap <silent><nowait> <leader>f  :<C-u>CocFzfList fzf-gfiles<CR>
+nnoremap <silent><nowait> <leader>p  :<C-u>CocFzfList fzf-gfiles<CR>
+nnoremap <silent><nowait> <leader>g  :<C-u>CocFzfList fzf-ggrep<CR>
