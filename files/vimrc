@@ -151,6 +151,7 @@ let g:coc_global_extensions = [
       \ 'coc-diagnostic',
       \ 'coc-yank',
       \ 'coc-git',
+      \ 'coc-pairs',
       \]
 
 call plug#end()
