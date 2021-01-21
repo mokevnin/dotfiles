@@ -53,6 +53,8 @@ make deps #optional
 * Switch ctrl and caps lock
 * Use <kbd>ctrl + [</kbd> instead of <kbd>esc</kdb>
 
+* `<leader> s` - save current file
+
 ### Moving between visible buffers
 
 * `ctrl h` - move left or open new left split

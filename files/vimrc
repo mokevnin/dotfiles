@@ -247,6 +247,7 @@ nmap "Y "*Y
 nmap "p "*p
 nmap "P "*P
 
+noremap <Leader>s :update<CR>
 " nmap <silent> <leader>t :TestNearest<CR>
 " nmap <silent> t<C-f> :TestFile<CR>
 " nmap <silent> t<C-s> :TestSuite<CR>
