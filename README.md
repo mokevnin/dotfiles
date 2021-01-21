@@ -41,6 +41,13 @@ make deps #optional
 
 ## VIM
 
+### Update
+
+```
+:PlugUpdate
+:CocUpdate
+```
+
 ### Main
 
 * Switch ctrl and caps lock
