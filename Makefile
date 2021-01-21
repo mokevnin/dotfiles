@@ -17,7 +17,7 @@ macos-prepare:
 	brew upgrade neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep ctags
 
 ubuntu-prepare:
-	apt install neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie ripgrep git-delta ctags
+	apt install neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie ripgrep exuberant-ctags
 
 deps: deps-gem deps-composer deps-npm deps-pip
 
