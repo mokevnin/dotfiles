@@ -18,6 +18,7 @@ Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-startify'
 " Plug 'neomake/neomake'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -247,11 +248,6 @@ nmap "p "*p
 nmap "P "*P
 
 noremap <Leader>s :update<CR>
-" nmap <silent> <leader>t :TestNearest<CR>
-" nmap <silent> t<C-f> :TestFile<CR>
-" nmap <silent> t<C-s> :TestSuite<CR>
-" nmap <silent> t<C-l> :TestLast<CR>
-" nmap <silent> t<C-g> :TestVisit<CR>
 
 " Edit .vimrc
 map <leader>vl :vsp $MYVIMRC<CR>
@@ -270,8 +266,6 @@ let g:slime_target = "neovim"
 " nnoremap <C-F>o :CtrlSFOpen<CR>
 " nnoremap <C-F>t :CtrlSFToggle<CR>
 " inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
-
-" let test#strategy = "neovim"
 
 let g:vim_markdown_folding_disabled = 1
 
@@ -299,3 +293,4 @@ source ~/dotfiles/files/vim-configs/fzf.vim
 source ~/dotfiles/files/vim-configs/nerdtree.vim
 source ~/dotfiles/files/vim-configs/coc-fzf.vim
 source ~/dotfiles/files/vim-configs/coc-plugins.vim
+source ~/dotfiles/files/vim-configs/test.vim
