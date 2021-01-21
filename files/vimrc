@@ -40,7 +40,7 @@ Plug 'tpope/vim-dadbod'
 Plug 'cohama/lexima.vim'
 Plug 'jpalardy/vim-slime'
 Plug 'editorconfig/editorconfig-vim'
-Plugin 'puremourning/vimspector'
+Plug 'puremourning/vimspector'
 Plug 'wellle/targets.vim'
 
 ""LANGAUGE SPECIFIC
