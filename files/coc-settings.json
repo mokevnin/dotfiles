@@ -14,5 +14,8 @@
   "prettier.trailingComma": "all",
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "markdownlint.config": {
+    "line_length": false
+  }
 }
