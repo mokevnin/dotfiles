@@ -16,6 +16,8 @@ nvim-install:
 macos-prepare:
 	brew upgrade neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep
 	brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+	# https://github.com/rlue/vim-barbaric
+	curl -o /usr/local/bin/xkbswitch https://raw.githubusercontent.com/myshov/xkbswitch-macosx/master/bin/xkbswitch
 
 ubuntu-prepare:
 	apt install neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie ripgrep exuberant-ctags

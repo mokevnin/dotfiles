@@ -36,6 +36,7 @@ Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'tpope/vim-endwise'
+Plug 'rlue/vim-barbaric'
 "Plug 'Raimondi/delimitMate'
 
 "" PROBABLY USEFULL
@@ -296,7 +297,7 @@ let g:PHP_default_indenting = 1
 
 nmap     <leader>fr <Plug>CtrlSFPrompt
 
-set spell spelllang=en_us,ru_ru
+"set spell spelllang=en_us,ru_ru
 
 source ~/dotfiles/files/vim-configs/ale.vim
 source ~/dotfiles/files/vim-configs/coc.vim
