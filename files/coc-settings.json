@@ -9,7 +9,9 @@
     "eelixir": ["mix_credo"]
   },
   "cSpellExt.enableDictionaries": ["russian"],
-  "cSpell.enabledLanguageIds": ["markdown", "plaintext", "yml"],
+  "cSpell.enabledLanguageIds": [
+    "markdown", "plaintext", "yml", "php", "node", "python", "html", "css"
+  ],
   "cSpell.language": "en,ru",
   "prettier.printWidth": 120,
   "prettier.trailingComma": "all",
