@@ -7,6 +7,9 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" https://github.com/chrisbra/matchit
+:packadd! matchit
+
 call plug#begin('~/.vim/plugged')
 
 "" MUST BE
@@ -32,13 +35,15 @@ Plug 'tpope/vim-projectionist'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+Plug 'tpope/vim-endwise'
+"Plug 'Raimondi/delimitMate'
 
 "" PROBABLY USEFULL
 " multi cursor
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " database access
 Plug 'tpope/vim-dadbod'
-Plug 'cohama/lexima.vim'
+"Plug 'cohama/lexima.vim'
 Plug 'jpalardy/vim-slime'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'puremourning/vimspector'
@@ -148,7 +153,6 @@ let g:coc_global_extensions = [
       \ 'coc-diagnostic',
       \ 'coc-yank',
       \ 'coc-git',
-      \ 'coc-pairs',
       \]
 
 call plug#end()
@@ -252,6 +256,9 @@ noremap <Leader>s :update<CR>
 " Edit .vimrc
 map <leader>vl :vsp $MYVIMRC<CR>
 map <leader>vr :source $MYVIMRC<CR>
+
+" https://github.com/tpope/vim-endwise/issues/11
+execute "inoremap {<CR> {<CR>}<ESC>O"
 
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
