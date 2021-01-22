@@ -2,6 +2,7 @@
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextPrefix": "# ",
   "solargraph.diagnostics": true,
+  "diagnostic-languageserver.mergeConfig": true,
   "diagnostic-languageserver.filetypes": {
     "php": ["phpcs", "phpstan"],
     "elixir": ["mix_credo"],
@@ -16,6 +17,7 @@
   "prettier.stylelintIntegration": true,
   "prettier.singleQuote": true,
   "markdownlint.config": {
-    "line_length": false
+    "line_length": false,
+    "first-line-h1": false
   }
 }
