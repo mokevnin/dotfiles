@@ -271,7 +271,7 @@ noremap <Leader>s :update<CR>
 map <leader>vl :vsp $MYVIMRC<CR>
 map <leader>vr :source $MYVIMRC<CR>
 
-vmap <leader>cc <plug>NERDCommenterToggle
+vmap cc <plug>NERDCommenterToggle
 nmap <leader>cc <plug>NERDCommenterToggle
 
 " https://github.com/tpope/vim-endwise/issues/11
