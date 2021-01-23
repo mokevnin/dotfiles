@@ -27,7 +27,7 @@ deps: deps-gem deps-composer deps-npm deps-pip
 deps-pip:
 	# pip2 install --upgrade pynvim
 	pip3 install --upgrade pynvim
-	pip install --upgrade vim-vint
+	pip3 install --upgrade vim-vint
 
 deps-gem:
 	gem install solargraph rubocop neovim
