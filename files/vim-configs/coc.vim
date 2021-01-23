@@ -157,3 +157,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 nnoremap <silent><nowait> <space>d  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>o :<C-u>CocList outline<CR>
 nnoremap <silent> <space>l :<C-u>CocList location<CR>
+
+let g:coc_filetype_map = {
+        \ 'eruby.yaml': 'yaml',
+        \ }
