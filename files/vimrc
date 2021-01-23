@@ -213,12 +213,18 @@ set ignorecase
 
 " set softtabstop=4
 " new line indent: use spaces instead of tab
-set expandtab
-" new line indent: how many spaces for one tab
-set shiftwidth=2
+set smarttab
 set smartindent
-" current line indent: how many spaces for one tab
+set expandtab
+
+set tabstop=2
 set softtabstop=2
+set shiftwidth=2
+" new line indent: how many spaces for one tab
+"set shiftwidth=2
+"set tabstop=2
+" current line indent: how many spaces for one tab
+"set softtabstop=2
 
 " set updatetime=300
 " set splitbelow
@@ -252,19 +258,34 @@ nmap "Y "*Y
 nmap "p "*p
 nmap "P "*P
 
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+" highlight last inserted text
+nnoremap gV `[v`]
+
 noremap <Leader>s :update<CR>
 
 " Edit .vimrc
 map <leader>vl :vsp $MYVIMRC<CR>
 map <leader>vr :source $MYVIMRC<CR>
 
+vmap <leader>cc <plug>NERDCommenterToggle
+nmap <leader>cc <plug>NERDCommenterToggle
+
 " https://github.com/tpope/vim-endwise/issues/11
 execute "inoremap {<CR> {<CR>}<ESC>O"
+
+autocmd FileType scss setl iskeyword+=@-@
 
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
 
 let g:slime_target = "neovim"
+
+" let g:NERDDefaultAlign = 'left'
+" let g:NERDSpaceDelims = 1
 
 " nmap     <C-F>f <Plug>CtrlSFPrompt
 " vmap     <C-F>f <Plug>CtrlSFVwordPath

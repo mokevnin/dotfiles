@@ -77,7 +77,7 @@ make deps #optional
 ### Code editing and code navigation
 
 * `<leader> d` - coc diagnostic
-* `<leader> ci` - toggle commenting
+* `<leader> cc` - toggle commenting
 * `gj` - navigate through blocks of code - (), {}, [], etс
 * `gf` - open a file corresponding to a word under the cursor
 * `gd` - go to definition
