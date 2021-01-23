@@ -154,3 +154,6 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+nnoremap <silent><nowait> <space>d  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>o :<C-u>CocList outline<CR>
+nnoremap <silent> <space>l :<C-u>CocList location<CR>

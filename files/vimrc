@@ -34,7 +34,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-projectionist'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+"Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'tpope/vim-endwise'
 Plug 'rlue/vim-barbaric'
 "Plug 'Raimondi/delimitMate'
