@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - uses: actions/checkout@v2
       - name: Nvim install config files
         run: |
           make nvim-install
