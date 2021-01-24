@@ -24,4 +24,4 @@ jobs:
 
       - name: Apt install
         run: |
-          make ubuntu-prepare -- --dry-run
+          sudo make ubuntu-prepare -- -- --dry-run

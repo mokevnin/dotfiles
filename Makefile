@@ -20,6 +20,7 @@ nvim-install:
 
 macos-prepare:
 	brew upgrade neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep
+	brew install hashicorp/tap/terraform-ls
 	brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 	# https://github.com/rlue/vim-barbaric
 	curl -o /usr/local/bin/xkbswitch https://raw.githubusercontent.com/myshov/xkbswitch-macosx/master/bin/xkbswitch
@@ -53,3 +54,4 @@ deps-npm:
 	npx install-peerdeps -g eslint-config-airbnb
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
 	npm install -g yaml-language-server markdownlint bash-language-server
+	npm install -g dockerfile-language-server-nodejs
