@@ -3,18 +3,7 @@
 * Linux or Mac
 * git (for automatic installation)
 * make (for automatic installation)
-* [Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) (version >= 0.3.x)
-* [Docker](https://www.docker.com/get-started) (optional)
-
-### Global
-
-* [Silver Searcher (ag)](https://github.com/ggreer/the_silver_searcher)
-* [fzf](https://github.com/junegunn/fzf)
-* [bat](https://github.com/sharkdp/bat)
-* [fd](https://github.com/sharkdp/fd)
-
-### Debian
-
+* [Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) (version >= 0.4.4)
 
 ## Setup
 
@@ -33,17 +22,20 @@ make macos-prepare
 
 # configs
 make nvim-install
-make dotfiles-install # optional
 
 # install all additional packages for languages (See Makefile for install packages for some language)
-make deps #optional
+make deps
+
+# update
+make macos-update
+make ubuntu-update
 ```
 
 ## VIM
 
 ### Update
 
-```
+```vim
 :PlugUpdate
 :CocUpdate
 ```

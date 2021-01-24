@@ -22,15 +22,3 @@
         regexp: "fixssh"
         line: "alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'"
       loop: "{{ configs }}"
-
-    - lineinfile:
-        dest: "{{ item }}"
-        state: present
-        create: yes
-        line: |
-          export PS1='$(__git_ps1) \W\$ '
-      loop: "{{ configs }}"
-
-    - copy:
-        src: gitconfig
-        dest: "{{ home }}/.gitconfig"

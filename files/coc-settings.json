@@ -1,4 +1,5 @@
 {
+  "coc.preferences.extensionUpdateCheck": "weekly",
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextPrefix": "# ",
   "solargraph.diagnostics": true,
