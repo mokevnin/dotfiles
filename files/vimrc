@@ -45,7 +45,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " database access
 Plug 'tpope/vim-dadbod'
 "Plug 'cohama/lexima.vim'
-Plug 'jpalardy/vim-slime'
+Plug 'jpalardy/vim-slime', {'branch': 'main'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'puremourning/vimspector'
 Plug 'wellle/targets.vim'
