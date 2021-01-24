@@ -26,8 +26,9 @@ macos-prepare:
 	curl -o /usr/local/bin/xkbswitch https://raw.githubusercontent.com/myshov/xkbswitch-macosx/master/bin/xkbswitch
 
 ubuntu-prepare:
+	apt-get update
 	# ripgrep https://github.com/BurntSushi/ripgrep/issues/1562
-	apt install neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags
+	apt-get install neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags
 
 deps: deps-gem deps-composer deps-npm deps-pip
 
