@@ -5,6 +5,10 @@
 * make (for automatic installation)
 * [Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) (version >= 0.4.4)
 
+## Recommendations
+
+* [Oh My Zsh!](https://github.com/ohmyzsh/ohmyzsh)
+
 ## Setup
 
 ```sh
@@ -37,7 +41,6 @@ make ubuntu-update
 
 ```vim
 :PlugUpdate
-:CocUpdate
 ```
 
 ### Main
