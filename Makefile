@@ -27,7 +27,7 @@ macos-prepare:
 
 # ripgrep https://github.com/BurntSushi/ripgrep/issues/1562
 ubuntu-prepare:
-	apt-get install neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags
+	apt-get install $(OPTIONS) neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags
 
 deps: deps-gem deps-composer deps-npm deps-pip
 
