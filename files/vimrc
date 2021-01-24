@@ -42,6 +42,7 @@ Plug 'rlue/vim-barbaric'
 "" PROBABLY USEFULL
 " multi cursor
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'AndrewRadev/splitjoin.vim'
 " database access
 Plug 'tpope/vim-dadbod'
 "Plug 'cohama/lexima.vim'

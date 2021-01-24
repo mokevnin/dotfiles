@@ -48,6 +48,8 @@ make ubuntu-update
 * Switch ctrl and caps lock
 * Use <kbd>ctrl + [</kbd> instead of <kbd>esc</kdb>
 
+`<leader>` – Space
+
 * `<leader> s` - save current file
 
 ### Moving between visible buffers
@@ -71,14 +73,15 @@ make ubuntu-update
 
 ### Code editing and code navigation
 
-* `<leader> d` - coc diagnostic
-* `<leader> cc` - toggle commenting
 * `gj` - navigate through blocks of code - (), {}, [], etс
 * `gf` - open a file corresponding to a word under the cursor
 * `gd` - go to definition
 * `g;` - go to the last edited line in the current opened buffer
+* `gS` - convert oneline expression to multiline (useful for functions, arguments, data structures)
 * `]g` and `[g` - go through linter errors
-* `]<space>` and `[<space>` - add  empty line  above and under cursor
 * `"y` & `"p` Copy text to system clipboard
+* `]<leader>` and `[<leader>` - add  empty line  above and under cursor
+* `<leader> d` - coc diagnostic
+* `<leader> cc` - toggle commenting
 * `<leader> f` - format in visual mode (prettier)
 * `<leader> fr` - search & replace
