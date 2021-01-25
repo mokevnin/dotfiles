@@ -73,6 +73,8 @@ make ubuntu-update
 
 ### Code editing and code navigation
 
+* `B` – go to begin of line
+* `E` – go to end of line
 * `gj` – navigate through blocks of code – (), {}, [], etс
 * `gf` – open a file corresponding to a word under the cursor
 * `gd` – go to definition
