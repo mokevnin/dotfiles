@@ -259,10 +259,6 @@ nmap "Y "*Y
 nmap "p "*p
 nmap "P "*P
 
-" move to beginning/end of line
-nnoremap B ^
-nnoremap E $
-
 " highlight last inserted text
 nnoremap gV `[v`]
 
