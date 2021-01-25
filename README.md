@@ -78,6 +78,8 @@ make ubuntu-update
 * `gd` – go to definition
 * `g;` – go to the last edited line in the current opened buffer
 * `gS` – convert oneline expression to multiline (useful for functions, arguments, data structures)
+* `gv` – reselect last visual selection
+* `ctrl n` – insert next matching word (multicursor)
 * `]g` and `[g` – go through linter errors
 * `"y` & `"p` – copy text to system clipboard
 * `]<leader>` and `[<leader>` – add  empty line  above and under cursor
@@ -85,3 +87,4 @@ make ubuntu-update
 * `<leader> cc` – toggle commenting
 * `<leader> f` – format in visual mode (prettier)
 * `<leader> fr` – search & replace
+* `<leader> rn` – replace word under cursor in current file
