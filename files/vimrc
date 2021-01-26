@@ -271,6 +271,9 @@ map <leader>vr :source $MYVIMRC<CR>
 vmap cc <plug>NERDCommenterToggle
 nmap <leader>cc <plug>NERDCommenterToggle
 
+" let g:NERDDefaultAlign = 'left'
+" let g:NERDSpaceDelims = 1
+
 " https://github.com/tpope/vim-endwise/issues/11
 execute "inoremap {<CR> {<CR>}<ESC>O"
 
@@ -280,9 +283,6 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
 
 let g:slime_target = "neovim"
-
-" let g:NERDDefaultAlign = 'left'
-" let g:NERDSpaceDelims = 1
 
 " nmap     <C-F>f <Plug>CtrlSFPrompt
 " vmap     <C-F>f <Plug>CtrlSFVwordPath
