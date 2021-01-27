@@ -268,8 +268,8 @@ noremap <Leader>s :update<CR>
 map <leader>vl :vsp $MYVIMRC<CR>
 map <leader>vr :source $MYVIMRC<CR>
 
-vmap cc <plug>NERDCommenterToggle
-nmap <leader>cc <plug>NERDCommenterToggle
+vmap gcc <plug>NERDCommenterToggle
+nmap gcc <plug>NERDCommenterToggle
 
 let g:NERDDefaultAlign = 'left'
 let g:NERDSpaceDelims = 1

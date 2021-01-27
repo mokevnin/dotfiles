@@ -73,6 +73,7 @@ make ubuntu-update
 
 ### Code editing and code navigation
 
+* `gcc` – toggle commenting
 * `gj` – navigate through blocks of code – (), {}, [], etс
 * `gf` – open a file corresponding to a word under the cursor
 * `gd` – go to definition
@@ -84,7 +85,6 @@ make ubuntu-update
 * `"y` & `"p` – copy text to system clipboard
 * `]<leader>` and `[<leader>` – add  empty line  above and under cursor
 * `<leader> d` – coc diagnostic
-* `<leader> cc` – toggle commenting
 * `<leader> f` – format in visual mode (prettier)
 * `<leader> fr` – search & replace
 * `<leader> rn` – replace word under cursor in current file
