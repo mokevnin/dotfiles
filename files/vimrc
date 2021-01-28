@@ -53,21 +53,23 @@ Plug 'wellle/targets.vim'
 
 ""LANGAUGE SPECIFIC
 
+Plug 'sheerun/vim-polyglot'
+
 Plug 'tpope/vim-rails'
-Plug 'vim-ruby/vim-ruby'
+" Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-haml'
-Plug 'slim-template/vim-slim'
+" Plug 'tpope/vim-haml'
+" Plug 'slim-template/vim-slim'
 
 " Plug 'lxhillwind/leader-clipboard'
 " Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'hashivim/vim-terraform'
-Plug 'chr4/nginx.vim'
+" Plug 'hashivim/vim-terraform'
+" Plug 'chr4/nginx.vim'
 Plug 'janko-m/vim-test'
 " Plug 'jlanzarotta/bufexplorer'
 Plug 'lepture/vim-jinja'
 " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'isobit/vim-caddyfile'
+" Plug 'isobit/vim-caddyfile'
 
 " Targets.vim comes with five kinds for text objects:
 " Pair text objects
@@ -75,19 +77,19 @@ Plug 'isobit/vim-caddyfile'
 " Separator text objects
 " Argument text objects
 " Tag text objects
-Plug 'othree/html5.vim'
-Plug 'digitaltoad/vim-pug'
-Plug 'elixir-editors/vim-elixir'
-Plug 'c-brenn/phoenix.vim'
-Plug 'vim-erlang/vim-erlang-runtime'
-Plug 'vim-erlang/vim-erlang-compiler'
+" Plug 'othree/html5.vim'
+" Plug 'digitaltoad/vim-pug'
+" Plug 'elixir-editors/vim-elixir'
+" Plug 'vim-erlang/vim-erlang-runtime'
+" Plug 'vim-erlang/vim-erlang-compiler'
 " Auto close parentheses and repeat by dot dot dot...
+Plug 'c-brenn/phoenix.vim'
 
-Plug 'jwalton512/vim-blade'
+" Plug 'jwalton512/vim-blade'
 Plug 'noahfrederick/vim-composer'
 Plug 'noahfrederick/vim-laravel'
 
-Plug 'rhysd/vim-clang-format'
+" Plug 'rhysd/vim-clang-format'
 " Plug 'tpope/vim-ragtag'
 
 " Plug 'eagletmt/ghcmod-vim'
@@ -105,23 +107,23 @@ Plug 'udalov/kotlin-vim'
 " Plug 'xolox/vim-easytags'
 " Plug 'Valloric/MatchTagAlways'
 
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " Plug 'michaeljsmith/vim-indent-object'
 
 " Clojure
-Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
-Plug 'tpope/vim-classpath', { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
+" Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+" Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
+" Plug 'tpope/vim-classpath', { 'for': 'clojure' }
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
 
-Plug 'kovisoft/slimv', { 'for': ['clojure', 'scheme', 'racket'] }
-Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
+" Plug 'kovisoft/slimv', { 'for': ['clojure', 'scheme', 'racket'] }
+" Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
-Plug 'chrisbra/csv.vim'
+" Plug 'chrisbra/csv.vim'
 Plug 'ekalinin/Dockerfile.vim'
 
 " \ 'coc-docker', https://github.com/neoclide/coc.nvim/pull/2756
@@ -214,15 +216,14 @@ set ignorecase
 
 " set softtabstop=4
 " new line indent: use spaces instead of tab
-set smarttab
-set smartindent
+" set smarttab
+" set smartindent
 set expandtab
 
-set tabstop=2
 set softtabstop=2
-set shiftwidth=2
+set tabstop=2
 " new line indent: how many spaces for one tab
-"set shiftwidth=2
+set shiftwidth=2
 "set tabstop=2
 " current line indent: how many spaces for one tab
 "set softtabstop=2
@@ -310,8 +311,6 @@ nmap <silent> // :nohlsearch<CR>
 " Allows you to enter sudo pass and save the file
 " " when you forgot to open your file with sudo
 " cmap w!! %!sudo tee > /dev/null %
-
-let g:PHP_default_indenting = 1
 
 nmap     <leader>fr <Plug>CtrlSFPrompt
 
