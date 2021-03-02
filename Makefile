@@ -15,9 +15,9 @@ dotfiles-install:
 
 nvim-install:
 	mkdir -p ~/.config/nvim
-	ln -s $(PWD)/files/vimrc ~/.config/nvim/init.vim | true
-	ln -s $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json | true
-	ln -s $(PWD)/files/vim-ftplugins ~/.config/nvim/ftplugin | true
+	ln -sf $(PWD)/files/vimrc ~/.config/nvim/init.vim
+	ln -sf $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json
+	ln -snf $(PWD)/files/vim-ftplugins ~/.config/nvim/ftplugin
 
 macos-prepare:
 	brew upgrade neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep
