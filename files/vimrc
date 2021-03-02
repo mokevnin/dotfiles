@@ -149,6 +149,7 @@ let g:coc_global_extensions = [
       \ 'coc-eslint',
       \ 'coc-python',
       \ 'coc-java',
+      \ 'coc-java-debug',
       \ 'coc-jest',
       \ 'coc-solargraph',
       \ 'coc-yaml',
@@ -218,12 +219,12 @@ set ignorecase
 " new line indent: use spaces instead of tab
 " set smarttab
 " set smartindent
-set expandtab
+" set expandtab
 
-set softtabstop=2
-set tabstop=2
+" set softtabstop=2
+" set tabstop=2
 " new line indent: how many spaces for one tab
-set shiftwidth=2
+" set shiftwidth=2
 "set tabstop=2
 " current line indent: how many spaces for one tab
 "set softtabstop=2

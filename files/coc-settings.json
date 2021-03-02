@@ -1,4 +1,6 @@
 {
+  "suggest.enablePreview": true,
+  "suggest.enablePreselect": false,
   "languageserver": {
     "terraform": {
       "command": "terraform-ls",
