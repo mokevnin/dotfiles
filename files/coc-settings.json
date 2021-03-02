@@ -1,4 +1,5 @@
 {
+  "java.jdt.ls.vmargs": "-javaagent:/usr/local/share/nvim/lombok.jar",
   "suggest.enablePreview": true,
   "suggest.enablePreselect": false,
   "languageserver": {

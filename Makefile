@@ -17,6 +17,7 @@ nvim-install:
 	mkdir -p ~/.config/nvim
 	ln -s $(PWD)/files/vimrc ~/.config/nvim/init.vim | true
 	ln -s $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json | true
+	ln -s $(PWD)/files/vim-ftplugins ~/.config/nvim/ftplugin | true
 
 macos-prepare:
 	brew upgrade neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep
