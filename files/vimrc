@@ -249,6 +249,10 @@ set undofile
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 
+" TODO: improve n+1 line moving by russian keys
+nnoremap <expr> л (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> о (v:count == 0 ? 'gj' : 'j')
+
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
