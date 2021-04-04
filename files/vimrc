@@ -61,6 +61,8 @@ Plug 'tpope/vim-bundler'
 " Plug 'tpope/vim-haml'
 " Plug 'slim-template/vim-slim'
 
+Plug 'pantharshit00/vim-prisma'
+
 " Plug 'lxhillwind/leader-clipboard'
 " Plug 'ConradIrwin/vim-bracketed-paste'
 " Plug 'hashivim/vim-terraform'
@@ -132,6 +134,7 @@ Plug 'ekalinin/Dockerfile.vim'
 let g:coc_global_extensions = [
       \ 'coc-cspell-dicts',
       \ 'coc-markdownlint',
+      \ 'coc-prisma',
       \ 'coc-spell-checker',
       \ 'coc-tsserver',
       \ 'coc-prettier',
