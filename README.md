@@ -45,11 +45,9 @@ make ubuntu-update
 
 ### Main
 
-* Switch <ctrl> and <caps lock>
-* Use <kbd><ctrl> + [</kbd> instead of <kbd>esc</kdb>
-
-`<leader>` – Space
-
+* Switch `<ctrl>` and `<caps lock>`
+* Use `<ctrl> + [` instead of `<Esc>`
+* `<leader>` – Space
 * `<leader> s` – save current file
 
 ### Moving between visible buffers
