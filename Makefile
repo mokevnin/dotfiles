@@ -29,7 +29,7 @@ macos-prepare:
 # ripgrep https://github.com/BurntSushi/ripgrep/issues/1562
 ubuntu-prepare:
 	curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-	apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+	apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(shell lsb_release -cs) main"
 	apt-get update
 	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags terraform-ls
 
