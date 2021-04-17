@@ -41,7 +41,7 @@ Plug 'rlue/vim-barbaric'
 
 "" PROBABLY USEFULL
 " multi cursor
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'AndrewRadev/splitjoin.vim'
 " database access
 Plug 'tpope/vim-dadbod'
@@ -50,6 +50,9 @@ Plug 'jpalardy/vim-slime', {'branch': 'main'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'puremourning/vimspector'
 Plug 'wellle/targets.vim'
+
+" Plug 'kassio/neoterm'
+" Plug 'tpope/vim-dispatch'
 
 ""LANGAUGE SPECIFIC
 
@@ -255,6 +258,8 @@ nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 " TODO: improve n+1 line moving by russian keys
 nnoremap <expr> л (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> о (v:count == 0 ? 'gj' : 'j')
+
+noremap <C-m> :make<CR>
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
