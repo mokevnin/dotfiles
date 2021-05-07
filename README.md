@@ -60,7 +60,7 @@ make ubuntu-update
 ### File Tree
 
 * `<leader><leader>` – toggle filetree
-* `<ctrl> m` – locate opened file in the filetree
+* `<ctrl> n` – locate opened file in the filetree
 
 ### Searching and Navigation
 
