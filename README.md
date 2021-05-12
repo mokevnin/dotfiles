@@ -41,6 +41,7 @@ make ubuntu-update
 
 ```vim
 :PlugUpdate
+:CocCommand java.updateLanguageServer
 ```
 
 ### Main

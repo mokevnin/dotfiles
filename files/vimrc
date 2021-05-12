@@ -153,7 +153,7 @@ let g:coc_global_extensions = [
       \ 'coc-elixir',
       \ 'coc-json',
       \ 'coc-eslint',
-      \ 'coc-python',
+      \ 'coc-pyright',
       \ 'coc-java',
       \ 'coc-java-debug',
       \ 'coc-jest',
