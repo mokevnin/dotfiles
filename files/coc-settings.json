@@ -37,5 +37,8 @@
   "markdownlint.config": {
     "line_length": false,
     "first-line-h1": false
-  }
+  },
+  "python.linting.flake8Enabled": true,
+  "python.linting.banditEnabled": true,
+  "python.linting.pytypeEnabled": true
 }

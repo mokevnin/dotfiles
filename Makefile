@@ -39,6 +39,7 @@ deps-pip:
 	# pip2 install --upgrade pynvim
 	pip3 install --upgrade pynvim
 	pip3 install --upgrade vim-vint
+	pip3 install --upgrade autopep8 flake8 bandit pytype # black
 
 deps-gem:
 	gem install solargraph rubocop neovim
