@@ -11,4 +11,5 @@ let g:ale_linters = {
 \   'slim': ['slimlint'],
 \   'java': ['checkstyle'],
 \   'ruby': ['brakeman', 'reek'],
+\   'go': ['staticcheck'],
 \}
