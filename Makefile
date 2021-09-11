@@ -34,7 +34,7 @@ ubuntu-prepare:
 	apt-get update
 	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags terraform-ls
 
-deps: deps-gem deps-composer deps-npm deps-pip
+deps: deps-gem deps-composer deps-npm deps-pip deps-go
 
 deps-pip:
 	# pip2 install --upgrade pynvim
@@ -61,3 +61,6 @@ deps-npm:
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
 	npm install -g yaml-language-server markdownlint bash-language-server
 	npm install -g dockerfile-language-server-nodejs
+
+deps-go:
+	GO111MODULE=on go get golang.org/x/tools/gopls@latest
