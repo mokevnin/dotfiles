@@ -51,6 +51,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'puremourning/vimspector'
 Plug 'wellle/targets.vim'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'windwp/nvim-spectre'
+
 " Plug 'kassio/neoterm'
 " Plug 'tpope/vim-dispatch'
 
@@ -326,6 +329,8 @@ nmap <silent> // :nohlsearch<CR>
 " cmap w!! %!sudo tee > /dev/null %
 
 nmap     <leader>fr <Plug>CtrlSFPrompt
+
+nnoremap <leader>S :lua require('spectre').open()<CR>
 
 "set spell spelllang=en_us,ru_ru
 

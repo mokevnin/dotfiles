@@ -20,7 +20,7 @@ nvim-install:
 	ln -snf $(PWD)/files/vim-ftplugins ~/.config/nvim/ftplugin
 
 macos-prepare:
-	brew upgrade neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep
+	brew upgrade neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed
 	brew install hashicorp/tap/terraform-ls
 	brew install poetry
 	brew install --HEAD universal-ctags/universal-ctags/universal-ctags
@@ -32,7 +32,7 @@ ubuntu-prepare:
 	curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 	apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(shell lsb_release -cs) main"
 	apt-get update
-	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags terraform-ls
+	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags terraform-ls ripgrep
 
 deps: deps-gem deps-composer deps-npm deps-pip deps-go
 
