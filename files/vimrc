@@ -53,6 +53,7 @@ Plug 'wellle/targets.vim'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'windwp/nvim-spectre'
+Plug 'OmniSharp/omnisharp-vim'
 
 " Plug 'kassio/neoterm'
 " Plug 'tpope/vim-dispatch'
