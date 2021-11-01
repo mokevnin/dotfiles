@@ -140,6 +140,7 @@ Plug 'ekalinin/Dockerfile.vim'
 let g:coc_global_extensions = [
       \ 'coc-cspell-dicts',
       \ 'coc-markdownlint',
+      \ 'coc-omnisharp',
       \ 'coc-prisma',
       \ 'coc-spell-checker',
       \ 'coc-tsserver',
