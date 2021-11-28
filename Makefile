@@ -52,7 +52,8 @@ deps-gem:
 deps-composer:
 	composer --no-interaction global require \
 		squizlabs/php_codesniffer \
-		phpstan/phpstan
+		phpstan/phpstan \
+		phpactor/phpactor
 
 deps-npm:
 	npm install -g neovim

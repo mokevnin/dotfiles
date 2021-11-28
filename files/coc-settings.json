@@ -40,5 +40,9 @@
   },
   "python.linting.flake8Enabled": true,
   "python.linting.banditEnabled": true,
-  "python.linting.pytypeEnabled": true
+  "python.linting.pytypeEnabled": true,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "wxss.validate": false
 }
