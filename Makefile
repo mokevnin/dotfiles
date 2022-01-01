@@ -16,10 +16,10 @@ dotfiles-install:
 nvim-install:
 	# https://github.com/NvChad/NvChad
 	# https://nvchad.github.io/getting-started/setup
-	git clone https://github.com/NvChad/NvChad ~/.config/nvim
-	nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
+	git clone https://github.com/NvChad/NvChad ~/.config/nvim || true
+	# nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
 	# mkdir -p ~/.config/nvim
-	ln -snf nvim ~/.config/lua/custom
+	ln -snf $(PWD)/nvim ~/.config/nvim/lua/custom
 	# ln -sf $(PWD)/files/vimrc ~/.config/nvim/init.vim
 	# ln -sf $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json
 	# ln -snf $(PWD)/files/vim-ftplugins ~/.config/nvim/ftplugin
