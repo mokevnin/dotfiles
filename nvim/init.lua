@@ -12,8 +12,8 @@ local hooks = require "core.hooks"
 -- To add new plugins, use the "setup_mappings" hook,
 
 hooks.add("setup_mappings", function(map)
-   map("n", "<leader>cc", ":Telescope <CR>", opt)
-   map("n", "<leader>q", ":q <CR>", opt)
+  map("n", "<leader>cc", ":Telescope <CR>", opt)
+  map("n", "<leader>q", ":q <CR>", opt)
 end)
 
 -- NOTE : opt is a variable  there (most likely a table if you want multiple options),
@@ -25,33 +25,34 @@ end)
 -- examples below:
 
 hooks.add("install_plugins", function(use)
-   use { "tpope/vim-unimpaired" }
-   use { "tpope/vim-surround" }
-   use { "dyng/ctrlsf.vim" }
-   use { "nvim-pack/nvim-spectre" }
-   use { "nathom/filetype.nvim" }
-   use {
-      "williamboman/nvim-lsp-installer",
-      config = function()
-         local lsp_installer = require "nvim-lsp-installer"
+  use { "Pocco81/AutoSave.nvim" }
+  use { "tpope/vim-unimpaired" }
+  use { "tpope/vim-surround" }
+  use { "dyng/ctrlsf.vim" }
+  use { "nvim-pack/nvim-spectre" }
+  use { "nathom/filetype.nvim" }
+  use {
+    "williamboman/nvim-lsp-installer",
+    config = function()
+      local lsp_installer = require "nvim-lsp-installer"
 
-         lsp_installer.on_server_ready(function(server)
-            local opts = {}
+      lsp_installer.on_server_ready(function(server)
+        local opts = {}
 
-            server:setup(opts)
-            vim.cmd [[ do User LspAttachBuffers ]]
-         end)
-      end,
-   }
-   -- use {
-   --    "max397574/better-escape.nvim",
-   --    event = "InsertEnter",
-   -- }
-end)
+        server:setup(opts)
+        vim.cmd [[ do User LspAttachBuffers ]]
+      end)
+    end,
+  }
+  -- use {
+    --    "max397574/better-escape.nvim",
+    --    event = "InsertEnter",
+    -- }
+  end)
 
--- NOTE: we heavily suggest using Packer's lazy loading (with the 'event' field)
--- see: https://github.com/wbthomason/packer.nvim
--- https://nvchad.github.io/config/walkthrough
+  -- NOTE: we heavily suggest using Packer's lazy loading (with the 'event' field)
+  -- see: https://github.com/wbthomason/packer.nvim
+  -- https://nvchad.github.io/config/walkthrough
 
-vim.api.nvim_set_keymap('i', '<C-j>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
-vim.api.nvim_set_keymap('i', '<C-k>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
+  vim.api.nvim_set_keymap('i', '<C-j>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
+  vim.api.nvim_set_keymap('i', '<C-k>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
