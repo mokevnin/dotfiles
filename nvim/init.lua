@@ -25,6 +25,9 @@ end)
 -- examples below:
 
 hooks.add("install_plugins", function(use)
+   use { "tpope/vim-unimpaired" }
+   use { "tpope/vim-surround" }
+   use { "dyng/ctrlsf.vim" }
    use { "nvim-pack/nvim-spectre" }
    use { "nathom/filetype.nvim" }
    use {
