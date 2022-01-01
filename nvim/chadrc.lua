@@ -10,6 +10,7 @@ M.options = {
     insert_nav = false
   },
 }
+
 M.mappings.plugins = {
   telescope = {
     buffers = "<leader>b",
@@ -18,6 +19,10 @@ M.mappings.plugins = {
     next_buffer = "[b",
     prev_buffer = "]b",
   },
+  nvimtree = {
+    toggle = "<leader><leader>",
+  },
+
 }
 
 return M

@@ -25,6 +25,7 @@ end)
 -- examples below:
 
 hooks.add("install_plugins", function(use)
+   use { "nvim-pack/nvim-spectre" }
    use { "nathom/filetype.nvim" }
    use {
       "williamboman/nvim-lsp-installer",
