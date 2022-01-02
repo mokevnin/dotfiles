@@ -25,12 +25,49 @@ end)
 -- examples below:
 
 hooks.add("install_plugins", function(use)
-  use { "Pocco81/AutoSave.nvim" }
+  use {
+    "Pocco81/AutoSave.nvim",
+    config = function()
+      local autosave = require "autosave"
+
+      autosave.setup {
+        enabled = true,
+        execution_message = "autosaved at : " .. vim.fn.strftime "%H:%M:%S",
+        events = { "InsertLeave", "TextChanged" },
+        conditions = {
+          exists = true,
+          filetype_is_not = {},
+          modifiable = true,
+        },
+        clean_command_line_interval = 2500,
+        on_off_commands = true,
+        write_all_buffers = false,
+      }
+    end,
+  }
+
   use { "tpope/vim-unimpaired" }
   use { "tpope/vim-surround" }
   use { "dyng/ctrlsf.vim" }
   use { "nvim-pack/nvim-spectre" }
   use { "nathom/filetype.nvim" }
+  -- use { "plasticboy/vim-markdown" }
+
+  use {
+    "nvim-telescope/telescope-media-files.nvim",
+    after = "telescope.nvim",
+    config = function()
+      require("telescope").setup {
+        extensions = {
+          media_files = {
+            filetypes = { "png", "webp", "jpg", "jpeg" },
+            find_cmd = "rg", -- find command (defaults to `fd`)
+          },
+        },
+      }
+      require("telescope").load_extension "media_files"
+    end,
+  }
   use {
     "williamboman/nvim-lsp-installer",
     config = function()
