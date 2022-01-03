@@ -42,46 +42,44 @@ make ubuntu-update
 * Switch `<ctrl>` and `<caps lock>`
 * Use `<ctrl> + [` instead of `<Esc>`
 * `<leader>` – Space
-<!-- * `<leader> s` – save current file -->
 
-### Moving between visible buffers
+### Navigation
 
-* `<ctrl> h` – move left or open new left split
-* `<ctrl> l` – move right or open new right split
-* `<ctrl> k` – move up or open new top split
-* `<ctrl> j` – move down or open new bottom split
+#### Moving between visible buffers
 
-### File Tree
+* `<C-h>` – move left or open new left split
+* `<C-l>` – move right or open new right split
+* `<C-k>` – move up or open new top split
+* `<C-j>` – move down or open new bottom split
 
-* `<leader><leader>` – toggle filetree
-* `<ctrl> n` – locate opened file in the filetree
-
-### Searching and Navigation
-
-* `<leader> o` – current buffer tags
-* `<leader> p` – fuzzy search (files under git)
-* `<leader> g` – git grep
-* `<leader> b` – show buffer list
-
-### Lists
+#### Lists
 
 * `<ctrl> n` – next item
 * `<ctrl> p` – previous item
 
+### File Tree
+
+* `<leader><leader>` – toggle filetree
+* `<C-n>` – locate opened file in the filetree
+* `o` – open directory or file
+
+### Searching and Navigation
+
+* `<leader> sf` – find files
+* `<leader> sg` – git grep
+* `<leader> sc` – find commits
+* `<leader> so` – symbols
+* `<leader> sr` – references
+* `<leader> b` – show buffer list
+* `<leader>S` – search & replace
+
 ### Code editing and code navigation
 
 * `gcc` – toggle commenting
-* `gj` – navigate through blocks of code – (), {}, [], etс
 * `gf` – open a file corresponding to a word under the cursor
 * `gd` – go to definition
 * `g;` – go to the last edited line in the current opened buffer
-* `gS` – convert oneline expression to multiline (useful for functions, arguments, data structures)
 * `gv` – reselect last visual selection
-* `<ctrl> n` – insert next matching word (multicursor)
-* `]g` and `[g` – go through linter errors
-* `"y` & `"p` – copy text to system clipboard
-* `]<leader>` and `[<leader>` – add  empty line  above and under cursor
-* `<leader> d` – coc diagnostic
-* `<leader> f` – format in visual mode (prettier)
-* `<leader> fr` – search & replace
-* `<leader> rn` – replace word under cursor in current file
+* `]g` and `[g` – go through diagnostics
+* `]<leader>` and `[<leader>` – add empty line above and under cursor
+* `<leader>ca` – show code actions

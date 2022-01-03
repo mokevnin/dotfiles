@@ -36,6 +36,8 @@ require('packer').startup({
     }
     -- use 'glepnir/dashboard-nvim'
     use 'tpope/vim-surround'
+    use 'windwp/nvim-spectre'
+    use 'dyng/ctrlsf.vim'
     use {
       'marko-cerovac/material.nvim'
     }
@@ -60,7 +62,13 @@ require('packer').startup({
         -- FIXME: enable sort_mru
         require('telescope').setup{
           defaults = {
-            sorting_strategy = "ascending"
+            sorting_strategy = "ascending",
+            mappings = {
+              i = {
+                ['<C-u>'] = false,
+                ['<C-d>'] = false,
+              },
+            },
           },
           pickers = {
             buffers = {
@@ -96,17 +104,17 @@ require('packer').startup({
       config = function() require('nvim-tree').setup {} end
     }
 
-    use {
-      "folke/trouble.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
-      config = function()
-        require("trouble").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-        }
-      end
-    }
+    -- use {
+    --   "folke/trouble.nvim",
+    --   requires = "kyazdani42/nvim-web-devicons",
+    --   config = function()
+    --     require("trouble").setup {
+    --       -- your configuration comes here
+    --       -- or leave it empty to use the default settings
+    --       -- refer to the configuration section below
+    --     }
+    --   end
+    -- }
 
     require('plugins.treesitter').run(use)
     require('plugins.lsp').run(use)
