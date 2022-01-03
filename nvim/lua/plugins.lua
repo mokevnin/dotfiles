@@ -99,6 +99,8 @@ require('packer').startup({
       config = function() require('nvim-tree').setup {} end
     }
 
+    use { 'windwp/nvim-ts-autotag' }
+
     require('plugins.treesitter').run(use)
     require('plugins.lsp').run(use)
     require('plugins.autocomplete').run(use)

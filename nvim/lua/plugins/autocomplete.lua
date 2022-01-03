@@ -74,7 +74,10 @@ function M.run(use)
   use {
     'ray-x/lsp_signature.nvim',
     config = function ()
-      require "lsp_signature".setup()
+      require "lsp_signature".setup({
+        -- debug = true,
+        -- log_path = '/tmp/debug.log'
+      })
     end
   }
 

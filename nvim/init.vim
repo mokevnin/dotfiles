@@ -19,6 +19,8 @@ set termguicolors
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>"
 
+let g:vimsyn_embed = 'l'
+
 colorscheme material
 
 map <C-k> <C-w><Up>
@@ -59,11 +61,10 @@ nnoremap <leader>S :lua require('spectre').open()<CR>
 " automatically run :PackerCompile whenever plugins.lua is updated
 augroup packer_user_config
   autocmd!
-  autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  autocmd BufWritePost plugins.lua config.lua | PackerCompile
+  autocmd BufWritePost config.lua config.lua | PackerCompile
+  autocmd BufWritePost *plugins* config.lua | PackerCompile
 augroup end
-
-" https://github.com/neovim/nvim-lspconfig/wiki/Code-Actions
- " autocmd CursorHold,CursorHoldI * lua require('code_action_utils').code_action_listener()
 
 " Highlight on yank
 " nnoremap gV `[v`]
