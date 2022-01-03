@@ -59,7 +59,7 @@ function M.run(use)
     end
   }
   use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'romgrk/nvim-treesitter-context'
+  -- use 'romgrk/nvim-treesitter-context'
 end
 
 return M
