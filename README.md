@@ -37,6 +37,8 @@ make ubuntu-update
 
 ## VIM
 
+Run `:PackerSync` after each pulling (git pull)
+
 ### Main
 
 * Switch `<ctrl>` and `<caps lock>`
