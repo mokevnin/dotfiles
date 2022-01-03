@@ -1,4 +1,6 @@
-return function(use)
+local M = {}
+
+function M.run(use)
   use {
     'hrsh7th/nvim-cmp',
     config = function()
@@ -46,17 +48,45 @@ return function(use)
         sources = {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
+          { name = 'path' },
+          { name = 'buffer' },
+          { name = 'cmdline' },
+          { name = 'path' },
         },
       }
-    end,
-    requires = {
-      'hrsh7th/cmp-nvim-lsp',
-      'neovim/nvim-lspconfig',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-    }
+    end
   }
+
+  use {
+    'hrsh7th/cmp-nvim-lsp',
+    'neovim/nvim-lspconfig',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
+  }
+
+  use {
+    'onsails/lspkind-nvim',
+    config = function ()
+      local lspkind = require('lspkind')
+      local cmp = require 'cmp'
+      cmp.setup {
+        formatting = {
+          format = lspkind.cmp_format({
+            with_text = false, -- do not show text alongside icons
+            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+          })
+        }
+      }
+
+    end
+  }
+
+  -- nvim-cmp supports additional completion capabilities
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 end
+
+return M

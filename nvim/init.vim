@@ -9,6 +9,7 @@ set smartcase
 set undofile
 set ignorecase
 set scrolloff=3
+" :set numberwidth=1
 set completeopt=menu,menuone,noselect
 set termguicolors
 
@@ -57,9 +58,9 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " vim.api.nvim_set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], { noremap = true, silent = true })
 " vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 
-nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
-nnoremap <leader>n :NvimTreeFindFile<CR>
+nnoremap <leader><leader> :NvimTreeToggle<CR>
+" nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <C-n> :NvimTreeFindFile<CR>
 
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
 
@@ -70,7 +71,7 @@ nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 " automatically run :PackerCompile whenever plugins.lua is updated
 augroup packer_user_config
   autocmd!
-  autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  autocmd BufWritePost plugins.lua source <afile> | PackerCompile
 augroup end
 
 " https://github.com/neovim/nvim-lspconfig/wiki/Code-Actions
