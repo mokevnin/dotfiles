@@ -2,6 +2,13 @@ require('packer').startup({
 
   function(use)
     use { 'tpope/vim-sensible' }
+    use {
+      'Pocco81/AutoSave.nvim',
+      config = function ()
+        local autosave = require("autosave")
+        autosave.setup()
+      end
+    }
 
     use {
       'windwp/nvim-autopairs',
