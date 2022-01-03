@@ -7,6 +7,9 @@ function M.run(use)
       -- luasnip setup
       local luasnip = require 'luasnip'
 
+      require("luasnip").config.set_config({ history = true, updateevents = "TextChanged,TextChangedI" })
+      require("luasnip.loaders.from_vscode").load()
+
       -- nvim-cmp setup
       local cmp = require 'cmp'
       cmp.setup {
@@ -67,6 +70,15 @@ function M.run(use)
     'saadparwaiz1/cmp_luasnip',
   }
 
+  -- FIXME: not working
+  use {
+    'ray-x/lsp_signature.nvim',
+    config = function ()
+      require "lsp_signature".setup()
+    end
+  }
+
+
   use {
     'onsails/lspkind-nvim',
     config = function ()
@@ -86,6 +98,10 @@ function M.run(use)
 
   -- nvim-cmp supports additional completion capabilities
   local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = { "documentation", "detail", "additionalTextEdits" },
+  }
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 end
 

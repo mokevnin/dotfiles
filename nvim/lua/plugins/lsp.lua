@@ -54,15 +54,6 @@ function M.run(use)
 
 
   use 'kosayoda/nvim-lightbulb'
-
-  -- FIXME: not working
-  use {
-    'ray-x/lsp_signature.nvim',
-    config = function ()
-      require "lsp_signature".setup()
-    end
-  }
-
 end
 
 return M
