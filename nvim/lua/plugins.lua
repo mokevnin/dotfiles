@@ -6,6 +6,8 @@ require('packer').startup({
     use { 'tpope/vim-sensible' }
     use 'mhinz/vim-startify'
     use 'tpope/vim-repeat'
+    use 'mfussenegger/nvim-dap'
+    use 'Pocco81/DAPInstall.nvim'
     -- use {
     --   'iamcco/markdown-preview.nvim',
     --   run = 'mkdp#util#install()'
@@ -23,7 +25,8 @@ require('packer').startup({
       config = function()
         local npairs = require('nvim-autopairs')
         npairs.setup({
-          check_ts = true, fast_wrap = true
+
+          check_ts = true
         })
         npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
         npairs.add_rules(require('nvim-autopairs.rules.endwise-elixir'))
