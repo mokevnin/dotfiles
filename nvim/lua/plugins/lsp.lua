@@ -7,6 +7,23 @@ function M.run(use)
     config = function()
       local lsp_installer = require "nvim-lsp-installer"
 
+      local servers = {
+        'bashls', 'pyright', 'yamlls', 'ansiblels', 'cssls', 'diagnosticls', 'eslint',
+        'emmet_ls', 'gopls', 'html', 'jsonls', 'jdtls', 'tsserver', 'sumneko_lua',
+        'zk', 'phpactor', 'solargraph', 'sqlls', 'sorbet', 'stylelint_lsp', 'terraformls',
+        'vimls', 'lemminx'
+      }
+
+      for _, name in pairs(servers) do
+        local server_is_found, server = lsp_installer.get_server(name)
+        if server_is_found then
+          if not server:is_installed() then
+            print("Installing " .. name)
+            server:install()
+          end
+        end
+      end
+
       local on_attach = function(_, bufnr)
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 

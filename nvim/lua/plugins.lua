@@ -5,6 +5,7 @@ require('packer').startup({
   function(use)
     use { 'tpope/vim-sensible' }
     use 'mhinz/vim-startify'
+    use 'tpope/vim-repeat'
     -- use {
     --   'iamcco/markdown-preview.nvim',
     --   run = 'mkdp#util#install()'
