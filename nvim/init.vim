@@ -61,9 +61,9 @@ nnoremap <leader>S :lua require('spectre').open()<CR>
 " automatically run :PackerCompile whenever plugins.lua is updated
 augroup packer_user_config
   autocmd!
-  autocmd BufWritePost plugins.lua config.lua | PackerCompile
-  autocmd BufWritePost config.lua config.lua | PackerCompile
-  autocmd BufWritePost *plugins* config.lua | PackerCompile
+  autocmd BufWritePost plugins.lua source ~/.config/nvim/lua/config.lua | PackerCompile
+  autocmd BufWritePost config.lua source ~/.config/nvim/lua/config.lua | PackerCompile
+  autocmd BufWritePost *plugins* source ~/.config/nvim/lua/config.lua | PackerCompile
 augroup end
 
 " Highlight on yank

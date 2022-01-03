@@ -1,5 +1,5 @@
--- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
--- https://github.com/wbthomason/packer.nvim
+-- https://github.com/nvim-lua/kickstart.nvim
+-- https://github.com/nanotee/nvim-lua-guide
 
 -- https://github.com/nanotee/nvim-lua-guide#tips-2
 function _G.put(...)

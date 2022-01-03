@@ -1,7 +1,14 @@
+-- https://github.com/wbthomason/packer.nvim
+
 require('packer').startup({
 
   function(use)
     use { 'tpope/vim-sensible' }
+    use 'mhinz/vim-startify'
+    -- use {
+    --   'iamcco/markdown-preview.nvim',
+    --   run = 'mkdp#util#install()'
+    -- }
     use {
       'Pocco81/AutoSave.nvim',
       config = function ()
