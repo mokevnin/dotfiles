@@ -3,7 +3,7 @@ local M = {}
 function M.run(use)
   use {
     'williamboman/nvim-lsp-installer',
-    requires = { { 'neovim/nvim-lspconfig' } },
+    requires = { 'neovim/nvim-lspconfig' },
     config = function()
       local lsp_installer = require "nvim-lsp-installer"
 
@@ -45,12 +45,14 @@ function M.run(use)
   }
 
 
-  -- use {
-  --   'ray-x/lsp_signature.nvim',
-  --   config = function ()
-  --     require "lsp_signature".setup()
-  --   end
-  -- }
+  use 'kosayoda/nvim-lightbulb'
+
+  use {
+    'ray-x/lsp_signature.nvim',
+    config = function ()
+      require "lsp_signature".setup()
+    end
+  }
 
 end
 
