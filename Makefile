@@ -13,16 +13,17 @@ TAGS := all
 dotfiles-install:
 	 docker run --rm -e RUNNER_PLAYBOOK=dotfiles.yml -v $(HOME):/host/home -v $(CURDIR):/runner/project ansible/ansible-runner
 
+PACKER_PATH=~/.local/share/nvim/site/pack/packer/start
+
 nvim-install:
-	# https://github.com/NvChad/NvChad
-	# https://nvchad.github.io/getting-started/setup
-	git clone https://github.com/NvChad/NvChad ~/.config/nvim || true
-	# nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
-	# mkdir -p ~/.config/nvim
-	ln -snf $(PWD)/nvim ~/.config/nvim/lua/custom
+	rm -rf $(PACKER_PATH) || exit 0
+	mkdir -p $(PACKER_PATH)
+	git clone --depth 1 https://github.com/wbthomason/packer.nvim $(PACKER_PATH)/packer.nvim
+	ln -snf $(PWD)/nvim ~/.config/nvim
 	# ln -sf $(PWD)/files/vimrc ~/.config/nvim/init.vim
 	# ln -sf $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json
 	# ln -snf $(PWD)/files/vim-ftplugins ~/.config/nvim/ftplugin
+	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 macos-prepare:
 	brew upgrade neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed

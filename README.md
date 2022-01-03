@@ -37,19 +37,12 @@ make ubuntu-update
 
 ## VIM
 
-### Update
-
-```vim
-:PlugUpdate
-:CocCommand java.updateLanguageServer
-```
-
 ### Main
 
 * Switch `<ctrl>` and `<caps lock>`
 * Use `<ctrl> + [` instead of `<Esc>`
 * `<leader>` – Space
-* `<leader> s` – save current file
+<!-- * `<leader> s` – save current file -->
 
 ### Moving between visible buffers
 
@@ -69,6 +62,11 @@ make ubuntu-update
 * `<leader> p` – fuzzy search (files under git)
 * `<leader> g` – git grep
 * `<leader> b` – show buffer list
+
+### Lists
+
+* `<ctrl> n` – next item
+* `<ctrl> p` – previous item
 
 ### Code editing and code navigation
 
