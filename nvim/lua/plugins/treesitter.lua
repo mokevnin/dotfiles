@@ -1,6 +1,8 @@
 local M = {}
 
 function M.run(use)
+  use 'andymass/vim-matchup'
+
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -21,6 +23,9 @@ function M.run(use)
         },
         indent = {
           enable = true,
+        },
+        matchup = {
+          enable = true
         },
         textobjects = {
           select = {

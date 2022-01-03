@@ -23,7 +23,7 @@ require('packer').startup({
       config = function()
         local npairs = require('nvim-autopairs')
         npairs.setup({
-          check_ts = true,
+          check_ts = true, fast_wrap = true
         })
         npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
         npairs.add_rules(require('nvim-autopairs.rules.endwise-elixir'))
@@ -56,8 +56,6 @@ require('packer').startup({
       'terrortylor/nvim-comment',
       config = function() require('nvim_comment').setup() end
     }
-
-    -- use { 'andymass/vim-matchup' }
 
     use {
       'nvim-telescope/telescope.nvim',
