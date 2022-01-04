@@ -57,29 +57,31 @@ function M.run(use)
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+      local enhance_server_opts = {
+        ["jsonls"] = function(opts)
+          opts.settings = {
+            json = {
+              schemas = require('schemastore').json.schemas()
+            },
+          }
+        end,
+      }
+
       lsp_installer.on_server_ready(function(server)
         local opts = {
           on_attach = on_attach,
           capabilities = capabilities,
         }
 
+        if enhance_server_opts[server.name] then
+          -- Enhance the default opts with the server-specific ones
+          enhance_server_opts[server.name](opts)
+        end
+
         server:setup(opts)
         vim.cmd [[ do User LspAttachBuffers ]]
       end)
     end,
-  }
-
-  use {
-    'neovim/nvim-lspconfig',
-    config = function ()
-      require('lspconfig').jsonls.setup {
-        settings = {
-          json = {
-            schemas = require('schemastore').json.schemas(),
-          },
-        },
-      }
-    end
   }
 
   use 'kosayoda/nvim-lightbulb'
