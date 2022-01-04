@@ -5,14 +5,17 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNO
 " set mouse=a
 set breakindent
 set number
+set numberwidth=2
+set norelativenumber
+set cpoptions+=n
 set signcolumn=yes
 set updatetime=250
 set smartcase
 set undofile
+set cul
 " set undodir=/tmp/.vim/backups
 set ignorecase
 set scrolloff=3
-" :set numberwidth=1
 set completeopt=menu,menuone,noselect
 set termguicolors
 
