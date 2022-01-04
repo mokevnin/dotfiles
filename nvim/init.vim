@@ -58,6 +58,9 @@ nnoremap <C-n> :NvimTreeFindFile<CR>
 
 nnoremap <leader>S :lua require('spectre').open()<CR>
 
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+
 " automatically run :PackerCompile whenever plugins.lua is updated
 augroup packer_user_config
   autocmd!

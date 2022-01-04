@@ -20,6 +20,7 @@ require('packer').startup({
       end
     }
 
+    use { 'ntpeters/vim-better-whitespace' }
     use {
       'windwp/nvim-autopairs',
       config = function()
