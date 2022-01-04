@@ -42,6 +42,8 @@ require('packer').startup({
     use 'tpope/vim-sleuth'
     use 'wbthomason/packer.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
+    use 'tpope/vim-rails'
+
     use {
       'feline-nvim/feline.nvim',
       after = "nvim-web-devicons",
