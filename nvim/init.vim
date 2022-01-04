@@ -26,6 +26,12 @@ let g:vimsyn_embed = 'l'
 
 colorscheme material
 
+vmap "y "*y
+nmap "y "*y
+nmap "Y "*Y
+nmap "p "*p
+nmap "P "*P
+
 map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
