@@ -76,6 +76,7 @@ require('packer').startup({
           defaults = {
             sorting_strategy = "ascending",
             mappings = {
+              -- restore default behavior
               i = {
                 ['<C-u>'] = false,
                 ['<C-d>'] = false,
