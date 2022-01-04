@@ -69,6 +69,18 @@ function M.run(use)
     end,
   }
 
+  use {
+    'neovim/nvim-lspconfig',
+    config = function ()
+      require('lspconfig').jsonls.setup {
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+          },
+        },
+      }
+    end
+  }
 
   use 'kosayoda/nvim-lightbulb'
 end

@@ -8,6 +8,7 @@ require('packer').startup({
     use 'tpope/vim-repeat'
     use 'mfussenegger/nvim-dap'
     use 'Pocco81/DAPInstall.nvim'
+    use 'b0o/schemastore.nvim'
     -- use {
     --   'iamcco/markdown-preview.nvim',
     --   run = 'mkdp#util#install()'
@@ -44,7 +45,11 @@ require('packer').startup({
     use {
       'feline-nvim/feline.nvim',
       after = "nvim-web-devicons",
-      config = function() require('feline').setup() end
+      config = function()
+        require('feline').setup({
+          -- preset = 'noicon'
+        })
+      end
     }
     -- use 'glepnir/dashboard-nvim'
     use 'tpope/vim-surround'
