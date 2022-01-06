@@ -65,6 +65,8 @@ nnoremap <leader>sh <cmd>Telescope help_tags<cr>
 nnoremap <leader><leader> :NvimTreeToggle<CR>
 nnoremap <C-n> :NvimTreeFindFile<CR>
 
+nnoremap <leader>ff :Format<CR>
+
 nnoremap <leader>S :lua require('spectre').open()<CR>
 
 let g:better_whitespace_enabled=1
@@ -84,3 +86,5 @@ augroup YankHighlight
   autocmd!
   autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 augroup end
+
+autocmd FileType java setlocal shiftwidth=4 softtabstop=4 expandtab
