@@ -71,12 +71,12 @@ let g:better_whitespace_enabled=1
 " let g:strip_whitespace_on_save=1
 
 " automatically run :PackerCompile whenever plugins.lua is updated
-augroup packer_user_config
-  autocmd!
-  autocmd BufWritePost plugins.lua source ~/.config/nvim/lua/config.lua | PackerCompile
-  autocmd BufWritePost config.lua source ~/.config/nvim/lua/config.lua | PackerCompile
-  autocmd BufWritePost *plugins* source ~/.config/nvim/lua/config.lua | PackerCompile
-augroup end
+" augroup packer_user_config
+"   autocmd!
+"   autocmd BufWritePost plugins.lua source ~/.config/nvim/lua/config.lua | PackerCompile
+"   autocmd BufWritePost config.lua source ~/.config/nvim/lua/config.lua | PackerCompile
+"   autocmd BufWritePost *plugins* source ~/.config/nvim/lua/config.lua | PackerCompile
+" augroup end
 
 " Highlight on yank
 " nnoremap gV `[v`]

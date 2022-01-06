@@ -46,6 +46,23 @@ require('packer').startup({
     use 'tpope/vim-rails'
     use 'slim-template/vim-slim'
 
+    -- use {
+    --   'jose-elias-alvarez/null-ls.nvim',
+    --   config = function()
+    --     local ls = require('null-ls')
+    --     -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+    --     ls.setup({
+    --       sources = {
+    --         ls.builtins.formatting.stylua,
+    --         ls.builtins.formatting.gofmt,
+    --         ls.builtins.formatting.prettierd,
+    --         ls.builtins.formatting.terraform_fmt,
+    --         ls.builtins.formatting.uncrustify,
+    --         -- ls.builtins.formatting.hadolint,
+    --       },
+    --     })
+    --   end
+    -- }
     use {
       'feline-nvim/feline.nvim',
       after = "nvim-web-devicons",
