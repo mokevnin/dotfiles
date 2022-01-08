@@ -24,6 +24,7 @@ require('packer').startup({
     use { 'ntpeters/vim-better-whitespace' }
     use {
       'windwp/nvim-autopairs',
+      requires = { 'hrsh7th/nvim-cmp' },
       config = function()
         local npairs = require('nvim-autopairs')
         npairs.setup({
@@ -90,7 +91,6 @@ require('packer').startup({
     use {
       'nvim-telescope/telescope.nvim',
       config = function()
-        -- FIXME: enable sort_mru
         require('telescope').setup{
           defaults = {
             sorting_strategy = "ascending",
