@@ -79,9 +79,6 @@ require('packer').startup({
     use 'dyng/ctrlsf.vim'
     use {
       'marko-cerovac/material.nvim',
-      run = function ()
-        vim.cmd 'colorscheme material'
-      end
     }
 
     use { 'tpope/vim-unimpaired' }
