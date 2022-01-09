@@ -16,13 +16,13 @@ dotfiles-install:
 PACKER_PATH=~/.local/share/nvim/site/pack/packer/start
 
 nvim-install:
+	rm -rf nvim/plugin || exit 0
+	rm -rf ~/.local/share/nvim || exit 0
+	rm -rf ~/.config/nvim || exit 0
 	rm -rf $(PACKER_PATH) || exit 0
 	mkdir -p $(PACKER_PATH)
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim $(PACKER_PATH)/packer.nvim
 	ln -snf $(PWD)/nvim ~/.config/nvim
-	# ln -sf $(PWD)/files/vimrc ~/.config/nvim/init.vim
-	# ln -sf $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json
-	# ln -snf $(PWD)/files/vim-ftplugins ~/.config/nvim/ftplugin
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 macos-prepare:

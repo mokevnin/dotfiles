@@ -24,8 +24,8 @@ let maplocalleader = "\<Space>"
 
 let g:vimsyn_embed = 'l'
 
-silent! syntax enable
-colorscheme material
+" supress error during setup
+silent! colorscheme material
 
 vmap "y "*y
 nmap "y "*y

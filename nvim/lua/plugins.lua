@@ -1,8 +1,9 @@
 -- https://github.com/wbthomason/packer.nvim
 
-require('packer').startup({
+return require('packer').startup({
 
   function(use)
+    use 'wbthomason/packer.nvim'
     use { 'tpope/vim-sensible' }
     use 'mhinz/vim-startify'
     use 'tpope/vim-repeat'
@@ -24,12 +25,14 @@ require('packer').startup({
     use { 'ntpeters/vim-better-whitespace' }
     use {
       'windwp/nvim-autopairs',
-      requires = { 'hrsh7th/nvim-cmp' },
+      requires = {
+        'hrsh7th/nvim-cmp',
+        'nvim-treesitter/nvim-treesitter',
+      },
       config = function()
         local npairs = require('nvim-autopairs')
         npairs.setup({
-
-          check_ts = true
+          -- check_ts = true
         })
         npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
         npairs.add_rules(require('nvim-autopairs.rules.endwise-elixir'))
@@ -37,11 +40,10 @@ require('packer').startup({
 
         local cmp_autopairs = require('nvim-autopairs.completion.cmp')
         local cmp = require('cmp')
-        cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+        cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
       end
     }
     use 'tpope/vim-sleuth'
-    use 'wbthomason/packer.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
 
     use 'tpope/vim-rails'
@@ -85,9 +87,11 @@ require('packer').startup({
 
     use {
       'terrortylor/nvim-comment',
-      config = function() require('nvim_comment').setup() end
+      config = function ()
+        require('nvim_comment').setup()
+      end
     }
-
+--
     use {
       'nvim-telescope/telescope.nvim',
       config = function()
@@ -149,8 +153,6 @@ require('packer').startup({
         }
       end
     }
-    -- https://github.com/folke/todo-comments.nvim
-    -- https://github.com/norcalli/nvim-colorizer.lua
 
     require('plugins.treesitter').run(use)
     require('plugins.lsp').run(use)
