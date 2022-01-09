@@ -78,7 +78,10 @@ require('packer').startup({
     use 'windwp/nvim-spectre'
     use 'dyng/ctrlsf.vim'
     use {
-      'marko-cerovac/material.nvim'
+      'marko-cerovac/material.nvim',
+      run = function ()
+        vim.cmd 'colorscheme material'
+      end
     }
 
     use { 'tpope/vim-unimpaired' }
