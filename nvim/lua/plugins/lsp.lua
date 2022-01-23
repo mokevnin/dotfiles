@@ -2,39 +2,38 @@ local M = {}
 
 function M.run(use)
   use {
+    'neovim/nvim-lspconfig',
     'williamboman/nvim-lsp-installer',
-    requires = { 'neovim/nvim-lspconfig' },
     config = function()
-      local lsp_installer = require "nvim-lsp-installer"
+      local lsp_installer = require("nvim-lsp-installer")
 
       local servers = {
         'bashls', 'pyright', 'yamlls', 'ansiblels', 'cssls', 'diagnosticls', 'eslint',
         'emmet_ls', 'gopls', 'html', 'jsonls', 'jdtls', 'tsserver', 'sumneko_lua',
-        'dockerls', 'phpactor', 'solargraph', 'sqlls', 'sorbet', 'stylelint_lsp', 'terraformls',
+        'dockerls', 'phpactor', 'sqlls', 'sorbet', 'stylelint_lsp', 'terraformls',
         'vimls', 'lemminx'
+      }
+
+      local enhance_server_opts = {
+        ["jsonls"] = function(opts)
+          opts.settings = {
+            json = {
+              schemas = require('schemastore').json.schemas()
+            },
+          }
+        end,
       }
 
       for _, name in pairs(servers) do
         local server_is_found, server = lsp_installer.get_server(name)
-        if server_is_found then
-          if not server:is_installed() then
-            print("Installing " .. name)
-            server:install()
-          end
+        if server_is_found and not server:is_installed() then
+          print("Installing " .. name)
+          server:install()
         end
       end
 
       local on_attach = function(_, bufnr)
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-        -- require "lsp_signature".on_attach({
-        --   debug = true,
-        --   bind = true,
-        --   handler_opts = {
-        --     border = 'rounded'
-        --   }
-        -- }, bufnr)
-
         local opts = { noremap = true, silent = true }
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -56,16 +55,7 @@ function M.run(use)
       end
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-      local enhance_server_opts = {
-        ["jsonls"] = function(opts)
-          opts.settings = {
-            json = {
-              schemas = require('schemastore').json.schemas()
-            },
-          }
-        end,
-      }
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       lsp_installer.on_server_ready(function(server)
         local opts = {
@@ -74,7 +64,6 @@ function M.run(use)
         }
 
         if enhance_server_opts[server.name] then
-          -- Enhance the default opts with the server-specific ones
           enhance_server_opts[server.name](opts)
         end
 
