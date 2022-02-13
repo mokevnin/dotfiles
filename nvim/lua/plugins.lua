@@ -1,4 +1,5 @@
 -- https://github.com/wbthomason/packer.nvim
+-- https://github.com/nvim-lua/kickstart.nvim
 
 return require('packer').startup({
 
@@ -151,10 +152,10 @@ return require('packer').startup({
       },
       config = function() require('nvim-tree').setup {} end
     }
-    use {
-      "beauwilliams/focus.nvim",
-      config = function() require("focus").setup() end
-    }
+    -- use {
+    --   "beauwilliams/focus.nvim",
+    --   config = function() require("focus").setup() end
+    -- }
 
     use { 'windwp/nvim-ts-autotag' }
 
