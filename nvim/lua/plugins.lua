@@ -14,6 +14,7 @@ return require('packer').startup({
     --   'iamcco/markdown-preview.nvim',
     --   run = 'mkdp#util#install()'
     -- }
+    -- https://github.com/gelguy/wilder.nvim
     use {
       'Pocco81/AutoSave.nvim',
       config = function ()
@@ -23,6 +24,16 @@ return require('packer').startup({
     }
 
     use { 'ntpeters/vim-better-whitespace' }
+
+    use { "ellisonleao/glow.nvim" }
+    use {
+      "danymat/neogen",
+      config = function()
+        require('neogen').setup {}
+      end,
+      requires = "nvim-treesitter/nvim-treesitter",
+    }
+
     use {
       'windwp/nvim-autopairs',
       requires = {
@@ -86,9 +97,9 @@ return require('packer').startup({
     use { 'tpope/vim-unimpaired' }
 
     use {
-      'terrortylor/nvim-comment',
+      'numToStr/Comment.nvim',
       config = function ()
-        require('nvim_comment').setup()
+        require('Comment').setup()
       end
     }
 --
@@ -140,6 +151,10 @@ return require('packer').startup({
       },
       config = function() require('nvim-tree').setup {} end
     }
+    use {
+      "beauwilliams/focus.nvim",
+      config = function() require("focus").setup() end
+    }
 
     use { 'windwp/nvim-ts-autotag' }
 
@@ -160,6 +175,8 @@ return require('packer').startup({
 
   end,
   config = {
+    enable = true,
+    -- log = { level = 'debug' },
     display = {
       open_fn = require('packer.util').float,
     }

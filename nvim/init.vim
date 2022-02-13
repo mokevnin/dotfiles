@@ -25,6 +25,8 @@ let maplocalleader = "\<Space>"
 let g:vimsyn_embed = 'l'
 
 " supress error during setup
+let g:material_style = 'deep ocean'
+
 silent! colorscheme material
 
 vmap "y "*y
