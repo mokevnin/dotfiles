@@ -59,7 +59,7 @@ return require('packer').startup({
     use 'lukas-reineke/indent-blankline.nvim'
 
     use 'tpope/vim-rails'
-    use 'slim-template/vim-slim'
+    use 'onemanstartup/vim-slim'
 
     -- use {
     --   'jose-elias-alvarez/null-ls.nvim',
