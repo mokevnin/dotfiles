@@ -60,6 +60,7 @@ return require('packer').startup({
 
     use 'tpope/vim-rails'
     use 'slim-template/vim-slim'
+    use 'dhruvasagar/vim-table-mode'
 
     -- use {
     --   'jose-elias-alvarez/null-ls.nvim',
