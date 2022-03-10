@@ -58,6 +58,7 @@ return require('packer').startup({
     use 'tpope/vim-sleuth'
     use 'lukas-reineke/indent-blankline.nvim'
 
+    use 'isobit/vim-caddyfile'
     use 'tpope/vim-rails'
     use 'slim-template/vim-slim'
     use 'dhruvasagar/vim-table-mode'
