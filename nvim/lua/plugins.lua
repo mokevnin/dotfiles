@@ -8,9 +8,22 @@ return require('packer').startup({
     use { 'tpope/vim-sensible' }
     use 'mhinz/vim-startify'
     use 'tpope/vim-repeat'
-    use 'mfussenegger/nvim-dap'
-    use 'Pocco81/DAPInstall.nvim'
-    use 'b0o/schemastore.nvim'
+    use {
+      'kyazdani42/nvim-tree.lua',
+      requires = {
+        'kyazdani42/nvim-web-devicons', -- optional, for file icon
+      },
+      config = function() require('nvim-tree').setup {} end
+    }   use 'b0o/schemastore.nvim'
+    use {
+      'feline-nvim/feline.nvim',
+      after = "nvim-web-devicons",
+      config = function()
+        require('feline').setup({
+          -- preset = 'noicon'
+        })
+      end
+    }
     -- use {
     --   'iamcco/markdown-preview.nvim',
     --   run = 'mkdp#util#install()'
@@ -80,15 +93,6 @@ return require('packer').startup({
     --     })
     --   end
     -- }
-    use {
-      'feline-nvim/feline.nvim',
-      after = "nvim-web-devicons",
-      config = function()
-        require('feline').setup({
-          -- preset = 'noicon'
-        })
-      end
-    }
     -- use 'glepnir/dashboard-nvim'
     use 'tpope/vim-surround'
     use 'windwp/nvim-spectre'
@@ -147,19 +151,10 @@ return require('packer').startup({
       end
     }
 
-    use {
-      'kyazdani42/nvim-tree.lua',
-      requires = {
-        'kyazdani42/nvim-web-devicons', -- optional, for file icon
-      },
-      config = function() require('nvim-tree').setup {} end
-    }
     -- use {
     --   "beauwilliams/focus.nvim",
     --   config = function() require("focus").setup() end
     -- }
-
-    use { 'windwp/nvim-ts-autotag' }
 
     use {
       "folke/which-key.nvim",
@@ -171,6 +166,9 @@ return require('packer').startup({
         }
       end
     }
+
+    use 'mfussenegger/nvim-dap'
+    use 'Pocco81/DAPInstall.nvim'
 
     require('plugins.treesitter').run(use)
     require('plugins.lsp').run(use)
