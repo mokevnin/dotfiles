@@ -24,6 +24,7 @@ return require('packer').startup({
         })
       end
     }
+    -- use 'preservim/vim-markdown'
     -- use {
     --   'iamcco/markdown-preview.nvim',
     --   run = 'mkdp#util#install()'
@@ -68,7 +69,8 @@ return require('packer').startup({
         cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
       end
     }
-    use 'tpope/vim-sleuth'
+    -- use 'tpope/vim-sleuth'
+    use 'NMAC427/guess-indent.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
 
     use 'isobit/vim-caddyfile'
