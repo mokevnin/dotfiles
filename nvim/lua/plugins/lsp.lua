@@ -1,79 +1,71 @@
 local M = {}
 
 function M.run(use)
-  use { 'neovim/nvim-lspconfig' }
 
   use {
     'williamboman/nvim-lsp-installer',
-    config = function ()
-      local lsp_installer = require("nvim-lsp-installer")
+    {
+      'neovim/nvim-lspconfig',
+      config = function ()
+        local lsp_installer = require("nvim-lsp-installer")
+        lsp_installer.setup({ automatic_installation = true })
 
-      local servers = {
-        'bashls', 'pyright', 'yamlls', 'ansiblels', 'cssls', 'diagnosticls', 'eslint',
-        'emmet_ls', 'gopls', 'html', 'jsonls', 'jdtls', 'tsserver', 'sumneko_lua',
-        'dockerls', 'phpactor', 'sqlls', 'sorbet', 'stylelint_lsp', 'terraformls',
-        'vimls', 'lemminx'
-      }
-
-      local enhance_server_opts = {
-        ["jsonls"] = function(opts)
-          opts.settings = {
-            json = {
-              schemas = require('schemastore').json.schemas()
-            },
-          }
-        end,
-      }
-
-      for _, name in pairs(servers) do
-        local server_is_found, server = lsp_installer.get_server(name)
-        if server_is_found and not server:is_installed() then
-          print("Installing " .. name)
-          server:install()
-        end
-      end
-
-      local on_attach = function(_, bufnr)
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-        local opts = { noremap = true, silent = true }
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-        vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
-      end
-
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-      lsp_installer.on_server_ready(function(server)
-        local opts = {
-          on_attach = on_attach,
-          capabilities = capabilities,
+        local enhance_server_opts = {
+          ["jsonls"] = function(opts)
+            opts.settings = {
+              json = {
+                schemas = require('schemastore').json.schemas(),
+                validate = { enable = true },
+              },
+            }
+          end,
         }
 
-        if enhance_server_opts[server.name] then
-          enhance_server_opts[server.name](opts)
+        -- Diagnostic keymaps
+        vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+        vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
+        -- LSP settings
+        local lspconfig = require 'lspconfig'
+        local on_attach = function(_, bufnr)
+          local opts = { buffer = bufnr }
+          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+          vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+          vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+          vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+          vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+          vim.keymap.set('n', '<leader>wl', function()
+            vim.inspect(vim.lsp.buf.list_workspace_folders())
+          end, opts)
+          vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+          vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+          vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
+          vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+          vim.keymap.set('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
+          vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
         end
 
-        server:setup(opts)
-        vim.cmd [[ do User LspAttachBuffers ]]
-      end)
-    end,
-    requires = {
-      'neovim/nvim-lspconfig',
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+        lsp_installer.on_server_ready(function(server)
+          local opts = {
+            on_attach = on_attach,
+            capabilities = capabilities,
+          }
+
+          if enhance_server_opts[server.name] then
+            enhance_server_opts[server.name](opts)
+          end
+
+          server:setup(opts)
+          -- vim.cmd [[ do User LspAttachBuffers ]]
+        end)
+      end
     }
   }
 

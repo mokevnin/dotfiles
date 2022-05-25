@@ -70,8 +70,18 @@ return require('packer').startup({
       end
     }
     -- use 'tpope/vim-sleuth'
-    use 'NMAC427/guess-indent.nvim'
-    use 'lukas-reineke/indent-blankline.nvim'
+    use { 'NMAC427/guess-indent.nvim',
+      config = function() require('guess-indent').setup {} end,
+    }
+    use {
+      'lukas-reineke/indent-blankline.nvim',
+      config = function()
+        require('indent_blankline').setup {
+          char = '┊',
+          show_trailing_blankline_indent = false,
+        }
+      end
+    }
 
     use 'isobit/vim-caddyfile'
     use 'tpope/vim-rails'
