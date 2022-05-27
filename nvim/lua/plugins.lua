@@ -4,6 +4,8 @@
 return require('packer').startup({
 
   function(use)
+    -- https://github.com/kevinhwang91/nvim-bqf
+    -- https://github.com/gelguy/wilder.nvim
     use 'wbthomason/packer.nvim'
     use { 'tpope/vim-sensible' }
     use 'mhinz/vim-startify'
@@ -40,7 +42,10 @@ return require('packer').startup({
 
     use { 'ntpeters/vim-better-whitespace' }
 
-    use { "ellisonleao/glow.nvim" }
+    use({
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+    })
     use {
       "danymat/neogen",
       config = function()
@@ -182,9 +187,15 @@ return require('packer').startup({
     use 'mfussenegger/nvim-dap'
     use 'Pocco81/DAPInstall.nvim'
 
+    use {
+      'ray-x/lsp_signature.nvim',
+      config = function()
+        require('lsp_signature').setup()
+      end
+    }
+
     require('plugins.treesitter').run(use)
     require('plugins.lsp').run(use)
-    require('plugins.autocomplete').run(use)
 
   end,
   config = {

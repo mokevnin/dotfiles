@@ -4,6 +4,9 @@ function M.run(use)
 
   use {
     'williamboman/nvim-lsp-installer',
+    { 'ms-jpq/coq_nvim', run = 'python3 -m coq deps' },
+    'ms-jpq/coq.artifacts',
+    'ms-jpq/coq.thirdparty',
     {
       'neovim/nvim-lspconfig',
       config = function ()
@@ -49,10 +52,15 @@ function M.run(use)
           vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
         end
 
+        vim.g.coq_settings = { auto_start = 'shut-up' }
+
+        local coq = require('coq')
+
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-        lsp_installer.on_server_ready(function(server)
+        -- https://github.com/williamboman/nvim-lsp-installer/discussions/636
+        for _, server in ipairs(lsp_installer.get_installed_servers()) do
           local opts = {
             on_attach = on_attach,
             capabilities = capabilities,
@@ -62,9 +70,10 @@ function M.run(use)
             enhance_server_opts[server.name](opts)
           end
 
-          server:setup(opts)
-          -- vim.cmd [[ do User LspAttachBuffers ]]
-        end)
+          lspconfig[server.name].setup(
+            coq.lsp_ensure_capabilities(opts)
+          )
+        end
       end
     }
   }

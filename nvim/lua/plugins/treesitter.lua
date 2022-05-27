@@ -15,7 +15,7 @@ function M.run(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = function ()
+    config = function()
       require('nvim-treesitter.configs').setup {
         highlight = {
           enable = true, -- false will disable the whole extension
@@ -42,6 +42,8 @@ function M.run(use)
               ['if'] = '@function.inner',
               ['ac'] = '@class.outer',
               ['ic'] = '@class.inner',
+              ['aa'] = '@parameter.outer',
+              ['ia'] = '@parameter.inner',
             },
           },
           move = {
