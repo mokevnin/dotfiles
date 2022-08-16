@@ -33,9 +33,9 @@ return require('packer').startup({
     -- }
     -- https://github.com/gelguy/wilder.nvim
     use {
-      'Pocco81/AutoSave.nvim',
+      'pocco81/auto-save.nvim',
       config = function ()
-        local autosave = require("autosave")
+        local autosave = require("auto-save")
         autosave.setup()
       end
     }
