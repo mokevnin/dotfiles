@@ -6,6 +6,14 @@ function M.run(use)
     'windwp/nvim-ts-autotag',
     'andymass/vim-matchup',
     'JoosepAlviste/nvim-ts-context-commentstring',
+    {
+      'nvim-treesitter/nvim-treesitter-context',
+      config = function()
+        require'treesitter-context'.setup {
+          separator = '-'
+        }
+      end
+    },
     requires = {
       'nvim-treesitter/nvim-treesitter',
     }
@@ -70,7 +78,6 @@ function M.run(use)
       }
     end
   }
-  -- use 'romgrk/nvim-treesitter-context'
 end
 
 return M
