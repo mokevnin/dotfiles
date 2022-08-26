@@ -58,7 +58,12 @@ function M.run(use)
       local lspconfig = require('lspconfig')
 
       -- Automatically start coq
-      vim.g.coq_settings = { auto_start = true }
+      vim.g.coq_settings = {
+        auto_start = true,
+        keymap = {
+          jump_to_mark = '',
+        }
+      }
 
       -- Enable some language servers with the additional completion capabilities offered by coq_nvim
       local servers = { 'tsserver' }
