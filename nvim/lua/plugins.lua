@@ -191,19 +191,6 @@ return require('packer').startup({
       end
     }
 
-    use {
-      'williamboman/mason-lspconfig.nvim',
-      config = function()
-        require("mason-lspconfig").setup({
-          ensure_installed = {
-            "sumneko_lua",
-            "tsserver",
-            "solargraph",
-          }
-        })
-      end
-    }
-
   end,
 
   config = {

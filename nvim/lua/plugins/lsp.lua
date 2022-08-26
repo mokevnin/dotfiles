@@ -1,6 +1,22 @@
 local M = {}
 
 function M.run(use)
+  servers = {
+    'tsserver',
+    'eslint',
+    'solargraph',
+    'sumneko_lua',
+  }
+
+  use {
+    'williamboman/mason-lspconfig.nvim',
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = servers
+      })
+    end
+  }
+
   -- https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
   use { 'ms-jpq/coq_nvim', run = 'python3 -m coq deps' }
   use 'ms-jpq/coq.artifacts'
@@ -66,7 +82,6 @@ function M.run(use)
       }
 
       -- Enable some language servers with the additional completion capabilities offered by coq_nvim
-      local servers = { 'tsserver' }
       for _, lsp in ipairs(servers) do
         lspconfig[lsp].setup(require('coq').lsp_ensure_capabilities({
           on_attach = on_attach
