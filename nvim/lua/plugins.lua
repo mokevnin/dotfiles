@@ -6,17 +6,23 @@ return require('packer').startup({
   function(use)
     -- https://github.com/kevinhwang91/nvim-bqf
     -- https://github.com/gelguy/wilder.nvim
-    use 'wbthomason/packer.nvim'
+    use { 'wbthomason/packer.nvim' }
     use { 'tpope/vim-sensible' }
     use 'mhinz/vim-startify'
     use 'tpope/vim-repeat'
+
     use {
       'kyazdani42/nvim-tree.lua',
       requires = {
-        'kyazdani42/nvim-web-devicons', -- optional, for file icon
+        'kyazdani42/nvim-web-devicons'
       },
-      config = function() require('nvim-tree').setup {} end
-    }   use 'b0o/schemastore.nvim'
+      config = function()
+        require('nvim-tree').setup {}
+      end
+    }
+
+    use 'b0o/schemastore.nvim'
+
     use {
       'feline-nvim/feline.nvim',
       after = "nvim-web-devicons",
@@ -26,12 +32,7 @@ return require('packer').startup({
         })
       end
     }
-    -- use 'preservim/vim-markdown'
-    -- use {
-    --   'iamcco/markdown-preview.nvim',
-    --   run = 'mkdp#util#install()'
-    -- }
-    -- https://github.com/gelguy/wilder.nvim
+
     use {
       'pocco81/auto-save.nvim',
       config = function ()
@@ -40,19 +41,20 @@ return require('packer').startup({
       end
     }
 
-    use { 'ntpeters/vim-better-whitespace' }
+    --     use { 'ntpeters/vim-better-whitespace' }
 
     use({
       "iamcco/markdown-preview.nvim",
       run = function() vim.fn["mkdp#util#install"]() end,
     })
-    use {
-      "danymat/neogen",
-      config = function()
-        require('neogen').setup {}
-      end,
-      requires = "nvim-treesitter/nvim-treesitter",
-    }
+
+    --     use {
+    --       "danymat/neogen",
+    --       config = function()
+    --         require('neogen').setup {}
+    --       end,
+    --       requires = "nvim-treesitter/nvim-treesitter",
+    --     }
 
     use {
       'windwp/nvim-autopairs',
@@ -70,10 +72,9 @@ return require('packer').startup({
         npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
       end
     }
-    -- use 'tpope/vim-sleuth'
-    use { 'NMAC427/guess-indent.nvim',
-      config = function() require('guess-indent').setup {} end,
-    }
+
+    use 'tpope/vim-sleuth'
+
     use {
       'lukas-reineke/indent-blankline.nvim',
       config = function()
@@ -84,35 +85,36 @@ return require('packer').startup({
       end
     }
 
-    use 'isobit/vim-caddyfile'
-    use 'tpope/vim-rails'
-    use 'slim-template/vim-slim'
+    --     use 'isobit/vim-caddyfile'
+    --     use 'tpope/vim-rails'
+    --     use 'slim-template/vim-slim'
     use 'dhruvasagar/vim-table-mode'
 
-    -- use {
-    --   'jose-elias-alvarez/null-ls.nvim',
-    --   config = function()
-    --     local ls = require('null-ls')
-    --     -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-    --     ls.setup({
-    --       sources = {
-    --         ls.builtins.formatting.stylua,
-    --         ls.builtins.formatting.gofmt,
-    --         ls.builtins.formatting.prettierd,
-    --         ls.builtins.formatting.terraform_fmt,
-    --         ls.builtins.formatting.uncrustify,
-    --         -- ls.builtins.formatting.hadolint,
-    --       },
-    --     })
-    --   end
-    -- }
-    -- use 'glepnir/dashboard-nvim'
-    use 'tpope/vim-surround'
+    --
+    --     -- use {
+    --     --   'jose-elias-alvarez/null-ls.nvim',
+    --     --   config = function()
+    --     --     local ls = require('null-ls')
+    --     --     -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+    --     --     ls.setup({
+    --     --       sources = {
+    --     --         ls.builtins.formatting.stylua,
+    --     --         ls.builtins.formatting.gofmt,
+    --     --         ls.builtins.formatting.prettierd,
+    --     --         ls.builtins.formatting.terraform_fmt,
+    --     --         ls.builtins.formatting.uncrustify,
+    --     --         -- ls.builtins.formatting.hadolint,
+    --     --       },
+    --     --     })
+    --     --   end
+    --     -- }
+    --     -- use 'glepnir/dashboard-nvim'
+
+    -- alternative https://github.com/machakann/vim-sandwich
+    use { 'tpope/vim-surround' }
     use 'windwp/nvim-spectre'
     use 'dyng/ctrlsf.vim'
-    use {
-      'marko-cerovac/material.nvim',
-    }
+    use { 'marko-cerovac/material.nvim' }
 
     use { 'tpope/vim-unimpaired' }
 
@@ -122,7 +124,7 @@ return require('packer').startup({
         require('Comment').setup()
       end
     }
---
+ 
     use {
       'nvim-telescope/telescope.nvim',
       config = function()
@@ -152,23 +154,15 @@ return require('packer').startup({
       'lewis6991/gitsigns.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
       config = function()
-        require('gitsigns').setup({
-          -- signs = {
-          --   add = { hl = 'GitGutterAdd', text = '+' },
-          --   change = { hl = 'GitGutterChange', text = '~' },
-          --   delete = { hl = 'GitGutterDelete', text = '_' },
-          --   topdelete = { hl = 'GitGutterDelete', text = '‾' },
-          --   changedelete = { hl = 'GitGutterChange', text = '~' },
-          -- },
-        })
+        require('gitsigns').setup()
       end
     }
-
-    -- use {
-    --   "beauwilliams/focus.nvim",
-    --   config = function() require("focus").setup() end
-    -- }
-
+--
+--     -- use {
+--     --   "beauwilliams/focus.nvim",
+--     --   config = function() require("focus").setup() end
+--     -- }
+--
     use {
       "folke/which-key.nvim",
       config = function()
@@ -180,9 +174,6 @@ return require('packer').startup({
       end
     }
 
-    use 'mfussenegger/nvim-dap'
-    use 'Pocco81/DAPInstall.nvim'
-
     use {
       'ray-x/lsp_signature.nvim',
       config = function()
@@ -193,7 +184,28 @@ return require('packer').startup({
     require('plugins.treesitter').run(use)
     require('plugins.lsp').run(use)
 
+    use {
+      'williamboman/mason.nvim',
+      config = function()
+        require("mason").setup()
+      end
+    }
+
+    use {
+      'williamboman/mason-lspconfig.nvim',
+      config = function()
+        require("mason-lspconfig").setup({
+          ensure_installed = {
+            "sumneko_lua",
+            "tsserver",
+            "solargraph",
+          }
+        })
+      end
+    }
+
   end,
+
   config = {
     enable = true,
     -- log = { level = 'debug' },
