@@ -3,6 +3,7 @@ local M = {}
 function M.run(use)
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'RRethy/nvim-treesitter-endwise',
     'windwp/nvim-ts-autotag',
     'andymass/vim-matchup',
     'JoosepAlviste/nvim-ts-context-commentstring',
@@ -25,8 +26,16 @@ function M.run(use)
     run = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup {
+        auto_install = true,
+        context_commentstring = {
+          enable = true,
+          enable_autocmd = false,
+        },
         highlight = {
           enable = true, -- false will disable the whole extension
+        },
+        endwise = {
+          enable = true,
         },
         incremental_selection = {
           enable = true,
@@ -37,9 +46,10 @@ function M.run(use)
             node_decremental = 'grm',
           },
         },
-        indent = {
-          enable = true,
-        },
+        -- does not work with auto pairs
+        -- indent = {
+        --   enable = true,
+        -- },
         textobjects = {
           select = {
             enable = true,

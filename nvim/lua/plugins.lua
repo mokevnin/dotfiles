@@ -6,7 +6,7 @@ return require('packer').startup({
   function(use)
     use { 'wbthomason/packer.nvim' }
     use { 'tpope/vim-sensible' }
-    use 'mhinz/vim-startify'
+    -- use 'mhinz/vim-startify'
     use 'tpope/vim-repeat'
 
     -- https://github.com/gelguy/wilder.nvim
@@ -73,9 +73,9 @@ return require('packer').startup({
         npairs.setup({
           -- check_ts = true
         })
-        npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
-        npairs.add_rules(require('nvim-autopairs.rules.endwise-elixir'))
-        npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+        -- npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
+        -- npairs.add_rules(require('nvim-autopairs.rules.endwise-elixir'))
+        -- npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
       end
     }
 
@@ -121,13 +121,16 @@ return require('packer').startup({
     use 'windwp/nvim-spectre'
     use 'dyng/ctrlsf.vim'
     use { 'marko-cerovac/material.nvim' }
-
+--
     use { 'tpope/vim-unimpaired' }
 
     use {
       'numToStr/Comment.nvim',
       config = function ()
-        require('Comment').setup()
+        local ts_comment_integration = require('ts_context_commentstring.integrations.comment_nvim')
+        require('Comment').setup({
+          pre_hook = ts_comment_integration.create_pre_hook(),
+        })
       end
     }
 

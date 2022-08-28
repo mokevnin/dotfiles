@@ -1,4 +1,4 @@
-autocmd FileType java setlocal shiftwidth=4 softtabstop=4 expandtab
+" autocmd FileType java setlocal shiftwidth=4 softtabstop=4 expandtab
 " autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 lua require('config')
@@ -23,12 +23,14 @@ set scrolloff=3
 set completeopt=menu,menuone,noselect
 set termguicolors
 
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
+
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>"
 
 let g:vimsyn_embed = 'l'
 
-" supress error during setup
 let g:material_style = 'deep ocean'
 
 silent! colorscheme material
@@ -73,14 +75,6 @@ nnoremap <leader>S :lua require('spectre').open()<CR>
 
 let g:better_whitespace_enabled=1
 " let g:strip_whitespace_on_save=1
-
-" automatically run :PackerCompile whenever plugins.lua is updated
-" augroup packer_user_config
-"   autocmd!
-"   autocmd BufWritePost plugins.lua source ~/.config/nvim/lua/config.lua | PackerCompile
-"   autocmd BufWritePost config.lua source ~/.config/nvim/lua/config.lua | PackerCompile
-"   autocmd BufWritePost *plugins* source ~/.config/nvim/lua/config.lua | PackerCompile
-" augroup end
 
 " Highlight on yank
 " nnoremap gV `[v`]

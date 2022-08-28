@@ -14,12 +14,12 @@ function _G.put(...)
 end
 
 vim.diagnostic.config({
-  virtual_text = {
-    prefix = 'x'
-  }
+  -- virtual_text = {
+  --   prefix = 'x'
+  -- },
   -- signs = true,
   -- underline = true,
-  -- update_in_insert = false,
+  -- update_in_insert = true,
   -- severity_sort = false,
 })
 
