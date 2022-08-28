@@ -1,12 +1,10 @@
 autocmd FileType java setlocal shiftwidth=4 softtabstop=4 expandtab
 " autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" let g:coq_settings = { "keymap.j.jump_to_mark": v:null }
-" let g:coq_settings = { "keymap.recommended": v:false }
-
 lua require('config')
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+" set keymap=russian-jcukenwin
 
 " set mouse=a
 set breakindent

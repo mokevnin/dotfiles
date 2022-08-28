@@ -4,12 +4,16 @@
 return require('packer').startup({
 
   function(use)
-    -- https://github.com/kevinhwang91/nvim-bqf
-    -- https://github.com/gelguy/wilder.nvim
     use { 'wbthomason/packer.nvim' }
     use { 'tpope/vim-sensible' }
     use 'mhinz/vim-startify'
     use 'tpope/vim-repeat'
+
+    -- https://github.com/gelguy/wilder.nvim
+    use { 'gelguy/wilder.nvim' }
+
+    -- https://github.com/kevinhwang91/nvim-bqf
+    use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
 
     use {
       'kyazdani42/nvim-tree.lua',
@@ -41,20 +45,22 @@ return require('packer').startup({
       end
     }
 
-    --     use { 'ntpeters/vim-better-whitespace' }
+    use { 'ntpeters/vim-better-whitespace' }
 
     use({
       "iamcco/markdown-preview.nvim",
       run = function() vim.fn["mkdp#util#install"]() end,
     })
 
-    --     use {
-    --       "danymat/neogen",
-    --       config = function()
-    --         require('neogen').setup {}
-    --       end,
-    --       requires = "nvim-treesitter/nvim-treesitter",
-    --     }
+    use {
+      'danymat/neogen',
+      config = function()
+        require('neogen').setup {}
+      end,
+      requires = {
+        'nvim-treesitter/nvim-treesitter'
+      },
+    }
 
     use {
       'windwp/nvim-autopairs',
@@ -124,7 +130,7 @@ return require('packer').startup({
         require('Comment').setup()
       end
     }
- 
+
     use {
       'nvim-telescope/telescope.nvim',
       config = function()
