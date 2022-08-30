@@ -27,7 +27,16 @@ function M.run(use)
 
       npairs.setup({ map_bs = false, map_cr = false })
 
-      vim.g.coq_settings = { keymap = { recommended = false } }
+      -- vim.g.coq_settings = { keymap = { recommended = false } }
+
+      -- Automatically start coq
+      vim.g.coq_settings = {
+        auto_start = true,
+        keymap = {
+          -- recommmended = false,
+          jump_to_mark = '<tab>',
+        }
+      }
 
       -- these mappings are coq recommended mappings unrelated to nvim-autopairs
       remap('i', '<esc>', [[pumvisible() ? "<c-e><esc>" : "<esc>"]], { expr = true, noremap = true })
@@ -114,14 +123,6 @@ function M.run(use)
       -- }
 
       local lspconfig = require('lspconfig')
-
-      -- Automatically start coq
-      vim.g.coq_settings = {
-        auto_start = true,
-        keymap = {
-          jump_to_mark = '',
-        }
-      }
 
       -- Enable some language servers with the additional completion capabilities offered by coq_nvim
       for _, lsp in ipairs(servers) do

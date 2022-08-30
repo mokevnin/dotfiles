@@ -7,6 +7,7 @@ return require('packer').startup({
     use { 'wbthomason/packer.nvim' }
     use { 'tpope/vim-sensible' }
     -- use 'mhinz/vim-startify'
+    -- use { 'glepnir/dashboard-nvim' }
     use 'tpope/vim-repeat'
 
     -- https://github.com/gelguy/wilder.nvim
