@@ -6,7 +6,14 @@ return require('packer').startup({
   function(use)
     use { 'wbthomason/packer.nvim' }
     use { 'tpope/vim-sensible' }
-    use 'mhinz/vim-startify'
+
+    use {
+      'goolord/alpha-nvim',
+      requires = { 'kyazdani42/nvim-web-devicons' },
+      config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.config)
+      end
+    }
     use { 'antoinemadec/FixCursorHold.nvim' }
     use { 'stevearc/dressing.nvim' }
     -- use { 'glepnir/dashboard-nvim' }
