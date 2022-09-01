@@ -6,7 +6,9 @@ return require('packer').startup({
   function(use)
     use { 'wbthomason/packer.nvim' }
     use { 'tpope/vim-sensible' }
-    -- use 'mhinz/vim-startify'
+    use 'mhinz/vim-startify'
+    use { 'antoinemadec/FixCursorHold.nvim' }
+    use { 'stevearc/dressing.nvim' }
     -- use { 'glepnir/dashboard-nvim' }
     use 'tpope/vim-repeat'
 
@@ -15,6 +17,15 @@ return require('packer').startup({
 
     -- https://github.com/kevinhwang91/nvim-bqf
     use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
+
+    use {
+      'kosayoda/nvim-lightbulb',
+      requires = 'antoinemadec/FixCursorHold.nvim',
+      config = function()
+        local lightbulb = require('nvim-lightbulb')
+        lightbulb.setup({autocmd = {enabled = true}})
+      end
+    }
 
     use {
       'kyazdani42/nvim-tree.lua',
@@ -184,22 +195,15 @@ return require('packer').startup({
       end
     }
 
-    use {
-      'ray-x/lsp_signature.nvim',
-      config = function()
-        require('lsp_signature').setup()
-      end
-    }
-
     require('plugins.treesitter').run(use)
     require('plugins.lsp').run(use)
 
-    use {
-      'williamboman/mason.nvim',
-      config = function()
-        require("mason").setup()
-      end
-    }
+    -- use {
+    --   'williamboman/mason.nvim',
+    --   config = function()
+    --     require("mason").setup()
+    --   end
+    -- }
 
   end,
 

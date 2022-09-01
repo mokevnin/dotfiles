@@ -69,11 +69,11 @@ nnoremap <leader>sh <cmd>Telescope help_tags<cr>
 nnoremap <leader><leader> :NvimTreeToggle<CR>
 nnoremap <C-n> :NvimTreeFindFile<CR>
 
-nnoremap <leader>ff :Format<CR>
-
 nnoremap <leader>S :lua require('spectre').open()<CR>
 
 let g:better_whitespace_enabled=1
+" https://github.com/antoinemadec/FixCursorHold.nvim
+let g:cursorhold_updatetime = 100
 " let g:strip_whitespace_on_save=1
 
 " Highlight on yank
