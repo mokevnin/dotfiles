@@ -26,12 +26,7 @@ return require('packer').startup({
 
     use{ 'LudoPinelli/comment-box.nvim' }
 
-    -- use {
-    --   'AckslD/nvim-trevJ.lua',
-    --   config = function()
-    --     require("trevj").setup()
-    --   end
-    -- }
+    use { 'AndrewRadev/splitjoin.vim' }
 
     use {
       'TimUntersberger/neogit',
@@ -43,12 +38,23 @@ return require('packer').startup({
     }
 
     use { 'tpope/vim-sensible' }
-    use { 'mfussenegger/nvim-dap' }
-    use { 'theHamsta/nvim-dap-virtual-text' }
+
+    use {
+      'mfussenegger/nvim-dap',
+      config = function()
+        require("dapui").setup()
+      end
+    }
+    use {
+      'theHamsta/nvim-dap-virtual-text',
+      config = function()
+        require("nvim-dap-virtual-text").setup()
+      end
+    }
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
     use { 'antoinemadec/FixCursorHold.nvim' }
     use { 'stevearc/dressing.nvim' }
-    -- use { 'glepnir/dashboard-nvim' }
     use 'tpope/vim-repeat'
 
     -- https://github.com/gelguy/wilder.nvim
@@ -147,25 +153,24 @@ return require('packer').startup({
     --     use 'slim-template/vim-slim'
     use 'dhruvasagar/vim-table-mode'
 
-    --
-    --     -- use {
-    --     --   'jose-elias-alvarez/null-ls.nvim',
-    --     --   config = function()
-    --     --     local ls = require('null-ls')
-    --     --     -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-    --     --     ls.setup({
-    --     --       sources = {
-    --     --         ls.builtins.formatting.stylua,
-    --     --         ls.builtins.formatting.gofmt,
-    --     --         ls.builtins.formatting.prettierd,
-    --     --         ls.builtins.formatting.terraform_fmt,
-    --     --         ls.builtins.formatting.uncrustify,
-    --     --         -- ls.builtins.formatting.hadolint,
-    --     --       },
-    --     --     })
-    --     --   end
-    --     -- }
-    --     -- use 'glepnir/dashboard-nvim'
+
+        use {
+          'jose-elias-alvarez/null-ls.nvim',
+          config = function()
+            local ls = require('null-ls')
+            -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+            ls.setup({
+              sources = {
+                ls.builtins.formatting.stylua,
+                -- ls.builtins.formatting.gofmt,
+                -- ls.builtins.formatting.prettierd,
+                -- ls.builtins.formatting.terraform_fmt,
+                -- ls.builtins.formatting.uncrustify,
+                -- ls.builtins.formatting.hadolint,
+              },
+            })
+          end
+        }
 
     -- alternative https://github.com/machakann/vim-sandwich
     use { 'tpope/vim-surround' }
