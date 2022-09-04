@@ -5,5 +5,7 @@
 *.log
 TAGS
 
+.DS_Store
+
 fixtures/_build
 nvim/plugin/*

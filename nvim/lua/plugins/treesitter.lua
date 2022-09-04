@@ -1,6 +1,7 @@
 local M = {}
 
 function M.run(use)
+  -- https://github.com/RRethy/nvim-treesitter-textsubjects
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'RRethy/nvim-treesitter-endwise',

@@ -1,19 +1,51 @@
 -- https://github.com/wbthomason/packer.nvim
 -- https://github.com/nvim-lua/kickstart.nvim
+-- https://github.com/ecosse3/nvim/blob/master/lua/plugins.lua
 
 return require('packer').startup({
 
   function(use)
     use { 'wbthomason/packer.nvim' }
-    use { 'tpope/vim-sensible' }
 
+    -- speeding up
+    use { 'lewis6991/impatient.nvim' }
+    use { 'nathom/filetype.nvim' }
+    use { 'nvim-lua/plenary.nvim' }
+    use { 'kyazdani42/nvim-web-devicons' }
     use {
       'goolord/alpha-nvim',
-      requires = { 'kyazdani42/nvim-web-devicons' },
       config = function ()
         require'alpha'.setup(require'alpha.themes.startify'.config)
       end
     }
+
+    use {
+      'm-demare/hlargs.nvim',
+      requires = { 'nvim-treesitter/nvim-treesitter' }
+    }
+
+    use{ 'LudoPinelli/comment-box.nvim' }
+
+    -- use {
+    --   'AckslD/nvim-trevJ.lua',
+    --   config = function()
+    --     require("trevj").setup()
+    --   end
+    -- }
+
+    use {
+      'TimUntersberger/neogit',
+      config = function()
+        local neogit = require('neogit')
+        neogit.setup()
+      end,
+      requires = 'nvim-lua/plenary.nvim'
+    }
+
+    use { 'tpope/vim-sensible' }
+    use { 'mfussenegger/nvim-dap' }
+    use { 'theHamsta/nvim-dap-virtual-text' }
+
     use { 'antoinemadec/FixCursorHold.nvim' }
     use { 'stevearc/dressing.nvim' }
     -- use { 'glepnir/dashboard-nvim' }
@@ -154,9 +186,42 @@ return require('packer').startup({
     }
 
     use {
+      'ThePrimeagen/refactoring.nvim',
+      requires = {
+        {'nvim-lua/plenary.nvim'},
+        {'nvim-treesitter/nvim-treesitter'}
+      }
+    }
+
+    -- Lua
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    }
+
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use {
       'nvim-telescope/telescope.nvim',
       config = function()
-        require('telescope').setup{
+        local telescope = require('telescope')
+        telescope.load_extension('refactoring')
+
+        vim.api.nvim_set_keymap(
+          "v",
+          "<leader>rr",
+          "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+          { noremap = true }
+        )
+
+
+        telescope.setup{
           defaults = {
             sorting_strategy = "ascending",
             mappings = {
