@@ -55,6 +55,7 @@ return require('packer').startup({
 
     use { 'antoinemadec/FixCursorHold.nvim' }
     use { 'stevearc/dressing.nvim' }
+
     use 'tpope/vim-repeat'
 
     -- https://github.com/gelguy/wilder.nvim
