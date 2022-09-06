@@ -96,7 +96,7 @@ return require('packer').startup({
     }
 
     use {
-      'pocco81/auto-save.nvim',
+      'nvim-zh/auto-save.nvim',
       config = function ()
         local autosave = require("auto-save")
         autosave.setup()
