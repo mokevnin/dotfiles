@@ -11,8 +11,16 @@ return require('packer').startup({
     use { 'lewis6991/impatient.nvim' }
     use { 'nathom/filetype.nvim' }
 
+    use { 'tpope/vim-sensible' }
+
     use { 'nvim-lua/plenary.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
+    use {
+      'rcarriga/nvim-notify',
+      config = function()
+        require("notify").setup({})
+      end
+    }
     use {
       'goolord/alpha-nvim',
       config = function ()
@@ -20,12 +28,15 @@ return require('packer').startup({
       end
     }
 
-    -- FIXME too slow and buggy
     -- use {
     --   'gelguy/wilder.nvim',
     --   config = function()
     --     local wilder = require('wilder')
-    --     wilder.setup({modes = {':', '/', '?'}})
+    --     wilder.setup({
+    --       modes = {':', '/', '?'},
+    --       next_key = '<C-n>',
+    --       previous_key = '<C-p>',
+    --     })
     --
     --     -- wilder.set_option('pipeline', {
     --     --   wilder.branch(
@@ -33,9 +44,14 @@ return require('packer').startup({
     --     --     wilder.search_pipeline()
     --     --   ),
     --     -- })
-    --     --
-    --     -- wilder.set_option('renderer', wilder.wildmenu_renderer({
-    --     --   highlighter = wilder.basic_highlighter(),
+    --
+    --     -- wilder.set_option('renderer', wilder.renderer_mux({
+    --     --   [':'] = wilder.popupmenu_renderer({
+    --     --     highlighter = wilder.basic_highlighter(),
+    --     --   }),
+    --     --   ['/'] = wilder.wildmenu_renderer({
+    --     --     highlighter = wilder.basic_highlighter(),
+    --     --   }),
     --     -- }))
     --   end,
     -- }
@@ -52,8 +68,6 @@ return require('packer').startup({
       end,
       requires = 'nvim-lua/plenary.nvim'
     }
-
-    use { 'tpope/vim-sensible' }
 
     use {
       'mfussenegger/nvim-dap',
@@ -236,6 +250,8 @@ return require('packer').startup({
         telescope.load_extension('fzf')
         telescope.load_extension('refactoring')
 
+        local trouble = require("trouble.providers.telescope")
+
         telescope.setup{
           defaults = {
             sorting_strategy = "ascending",
@@ -244,7 +260,11 @@ return require('packer').startup({
               i = {
                 ['<C-u>'] = false,
                 ['<C-d>'] = false,
+                ["<c-t>"] = trouble.open_with_trouble
               },
+              n = {
+                ["<c-t>"] = trouble.open_with_trouble
+              }
             },
           },
           pickers = {
@@ -262,7 +282,7 @@ return require('packer').startup({
 
   config = {
     enable = true,
-    -- log = { level = 'debug' },
+    log = { level = 'debug' },
     display = {
       open_fn = require('packer.util').float,
     }

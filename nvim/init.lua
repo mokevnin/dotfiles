@@ -4,9 +4,9 @@ require('functions')
 -- require('config')
 require('settings')
 require('colorscheme')
-require('keymappings')
 require('autocmds')
 require('plugins')
+require('keymappings')
 
 -- " autocmd FileType java setlocal shiftwidth=4 softtabstop=4 expandtab
 -- " autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
