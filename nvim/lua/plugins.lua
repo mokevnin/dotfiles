@@ -15,6 +15,7 @@ return require('packer').startup({
 
     use { 'nvim-lua/plenary.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
+    use { 'svban/YankAssassin.vim' }
     use {
       'rcarriga/nvim-notify',
       config = function()
@@ -282,7 +283,7 @@ return require('packer').startup({
 
   config = {
     enable = true,
-    log = { level = 'debug' },
+    -- log = { level = 'debug' },
     display = {
       open_fn = require('packer.util').float,
     }
