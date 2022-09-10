@@ -10,6 +10,7 @@ return require('packer').startup({
     -- speeding up
     use { 'lewis6991/impatient.nvim' }
     use { 'nathom/filetype.nvim' }
+
     use { 'nvim-lua/plenary.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
     use {
@@ -19,13 +20,28 @@ return require('packer').startup({
       end
     }
 
-    use {
-      'm-demare/hlargs.nvim',
-      requires = { 'nvim-treesitter/nvim-treesitter' }
-    }
+    -- FIXME too slow and buggy
+    -- use {
+    --   'gelguy/wilder.nvim',
+    --   config = function()
+    --     local wilder = require('wilder')
+    --     wilder.setup({modes = {':', '/', '?'}})
+    --
+    --     -- wilder.set_option('pipeline', {
+    --     --   wilder.branch(
+    --     --     wilder.cmdline_pipeline(),
+    --     --     wilder.search_pipeline()
+    --     --   ),
+    --     -- })
+    --     --
+    --     -- wilder.set_option('renderer', wilder.wildmenu_renderer({
+    --     --   highlighter = wilder.basic_highlighter(),
+    --     -- }))
+    --   end,
+    -- }
 
-    use{ 'LudoPinelli/comment-box.nvim' }
-
+    use { 'tpope/vim-fugitive' }
+    use { 'LudoPinelli/comment-box.nvim' }
     use { 'AndrewRadev/splitjoin.vim' }
 
     use {
@@ -54,15 +70,8 @@ return require('packer').startup({
     use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
     use { 'antoinemadec/FixCursorHold.nvim' }
-    use { 'stevearc/dressing.nvim' }
 
     use 'tpope/vim-repeat'
-
-    -- https://github.com/gelguy/wilder.nvim
-    use { 'gelguy/wilder.nvim' }
-
-    -- https://github.com/kevinhwang91/nvim-bqf
-    use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
 
     use {
       'kosayoda/nvim-lightbulb',
@@ -80,6 +89,32 @@ return require('packer').startup({
       },
       config = function()
         require('nvim-tree').setup {}
+      end
+    }
+
+    use {
+      'stevearc/dressing.nvim',
+      config = function()
+        -- TODO: add c-[ for normal mode
+        -- local dressing = require('dressing')
+        -- dressing.setup({
+        --   input = {
+        --     mappings = {
+        --       n = {
+        --         ['C-['] = 'Close',
+        --       },
+        --     },
+        --   },
+        --   select = {
+        --     telescope = {
+        --       mappings = {
+        --         n = {
+        --           ['C-['] = 'Close',
+        --         },
+        --       },
+        --     },
+        --   },
+        -- })
       end
     }
 
@@ -104,39 +139,6 @@ return require('packer').startup({
     }
 
     use { 'ntpeters/vim-better-whitespace' }
-
-    use({
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn["mkdp#util#install"]() end,
-    })
-
-    use {
-      'danymat/neogen',
-      config = function()
-        require('neogen').setup {}
-      end,
-      requires = {
-        'nvim-treesitter/nvim-treesitter'
-      },
-    }
-
-    use {
-      'windwp/nvim-autopairs',
-      requires = {
-        'hrsh7th/nvim-cmp',
-        'nvim-treesitter/nvim-treesitter',
-      },
-      config = function()
-        local npairs = require('nvim-autopairs')
-        npairs.setup({
-          -- check_ts = true
-        })
-        -- npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
-        -- npairs.add_rules(require('nvim-autopairs.rules.endwise-elixir'))
-        -- npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
-      end
-    }
-
     use 'tpope/vim-sleuth'
 
     use {
@@ -149,29 +151,23 @@ return require('packer').startup({
       end
     }
 
-    --     use 'isobit/vim-caddyfile'
-    --     use 'tpope/vim-rails'
-    --     use 'slim-template/vim-slim'
-    use 'dhruvasagar/vim-table-mode'
-
-
-      -- use {
-      --   'jose-elias-alvarez/null-ls.nvim',
-      --   config = function()
-      --     local ls = require('null-ls')
-      --     -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-      --     ls.setup({
-      --       sources = {
-      --         ls.builtins.formatting.stylua,
-      --         -- ls.builtins.formatting.gofmt,
-      --         -- ls.builtins.formatting.prettierd,
-      --         -- ls.builtins.formatting.terraform_fmt,
-      --         -- ls.builtins.formatting.uncrustify,
-      --         -- ls.builtins.formatting.hadolint,
-      --       },
-      --     })
-      --   end
-      -- }
+    -- use {
+    --   'jose-elias-alvarez/null-ls.nvim',
+    --   config = function()
+    --     local ls = require('null-ls')
+    --     -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+    --     ls.setup({
+    --       sources = {
+    --         ls.builtins.formatting.stylua,
+    --         -- ls.builtins.formatting.gofmt,
+    --         -- ls.builtins.formatting.prettierd,
+    --         -- ls.builtins.formatting.terraform_fmt,
+    --         -- ls.builtins.formatting.uncrustify,
+    --         -- ls.builtins.formatting.hadolint,
+    --       },
+    --     })
+    --   end
+    -- }
 
     -- alternative https://github.com/machakann/vim-sandwich
     use { 'tpope/vim-surround' }
@@ -191,14 +187,6 @@ return require('packer').startup({
       end
     }
 
-    use {
-      'ThePrimeagen/refactoring.nvim',
-      requires = {
-        {'nvim-lua/plenary.nvim'},
-        {'nvim-treesitter/nvim-treesitter'}
-      }
-    }
-
     -- Lua
     use {
       "folke/trouble.nvim",
@@ -210,43 +198,6 @@ return require('packer').startup({
           -- refer to the configuration section below
         }
       end
-    }
-
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use {
-      'nvim-telescope/telescope.nvim',
-      config = function()
-        local telescope = require('telescope')
-        telescope.load_extension('refactoring')
-
-        vim.api.nvim_set_keymap(
-          "v",
-          "<leader>rr",
-          "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-          { noremap = true }
-        )
-
-
-        telescope.setup{
-          defaults = {
-            sorting_strategy = "ascending",
-            mappings = {
-              -- restore default behavior
-              i = {
-                ['<C-u>'] = false,
-                ['<C-d>'] = false,
-              },
-            },
-          },
-          pickers = {
-            buffers = {
-              ignore_current_buffer = true,
-              sort_mru = true
-            }
-          },
-        }
-      end,
-      requires = { 'nvim-lua/plenary.nvim' }
     }
 
     use {
@@ -275,13 +226,37 @@ return require('packer').startup({
 
     require('plugins.treesitter').run(use)
     require('plugins.lsp').run(use)
+    require('plugins.specific').run(use)
 
-    -- use {
-    --   'williamboman/mason.nvim',
-    --   config = function()
-    --     require("mason").setup()
-    --   end
-    -- }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use {
+      'nvim-telescope/telescope.nvim',
+      config = function()
+        local telescope = require('telescope')
+        telescope.load_extension('fzf')
+        telescope.load_extension('refactoring')
+
+        telescope.setup{
+          defaults = {
+            sorting_strategy = "ascending",
+            mappings = {
+              -- restore default behavior
+              i = {
+                ['<C-u>'] = false,
+                ['<C-d>'] = false,
+              },
+            },
+          },
+          pickers = {
+            buffers = {
+              ignore_current_buffer = true,
+              sort_mru = true
+            }
+          },
+        }
+      end,
+      requires = { 'nvim-lua/plenary.nvim' }
+    }
 
   end,
 

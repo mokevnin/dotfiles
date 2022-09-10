@@ -3,6 +3,44 @@ local M = {}
 function M.run(use)
   -- https://github.com/RRethy/nvim-treesitter-textsubjects
   use {
+    'ThePrimeagen/refactoring.nvim',
+    requires = {
+      {'nvim-lua/plenary.nvim'},
+      {'nvim-treesitter/nvim-treesitter'}
+    }
+  }
+
+
+  -- function/class annotation generator
+  use {
+    'danymat/neogen',
+    config = function()
+      require('neogen').setup()
+    end,
+    requires = {
+      'nvim-treesitter/nvim-treesitter'
+    },
+  }
+
+
+  use {
+    'windwp/nvim-autopairs',
+    requires = {
+      'hrsh7th/nvim-cmp',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      local npairs = require('nvim-autopairs')
+      npairs.setup({
+        -- check_ts = true
+      })
+      -- npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
+      -- npairs.add_rules(require('nvim-autopairs.rules.endwise-elixir'))
+      -- npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+    end
+  }
+
+  use {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'RRethy/nvim-treesitter-endwise',
     'windwp/nvim-ts-autotag',
@@ -20,7 +58,6 @@ function M.run(use)
       'nvim-treesitter/nvim-treesitter',
     }
   }
-
 
   use {
     'nvim-treesitter/nvim-treesitter',
