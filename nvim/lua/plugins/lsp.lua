@@ -60,7 +60,6 @@ function M.run(use)
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-nvim-lsp-signature-help',
-      -- 'onsails/lspkind.nvim',
 
       -- Snippets
       'L3MON4D3/LuaSnip',
@@ -87,19 +86,12 @@ function M.run(use)
       lsp.setup()
 
       local cmp = require('cmp')
-      -- local lspkind = require('lspkind')
       local cmp_select = {behavior = cmp.SelectBehavior.Select}
       local sources = lsp.defaults.cmp_sources()
       table.insert(sources, { name = 'nvim_lsp_signature_help' })
 
       local cmp_config = lsp.defaults.cmp_config({
         sources = sources,
-        -- formatting = {
-        --   format = lspkind.cmp_format({
-        --     mode = 'symbol', -- show only symbol annotations
-        --     maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-        --   })
-        -- },
         mapping = {
           ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
           ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
