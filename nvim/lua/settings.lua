@@ -51,6 +51,8 @@ local options = {
 
 local globals = {
   mapleader = ' ', --- Map leader key to SPC
+  loaded = 1,
+  loaded_netrwPlugin = 1,
   -- speeddating_no_mappings     = 1,          --- Disable default mappings for speeddating
 }
 

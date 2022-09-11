@@ -18,7 +18,7 @@ vim.cmd [[
   augroup myfiletypes
     " Clear old autocmds in group
     autocmd!
-    autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
+    autocmd FileType ruby,eruby,yaml,javascript,typescript set ai sw=2 sts=2 et
     autocmd FileType java set ai sw=4 sts=4 et
   augroup END
 ]]
