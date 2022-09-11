@@ -120,25 +120,30 @@ return require('packer').startup({
       'stevearc/dressing.nvim',
       config = function()
         -- TODO: add c-[ for normal mode
-        -- local dressing = require('dressing')
-        -- dressing.setup({
-        --   input = {
-        --     mappings = {
-        --       n = {
-        --         ['C-['] = 'Close',
-        --       },
-        --     },
-        --   },
-        --   select = {
-        --     telescope = {
-        --       mappings = {
-        --         n = {
-        --           ['C-['] = 'Close',
-        --         },
-        --       },
-        --     },
-        --   },
-        -- })
+        local dressing = require('dressing')
+        dressing.setup({
+          input = {
+            get_config = function()
+              if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then
+                return { enabled = false }
+              end
+            end,
+            -- mappings = {
+            --   n = {
+            --     ['C-['] = 'Close',
+            --   },
+            -- },
+          },
+          --   select = {
+          --     telescope = {
+          --       mappings = {
+          --         n = {
+          --           ['C-['] = 'Close',
+          --         },
+          --       },
+          --     },
+          --   },
+        })
       end
     }
 
