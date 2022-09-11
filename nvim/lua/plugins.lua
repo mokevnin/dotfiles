@@ -26,14 +26,14 @@ return require('packer').startup({
     use {
       'phaazon/hop.nvim',
       config = function()
-        require'hop'.setup()
+        require 'hop'.setup()
       end
     }
 
     use {
       'goolord/alpha-nvim',
-      config = function ()
-        require'alpha'.setup(require'alpha.themes.startify'.config)
+      config = function()
+        require 'alpha'.setup(require 'alpha.themes.startify'.config)
       end
     }
 
@@ -90,7 +90,7 @@ return require('packer').startup({
         require("nvim-dap-virtual-text").setup()
       end
     }
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
     use { 'antoinemadec/FixCursorHold.nvim' }
 
@@ -101,7 +101,7 @@ return require('packer').startup({
       requires = 'antoinemadec/FixCursorHold.nvim',
       config = function()
         local lightbulb = require('nvim-lightbulb')
-        lightbulb.setup({autocmd = {enabled = true}})
+        lightbulb.setup({ autocmd = { enabled = true } })
       end
     }
 
@@ -155,7 +155,7 @@ return require('packer').startup({
 
     use {
       'nvim-zh/auto-save.nvim',
-      config = function ()
+      config = function()
         local autosave = require("auto-save")
         autosave.setup()
       end
@@ -197,12 +197,12 @@ return require('packer').startup({
     use 'windwp/nvim-spectre'
     use 'dyng/ctrlsf.vim'
     use { 'marko-cerovac/material.nvim' }
---
+    --
     use { 'tpope/vim-unimpaired' }
 
     use {
       'numToStr/Comment.nvim',
-      config = function ()
+      config = function()
         local ts_comment_integration = require('ts_context_commentstring.integrations.comment_nvim')
         require('Comment').setup({
           pre_hook = ts_comment_integration.create_pre_hook(),
@@ -230,12 +230,12 @@ return require('packer').startup({
         require('gitsigns').setup()
       end
     }
---
---     -- use {
---     --   "beauwilliams/focus.nvim",
---     --   config = function() require("focus").setup() end
---     -- }
---
+    --
+    --     -- use {
+    --     --   "beauwilliams/focus.nvim",
+    --     --   config = function() require("focus").setup() end
+    --     -- }
+    --
     use {
       "folke/which-key.nvim",
       config = function()
@@ -251,7 +251,7 @@ return require('packer').startup({
     require('plugins.lsp').run(use)
     require('plugins.specific').run(use)
 
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use {
       'nvim-telescope/telescope.nvim',
       config = function()
@@ -261,7 +261,7 @@ return require('packer').startup({
 
         local trouble = require("trouble.providers.telescope")
 
-        telescope.setup{
+        telescope.setup {
           defaults = {
             sorting_strategy = "ascending",
             mappings = {

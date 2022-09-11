@@ -1,5 +1,5 @@
 local options = {
-  langmap        = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz',
+  langmap    = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz',
   -- clipboard      = "unnamed,unnamedplus",   --- Copy-paste between vim and everything else
   -- cmdheight      = 1,                       --- Give more space for displaying messages
   -- completeopt    = "menu,menuone,noselect", --- Better autocompletion
@@ -14,13 +14,13 @@ local options = {
   -- laststatus     = 3,                       --- Have a global statusline at the bottom instead of one for each window
   -- lazyredraw     = true,                    --- Makes macros faster & prevent errors in complicated mappings
   -- mouse          = "a",                     --- Enable mouse
-  number         = true,                    --- Shows current line number
+  number     = true, --- Shows current line number
   -- pumheight      = 10,                      --- Max num of items in completion menu
   -- relativenumber = false,                    --- Enables relative number
   -- scrolloff      = 4,                       --- Always keep space when scrolling to bottom/top edge
   -- shiftwidth     = 2,                       --- Change a number of space characeters inseted for indentation
   -- showtabline    = 2,                       --- Always show tabs
-  signcolumn     = "yes:1",                 --- Add extra sign column next to line number
+  signcolumn = "yes:1", --- Add extra sign column next to line number
   -- smartcase      = true,                    --- Uses case in search
   -- smartindent    = true,                    --- Makes indenting smart
   -- smarttab       = true,                    --- Makes tabbing smarter will realize you have 2 vs 4
@@ -30,7 +30,7 @@ local options = {
   -- tabstop        = 2,                       --- Insert 2 spaces for a tab
   -- termguicolors  = true,                    --- Correct terminal colors
   -- timeoutlen     = 200,                     --- Faster completion (cannot be lower than 200 because then commenting doesn't work)
-  undofile       = true,                    --- Sets undo to file
+  undofile   = true, --- Sets undo to file
   -- updatetime     = 100,                     --- Faster completion
   -- viminfo        = "'1000",                 --- Increase the size of file history
   -- wildignore     = "*node_modules/**",      --- Don't search inside Node.js modules (works for gutentag)
@@ -50,7 +50,7 @@ local options = {
 }
 
 local globals = {
-  mapleader                   = ' ',        --- Map leader key to SPC
+  mapleader = ' ', --- Map leader key to SPC
   -- speeddating_no_mappings     = 1,          --- Disable default mappings for speeddating
 }
 

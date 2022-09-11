@@ -72,7 +72,7 @@ function M.run(use)
       lsp.ensure_installed(servers)
 
       lsp.on_attach(function(client, bufnr)
-        local opts = {buffer = bufnr, remap = false}
+        local opts = { buffer = bufnr, remap = false }
         local bind = vim.keymap.set
 
         bind("n", "<leader>f", vim.lsp.buf.formatting, opts)
@@ -86,7 +86,7 @@ function M.run(use)
       lsp.setup()
 
       local cmp = require('cmp')
-      local cmp_select = {behavior = cmp.SelectBehavior.Select}
+      local cmp_select = { behavior = cmp.SelectBehavior.Select }
       local sources = lsp.defaults.cmp_sources()
       table.insert(sources, { name = 'nvim_lsp_signature_help' })
 
