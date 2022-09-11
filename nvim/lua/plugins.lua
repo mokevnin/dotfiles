@@ -22,6 +22,14 @@ return require('packer').startup({
         require("notify").setup({})
       end
     }
+
+    use {
+      'phaazon/hop.nvim',
+      config = function()
+        require'hop'.setup()
+      end
+    }
+
     use {
       'goolord/alpha-nvim',
       config = function ()

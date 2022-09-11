@@ -10,6 +10,7 @@ function M.run(use)
   use 'tpope/vim-rails'
   --     use 'slim-template/vim-slim'
   use 'dhruvasagar/vim-table-mode'
+  use { 'mfussenegger/nvim-jdtls' }
 
 end
 

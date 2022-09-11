@@ -78,7 +78,7 @@ function M.run(use)
         bind("n", "<leader>f", vim.lsp.buf.formatting, opts)
         -- bind('n', "gr", "<cmd>TroubleToggle quickfix<cr>", opts)
         -- bind('n', '<space>rn', vim.lsp.buf.rename, noremap)
-        -- bind('n', '<space>ca', vim.lsp.buf.code_action, opts)
+        bind('n', '<leader>ca', vim.lsp.buf.code_action, opts)
         -- bind('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', noremap)
       end)
 
