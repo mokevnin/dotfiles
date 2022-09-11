@@ -120,6 +120,7 @@ return require('packer').startup({
       'stevearc/dressing.nvim',
       config = function()
         -- TODO: add c-[ for normal mode
+        -- https://github.com/stevearc/dressing.nvim/issues/29
         local dressing = require('dressing')
         dressing.setup({
           input = {
