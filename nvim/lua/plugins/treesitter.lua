@@ -5,8 +5,8 @@ function M.run(use)
   use {
     'ThePrimeagen/refactoring.nvim',
     requires = {
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-treesitter/nvim-treesitter'}
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-treesitter/nvim-treesitter' }
     }
   }
 
@@ -32,11 +32,14 @@ function M.run(use)
     config = function()
       local npairs = require('nvim-autopairs')
       npairs.setup({
-        -- check_ts = true
+        check_ts = true
       })
-      -- npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
-      -- npairs.add_rules(require('nvim-autopairs.rules.endwise-elixir'))
-      -- npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      local cmp = require('cmp')
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+      )
     end
   }
 
@@ -49,7 +52,7 @@ function M.run(use)
     {
       'nvim-treesitter/nvim-treesitter-context',
       config = function()
-        require'treesitter-context'.setup {
+        require 'treesitter-context'.setup {
           separator = '-'
         }
       end
@@ -69,8 +72,14 @@ function M.run(use)
           enable = true,
           enable_autocmd = false,
         },
+        matchup = {
+          enable = true
+        },
         highlight = {
           enable = true, -- false will disable the whole extension
+        },
+        indent = {
+          enable = true
         },
         endwise = {
           enable = true,
