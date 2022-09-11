@@ -39,10 +39,10 @@ bind("n", "gn", ":bn<CR>", opts)
 bind("n", "gp", ":bp<CR>", opts)
 
 -- Don't yank on delete char
-bind("n", "x", '"_x', opts)
-bind("n", "X", '"_X', opts)
-bind("v", "x", '"_x', opts)
-bind("v", "X", '"_X', opts)
+-- bind("n", "x", '"_x', opts)
+-- bind("n", "X", '"_X', opts)
+-- bind("v", "x", '"_x', opts)
+-- bind("v", "X", '"_X', opts)
 
 -- Don't yank on visual paste
 bind("v", "p", '"_dP', opts)

@@ -16,12 +16,13 @@ return require('packer').startup({
     use { 'nvim-lua/plenary.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'svban/YankAssassin.vim' }
-    use {
-      'rcarriga/nvim-notify',
-      config = function()
-        require("notify").setup({})
-      end
-    }
+
+    -- use {
+    --   'rcarriga/nvim-notify',
+    --   config = function()
+    --     require("notify").setup({})
+    --   end
+    -- }
 
     use {
       'phaazon/hop.nvim',
