@@ -20,6 +20,9 @@ bind("n", "j", "gj", opts)
 bind("n", "л", "gk", opts)
 bind("n", "о", "gj", opts)
 
+bind("i", "<C-г>", "<C-G>u<C-U>", opts)
+bind("i", "<C-ц>", "<C-G>u<C-W>", opts)
+
 -- Move selected line / block of text in visual mode
 -- keymap("x", "K", ":move '<-2<CR>gv-gv", silent)
 -- keymap("x", "J", ":move '>+1<CR>gv-gv", silent)

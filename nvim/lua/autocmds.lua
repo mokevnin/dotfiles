@@ -9,11 +9,6 @@ vim.api.nvim_create_autocmd("TextYankPost",
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.txt", "*.md" },
   command = "setlocal spell" })
 
--- augroup YankHighlight
---   autocmd!
---   autocmd TextYankPost * silent! lua vim.highlight.on_yank()
--- augroup end
-
 vim.cmd [[
   augroup myfiletypes
     " Clear old autocmds in group
