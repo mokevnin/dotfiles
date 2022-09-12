@@ -13,6 +13,9 @@ return require('packer').startup({
 
     use { 'tpope/vim-sensible' }
 
+    -- remove after releasing new version of neovim
+    use { 'luukvbaal/stabilize.nvim' }
+
     use { 'nvim-lua/plenary.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'svban/YankAssassin.vim' }
