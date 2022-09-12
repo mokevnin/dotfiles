@@ -48,7 +48,7 @@ bind("n", "gp", ":bp<CR>", opts)
 -- bind("v", "X", '"_X', opts)
 
 -- Don't yank on visual paste
-bind("v", "p", '"_dP', opts)
+-- bind("v", "p", '"_dP', opts)
 
 -- Quickfix
 -- keymap("n", "<leader>,", ":cp<CR>", silent)
