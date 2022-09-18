@@ -17,9 +17,9 @@ bind("n", "k", "gk", opts)
 bind("n", "j", "gj", opts)
 
 -- for russian layout
+bind("i", "<c-х>", "<C-[>", opts)
 bind("n", "л", "gk", opts)
 bind("n", "о", "gj", opts)
-
 bind("i", "<C-г>", "<C-G>u<C-U>", opts)
 bind("i", "<C-ц>", "<C-G>u<C-W>", opts)
 
@@ -27,11 +27,11 @@ bind("i", "<C-ц>", "<C-G>u<C-W>", opts)
 -- keymap("x", "K", ":move '<-2<CR>gv-gv", silent)
 -- keymap("x", "J", ":move '>+1<CR>gv-gv", silent)
 
-bind('v', '"y', '"*y', opts)
-bind('n', '"y', '"*y', opts)
-bind('n', '"Y', '"*Y', opts)
-bind('n', '"p', '"*p', opts)
-bind('n', '"P', '"*P', opts)
+bind('v', '"y', '"+y', opts)
+bind('n', '"y', '"+y', opts)
+bind('n', '"Y', '"+Y', opts)
+bind('n', '"p', '"+p', opts)
+bind('n', '"P', '"+P', opts)
 
 -- Save file by CTRL-S
 -- keymap("n", "<C-s>", ":w<CR>", silent)

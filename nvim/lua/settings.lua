@@ -1,5 +1,5 @@
 local options = {
-  spelllang = 'en_us,ru',
+  spelllang  = 'en_us,ru',
   langmap    = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz',
   -- clipboard      = "unnamed,unnamedplus",   --- Copy-paste between vim and everything else
   -- cmdheight      = 1,                       --- Give more space for displaying messages
@@ -22,7 +22,8 @@ local options = {
   -- shiftwidth     = 2,                       --- Change a number of space characeters inseted for indentation
   -- showtabline    = 2,                       --- Always show tabs
   signcolumn = "yes:1", --- Add extra sign column next to line number
-  -- smartcase      = true,                    --- Uses case in search
+  ignorecase = true,
+  smartcase  = true, --- Uses case in search
   -- smartindent    = true,                    --- Makes indenting smart
   -- smarttab       = true,                    --- Makes tabbing smarter will realize you have 2 vs 4
   -- softtabstop    = 2,                       --- Insert 2 spaces for a tab
