@@ -21,6 +21,9 @@ return require('packer').startup({
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'svban/YankAssassin.vim' }
 
+    -- TODO: add
+    -- https://github.com/gbprod/yanky.nvim
+
     -- use {
     --   'rcarriga/nvim-notify',
     --   config = function()
@@ -40,6 +43,15 @@ return require('packer').startup({
       config = function()
         require 'alpha'.setup(require 'alpha.themes.startify'.config)
       end
+    }
+
+    use {
+      'akinsho/bufferline.nvim',
+      config = function()
+        require("bufferline").setup{}
+      end,
+      tag = "v2.*",
+      requires = 'kyazdani42/nvim-web-devicons',
     }
 
     -- use {
