@@ -1,5 +1,5 @@
 local options = {
-  spelllang  = 'en_us,ru',
+  -- spelllang  = 'en_us,ru',
   langmap    = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz',
   -- clipboard      = "unnamed,unnamedplus",   --- Copy-paste between vim and everything else
   -- cmdheight      = 1,                       --- Give more space for displaying messages
