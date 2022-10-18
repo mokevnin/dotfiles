@@ -18,7 +18,6 @@ function M.run(use)
     'omnisharp',
     'psalm',
     'pyright',
-    'racket_langserver',
     'solargraph',
     'sorbet',
     'sqlls',
