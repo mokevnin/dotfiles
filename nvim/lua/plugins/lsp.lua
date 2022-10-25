@@ -2,6 +2,7 @@ local M = {}
 
 function M.run(use)
   servers = {
+    'marksman',
     'tsserver',
     'ansiblels',
     'bashls',
