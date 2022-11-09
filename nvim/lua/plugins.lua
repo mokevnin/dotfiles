@@ -7,6 +7,7 @@ return require('packer').startup({
   function(use)
 
     use { 'wbthomason/packer.nvim' }
+    use { 'slim-template/vim-slim' }
 
     -- speeding up
     use { 'lewis6991/impatient.nvim' }
