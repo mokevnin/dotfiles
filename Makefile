@@ -47,7 +47,7 @@ ubuntu-prepare:
 	# $(shell . $(HOME)/.asdf/asdf.sh)
 	# . $HOME/.asdf/completions/asdf.bash
 	chsh -s /bin/zsh
-	$(shell sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)")
+	# sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 
 
