@@ -41,7 +41,10 @@ ubuntu-prepare:
 	sudo apt-get install neovim
 	# curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 	# apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(shell lsb_release -cs) main"
-	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags asdf
+	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags asdf zsh
+
+	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 
 deps: deps-gem deps-composer deps-npm deps-pip deps-go
 
