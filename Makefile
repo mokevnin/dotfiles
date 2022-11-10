@@ -22,7 +22,7 @@ nvim-install:
 	rm -rf $(PACKER_PATH) || exit 0
 	mkdir -p ~/.config
 	mkdir -p $(PACKER_PATH)
-	git clone --depth 1 https://github.com/wbthomason/packer.nvim $(PACKER_PATH)/packer.nvim || true
+	git clone --depth 1 https://github.com/wbthomason/packer.nvim $(PACKER_PATH)/packer.nvim
 	ln -snf $(PWD)/nvim ~/.config/nvim
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
@@ -36,14 +36,14 @@ macos-prepare:
 
 # ripgrep https://github.com/BurntSushi/ripgrep/issues/1562
 ubuntu-prepare:
-	sudo add-apt-repository ppa:neovim-ppa/stable
+	sudo add-apt-repository -y ppa:neovim-ppa/stable
 	sudo apt-get update
 	sudo apt-get install neovim
 	# curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 	# apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(shell lsb_release -cs) main"
 	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags zsh
 
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || true
 	(shell . $HOME/.asdf/asdf.sh)
 	# . $HOME/.asdf/completions/asdf.bash
 
