@@ -43,10 +43,9 @@ ubuntu-prepare:
 	# apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(shell lsb_release -cs) main"
 	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags zsh
 
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || true
-	$(shell . $HOME/.asdf/asdf.sh)
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || exit 0
+	$(shell . $(HOME)/.asdf/asdf.sh)
 	# . $HOME/.asdf/completions/asdf.bash
-
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 
