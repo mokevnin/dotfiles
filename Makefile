@@ -1,17 +1,6 @@
-all: nvim-install dotfiles-install
+all: nvim-install
 
 TAGS := all
-
-# macos-update: macos-prepare deps
-# 	nvim --headless +PlugUpdate +qall
-# 	nvim --headless +CocUpdate +qall
-
-# ubuntu-update: ubuntu-prepare deps
-# 	nvim --headless +PlugUpdate +qall
-# 	nvim --headless +CocUpdate +qall
-
-dotfiles-install:
-	 docker run --rm -e RUNNER_PLAYBOOK=dotfiles.yml -v $(HOME):/host/home -v $(CURDIR):/runner/project ansible/ansible-runner
 
 PACKER_PATH=~/.local/share/nvim/site/pack/packer/start
 
@@ -44,10 +33,11 @@ ubuntu-prepare:
 	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags zsh
 
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || exit 0
-	# $(shell . $(HOME)/.asdf/asdf.sh)
 	# . $HOME/.asdf/completions/asdf.bash
 	chsh -s /bin/zsh
-	# sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh --output /tmp/ohmyzsh.sh
+	$(shell . /tmp/ohmyzsh.sh)
+	echo ". $HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh
 
 
 
