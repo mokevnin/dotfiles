@@ -35,11 +35,13 @@ macos-prepare:
 	# curl -o /usr/local/bin/xkbswitch https://raw.githubusercontent.com/myshov/xkbswitch-macosx/master/bin/xkbswitch
 
 # ripgrep https://github.com/BurntSushi/ripgrep/issues/1562
-# ubuntu-prepare:
-# 	curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-# 	apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(shell lsb_release -cs) main"
-# 	apt-get update
-# 	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags terraform-ls ripgrep
+ubuntu-prepare:
+	sudo add-apt-repository ppa:neovim-ppa/stable
+	sudo apt-get update
+	sudo apt-get install neovim
+	# curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+	# apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(shell lsb_release -cs) main"
+	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags asdf
 
 deps: deps-gem deps-composer deps-npm deps-pip deps-go
 
