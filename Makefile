@@ -37,7 +37,7 @@ ubuntu-prepare:
 	chsh -s /bin/zsh
 	curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh --output /tmp/ohmyzsh.sh
 	$(shell . /tmp/ohmyzsh.sh)
-	echo ". $HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh
+	echo ". \$HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh
 
 
 
