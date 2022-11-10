@@ -36,8 +36,8 @@ ubuntu-prepare:
 	# . $HOME/.asdf/completions/asdf.bash
 	chsh -s /bin/zsh
 	curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh --output /tmp/ohmyzsh.sh
-	$(shell . /tmp/ohmyzsh.sh)
-	# $(shell echo ". $$HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh)
+	$(shell . /tmp/ohmyzsh.sh || exit 0)
+	$(shell echo ". $$HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh)
 
 
 
