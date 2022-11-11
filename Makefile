@@ -38,7 +38,14 @@ ubuntu-prepare:
 	$(shell echo ". $$HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh)
 	chsh -s /bin/zsh
 
+languages-prepare:
+	asdf plugin add nodejs
+	asdf plugin add php
+	asdf plugin add ruby
 
+	asdf install nodejs latest
+	asdf install ruby latest
+	asdf install php latest
 
 deps: deps-gem deps-composer deps-npm deps-pip deps-go
 

@@ -275,12 +275,11 @@ return require('packer').startup({
     require('plugins.lsp').run(use)
     require('plugins.specific').run(use)
 
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use {
       'nvim-telescope/telescope.nvim',
       config = function()
         local telescope = require('telescope')
-        telescope.load_extension('fzf')
+        -- telescope.load_extension('fzf')
         telescope.load_extension('refactoring')
 
         local trouble = require("trouble.providers.telescope")
