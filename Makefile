@@ -24,11 +24,11 @@ deps-pip:
 	pip3 install --upgrade autopep8 flake8 bandit pytype # black
 
 deps-gem:
-	gem install solargraph rubocop neovim
-	gem install rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
-	gem install sorbet sorbet-runtime
-	gem install haml_lint slim_lint
-	gem install brakeman reek
+	gem install --no-rdoc --no-ri solargraph rubocop neovim
+	gem install --no-rdoc --no-ri rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
+	gem install --no-rdoc --no-ri sorbet sorbet-runtime
+	gem install --no-rdoc --no-ri haml_lint slim_lint
+	gem install --no-rdoc --no-ri brakeman reek
 
 deps-composer:
 	composer --no-interaction global require \

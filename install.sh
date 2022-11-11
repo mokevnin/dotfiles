@@ -8,7 +8,7 @@ case "$OSTYPE" in
     sudo apt-get update
     apt install -yy zsh git neovim make neovim git \
       silversearcher-ag fd-find fzf bat htop ncdu \
-      tldr httpie exuberant-ctags zip build-essential
+      tldr httpie exuberant-ctags zip build-essential pip
 
     chsh -s /bin/zsh
 
