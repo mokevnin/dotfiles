@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-case $OSTYPE in
+case "$OSTYPE" in
   linux*)
     sudo add-apt-repository -y ppa:neovim-ppa/stable
     sudo apt-get update
