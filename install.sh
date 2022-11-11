@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+# set -e
 
 case "$OSTYPE" in
   linux*)
@@ -31,7 +31,7 @@ case "$OSTYPE" in
     ;;
 esac
 
-git clone https://github.com/mokevnin/dotfiles || true
+git clone https://github.com/mokevnin/dotfiles ~/dotfiles || true
 
 sh "$HOME/.asdf/asdf.sh"
 
