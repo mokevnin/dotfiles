@@ -33,10 +33,10 @@ ubuntu-prepare:
 	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags zsh zip
 
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || exit 0
-	curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh --output /tmp/ohmyzsh.sh
-	$(shell . /tmp/ohmyzsh.sh)
+	wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O /tmp/ohmyzsh.sh
+	sh /tmp/ohmyzsh.sh
 	$(shell echo ". $$HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh)
-	chsh -s /bin/zsh
+	# chsh -s /bin/zsh
 
 languages-prepare:
 	asdf plugin add nodejs
