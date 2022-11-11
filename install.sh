@@ -22,7 +22,7 @@ case "$OSTYPE" in
     ;;
 esac
 
-git clone https://github.com/mokevnin/dotfiles
+git clone https://github.com/mokevnin/dotfiles || exit 0
 
 asdf plugin add nodejs
 asdf plugin add php
