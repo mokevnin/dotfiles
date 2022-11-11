@@ -22,6 +22,8 @@ case $OSTYPE in
     ;;
 esac
 
+git clone https://github.com/mokevnin/dotfiles
+
 asdf plugin add nodejs
 asdf plugin add php
 asdf plugin add ruby
