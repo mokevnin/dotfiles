@@ -34,9 +34,9 @@ ubuntu-prepare:
 
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || exit 0
 	wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O /tmp/ohmyzsh.sh
-	sh /tmp/ohmyzsh.sh
+	sh /tmp/ohmyzsh.sh || exit 0
 	$(shell echo ". $$HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh)
-	# chsh -s /bin/zsh
+	chsh -s /bin/zsh
 
 languages-prepare:
 	asdf plugin add nodejs
