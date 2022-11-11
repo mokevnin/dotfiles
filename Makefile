@@ -5,7 +5,7 @@ TAGS := all
 PACKER_PATH=~/.local/share/nvim/site/pack/packer/start
 
 install:
-	sh install.sh
+	./install.sh
 
 nvim-configure:
 	rm -rf nvim/plugin || exit 0

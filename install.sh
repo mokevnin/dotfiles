@@ -4,8 +4,8 @@
 
 case "$OSTYPE" in
   linux*)
-    sudo add-apt-repository -y ppa:neovim-ppa/stable
-    sudo apt-get update
+    add-apt-repository -y ppa:neovim-ppa/stable
+    apt-get update
     apt install -yy zsh git neovim make neovim git \
       silversearcher-ag fd-find fzf bat htop ncdu \
       tldr httpie exuberant-ctags zip build-essential pip
@@ -21,6 +21,8 @@ case "$OSTYPE" in
 
     # https://github.com/asdf-community/asdf-php/blob/master/.github/workflows/workflow.yml
     apt install -yy autoconf bison build-essential curl gettext git libgd-dev libcurl4-openssl-dev libedit-dev libicu-dev libjpeg-dev libmysqlclient-dev libonig-dev libpng-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libzip-dev openssl pkg-config re2c zlib1g-dev
+
+    update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
     ;;
   darwin*)
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
