@@ -10,8 +10,8 @@ case "$OSTYPE" in
 
     chsh -s /bin/zsh
 
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || exit 0
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || exit 0
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || true
     echo ". \$HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh
     ;;
   darwin*)
@@ -23,7 +23,7 @@ case "$OSTYPE" in
     ;;
 esac
 
-git clone https://github.com/mokevnin/dotfiles || exit 0
+git clone https://github.com/mokevnin/dotfiles || true
 
 asdf plugin add nodejs
 asdf plugin add php
