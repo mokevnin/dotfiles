@@ -25,6 +25,8 @@ esac
 
 git clone https://github.com/mokevnin/dotfiles || true
 
+$HOME/.asdf/asdf.sh
+
 asdf plugin add nodejs
 asdf plugin add php
 asdf plugin add ruby
