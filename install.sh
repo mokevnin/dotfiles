@@ -40,5 +40,10 @@ asdf plugin add php
 asdf plugin add ruby
 
 asdf install nodejs latest
+asdf global nodejs latest
+
 asdf install ruby latest
+asdf global ruby latest
+
 asdf install php latest
+asdf global php latest
