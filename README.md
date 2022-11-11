@@ -12,17 +12,7 @@
 ## Setup
 
 ```sh
-# or https://github.com/asdf-vm/asdf
-curl -sL https://deb.nodesource.com/setup_17.x | bash -
-
-git clone git@github.com:mokevnin/dotfiles.git ~/dotfiles 
-cd dotfiles
-
-# ubuntu
-make ubuntu-prepare
-
-# macos
-make macos-prepare
+sh -c "$(wget -O- https://raw.githubusercontent.com/mokevnin/dotfiles/main/install.sh)"
 
 # configs
 make nvim-install
