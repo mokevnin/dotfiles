@@ -33,7 +33,7 @@ esac
 
 git clone https://github.com/mokevnin/dotfiles ~/dotfiles || true
 
-sh "$HOME/.asdf/asdf.sh"
+bash -c ". $HOME/.asdf/asdf.sh"
 
 asdf plugin add nodejs
 asdf plugin add php
