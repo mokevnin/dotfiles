@@ -15,38 +15,6 @@ nvim-install:
 	ln -snf $(PWD)/nvim ~/.config/nvim
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-macos-prepare:
-	brew upgrade neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed
-	# brew install hashicorp/tap/terraform-ls
-	# brew install poetry
-	# brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-	# https://github.com/rlue/vim-barbaric
-	# curl -o /usr/local/bin/xkbswitch https://raw.githubusercontent.com/myshov/xkbswitch-macosx/master/bin/xkbswitch
-
-# ripgrep https://github.com/BurntSushi/ripgrep/issues/1562
-ubuntu-prepare:
-	sudo add-apt-repository -y ppa:neovim-ppa/stable
-	sudo apt-get update
-	sudo apt-get install neovim
-	# curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-	# apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(shell lsb_release -cs) main"
-	apt-get install -yy neovim git silversearcher-ag fd-find fzf bat htop ncdu tldr httpie exuberant-ctags zsh zip
-
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || exit 0
-	wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O /tmp/ohmyzsh.sh
-	sh /tmp/ohmyzsh.sh || exit 0
-	$(shell echo ". $$HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh)
-	chsh -s /bin/zsh
-
-languages-prepare:
-	asdf plugin add nodejs
-	asdf plugin add php
-	asdf plugin add ruby
-
-	asdf install nodejs latest
-	asdf install ruby latest
-	asdf install php latest
-
 deps: deps-gem deps-composer deps-npm deps-pip deps-go
 
 deps-pip:
