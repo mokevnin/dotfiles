@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 case "$OSTYPE" in
   linux*)
     sudo add-apt-repository -y ppa:neovim-ppa/stable
@@ -16,6 +18,9 @@ case "$OSTYPE" in
 
     # https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
     apt install -yy autoconf bison patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+
+    # https://github.com/asdf-community/asdf-php/blob/master/.github/workflows/workflow.yml
+    apt install -yy autoconf bison build-essential curl gettext git libgd-dev libcurl4-openssl-dev libedit-dev libicu-dev libjpeg-dev libmysqlclient-dev libonig-dev libpng-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libzip-dev openssl pkg-config re2c zlib1g-dev
     ;;
   darwin*)
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
