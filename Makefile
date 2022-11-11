@@ -1,10 +1,13 @@
-all: nvim-install
+all: install nvim-configure deps
 
 TAGS := all
 
 PACKER_PATH=~/.local/share/nvim/site/pack/packer/start
 
-nvim-install:
+install:
+	sh install.sh
+
+nvim-configure:
 	rm -rf nvim/plugin || exit 0
 	rm -rf ~/.local/share/nvim || exit 0
 	rm -rf ~/.config/nvim || exit 0
@@ -15,7 +18,7 @@ nvim-install:
 	ln -snf $(PWD)/nvim ~/.config/nvim
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-deps: deps-gem deps-composer deps-npm deps-pip deps-go
+deps-install: deps-gem deps-composer deps-npm deps-pip deps-go
 
 deps-pip:
 	# pip2 install --upgrade pynvim
@@ -24,11 +27,11 @@ deps-pip:
 	pip3 install --upgrade autopep8 flake8 bandit pytype # black
 
 deps-gem:
-	gem install --no-rdoc --no-ri solargraph rubocop neovim
-	gem install --no-rdoc --no-ri rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
-	gem install --no-rdoc --no-ri sorbet sorbet-runtime
-	gem install --no-rdoc --no-ri haml_lint slim_lint
-	gem install --no-rdoc --no-ri brakeman reek
+	gem install --no-document solargraph rubocop neovim
+	gem install --no-document rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
+	gem install --no-document sorbet sorbet-runtime
+	gem install --no-document haml_lint slim_lint
+	gem install --no-document brakeman reek
 
 deps-composer:
 	composer --no-interaction global require \

@@ -14,15 +14,15 @@
 ```sh
 sh -c "$(wget -O- https://raw.githubusercontent.com/mokevnin/dotfiles/main/install.sh)"
 
-# configs
-make nvim-install
+# or
+git clone git@github.com:mokevnin/dotfiles.git
+make install # same when updating
+
+# configure nvim
+make nvim-configure
 
 # install all additional packages for languages (See Makefile for install packages for some language)
-make deps
-
-# update
-make macos-update
-make ubuntu-update
+make deps-install
 ```
 
 ## VIM
