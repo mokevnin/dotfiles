@@ -15,6 +15,7 @@ case "$OSTYPE" in
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || true
     echo ". \$HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh
+    echo "alias fixssh='eval \$(tmux showenv -s SSH_AUTH_SOCK)'" > ~/.oh-my-zsh/custom/useful.zsh
 
     # https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
     apt install -yy autoconf bison patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
@@ -32,6 +33,8 @@ case "$OSTYPE" in
     echo 'Everything is ready. Go to the next step'
     ;;
 esac
+
+sed -i 's/plugins=.*/plugins=\(git vi-mode fzf asdf docker\)/g' ~/.zshrc
 
 git clone https://github.com/mokevnin/dotfiles ~/dotfiles || true
 
