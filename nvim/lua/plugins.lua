@@ -198,23 +198,24 @@ return require('packer').startup({
       end
     }
 
-    -- use {
-    --   'jose-elias-alvarez/null-ls.nvim',
-    --   config = function()
-    --     local ls = require('null-ls')
-    --     -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-    --     ls.setup({
-    --       sources = {
-    --         ls.builtins.formatting.stylua,
-    --         -- ls.builtins.formatting.gofmt,
-    --         -- ls.builtins.formatting.prettierd,
-    --         -- ls.builtins.formatting.terraform_fmt,
-    --         -- ls.builtins.formatting.uncrustify,
-    --         -- ls.builtins.formatting.hadolint,
-    --       },
-    --     })
-    --   end
-    -- }
+    use {
+      'jose-elias-alvarez/null-ls.nvim',
+      config = function()
+        local ls = require('null-ls')
+        -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+        ls.setup({
+          debug = true,
+          -- sources = {
+            -- ls.builtins.formatting.stylua,
+            -- ls.builtins.formatting.gofmt,
+            -- ls.builtins.formatting.prettierd,
+            -- ls.builtins.formatting.terraform_fmt,
+            -- ls.builtins.formatting.uncrustify,
+            -- ls.builtins.formatting.hadolint,
+          -- },
+        })
+      end
+    }
 
     -- alternative https://github.com/machakann/vim-sandwich
     use { 'tpope/vim-surround' }
@@ -270,6 +271,8 @@ return require('packer').startup({
         }
       end
     }
+
+    require('plugins.null-ls.slim-lint')
 
     require('plugins.treesitter').run(use)
     require('plugins.lsp').run(use)

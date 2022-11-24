@@ -45,6 +45,7 @@ function M.run(use)
 
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'tree-sitter/tree-sitter-embedded-template',
     'RRethy/nvim-treesitter-endwise',
     'windwp/nvim-ts-autotag',
     'andymass/vim-matchup',
