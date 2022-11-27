@@ -28,8 +28,8 @@ case "$OSTYPE" in
     update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
     ;;
   darwin*)
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew upgrade asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null
+    yes | brew upgrade asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed
     ;;
   *)
     echo 'Everything is ready. Go to the next step'
