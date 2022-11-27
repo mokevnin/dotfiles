@@ -16,7 +16,7 @@ function M.run(use)
   }
 
   --     use 'isobit/vim-caddyfile'
-  -- use 'tpope/vim-rails'
+  use 'tpope/vim-rails'
   --     use 'slim-template/vim-slim'
   use 'dhruvasagar/vim-table-mode'
   use { 'mfussenegger/nvim-jdtls' }

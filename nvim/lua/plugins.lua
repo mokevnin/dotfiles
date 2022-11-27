@@ -98,6 +98,7 @@ return require('packer').startup({
 
     use {
       'mfussenegger/nvim-dap',
+      'jayp0521/mason-nvim-dap.nvim',
       config = function()
         require("dapui").setup()
       end
@@ -195,25 +196,6 @@ return require('packer').startup({
           char = '┊',
           show_trailing_blankline_indent = false,
         }
-      end
-    }
-
-    use {
-      'jose-elias-alvarez/null-ls.nvim',
-      config = function()
-        local ls = require('null-ls')
-        -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-        ls.setup({
-          debug = true,
-          -- sources = {
-            -- ls.builtins.formatting.stylua,
-            -- ls.builtins.formatting.gofmt,
-            -- ls.builtins.formatting.prettierd,
-            -- ls.builtins.formatting.terraform_fmt,
-            -- ls.builtins.formatting.uncrustify,
-            -- ls.builtins.formatting.hadolint,
-          -- },
-        })
       end
     }
 

@@ -19,8 +19,7 @@ function M.run(use)
     'omnisharp',
     'psalm',
     'pyright',
-    'solargraph',
-    'sorbet',
+    -- 'sorbet',
     'sqlls',
     'sumneko_lua',
     'stylelint_lsp',
@@ -35,15 +34,6 @@ function M.run(use)
     'sumneko_lua',
   }
 
-  -- use {
-  --   'williamboman/mason-lspconfig.nvim',
-  --   config = function()
-  --     require("mason-lspconfig").setup({
-  --       ensure_installed = servers
-  --     })
-  --   end
-  -- }
-
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -51,6 +41,7 @@ function M.run(use)
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      'jayp0521/mason-null-ls.nvim',
 
       -- Autocompletion
       'hrsh7th/nvim-cmp',
@@ -64,8 +55,17 @@ function M.run(use)
       -- Snippets
       'L3MON4D3/LuaSnip',
       'rafamadriz/friendly-snippets',
+
+      'jose-elias-alvarez/null-ls.nvim',
     },
     config = function()
+      local mason_settings = require('mason.settings')
+      mason_settings.set({
+        solargraph = {
+          useBundler = true
+        }
+      })
+
       local lsp = require('lsp-zero')
       lsp.preset('recommended')
 
@@ -84,6 +84,16 @@ function M.run(use)
 
 
       lsp.setup()
+
+      local null_ls = require('null-ls')
+      local null_opts = lsp.build_options('null-ls', {})
+
+      null_ls.setup({
+        on_attach = null_opts.on_attach,
+        sources = {
+          --- do whatever you need to do
+        }
+      })
 
       local cmp = require('cmp')
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
