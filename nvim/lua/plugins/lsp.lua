@@ -91,6 +91,10 @@ function M.run(use)
       table.insert(sources, { name = 'nvim_lsp_signature_help' })
 
       local cmp_config = lsp.defaults.cmp_config({
+        preselect = 'none',
+        completion = {
+          completeopt = 'menu,menuone,noinsert,noselect'
+        },
         sources = sources,
         mapping = {
           ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
