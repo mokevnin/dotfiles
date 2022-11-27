@@ -27,7 +27,7 @@ deps-pip:
 	pip3 install --upgrade autopep8 flake8 bandit pytype # black
 
 deps-gem:
-	gem install --no-document solargraph rubocop neovim
+	gem install --no-document solargraph rubocop neovim solargraph-rails
 	gem install --no-document rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
 	gem install --no-document sorbet sorbet-runtime
 	gem install --no-document haml_lint slim_lint
