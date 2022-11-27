@@ -17,6 +17,8 @@ case "$OSTYPE" in
     echo ". \$HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh
     echo "alias fixssh='eval \$(tmux showenv -s SSH_AUTH_SOCK)'" > ~/.oh-my-zsh/custom/useful.zsh
 
+    # apt install -y haskell-platform golang default-jdk
+
     # https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
     apt install -yy autoconf bison patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
 
@@ -43,6 +45,9 @@ bash -c ". $HOME/.asdf/asdf.sh"
 asdf plugin add nodejs
 asdf plugin add php
 asdf plugin add ruby
+asdf plugin add golang
+asdf plugin add haskell
+asdf plugin add java
 
 asdf install nodejs latest
 asdf global nodejs latest
@@ -52,3 +57,12 @@ asdf global ruby latest
 
 asdf install php latest
 asdf global php latest
+
+asdf install golang latest
+asdf global golang latest
+
+asdf install haskell latest
+asdf global haskell latest
+
+asdf install java latest
+asdf global java latest
