@@ -46,7 +46,6 @@ asdf plugin add nodejs
 asdf plugin add php
 asdf plugin add ruby
 asdf plugin add golang
-asdf plugin add haskell
 asdf plugin add java
 
 asdf install nodejs latest
@@ -61,8 +60,10 @@ asdf global php latest
 asdf install golang latest
 asdf global golang latest
 
-asdf install haskell latest
-asdf global haskell latest
+asdf install java openjdk-19.0.1
+asdf global java openjdk-19.0.1
 
-asdf install java latest
-asdf global java latest
+export BOOTSTRAP_HASKELL_NONINTERACTIVE=1
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+
+echo ". \$HOME/.ghcup/env" > ~/.oh-my-zsh/custom/ghcup.zsh
