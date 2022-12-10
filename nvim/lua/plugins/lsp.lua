@@ -30,6 +30,7 @@ function M.run(use)
     'cssls',
     'eslint',
     'jsonls',
+    -- 'ruby_ls',
     'solargraph',
     'sumneko_lua',
   }
@@ -59,17 +60,22 @@ function M.run(use)
       'jose-elias-alvarez/null-ls.nvim',
     },
     config = function()
-      local mason_settings = require('mason.settings')
-      mason_settings.set({
-        solargraph = {
-          useBundler = true
-        }
-      })
+      vim.lsp.set_log_level('debug')
+      local lspconfig = require('lspconfig')
+      -- lspconfig.solargraph.setup({
+      --   cmd = { 'bin/solargraph' }
+      -- })
 
       local lsp = require('lsp-zero')
       lsp.preset('recommended')
 
       lsp.ensure_installed(servers)
+
+      local solargraph_opts = {
+        cmd = { 'bin/solargraph' }
+      }
+      local solargraph_built_opts = lsp.build_options('solargraph', solargraph_opts)
+      lspconfig.solargraph.setup(solargraph_built_opts)
 
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }

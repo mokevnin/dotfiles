@@ -27,8 +27,9 @@ deps-pip:
 	pip3 install --upgrade autopep8 flake8 bandit pytype # black
 
 deps-gem:
-	gem install --no-document solargraph rubocop neovim solargraph-rails
-	gem install --no-document rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
+	gem install --no-document neovim
+	gem install --no-document solargraph solargraph-rails
+	gem install --no-document rubocop rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
 	gem install --no-document sorbet sorbet-runtime
 	gem install --no-document haml_lint slim_lint
 	gem install --no-document brakeman reek
@@ -50,3 +51,6 @@ deps-npm:
 deps-go:
 	go install honnef.co/go/tools/cmd/staticcheck@latest
 	GO111MODULE=on go install golang.org/x/tools/gopls@latest
+
+# nvim-log:
+# 	tail -f kjj

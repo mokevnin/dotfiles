@@ -48,6 +48,11 @@ asdf plugin add ruby
 asdf plugin add golang
 asdf plugin add java
 
+asdf plugin-add lua https://github.com/Stratus3D/asdf-lua.git
+
+asdf install lua latest
+asdf global lua latest
+
 asdf install nodejs latest
 asdf global nodejs latest
 
@@ -62,6 +67,10 @@ asdf global golang latest
 
 asdf install java openjdk-19.0.1
 asdf global java openjdk-19.0.1
+
+# if already existed
+asdf update
+asdf plugin update --all
 
 export BOOTSTRAP_HASKELL_NONINTERACTIVE=1
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
