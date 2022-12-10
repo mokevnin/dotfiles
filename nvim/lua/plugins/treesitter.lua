@@ -73,6 +73,9 @@ function M.run(use)
           enable = true,
           enable_autocmd = false,
         },
+        autotag = {
+          enable = true,
+        },
         matchup = {
           enable = true
         },

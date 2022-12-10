@@ -96,7 +96,7 @@ function M.run(use)
       })
 
       local cmp = require('cmp')
-      local cmp_select = { behavior = cmp.SelectBehavior.Select }
+      -- local cmp_select = { behavior = cmp.SelectBehavior.Select }
       local sources = lsp.defaults.cmp_sources()
       table.insert(sources, { name = 'nvim_lsp_signature_help' })
 
@@ -106,15 +106,22 @@ function M.run(use)
           completeopt = 'menu,menuone,noinsert,noselect'
         },
         sources = sources,
-        mapping = {
-          ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-          ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        },
+        -- mapping = {
+        --   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        --   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        -- },
       })
 
       cmp.setup(cmp_config)
 
     end
+  }
+
+  use {
+    'j-hui/fidget.nvim',
+   kconfig = function()
+      require"fidget".setup{}
+    end,
   }
 
   -- https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
