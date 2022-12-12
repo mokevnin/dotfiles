@@ -6,6 +6,8 @@ function M.run(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   })
 
+  use { 'slim-template/vim-slim' }
+
   use {
     "cuducos/yaml.nvim",
     ft = {"yaml"}, -- optional

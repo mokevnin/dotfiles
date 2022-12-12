@@ -5,18 +5,17 @@
 return require('packer').startup({
 
   function(use)
+    -- https://github.com/gelguy/wilder.nvim
+    -- https://github.com/sindrets/diffview.nvim
+    -- https://github.com/kylechui/nvim-surround
 
     use { 'wbthomason/packer.nvim' }
-    use { 'slim-template/vim-slim' }
 
     -- speeding up
     use { 'lewis6991/impatient.nvim' }
     use { 'nathom/filetype.nvim' }
 
     use { 'tpope/vim-sensible' }
-
-    -- remove after releasing new version of neovim
-    use { 'luukvbaal/stabilize.nvim' }
 
     use { 'nvim-lua/plenary.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
@@ -32,12 +31,19 @@ return require('packer').startup({
     --   end
     -- }
 
-    use {
-      'phaazon/hop.nvim',
-      config = function()
-        require 'hop'.setup()
-      end
-    }
+    -- use {
+    --   'ggandor/leap.nvim',
+    --   config = function()
+    --     local leap = require('leap')
+    --     leap.add_default_mappings()
+    --   end
+    -- }
+    -- use {
+    --   'phaazon/hop.nvim',
+    --   config = function()
+    --     require 'hop'.setup()
+    --   end
+    -- }
 
     use {
       'goolord/alpha-nvim',
@@ -54,34 +60,6 @@ return require('packer').startup({
       tag = "v2.*",
       requires = 'kyazdani42/nvim-web-devicons',
     }
-
-    -- use {
-    --   'gelguy/wilder.nvim',
-    --   config = function()
-    --     local wilder = require('wilder')
-    --     wilder.setup({
-    --       modes = {':', '/', '?'},
-    --       next_key = '<C-n>',
-    --       previous_key = '<C-p>',
-    --     })
-    --
-    --     -- wilder.set_option('pipeline', {
-    --     --   wilder.branch(
-    --     --     wilder.cmdline_pipeline(),
-    --     --     wilder.search_pipeline()
-    --     --   ),
-    --     -- })
-    --
-    --     -- wilder.set_option('renderer', wilder.renderer_mux({
-    --     --   [':'] = wilder.popupmenu_renderer({
-    --     --     highlighter = wilder.basic_highlighter(),
-    --     --   }),
-    --     --   ['/'] = wilder.wildmenu_renderer({
-    --     --     highlighter = wilder.basic_highlighter(),
-    --     --   }),
-    --     -- }))
-    --   end,
-    -- }
 
     use { 'tpope/vim-fugitive' }
     use { 'LudoPinelli/comment-box.nvim' }
@@ -237,12 +215,7 @@ return require('packer').startup({
         require('gitsigns').setup()
       end
     }
-    --
-    --     -- use {
-    --     --   "beauwilliams/focus.nvim",
-    --     --   config = function() require("focus").setup() end
-    --     -- }
-    --
+
     use {
       "folke/which-key.nvim",
       config = function()
@@ -254,8 +227,7 @@ return require('packer').startup({
       end
     }
 
-    require('plugins.null-ls.slim-lint')
-
+    -- require('plugins.null-ls.slim-lint')
     require('plugins.treesitter').run(use)
     require('plugins.lsp').run(use)
     require('plugins.specific').run(use)

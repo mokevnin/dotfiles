@@ -16,7 +16,7 @@ nvim-configure:
 	mkdir -p $(PACKER_PATH)
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim $(PACKER_PATH)/packer.nvim
 	ln -snf $(PWD)/nvim ~/.config/nvim
-	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 deps-install: deps-gem deps-composer deps-npm deps-pip deps-go
 

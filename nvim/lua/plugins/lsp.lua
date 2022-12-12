@@ -42,40 +42,40 @@ function M.run(use)
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'jayp0521/mason-null-ls.nvim',
 
       -- Autocompletion
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
-      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-nvim-lsp-signature-help',
+      'saadparwaiz1/cmp_luasnip',
+      'onsails/lspkind.nvim',
+
 
       -- Snippets
       'L3MON4D3/LuaSnip',
       'rafamadriz/friendly-snippets',
 
+      -- Null LS
+      'jayp0521/mason-null-ls.nvim',
       'jose-elias-alvarez/null-ls.nvim',
     },
     config = function()
-      vim.lsp.set_log_level('debug')
+      -- vim.lsp.set_log_level('debug')
       local lspconfig = require('lspconfig')
-      -- lspconfig.solargraph.setup({
-      --   cmd = { 'bin/solargraph' }
-      -- })
+
+      local solargraph_opts = {
+        cmd = { 'bin/solargraph' }
+      }
+
+      -- lspconfig.solargraph.setup(solargraph_opts)
 
       local lsp = require('lsp-zero')
       lsp.preset('recommended')
 
       lsp.ensure_installed(servers)
-
-      local solargraph_opts = {
-        cmd = { 'bin/solargraph' }
-      }
-      local solargraph_built_opts = lsp.build_options('solargraph', solargraph_opts)
-      lspconfig.solargraph.setup(solargraph_built_opts)
 
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
@@ -88,6 +88,7 @@ function M.run(use)
         -- bind('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', noremap)
       end)
 
+      lsp.configure('solargraph', solargraph_opts)
 
       lsp.setup()
 
@@ -106,7 +107,17 @@ function M.run(use)
       local sources = lsp.defaults.cmp_sources()
       table.insert(sources, { name = 'nvim_lsp_signature_help' })
 
+      -- looks terrible. Waiting for an improvement
+      -- local lspkind = require('lspkind')
+
       local cmp_config = lsp.defaults.cmp_config({
+        -- formatting = {
+        --   format = lspkind.cmp_format({
+        --     mode = 'symbol',
+        --     maxwidth = 50,
+        --     ellipsis_char = '...',
+        --   }),
+        -- },
         preselect = 'none',
         completion = {
           completeopt = 'menu,menuone,noinsert,noselect'
