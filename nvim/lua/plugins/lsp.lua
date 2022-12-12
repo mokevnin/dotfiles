@@ -4,6 +4,7 @@ function M.run(use)
   servers = {
     'marksman',
     'tsserver',
+    'phpactor',
     'ansiblels',
     'bashls',
     'dockerls',
@@ -24,15 +25,16 @@ function M.run(use)
     'sumneko_lua',
     'stylelint_lsp',
     'terraformls',
+    -- 'rubocop',
     'vimls',
     'yamlls',
     'html',
+    -- 'haml-lint',
     'cssls',
     'eslint',
     'jsonls',
     -- 'ruby_ls',
     'solargraph',
-    'sumneko_lua',
   }
 
   use {
@@ -64,13 +66,6 @@ function M.run(use)
     },
     config = function()
       -- vim.lsp.set_log_level('debug')
-      local lspconfig = require('lspconfig')
-
-      local solargraph_opts = {
-        cmd = { 'bin/solargraph' }
-      }
-
-      -- lspconfig.solargraph.setup(solargraph_opts)
 
       local lsp = require('lsp-zero')
       lsp.preset('recommended')
@@ -88,6 +83,15 @@ function M.run(use)
         -- bind('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', noremap)
       end)
 
+      local solargraph_opts = {
+        cmd = { 'bin/solargraph' }
+      }
+
+      local sorbet_opts = {
+        cmd = { 'bin/sorbet' }
+      }
+
+      lsp.configure('sorbet', sorbet_opts)
       lsp.configure('solargraph', solargraph_opts)
 
       lsp.setup()
@@ -98,7 +102,51 @@ function M.run(use)
       null_ls.setup({
         on_attach = null_opts.on_attach,
         sources = {
-          --- do whatever you need to do
+          null_ls.builtins.diagnostics.rubocop,
+          null_ls.builtins.formatting.rubocop,
+          null_ls.builtins.diagnostics.haml_lint,
+          null_ls.builtins.code_actions.gitsigns,
+          null_ls.builtins.code_actions.refactoring,
+          null_ls.builtins.code_actions.shellcheck,
+          null_ls.builtins.diagnostics.actionlint,
+          -- null_ls.builtins.diagnostics.checkmake,
+          null_ls.builtins.diagnostics.codespell,
+          null_ls.builtins.diagnostics.curlylint,
+          null_ls.builtins.diagnostics.djlint,
+          null_ls.builtins.diagnostics.dotenv_linter,
+          -- null_ls.builtins.diagnostics.editorconfig_checker,
+          null_ls.builtins.diagnostics.erb_lint,
+          null_ls.builtins.diagnostics.flake8,
+          null_ls.builtins.diagnostics.hadolint,
+          null_ls.builtins.diagnostics.jsonlint,
+          -- null_ls.builtins.diagnostics.luacheck,
+          -- null_ls.builtins.diagnostics.markdownlint,
+          -- null_ls.builtins.diagnostics.selene,
+          null_ls.builtins.diagnostics.stylelint,
+          null_ls.builtins.formatting.stylelint,
+          null_ls.builtins.diagnostics.tidy,
+          null_ls.builtins.diagnostics.yamllint,
+          null_ls.builtins.diagnostics.zsh,
+          null_ls.builtins.formatting.autopep8,
+          null_ls.builtins.formatting.beautysh,
+          null_ls.builtins.formatting.codespell,
+          null_ls.builtins.formatting.djlint,
+          null_ls.builtins.formatting.erb_lint,
+          null_ls.builtins.formatting.isort,
+          -- null_ls.builtins.formatting.jq,
+          null_ls.builtins.formatting.lua_format,
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.formatting.nginx_beautifier,
+          null_ls.builtins.formatting.pg_format,
+          null_ls.builtins.formatting.phpcbf,
+          null_ls.builtins.formatting.phpcsfixer,
+          null_ls.builtins.formatting.terrafmt,
+          null_ls.builtins.formatting.terraform_fmt,
+          null_ls.builtins.formatting.trim_whitespace,
+          null_ls.builtins.formatting.trim_newlines,
+          null_ls.builtins.formatting.xmllint,
+          null_ls.builtins.hover.printenv,
+          -- null_ls.builtins.formatting.eslint,
         }
       })
 
@@ -136,71 +184,10 @@ function M.run(use)
 
   use {
     'j-hui/fidget.nvim',
-   kconfig = function()
-      require"fidget".setup{}
+    kconfig = function()
+      require "fidget".setup {}
     end,
   }
-
-  -- https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
-  -- use {
-  --   'neovim/nvim-lspconfig',
-  --   requires = {
-  --     'williamboman/mason.nvim',
-  --     'williamboman/mason-lspconfig.nvim',
-  --     'kosayoda/nvim-lightbulb',
-  --   },
-  --   config = function()
-  --     local opts = { noremap=true, silent=true }
-  --     vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-  --     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-  --     vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-  --     vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-  --
-  --     -- Use an on_attach function to only map the following keys
-  --     -- after the language server attaches to the current buffer
-  --     local on_attach = function(client, bufnr)
-  --       -- Enable completion triggered by <c-x><c-o>
-  --       vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  --
-  --       -- Mappings.
-  --       -- See `:help vim.lsp.*` for documentation on any of the below functions
-  --       local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  --       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  --       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  --       vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  --       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  --       vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  --       vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  --       vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  --       vim.keymap.set('n', '<space>wl', function()
-  --         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  --       end, bufopts)
-  --       vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  --       vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  --       vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  --       vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  --       vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-  --     end
-  --
-  --     -- local lsp_flags = {
-  --     --   -- This is the default in Nvim 0.7+
-  --     --   debounce_text_changes = 150,
-  --     -- }
-  --     -- require('lspconfig')['tsserver'].setup{
-  --     --   on_attach = on_attach,
-  --     --   flags = lsp_flags,
-  --     -- }
-  --
-  --     local lspconfig = require('lspconfig')
-  --
-  --     -- Enable some language servers with the additional completion capabilities offered by coq_nvim
-  --     -- for _, lsp in ipairs(servers) do
-  --     --   lspconfig[lsp].setup(require('coq').lsp_ensure_capabilities({
-  --     --     on_attach = on_attach
-  --     --   }))
-  --     -- end
-  --   end
-  -- }
 end
 
 return M

@@ -80,24 +80,10 @@ bind(
   opts
 )
 
-bind('n', '<leader>e', vim.diagnostic.open_float, opts)
-bind('n', '<leader>q', "<cmd>TroubleToggle<cr>", opts)
--- conflict with zero-lsp default keybindings
--- keymap('n', "gr", "<cmd>TroubleToggle quickfix<cr>", opts)
+-- bind('n', '<leader>e', vim.diagnostic.open_float, opts)
+bind('n', '<leader>q', "<cmd>lua require'qf'.toggle('l', true)<cr>", opts)
 bind('n', "<leader>b", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
 
--- keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
--- keymap("v", "<leader>ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", opts)
--- keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
--- keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting({ async = true })<CR>", opts)
--- keymap("v", "<leader>cf", "<cmd>'<.'>lua vim.lsp.buf.range_formatting()<CR>", opts)
--- keymap("n", "K", "<cmd>lua vim.lsp.buf.signature_help()<CR>", options)
--- keymap("n", "]g", "<cmd>lua vim.diagnostic.goto_next({ float = { border = 'rounded', max_width = 100 }})<CR>", options)
--- keymap("n", "[g", "<cmd>lua vim.diagnostic.goto_prev({ float = { border = 'rounded', max_width = 100 }})<CR>", options)
-
--- Telescope
--- keymap("n", "gi", "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>", opts)
--- keymap("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", opts)
 bind("n", "<leader>sf", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
 bind("n", "<leader>sb", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", opts)
 bind("n", "<leader>sg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
@@ -110,16 +96,3 @@ bind("n", "<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<cr>",
 bind('n', '<leader><leader>', ':NvimTreeToggle<CR>')
 
 bind('n', '<C-n>', ':NvimTreeFindFile<CR>')
-
--- bind('n', 'f',
---   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
---   , opts)
--- bind('n', 'F',
---   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
---   , opts)
--- bind('n', 't',
---   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
---   , opts)
--- bind('n', 'T',
---   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>"
---   , opts)
