@@ -79,4 +79,4 @@ echo ". \$HOME/.ghcup/env" > ~/.oh-my-zsh/custom/ghcup.zsh
 
 pip install spellcheck yamllint
 npm install jsonlint -g
-gem install erb_lint
+gm install erb_lint haml_lint

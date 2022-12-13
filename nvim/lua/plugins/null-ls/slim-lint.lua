@@ -1,38 +1,48 @@
--- local null_ls = require("null-ls")
--- local helpers = require("null-ls.helpers")
---
--- local slimlint = {
---   method = null_ls.methods.DIAGNOSTICS,
---   filetypes = { "slim" },
---   -- null_ls.generator creates an async source
---   -- that spawns the command with the given arguments and options
---   generator = null_ls.generator({
---     command = "slim-lint",
---     args = { "$FILENAME" },
---     to_stdin = false,
---     from_stderr = true,
---     -- choose an output format (raw, json, or line)
---     format = "line",
---     check_exit_code = function(code)
---       local success = code <= 1
---
---       -- if not success then
---         -- can be noisy for things that run often (e.g. diagnostics), but can
---         -- be useful for things that run on demand (e.g. formatting)
---       --   print(stderr)
---       -- end
---
---       return success
---     end,
---     -- use helpers to parse the output from string matchers,
---     -- or parse it manually with a function
---     on_output = helpers.diagnostics.from_patterns({
---       {
---         pattern = [[:(%d+) (.*)]],
---         groups = { "row", "message" },
---       }
---     }),
---   }),
--- }
---
--- null_ls.register(slimlint)
+local h = require("null-ls.helpers")
+local methods = require("null-ls.methods")
+
+local DIAGNOSTICS = methods.internal.DIAGNOSTICS
+
+local handle_slim_lint_output = function(params)
+    local file = params.output.files[1]
+    if params.output and params.output.files then
+        local parser = h.diagnostics.from_json({})
+        local offenses = {}
+
+        for _, offense in ipairs(file.offenses) do
+            table.insert(offenses, {
+                message = offense.message,
+                line = offense.location.line,
+                ruleId = offense.linter_name,
+                level = offense.severity,
+            })
+        end
+
+        return parser({ output = offenses })
+    end
+
+    return {}
+end
+
+return h.make_builtin({
+    name = "slim-lint",
+    meta = {
+        url = "https://github.com/sds/slim-lint",
+        description = "Tool for writing clean and consistent SLIM.",
+    },
+    method = DIAGNOSTICS,
+    filetypes = { "slim" },
+    generator_opts = {
+        command = "slim-lint",
+        args = { "--reporter", "json", "$FILENAME" },
+        to_stdin = true,
+        from_stderr = true,
+        to_temp_file = true,
+        format = "json",
+        check_exit_code = function(code)
+            return code <= 1
+        end,
+        on_output = handle_slim_lint_output,
+    },
+    factory = h.generator_factory,
+})

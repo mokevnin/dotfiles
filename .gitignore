@@ -9,3 +9,4 @@ TAGS
 
 fixtures/_build
 nvim/plugin/*
+.null*

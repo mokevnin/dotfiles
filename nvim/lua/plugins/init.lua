@@ -233,7 +233,6 @@ return require('packer').startup({
       end
     }
 
-    -- require('plugins.null-ls.slim-lint')
     require('plugins.treesitter').run(use)
     require('plugins.lsp').run(use)
     require('plugins.specific').run(use)
