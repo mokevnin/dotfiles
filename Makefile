@@ -23,7 +23,7 @@ deps-install: deps-gem deps-composer deps-npm deps-pip deps-go
 deps-pip:
 	# pip2 install --upgrade pynvim
 	pip3 install --upgrade pynvim
-	pip3 install --upgrade vim-vint spellcheck yamllint
+	pip3 install --upgrade vim-vint spellcheck yamllint codespell
 	pip3 install --upgrade autopep8 flake8 bandit pytype # black
 
 deps-gem:
