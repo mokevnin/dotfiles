@@ -76,7 +76,3 @@ export BOOTSTRAP_HASKELL_NONINTERACTIVE=1
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 
 echo ". \$HOME/.ghcup/env" > ~/.oh-my-zsh/custom/ghcup.zsh
-
-pip install spellcheck yamllint
-npm install jsonlint -g
-gm install erb_lint haml_lint

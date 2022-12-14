@@ -23,7 +23,7 @@ deps-install: deps-gem deps-composer deps-npm deps-pip deps-go
 deps-pip:
 	# pip2 install --upgrade pynvim
 	pip3 install --upgrade pynvim
-	pip3 install --upgrade vim-vint
+	pip3 install --upgrade vim-vint spellcheck yamllint
 	pip3 install --upgrade autopep8 flake8 bandit pytype # black
 
 deps-gem:
@@ -31,7 +31,7 @@ deps-gem:
 	gem install --no-document solargraph solargraph-rails
 	gem install --no-document rubocop rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
 	gem install --no-document sorbet sorbet-runtime
-	gem install --no-document haml_lint slim_lint
+	gem install --no-document haml_lint slim_lint erb_lint
 	gem install --no-document brakeman reek
 
 deps-composer:
@@ -45,7 +45,7 @@ deps-npm:
 	npm install -g prettier eslint @babel/eslint-parser eslint-plugin-import eslint-plugin-node
 	npx install-peerdeps -g eslint-config-airbnb
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
-	npm install -g yaml-language-server markdownlint bash-language-server
+	npm install -g yaml-language-server markdownlint bash-language-server jsonlint
 	npm install -g dockerfile-language-server-nodejs
 
 deps-go:
