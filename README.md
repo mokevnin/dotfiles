@@ -13,10 +13,13 @@
 
 ```sh
 sh -c "$(wget -O- https://raw.githubusercontent.com/mokevnin/dotfiles/main/install.sh)"
-
-# or
+```
+or
+```sh
 git clone git@github.com:mokevnin/dotfiles.git
-make install # same when updating
+
+# same when updating
+make install 
 
 # configure nvim
 make nvim-configure
