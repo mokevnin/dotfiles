@@ -22,7 +22,7 @@ function M.run(use)
     'pyright',
     -- 'sorbet',
     'sqlls',
-    'sumneko_lua',
+    'lua_ls',
     'stylelint_lsp',
     'terraformls',
     -- 'rubocop',
