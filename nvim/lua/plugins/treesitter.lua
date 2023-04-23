@@ -117,7 +117,7 @@ function M.run(use)
           },
           select = {
             enable = true,
-            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+            include_surrounding_whitespace = true,
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
               ['af'] = '@function.outer',

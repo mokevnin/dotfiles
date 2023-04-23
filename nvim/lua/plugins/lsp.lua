@@ -68,11 +68,11 @@ function M.run(use)
       -- vim.lsp.set_log_level('debug')
 
       local lsp = require('lsp-zero')
-      lsp.preset('recommended')
-
-      lsp.ensure_installed(servers)
+      lsp.preset({})
 
       lsp.on_attach(function(client, bufnr)
+        lsp.default_keymaps({buffer = bufnr})
+
         local opts = { buffer = bufnr, remap = false }
         local bind = vim.keymap.set
 
@@ -80,8 +80,10 @@ function M.run(use)
         -- bind('n', "gr", "<cmd>TroubleToggle quickfix<cr>", opts)
         bind('n', '<space>rn', vim.lsp.buf.rename, opts)
         bind('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-        -- bind('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', noremap)
       end)
+
+      lsp.ensure_installed(servers)
+
 
       local solargraph_opts = {
         cmd = { 'bin/solargraph' }
@@ -155,21 +157,10 @@ function M.run(use)
       })
 
       local cmp = require('cmp')
-      -- local cmp_select = { behavior = cmp.SelectBehavior.Select }
       local sources = lsp.defaults.cmp_sources()
       table.insert(sources, { name = 'nvim_lsp_signature_help' })
 
-      -- looks terrible. Waiting for an improvement
-      -- local lspkind = require('lspkind')
-
       local cmp_config = lsp.defaults.cmp_config({
-        -- formatting = {
-        --   format = lspkind.cmp_format({
-        --     mode = 'symbol',
-        --     maxwidth = 50,
-        --     ellipsis_char = '...',
-        --   }),
-        -- },
         preselect = 'none',
         completion = {
           completeopt = 'menu,menuone,noinsert,noselect'

@@ -80,7 +80,7 @@ bind(
   opts
 )
 
--- bind('n', '<leader>e', vim.diagnostic.open_float, opts)
+bind('n', '<leader>e', vim.diagnostic.open_float, opts)
 bind('n', '<leader>q', "<cmd>lua require'qf'.toggle('l', true)<cr>", opts)
 bind('n', "<leader>b", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
 
