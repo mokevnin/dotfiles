@@ -11,6 +11,7 @@ return require('packer').startup({
 
     use { 'wbthomason/packer.nvim' }
 
+    use { 'neovim/nvim-lspconfig' }
     -- speeding up
     use { 'lewis6991/impatient.nvim' }
     use { 'nathom/filetype.nvim' }
@@ -73,7 +74,7 @@ return require('packer').startup({
     }
 
     use {
-      'NeogitOrg/neogit',
+      'neogitorg/neogit',
       config = function()
         local neogit = require('neogit')
         neogit.setup()

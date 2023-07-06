@@ -25,7 +25,7 @@ function M.run(use)
     'lua_ls',
     'stylelint_lsp',
     'terraformls',
-    -- 'rubocop',
+    'rubocop',
     'vimls',
     'yamlls',
     'html',
@@ -126,12 +126,6 @@ function M.run(use)
         on_attach = null_opts.on_attach,
         sources = {
           slim_diagnostics,
-          null_ls.builtins.diagnostics.rubocop.with({
-            command = 'bundle exec rubocop',
-          }),
-          null_ls.builtins.formatting.rubocop.with({
-            command = 'bundle exec rubocop',
-          }),
           null_ls.builtins.diagnostics.haml_lint,
           null_ls.builtins.code_actions.gitsigns,
           null_ls.builtins.code_actions.refactoring,
