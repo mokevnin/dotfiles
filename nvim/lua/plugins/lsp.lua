@@ -44,6 +44,7 @@ function M.run(use)
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      'b0o/schemastore.nvim',
 
       -- Autocompletion
       'hrsh7th/nvim-cmp',
@@ -65,13 +66,30 @@ function M.run(use)
       'jose-elias-alvarez/null-ls.nvim',
     },
     config = function()
+      local lsp_config = require('lspconfig')
+      lsp_config.jsonls.setup {
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      }
+
+      lsp_config.yamlls.setup {
+        settings = {
+          yaml = {
+            schemas = require('schemastore').yaml.schemas(),
+          },
+        },
+      }
       -- vim.lsp.set_log_level('debug')
 
       local lsp = require('lsp-zero')
       lsp.preset({})
 
       lsp.on_attach(function(client, bufnr)
-        lsp.default_keymaps({buffer = bufnr})
+        lsp.default_keymaps({ buffer = bufnr })
 
         local opts = { buffer = bufnr, remap = false }
         local bind = vim.keymap.set
@@ -108,8 +126,12 @@ function M.run(use)
         on_attach = null_opts.on_attach,
         sources = {
           slim_diagnostics,
-          null_ls.builtins.diagnostics.rubocop,
-          null_ls.builtins.formatting.rubocop,
+          null_ls.builtins.diagnostics.rubocop.with({
+            command = 'bundle exec rubocop',
+          }),
+          null_ls.builtins.formatting.rubocop.with({
+            command = 'bundle exec rubocop',
+          }),
           null_ls.builtins.diagnostics.haml_lint,
           null_ls.builtins.code_actions.gitsigns,
           null_ls.builtins.code_actions.refactoring,
@@ -173,7 +195,6 @@ function M.run(use)
       })
 
       cmp.setup(cmp_config)
-
     end
   }
 

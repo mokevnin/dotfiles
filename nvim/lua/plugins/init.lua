@@ -73,7 +73,7 @@ return require('packer').startup({
     }
 
     use {
-      'TimUntersberger/neogit',
+      'NeogitOrg/neogit',
       config = function()
         local neogit = require('neogit')
         neogit.setup()
@@ -150,8 +150,6 @@ return require('packer').startup({
         })
       end
     }
-
-    use 'b0o/schemastore.nvim'
 
     use {
       'feline-nvim/feline.nvim',
