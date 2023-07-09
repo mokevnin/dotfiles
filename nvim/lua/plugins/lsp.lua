@@ -34,7 +34,8 @@ function M.run(use)
     'eslint',
     'jsonls',
     -- 'ruby_ls',
-    'solargraph',
+    -- 'solargraph',
+    'ruby_ls'
   }
 
   use {
