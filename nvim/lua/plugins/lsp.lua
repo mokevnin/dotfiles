@@ -3,6 +3,7 @@ local M = {}
 function M.run(use)
   servers = {
     'marksman',
+    'ltex',
     'tsserver',
     'phpactor',
     'ansiblels',
@@ -41,7 +42,12 @@ function M.run(use)
     requires = {
       -- LSP Support
       'neovim/nvim-lspconfig',
-      'williamboman/mason.nvim',
+      {                                      -- Optional
+        'williamboman/mason.nvim',
+        run = function()
+          pcall(vim.cmd, 'MasonUpdate')
+        end,
+      },
       'williamboman/mason-lspconfig.nvim',
       'b0o/schemastore.nvim',
 
@@ -65,24 +71,6 @@ function M.run(use)
       'jose-elias-alvarez/null-ls.nvim',
     },
     config = function()
-      local lsp_config = require('lspconfig')
-
-      lsp_config.jsonls.setup {
-        settings = {
-          json = {
-            schemas = require('schemastore').json.schemas(),
-            validate = { enable = true },
-          },
-        },
-      }
-
-      lsp_config.yamlls.setup {
-        settings = {
-          yaml = {
-            schemas = require('schemastore').yaml.schemas(),
-          },
-        },
-      }
       -- vim.lsp.set_log_level('debug')
 
       local lsp = require('lsp-zero')
@@ -102,43 +90,32 @@ function M.run(use)
 
       lsp.ensure_installed(servers)
 
-      -- https://github.com/neovim/nvim-lspconfig/pull/2498
-      -- lsp_config.ruby_ls.setup {
-      --   on_attach = function(client, buffer)
-      --     -- in the case you have an existing `on_attach` function
-      --     -- with mappings you share with other lsp clients configs
-      --     -- pcall(on_attach, client, buffer)
-      --     local diagnostic_handler = function()
-      --       local params = vim.lsp.util.make_text_document_params(buffer)
-      --       client.request(
-      --         'textDocument/diagnostic',
-      --         { textDocument = params },
-      --         function(err, result)
-      --           if err then
-      --             local err_msg = string.format("ruby-lsp - diagnostics error - %s", vim.inspect(err))
-      --             vim.lsp.log.error(err_msg)
-      --           end
-      --           if not result then return end
-      --           vim.lsp.diagnostic.on_publish_diagnostics(
-      --             nil,
-      --             vim.tbl_extend('keep', params, { diagnostics = result.items }),
-      --             { client_id = client.id }
-      --           )
-      --         end
-      --       )
-      --     end
-      --     diagnostic_handler() -- to request diagnostics when attaching the client to the buffer
-      --     local ruby_group = vim.api.nvim_create_augroup('ruby_ls', { clear = false })
-      --     vim.api.nvim_create_autocmd(
-      --       { 'BufEnter', 'BufWritePre', 'InsertLeave', 'TextChanged' },
-      --       {
-      --         buffer = buffer,
-      --         callback = diagnostic_handler,
-      --         group = ruby_group,
-      --       }
-      --     )
-      --   end
-      -- }
+      local lsp_config = require('lspconfig')
+
+      lsp_config.jsonls.setup {
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      }
+
+      lsp_config.ltex.setup {
+        settings = {
+          ltex = {
+            language = "ru-RU"
+          }
+        },
+      }
+
+      lsp_config.yamlls.setup {
+        settings = {
+          yaml = {
+            schemas = require('schemastore').yaml.schemas(),
+          },
+        },
+      }
 
       lsp.setup()
 
