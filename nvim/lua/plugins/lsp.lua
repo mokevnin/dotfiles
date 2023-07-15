@@ -161,7 +161,7 @@ function M.run(use)
           -- null_ls.builtins.diagnostics.hadolint,
           null_ls.builtins.diagnostics.jsonlint,
           null_ls.builtins.diagnostics.checkstyle.with({
-            extra_args = { '-c', './app/config/checkstyle/checkstyle.xml' },
+            extra_args = { '-c', './config/checkstyle/checkstyle.xml' },
           }),
           -- null_ls.builtins.diagnostics.luacheck,
           -- null_ls.builtins.diagnostics.markdownlint,
