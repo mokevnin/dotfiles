@@ -1,5 +1,7 @@
 local M = {}
 
+local noop = function() end
+
 function M.run(use)
   servers = {
     'marksman',
@@ -51,6 +53,8 @@ function M.run(use)
       'williamboman/mason-lspconfig.nvim',
       'b0o/schemastore.nvim',
 
+      'mfussenegger/nvim-jdtls',
+
       -- Autocompletion
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-buffer',
@@ -88,9 +92,18 @@ function M.run(use)
         bind('n', '<leader>ca', vim.lsp.buf.code_action, opts)
       end)
 
-      lsp.ensure_installed(servers)
+      -- lsp.ensure_installed(servers)
 
       local lsp_config = require('lspconfig')
+
+      -- https://www.reddit.com/r/neovim/comments/12gaetp/how_to_use_nvimjdtls_for_java_and_nvimlspconfig/
+      local mason = require('mason')
+      mason.setup({})
+
+      local mason_lspconfig = require('mason-lspconfig')
+      mason_lspconfig.setup({
+        ensure_installed = servers
+      })
 
       lsp_config.jsonls.setup {
         settings = {
@@ -116,6 +129,8 @@ function M.run(use)
           },
         },
       }
+
+      lsp.skip_server_setup({ 'jdtls' })
 
       lsp.setup()
 
@@ -145,6 +160,9 @@ function M.run(use)
           null_ls.builtins.diagnostics.flake8,
           -- null_ls.builtins.diagnostics.hadolint,
           null_ls.builtins.diagnostics.jsonlint,
+          null_ls.builtins.diagnostics.checkstyle.with({
+            extra_args = { '-c', './app/config/checkstyle/checkstyle.xml' },
+          }),
           -- null_ls.builtins.diagnostics.luacheck,
           -- null_ls.builtins.diagnostics.markdownlint,
           -- null_ls.builtins.diagnostics.selene,
