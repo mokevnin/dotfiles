@@ -47,6 +47,7 @@ require('lazy').setup({
 
       -- Autocompletion
       'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp',
@@ -105,9 +106,7 @@ require('lazy').setup({
 
   {
     'akinsho/bufferline.nvim',
-    -- config = function()
-    --   require("bufferline").setup {}
-    -- end,
+    opts = {},
     dependencies = {
       'kyazdani42/nvim-web-devicons',
     }
@@ -126,43 +125,19 @@ require('lazy').setup({
 
   {
     'ten3roberts/qf.nvim',
-    -- config = function()
-    --   require 'qf'.setup {}
-    -- end
+    opts = {},
   },
 
   {
     'neogitorg/neogit',
-    -- config = function()
-    --   local neogit = require('neogit')
-    --   neogit.setup()
-    -- end,
+    opts = {},
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
-
-  -- {
-  --   'mfussenegger/nvim-dap',
-  --   'jayp0521/mason-nvim-dap.nvim',
-  --   -- config = function()
-  --   --   require("dapui").setup()
-  --   -- end
-  -- },
-  --
-  -- {
-  --   'theHamsta/nvim-dap-virtual-text',
-  --   config = function()
-  --     require("nvim-dap-virtual-text").setup()
-  --   end
-  -- }
-  -- { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
-
-  { 'antoinemadec/FixCursorHold.nvim' },
 
   { 'tpope/vim-repeat' },
 
   {
     'kosayoda/nvim-lightbulb',
-    dependencies = { 'antoinemadec/FixCursorHold.nvim' },
     config = function()
       local lightbulb = require('nvim-lightbulb')
       lightbulb.setup({ autocmd = { enabled = true } })
@@ -181,47 +156,44 @@ require('lazy').setup({
 
   {
     'stevearc/dressing.nvim',
-    config = function()
-      -- TODO: add c-[ for normal mode
-      -- https://github.com/stevearc/dressing.nvim/issues/29
-      local dressing = require('dressing')
-      dressing.setup({
-        input = {
-          get_config = function()
-            if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then
-              return { enabled = false }
-            end
-          end,
-          -- mappings = {
-          --   n = {
-          --     ['C-['] = 'Close',
-          --   },
-          -- },
-        },
-        --   select = {
-        --     telescope = {
-        --       mappings = {
-        --         n = {
-        --           ['C-['] = 'Close',
-        --         },
-        --       },
-        --     },
-        --   },
-      })
-    end
+    opts = {},
+    -- config = function()
+    --   -- TODO: add c-[ for normal mode
+    --   -- https://github.com/stevearc/dressing.nvim/issues/29
+    --   local dressing = require('dressing')
+    --   dressing.setup({
+    --     input = {
+    --       get_config = function()
+    --         if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then
+    --           return { enabled = false }
+    --         end
+    --       end,
+    --       -- mappings = {
+    --       --   n = {
+    --       --     ['C-['] = 'Close',
+    --       --   },
+    --       -- },
+    --     },
+    --     --   select = {
+    --     --     telescope = {
+    --     --       mappings = {
+    --     --         n = {
+    --     --           ['C-['] = 'Close',
+    --     --         },
+    --     --       },
+    --     --     },
+    --     --   },
+    --   })
+    -- end
   },
 
   {
-    'feline-nvim/feline.nvim',
-    after = "nvim-web-devicons",
-    config = function()
-      require('feline').setup({
-        -- preset = 'noicon'
-      })
-    end
+    -- Set lualine as statusline
+    'nvim-lualine/lualine.nvim',
+    opts = {}
   },
 
-  {
+  { -- maybe https://github.com/0x00-ketsu/autosave.nvim
     'nvim-zh/auto-save.nvim',
     config = function()
       local autosave = require("auto-save")
@@ -234,12 +206,12 @@ require('lazy').setup({
 
   {
     'lukas-reineke/indent-blankline.nvim',
-    config = function()
-      require('indent_blankline').setup {
-        char = '┊',
-        show_trailing_blankline_indent = false,
-      }
-    end
+    -- config = function()
+    --   require('indent_blankline').setup {
+    --     char = '┊',
+    --     show_trailing_blankline_indent = false,
+    --   }
+    -- end
   },
 
   -- alternative https://github.com/machakann/vim-sandwich
@@ -294,10 +266,6 @@ require('lazy').setup({
     'nvim-telescope/telescope.nvim',
     config = function()
       local telescope = require('telescope')
-      -- telescope.load_extension('fzf')
-      telescope.load_extension('refactoring')
-
-      -- local trouble = require("trouble.providers.telescope")
 
       telescope.setup {
         defaults = {
@@ -346,14 +314,6 @@ require('lazy').setup({
   { 'tpope/vim-rails' },
   --     use 'slim-template/vim-slim'
   { 'dhruvasagar/vim-table-mode' },
-  {
-    'ThePrimeagen/refactoring.nvim',
-    dependencies = {
-      { 'nvim-lua/plenary.nvim' },
-      { 'nvim-treesitter/nvim-treesitter' }
-    }
-  },
-
 
   -- function/class annotation generator
   {
@@ -369,22 +329,8 @@ require('lazy').setup({
 
   {
     'windwp/nvim-autopairs',
-    dependencies = {
-      'hrsh7th/nvim-cmp',
-      'nvim-treesitter/nvim-treesitter',
-    },
-    config = function()
-      local npairs = require('nvim-autopairs')
-      npairs.setup({
-        check_ts = true
-      })
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      local cmp = require('cmp')
-      cmp.event:on(
-        'confirm_done',
-        cmp_autopairs.on_confirm_done()
-      )
-    end
+    event = "InsertEnter",
+    opts = {},
   },
 
   { 'nvim-treesitter/nvim-treesitter-textobjects' },

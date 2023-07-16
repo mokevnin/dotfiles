@@ -73,13 +73,6 @@ bind("v", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", opts)
 -- LSP
 -- partially implemented in zero-lsp
 
-bind(
-  "v",
-  "<leader>rr",
-  "<Esc><rmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-  opts
-)
-
 bind('n', '<leader>e', vim.diagnostic.open_float, opts)
 bind('n', '<leader>q', "<cmd>lua require'qf'.toggle('l', true)<cr>", opts)
 bind('n', "<leader>b", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
