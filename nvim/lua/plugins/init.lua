@@ -18,7 +18,7 @@ require('lazy').setup({
   {
     'VonHeikemen/lsp-zero.nvim',
     lazy = true,
-     config = function()
+    config = function()
       -- This is where you modify the settings for lsp-zero
       -- Note: autocompletion settings will not take effect
 
@@ -29,7 +29,7 @@ require('lazy').setup({
   {
     'neovim/nvim-lspconfig',
     cmd = 'LspInfo',
-    event = {'BufReadPre', 'BufNewFile'},
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       {
         'williamboman/mason.nvim',
@@ -115,7 +115,14 @@ require('lazy').setup({
 
   { 'tpope/vim-fugitive' },
   { 'LudoPinelli/comment-box.nvim' },
-  { 'AndrewRadev/splitjoin.vim' },
+
+  {
+    "Wansmer/treesj",
+    keys = {
+      { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" },
+    },
+    opts = { use_default_keymaps = false, max_join_length = 150 },
+  },
 
   {
     'ten3roberts/qf.nvim',
@@ -130,7 +137,7 @@ require('lazy').setup({
     --   local neogit = require('neogit')
     --   neogit.setup()
     -- end,
-    dependencies = {'nvim-lua/plenary.nvim'}
+    dependencies = { 'nvim-lua/plenary.nvim' }
   },
 
   -- {
@@ -266,14 +273,14 @@ require('lazy').setup({
 
   {
     'lewis6991/gitsigns.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    -- config = function()
-    --   require('gitsigns').setup()
-    -- end
+    config = function()
+      require('gitsigns').setup()
+    end
   },
 
   {
     "folke/which-key.nvim",
+    lazy = true,
     -- config = function()
     --   require("which-key").setup {
     --     -- your configuration comes here
@@ -319,7 +326,9 @@ require('lazy').setup({
   },
   {
     "iamcco/markdown-preview.nvim",
-    -- run = function() vim.fn["mkdp#util#install"]() end,
+    config = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
 
   { 'slim-template/vim-slim' },
@@ -337,7 +346,6 @@ require('lazy').setup({
   { 'tpope/vim-rails' },
   --     use 'slim-template/vim-slim'
   { 'dhruvasagar/vim-table-mode' },
-  { 'mfussenegger/nvim-jdtls' },
   {
     'ThePrimeagen/refactoring.nvim',
     dependencies = {
@@ -379,29 +387,24 @@ require('lazy').setup({
     end
   },
 
+  { 'nvim-treesitter/nvim-treesitter-textobjects' },
+  { 'tree-sitter/tree-sitter-embedded-template' },
+  { 'RRethy/nvim-treesitter-endwise' },
+  { 'windwp/nvim-ts-autotag' },
+  { 'andymass/vim-matchup' },
+  { 'JoosepAlviste/nvim-ts-context-commentstring' },
   {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    'tree-sitter/tree-sitter-embedded-template',
-    'RRethy/nvim-treesitter-endwise',
-    'windwp/nvim-ts-autotag',
-    'andymass/vim-matchup',
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    {
-      'nvim-treesitter/nvim-treesitter-context',
-      config = function()
-        require 'treesitter-context'.setup {
-          separator = '-'
-        }
-      end
-    },
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    }
+    'nvim-treesitter/nvim-treesitter-context',
+    config = function()
+      require 'treesitter-context'.setup {
+        separator = '-'
+      }
+    end
   },
 
   {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    build = ':TSUpdate',
     config = require('plugins.treesitter'),
   }
 })

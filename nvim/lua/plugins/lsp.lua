@@ -90,6 +90,7 @@ Configure = function()
     },
   }
 
+  -- setup through nvim-jdtls
   lsp.skip_server_setup({ 'jdtls' })
 
   lsp.setup()
@@ -107,24 +108,26 @@ Configure = function()
       null_ls.builtins.diagnostics.haml_lint,
       null_ls.builtins.code_actions.gitsigns,
       null_ls.builtins.code_actions.refactoring,
-      -- null_ls.builtins.code_actions.shellcheck,
-      -- null_ls.builtins.diagnostics.actionlint,
-      -- null_ls.builtins.diagnostics.checkmake,
+      null_ls.builtins.code_actions.shellcheck,
+      null_ls.builtins.diagnostics.actionlint,
+      null_ls.builtins.diagnostics.checkmake,
       null_ls.builtins.diagnostics.codespell,
       null_ls.builtins.diagnostics.curlylint,
-      -- null_ls.builtins.diagnostics.djlint,
-      -- null_ls.builtins.diagnostics.dotenv_linter,
+      null_ls.builtins.diagnostics.djlint,
+      null_ls.builtins.diagnostics.dotenv_linter,
       -- null_ls.builtins.diagnostics.editorconfig_checker,
       null_ls.builtins.diagnostics.erb_lint,
       null_ls.builtins.formatting.erb_lint,
       null_ls.builtins.diagnostics.flake8,
-      -- null_ls.builtins.diagnostics.hadolint,
+      null_ls.builtins.diagnostics.hadolint,
       null_ls.builtins.diagnostics.jsonlint,
       null_ls.builtins.diagnostics.checkstyle.with({
+        null_ls.builtins.diagnostics.golangci_lint,
         extra_args = { '-c', './config/checkstyle/checkstyle.xml' },
       }),
-      -- null_ls.builtins.diagnostics.luacheck,
-      -- null_ls.builtins.diagnostics.markdownlint,
+      null_ls.builtins.diagnostics.luacheck,
+      null_ls.builtins.diagnostics.markdownlint,
+      null_ls.builtins.diagnostics.puglint,
       -- null_ls.builtins.diagnostics.selene,
       null_ls.builtins.diagnostics.stylelint,
       null_ls.builtins.formatting.stylelint,
