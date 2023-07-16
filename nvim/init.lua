@@ -1,5 +1,5 @@
 -- https://github.com/nanotee/nvim-lua-guide
-pcall(require, 'impatient')
+-- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 
 require('functions')
 -- require('config')

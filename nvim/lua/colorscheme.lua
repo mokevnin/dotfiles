@@ -4,4 +4,4 @@ if not present then
 end
 
 vim.g.material_style = "deep ocean"
-vim.cmd 'colorscheme material'
+vim.cmd.colorscheme('material')
