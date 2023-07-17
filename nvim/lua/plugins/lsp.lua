@@ -186,11 +186,34 @@ Configure = function()
   local slim_diagnostics = require('plugins.null-ls.slim-lint')
 
   local null_ls = require('null-ls')
-  local null_opts = lsp.build_options('null-ls', {})
+  -- local null_opts = lsp.build_options('null-ls', {})
+
+  require('mason-null-ls').setup({
+    ensure_installed = {
+      'markuplint',
+      'prettier',
+      'haml_lint',
+      'shellcheck',
+      'actionlint',
+      'codespell',
+      'curlylint',
+      'djlint',
+      'erb_lint',
+      'flake8',
+      'hadolint',
+      'luacheck',
+      'jsonlint',
+      'stylelit',
+      'yamllint',
+      'puglint',
+    },
+    automatic_installation = true,
+    handlers = {},
+  })
 
   null_ls.setup({
     debug = false,
-    on_attach = null_opts.on_attach,
+    -- on_attach = null_opts.on_attach,
     sources = {
       slim_diagnostics,
       null_ls.builtins.diagnostics.haml_lint,
