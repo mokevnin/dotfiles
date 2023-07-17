@@ -198,7 +198,7 @@ Configure = function()
       null_ls.builtins.code_actions.refactoring,
       null_ls.builtins.code_actions.shellcheck,
       null_ls.builtins.diagnostics.actionlint,
-      null_ls.builtins.diagnostics.checkmake,
+      -- null_ls.builtins.diagnostics.checkmake,
       null_ls.builtins.diagnostics.codespell,
       null_ls.builtins.diagnostics.curlylint,
       null_ls.builtins.diagnostics.djlint,
