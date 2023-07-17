@@ -1,4 +1,4 @@
-all: install nvim-configure deps
+all: install nvim-configure deps-install
 
 TAGS := all
 
@@ -45,7 +45,7 @@ deps-npm:
 	npm install -g prettier eslint eslint-plugin-import eslint-plugin-node
 	npx install-peerdeps -g eslint-config-airbnb
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
-	npm install -g yaml-language-server markdownlint-cli bash-language-server jsonlint
+	npm install -g yaml-language-server markuplint markdownlint-cli bash-language-server jsonlint
 	npm install -g dockerfile-language-server-nodejs
 
 deps-go:

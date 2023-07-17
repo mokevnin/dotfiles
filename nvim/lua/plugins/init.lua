@@ -237,7 +237,7 @@ require('lazy').setup({
 
   {
     "folke/which-key.nvim",
-    lazy = true,
+    opts = {},
   },
 
   {
