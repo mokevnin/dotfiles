@@ -214,7 +214,8 @@ Configure = function()
         extra_args = { '-c', './config/checkstyle/checkstyle.xml' },
       }),
       null_ls.builtins.diagnostics.luacheck,
-      null_ls.builtins.diagnostics.markdownlint,
+      -- null_ls.builtins.diagnostics.markdownlint,
+      null_ls.builtins.diagnostics.markuplint
       null_ls.builtins.diagnostics.puglint,
       -- null_ls.builtins.diagnostics.selene,
       null_ls.builtins.diagnostics.stylelint,
