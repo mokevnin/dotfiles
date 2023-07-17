@@ -23,16 +23,6 @@ require('lazy').setup({
     dependencies = {
       {
         'neovim/nvim-lspconfig',
-        dependencies = {
-          {
-            "SmiteshP/nvim-navbuddy",
-            dependencies = {
-              "SmiteshP/nvim-navic",
-              "MunifTanjim/nui.nvim"
-            },
-            opts = {},
-          }
-        },
       },
       {
         'williamboman/mason.nvim',
@@ -50,7 +40,7 @@ require('lazy').setup({
       'b0o/schemastore.nvim',
 
       'folke/neodev.nvim',
-      { 'j-hui/fidget.nvim',          opts = {} },
+      -- { 'j-hui/fidget.nvim',          opts = {} },
 
       'mfussenegger/nvim-jdtls',
 
@@ -175,8 +165,18 @@ require('lazy').setup({
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    opts = {}
+    opts = {},
+    -- dependencies = {
+    --   'linrongbin16/lsp-progress.nvim',
+    -- }
   },
+
+  -- https://github.com/linrongbin16/lsp-progress.nvim
+  -- {
+  --   'linrongbin16/lsp-progress.nvim',
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --   opts = {}
+  -- },
 
   { -- maybe https://github.com/0x00-ketsu/autosave.nvim
     'nvim-zh/auto-save.nvim',
