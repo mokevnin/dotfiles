@@ -17,31 +17,40 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   {
     'VonHeikemen/lsp-zero.nvim',
-    lazy = true,
-    config = function()
-      -- This is where you modify the settings for lsp-zero
-      -- Note: autocompletion settings will not take effect
-
-      require('lsp-zero.settings').preset({})
-    end
-  },
-
-  {
-    'neovim/nvim-lspconfig',
-    cmd = 'LspInfo',
-    event = { 'BufReadPre', 'BufNewFile' },
+    branch = 'v2.x',
+    -- cmd = 'LspInfo',
+    -- event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
+      {
+        'neovim/nvim-lspconfig',
+        dependencies = {
+          {
+            "SmiteshP/nvim-navbuddy",
+            dependencies = {
+              "SmiteshP/nvim-navic",
+              "MunifTanjim/nui.nvim"
+            },
+            opts = {},
+          }
+        },
+      },
       {
         'williamboman/mason.nvim',
         build = function()
           pcall(vim.cmd, 'MasonUpdate')
         end,
       },
+      { 'nvim-tree/nvim-web-devicons' },
+      {
+        'ray-x/lsp_signature.nvim',
+        opts = {},
+      },
+
       'williamboman/mason-lspconfig.nvim',
       'b0o/schemastore.nvim',
 
       'folke/neodev.nvim',
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',          opts = {} },
 
       'mfussenegger/nvim-jdtls',
 
@@ -52,10 +61,9 @@ require('lazy').setup({
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
       'saadparwaiz1/cmp_luasnip',
-      'onsails/lspkind.nvim',
 
+      'onsails/lspkind.nvim',
       -- Snippets
       'L3MON4D3/LuaSnip',
       'rafamadriz/friendly-snippets',
@@ -67,11 +75,18 @@ require('lazy').setup({
     config = require('plugins.lsp')
   },
 
+  { 'lvimuser/lsp-inlayhints.nvim', opts = {} },
+
+  -- TODO: add as source https://github.com/zbirenbaum/copilot-cmp
+  { 'zbirenbaum/copilot-cmp',       opts = {} },
+
   { 'tpope/vim-sensible' },
 
   { 'nvim-lua/plenary.nvim' },
-  { 'kyazdani42/nvim-web-devicons' },
+  { 'nvim-tree/nvim-web-devicons' },
   { 'svban/YankAssassin.vim' },
+
+  -- { 'lambdalisue/nerdfont.vim' },
 
   -- TODO: add
   -- https://github.com/gbprod/yanky.nvim
@@ -108,7 +123,7 @@ require('lazy').setup({
     'akinsho/bufferline.nvim',
     opts = {},
     dependencies = {
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
     }
   },
 
@@ -145,46 +160,16 @@ require('lazy').setup({
   },
 
   {
-    'kyazdani42/nvim-tree.lua',
+    'nvim-tree/nvim-tree.lua',
     dependencies = {
-      'kyazdani42/nvim-web-devicons'
+      'nvim-tree/nvim-web-devicons'
     },
-    config = function()
-      require('nvim-tree').setup {}
-    end
+    opts = {},
   },
 
   {
     'stevearc/dressing.nvim',
     opts = {},
-    -- config = function()
-    --   -- TODO: add c-[ for normal mode
-    --   -- https://github.com/stevearc/dressing.nvim/issues/29
-    --   local dressing = require('dressing')
-    --   dressing.setup({
-    --     input = {
-    --       get_config = function()
-    --         if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then
-    --           return { enabled = false }
-    --         end
-    --       end,
-    --       -- mappings = {
-    --       --   n = {
-    --       --     ['C-['] = 'Close',
-    --       --   },
-    --       -- },
-    --     },
-    --     --   select = {
-    --     --     telescope = {
-    --     --       mappings = {
-    --     --         n = {
-    --     --           ['C-['] = 'Close',
-    --     --         },
-    --     --       },
-    --     --     },
-    --     --   },
-    --   })
-    -- end
   },
 
   {
@@ -195,10 +180,7 @@ require('lazy').setup({
 
   { -- maybe https://github.com/0x00-ketsu/autosave.nvim
     'nvim-zh/auto-save.nvim',
-    config = function()
-      local autosave = require("auto-save")
-      autosave.setup()
-    end
+    opts = {},
   },
 
   { 'ntpeters/vim-better-whitespace' },
@@ -206,6 +188,11 @@ require('lazy').setup({
 
   {
     'lukas-reineke/indent-blankline.nvim',
+    event = 'UIEnter',
+    opts = {
+      use_treesitter = true,
+      show_current_context = true,
+    },
     -- config = function()
     --   require('indent_blankline').setup {
     --     char = '┊',
@@ -233,7 +220,7 @@ require('lazy').setup({
 
   -- {
   --   "folke/trouble.nvim",
-  --   dependencies = "kyazdani42/nvim-web-devicons",
+  --   dependencies = "nvim-tree/nvim-web-devicons",
   --   config = function()
   --     require("trouble").setup {
   --       -- your configuration comes here
@@ -245,21 +232,12 @@ require('lazy').setup({
 
   {
     'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup()
-    end
+    opts = {},
   },
 
   {
     "folke/which-key.nvim",
     lazy = true,
-    -- config = function()
-    --   require("which-key").setup {
-    --     -- your configuration comes here
-    --     -- or leave it empty to use the default settings
-    --     -- refer to the configuration section below
-    --   }
-    -- end
   },
 
   {
@@ -318,14 +296,11 @@ require('lazy').setup({
   -- function/class annotation generator
   {
     'danymat/neogen',
-    config = function()
-      require('neogen').setup()
-    end,
+    opts = {},
     dependencies = {
       'nvim-treesitter/nvim-treesitter'
     },
   },
-
 
   {
     'windwp/nvim-autopairs',
@@ -333,24 +308,32 @@ require('lazy').setup({
     opts = {},
   },
 
-  { 'nvim-treesitter/nvim-treesitter-textobjects' },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter'
+    },
+  },
   { 'tree-sitter/tree-sitter-embedded-template' },
   { 'RRethy/nvim-treesitter-endwise' },
   { 'windwp/nvim-ts-autotag' },
-  { 'andymass/vim-matchup' },
-  { 'JoosepAlviste/nvim-ts-context-commentstring' },
   {
     'nvim-treesitter/nvim-treesitter-context',
-    config = function()
-      require 'treesitter-context'.setup {
-        separator = '-'
-      }
-    end
+    -- config = function()
+    --   require 'treesitter-context'.setup {
+    --     separator = '-'
+    --   }
+    -- end
   },
 
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = require('plugins.treesitter'),
-  }
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
+  },
+
+  { 'andymass/vim-matchup' },
 })

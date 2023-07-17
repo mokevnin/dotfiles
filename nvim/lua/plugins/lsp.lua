@@ -36,12 +36,19 @@ local servers = {
 
 Configure = function()
   -- vim.lsp.set_log_level('debug')
-
   local lsp = require('lsp-zero')
-  -- lsp.preset({})
+  lsp.preset({
+    manage_nvim_cmp = {
+      set_extra_mappings = true
+    }
+  })
 
   lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
+
+    if client.server_capabilities.documentSymbolProvider then
+      require('nvim-navic').attach(client, bufnr)
+    end
 
     local opts = { buffer = bufnr, remap = false }
     local bind = vim.keymap.set
@@ -52,18 +59,21 @@ Configure = function()
     bind('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   end)
 
-  -- lsp.ensure_installed(servers)
+  lsp.set_sign_icons({
+    error = '✘',
+    warn = '▲',
+    hint = '⚑',
+    info = '»'
+  })
+
+  lsp.ensure_installed(servers)
 
   local lsp_config = require('lspconfig')
 
-  -- https://www.reddit.com/r/neovim/comments/12gaetp/how_to_use_nvimjdtls_for_java_and_nvimlspconfig/
-  local mason = require('mason')
-  mason.setup({})
-
-  local mason_lspconfig = require('mason-lspconfig')
-  mason_lspconfig.setup({
-    ensure_installed = servers
-  })
+  -- local mason_lspconfig = require('mason-lspconfig')
+  -- mason_lspconfig.setup({
+  --   ensure_installed = servers
+  -- })
 
   lsp_config.jsonls.setup {
     settings = {
@@ -86,14 +96,96 @@ Configure = function()
     settings = {
       yaml = {
         schemas = require('schemastore').yaml.schemas(),
+        schemaStore = {
+          -- You must disable built-in schemaStore support if you want to use
+          -- this plugin and its advanced options like `ignore`.
+          enable = false,
+        },
       },
     },
   }
 
   -- setup through nvim-jdtls
+  -- https://www.reddit.com/r/neovim/comments/12gaetp/how_to_use_nvimjdtls_for_java_and_nvimlspconfig/
   lsp.skip_server_setup({ 'jdtls' })
 
   lsp.setup()
+
+  -- https://github.com/windwp/nvim-autopairs#you-need-to-add-mapping-cr-on-nvim-cmp-setupcheck-readmemd-on-nvim-cmp-repo
+  local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+  local cmp = require('cmp')
+
+  cmp.event:on(
+    'confirm_done',
+    cmp_autopairs.on_confirm_done()
+  )
+
+  local lspkind = require('lspkind')
+  cmp.setup({
+    sources = {
+      { name = 'path' },
+      { name = 'nvim_lsp' },
+      { name = 'buffer',  keyword_length = 3 },
+      { name = 'luasnip', keyword_length = 2 },
+    },
+    mapping = {
+      ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    },
+    formatting = {
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
+      fields = { 'abbr', 'kind', 'menu' },
+      format = lspkind.cmp_format({
+        mode = 'symbol_text', -- show only symbol annotations
+        maxwidth = 50,
+        ellipsis_char = '...',
+        menu = ({
+          buffer = '[Buffer]',
+          nvim_lsp = '[LSP]',
+          luasnip = '[LuaSnip]',
+        })
+      })
+    }
+  })
+
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance#how-to-add-visual-studio-code-dark-theme-colors-to-the-menu
+  -- gray
+  -- vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
+  -- blue
+  vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { bg = 'NONE', fg = '#569CD6' })
+  vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { link = 'CmpIntemAbbrMatch' })
+  -- light blue
+  vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { bg = 'NONE', fg = '#9CDCFE' })
+  vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { link = 'CmpItemKindVariable' })
+  vim.api.nvim_set_hl(0, 'CmpItemKindText', { link = 'CmpItemKindVariable' })
+  -- pink
+  vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { bg = 'NONE', fg = '#C586C0' })
+  vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { link = 'CmpItemKindFunction' })
+  -- front
+  vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { bg = 'NONE', fg = '#D4D4D4' })
+  vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { link = 'CmpItemKindKeyword' })
+  vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { link = 'CmpItemKindKeyword' })
+
+  require('luasnip.loaders.from_vscode').lazy_load()
 
   local slim_diagnostics = require('plugins.null-ls.slim-lint')
 
@@ -101,7 +193,7 @@ Configure = function()
   local null_opts = lsp.build_options('null-ls', {})
 
   null_ls.setup({
-    debug = true,
+    debug = false,
     on_attach = null_opts.on_attach,
     sources = {
       slim_diagnostics,
@@ -155,32 +247,6 @@ Configure = function()
       -- null_ls.builtins.formatting.eslint,
     }
   })
-
-  -- https://github.com/windwp/nvim-autopairs#you-need-to-add-mapping-cr-on-nvim-cmp-setupcheck-readmemd-on-nvim-cmp-repo
-  local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-  local cmp = require('cmp')
-
-  cmp.event:on(
-    'confirm_done',
-    cmp_autopairs.on_confirm_done()
-  )
-
-  local sources = lsp.defaults.cmp_sources()
-  table.insert(sources, { name = 'nvim_lsp_signature_help' })
-
-  local cmp_config = lsp.defaults.cmp_config({
-    preselect = 'none',
-    completion = {
-      completeopt = 'menu,menuone,noinsert,noselect'
-    },
-    sources = sources,
-    -- mapping = {
-    --   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    --   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    -- },
-  })
-
-  cmp.setup(cmp_config)
 end
 
 return Configure

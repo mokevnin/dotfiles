@@ -74,6 +74,8 @@ bind("v", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", opts)
 -- partially implemented in zero-lsp
 
 bind('n', '<leader>e', vim.diagnostic.open_float, opts)
+
+  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 bind('n', '<leader>q', "<cmd>lua require'qf'.toggle('l', true)<cr>", opts)
 bind('n', "<leader>b", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
 
@@ -89,3 +91,7 @@ bind("n", "<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<cr>",
 bind('n', '<leader><leader>', ':NvimTreeToggle<CR>')
 
 bind('n', '<C-n>', ':NvimTreeFindFile<CR>')
+
+bind('n', '[c', function()
+  require('treesitter-context').go_to_context()
+end)
