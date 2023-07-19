@@ -91,12 +91,12 @@ Configure = function()
   lsp_config.yamlls.setup {
     settings = {
       yaml = {
-        schemas = require('schemastore').yaml.schemas(),
-        schemaStore = {
-          -- You must disable built-in schemaStore support if you want to use
-          -- this plugin and its advanced options like `ignore`.
-          enable = false,
-        },
+        -- schemas = require('schemastore').yaml.schemas(),
+        -- schemaStore = {
+        --   -- You must disable built-in schemaStore support if you want to use
+        --   -- this plugin and its advanced options like `ignore`.
+        --   enable = false,
+        -- },
       },
     },
   }
@@ -163,24 +163,6 @@ Configure = function()
     })
   })
 
-  -- https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance#how-to-add-visual-studio-code-dark-theme-colors-to-the-menu
-  -- gray
-  -- vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
-  -- blue
-  vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { bg = 'NONE', fg = '#569CD6' })
-  vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { link = 'CmpIntemAbbrMatch' })
-  -- light blue
-  vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { bg = 'NONE', fg = '#9CDCFE' })
-  vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { link = 'CmpItemKindVariable' })
-  vim.api.nvim_set_hl(0, 'CmpItemKindText', { link = 'CmpItemKindVariable' })
-  -- pink
-  vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { bg = 'NONE', fg = '#C586C0' })
-  vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { link = 'CmpItemKindFunction' })
-  -- front
-  vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { bg = 'NONE', fg = '#D4D4D4' })
-  vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { link = 'CmpItemKindKeyword' })
-  vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { link = 'CmpItemKindKeyword' })
-
   require('luasnip.loaders.from_vscode').lazy_load()
 
   local slim_diagnostics = require('plugins.null-ls.slim-lint')
@@ -193,7 +175,6 @@ Configure = function()
       'markuplint',
       'prettier',
       'haml_lint',
-      'shellcheck',
       'actionlint',
       'codespell',
       'curlylint',
@@ -201,11 +182,12 @@ Configure = function()
       'erb_lint',
       'flake8',
       'hadolint',
-      'luacheck',
+      'selene',
       'jsonlint',
       'stylelit',
       'yamllint',
       'puglint',
+      'shfmt',
     },
     automatic_installation = true,
     handlers = {},
@@ -219,7 +201,6 @@ Configure = function()
       null_ls.builtins.diagnostics.haml_lint,
       null_ls.builtins.code_actions.gitsigns,
       null_ls.builtins.code_actions.refactoring,
-      null_ls.builtins.code_actions.shellcheck,
       null_ls.builtins.diagnostics.actionlint,
       -- null_ls.builtins.diagnostics.checkmake,
       null_ls.builtins.diagnostics.codespell,
@@ -236,7 +217,8 @@ Configure = function()
         null_ls.builtins.diagnostics.golangci_lint,
         extra_args = { '-c', './config/checkstyle/checkstyle.xml' },
       }),
-      null_ls.builtins.diagnostics.luacheck,
+      null_ls.builtins.formatting.shfmt,
+      null_ls.builtins.diagnostics.selene,
       -- null_ls.builtins.diagnostics.markdownlint,
       null_ls.builtins.diagnostics.markuplint,
       null_ls.builtins.diagnostics.puglint,
@@ -244,7 +226,7 @@ Configure = function()
       null_ls.builtins.diagnostics.stylelint,
       null_ls.builtins.formatting.stylelint,
       null_ls.builtins.diagnostics.tidy,
-      null_ls.builtins.diagnostics.yamllint,
+      -- null_ls.builtins.diagnostics.yamllint,
       null_ls.builtins.diagnostics.zsh,
       null_ls.builtins.formatting.autopep8,
       null_ls.builtins.formatting.beautysh,

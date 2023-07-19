@@ -1,39 +1,43 @@
 #!/usr/bin/env bash
 
-# set -e
+set -e
 
-case "$OSTYPE" in
-  linux*)
-    add-apt-repository -y ppa:neovim-ppa/stable
-    apt-get update
-    apt install -yy zsh git neovim make neovim git \
-      silversearcher-ag ripgrep fd-find fzf bat htop ncdu \
-      tldr httpie exuberant-ctags zip build-essential pip
+case $OSTYPE in
+linux*)
+	add-apt-repository -y ppa:neovim-ppa/stable
+	apt-get update
+	apt install -yy zsh git neovim make neovim git \
+		silversearcher-ag ripgrep fd-find fzf bat htop ncdu \
+		tldr httpie exuberant-ctags zip build-essential pip
 
-    chsh -s /bin/zsh
+	chsh -s /bin/zsh
 
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || true
-    echo ". \$HOME/.asdf/asdf.sh" > ~/.oh-my-zsh/custom/asdf.zsh
-    echo "alias fixssh='eval \$(tmux showenv -s SSH_AUTH_SOCK)'" > ~/.oh-my-zsh/custom/useful.zsh
+	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || true
+	echo ". \$HOME/.asdf/asdf.sh" >~/.oh-my-zsh/custom/asdf.zsh
+	echo "alias fixssh='eval \$(tmux showenv -s SSH_AUTH_SOCK)'" >~/.oh-my-zsh/custom/useful.zsh
 
-    # apt install -y haskell-platform golang default-jdk
+	# apt install -y haskell-platform golang default-jdk
 
-    # https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
-    apt install -yy autoconf bison patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+	# https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+	apt install -yy autoconf bison patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
 
-    # https://github.com/asdf-community/asdf-php/blob/master/.github/workflows/workflow.yml
-    apt install -yy autoconf bison build-essential curl gettext git libgd-dev libcurl4-openssl-dev libedit-dev libicu-dev libjpeg-dev libmysqlclient-dev libonig-dev libpng-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libzip-dev openssl pkg-config re2c zlib1g-dev
+	# https://github.com/asdf-community/asdf-php/blob/master/.github/workflows/workflow.yml
+	apt install -yy autoconf bison build-essential curl gettext git libgd-dev libcurl4-openssl-dev libedit-dev libicu-dev libjpeg-dev libmysqlclient-dev libonig-dev libpng-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libzip-dev openssl pkg-config re2c zlib1g-dev
 
-    update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
-    ;;
-  darwin*)
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null
-    yes | brew upgrade asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed
-    ;;
-  *)
-    echo 'Everything is ready. Go to the next step'
-    ;;
+	update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
+
+        apt install -yy shellcheck
+
+	;;
+darwin*)
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
+	yes | brew upgrade asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed
+	yes | brew upgrade pandoc actionlint shellcheck checkmake
+	;;
+*)
+	echo 'Everything is ready. Go to the next step'
+	;;
 esac
 
 sed -i 's/plugins=.*/plugins=\(git vi-mode fzf asdf docker\)/g' ~/.zshrc
@@ -75,4 +79,4 @@ asdf plugin update --all
 export BOOTSTRAP_HASKELL_NONINTERACTIVE=1
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 
-echo ". \$HOME/.ghcup/env" > ~/.oh-my-zsh/custom/ghcup.zsh
+echo ". \$HOME/.ghcup/env" >~/.oh-my-zsh/custom/ghcup.zsh

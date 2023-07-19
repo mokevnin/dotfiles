@@ -4,7 +4,6 @@
 require('functions')
 -- require('config')
 require('settings')
-require('colorscheme')
 require('autocmds')
 require('plugins.init')
 require('keymappings')

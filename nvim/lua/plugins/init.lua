@@ -103,10 +103,12 @@ require('lazy').setup({
   -- }
 
   {
-    'goolord/alpha-nvim',
-    config = function()
-      require 'alpha'.setup(require 'alpha.themes.startify'.config)
-    end
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    opts = {},
+    dependencies = {
+      { 'nvim-tree/nvim-web-devicons' }
+    }
   },
 
   {
@@ -165,7 +167,7 @@ require('lazy').setup({
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    opts = {},
+    opts = { theme = 'material' },
     -- dependencies = {
     --   'linrongbin16/lsp-progress.nvim',
     -- }
@@ -183,7 +185,7 @@ require('lazy').setup({
     opts = {},
   },
 
-  { 'ntpeters/vim-better-whitespace' },
+  -- { 'ntpeters/vim-better-whitespace' },
   { 'tpope/vim-sleuth' },
 
   {
@@ -205,7 +207,40 @@ require('lazy').setup({
   { 'tpope/vim-surround' },
   { 'windwp/nvim-spectre' },
   { 'dyng/ctrlsf.vim' },
-  { 'marko-cerovac/material.nvim' },
+  {
+    'marko-cerovac/material.nvim',
+    priority = 1000,
+    opts = {
+      plugins = {
+        "indent-blankline"
+      }
+    },
+    config = function()
+      require('material').setup {
+        plugins = {
+          -- "dap",
+          "dashboard",
+          "gitsigns",
+          -- "hop",
+          "indent-blankline",
+          -- "lspsaga",
+          -- "mini",
+          "neogit",
+          -- "neorg",
+          "nvim-cmp",
+          -- "nvim-navic",
+          "nvim-tree",
+          "nvim-web-devicons",
+          -- "sneak",
+          "telescope",
+          -- "trouble",
+          "which-key",
+        }
+      }
+      vim.g.material_style = "deep ocean"
+      vim.cmd.colorscheme('material')
+    end
+  },
   { 'tpope/vim-unimpaired' },
 
   {

@@ -3,10 +3,10 @@ name: Main
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   ubuntu:
@@ -28,7 +28,7 @@ jobs:
           sudo make ubuntu-prepare OPTIONS="--dry-run"
 
   macos:
-    runs-on: macos-11.0
+    runs-on: macos-latest
     steps:
 
       - uses: actions/checkout@v2
@@ -40,6 +40,6 @@ jobs:
         run: |
           make dotfiles-install
 
-      #- name: Brew install
-        #run: |
-          #make macos-prepare OPTIONS="--dry-run"
+      # - name: Brew install
+      #   run: |
+      #     make macos-prepare OPTIONS="--dry-run"
