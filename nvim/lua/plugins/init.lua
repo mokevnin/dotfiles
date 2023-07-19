@@ -199,7 +199,7 @@ require('lazy').setup({
 
         -- `ignored_filetypes` configures which filetypes to ignore when
         -- displaying trailing whitespace
-        ignored_filetypes = { 'dashboard', 'TelescopePrompt', 'Trouble', 'help' },
+        ignored_filetypes = { 'lazy', 'dashboard', 'TelescopePrompt', 'Trouble', 'help' },
 
         -- `ignore_terminal` configures whether to ignore terminal buffers
         ignore_terminal = true,
