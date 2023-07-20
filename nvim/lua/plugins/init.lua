@@ -185,7 +185,7 @@ require('lazy').setup({
     opts = {},
   },
 
-  { 'ntpeters/vim-better-whitespace' },
+  -- { 'ntpeters/vim-better-whitespace' },
   { 'tpope/vim-sleuth' },
 
   {

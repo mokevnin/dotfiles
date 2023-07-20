@@ -24,6 +24,7 @@ local servers = {
   'stylelint_lsp',
   'terraformls',
   'rubocop',
+  -- 'ruby_ls',
   'vimls',
   'yamlls',
   'html',
