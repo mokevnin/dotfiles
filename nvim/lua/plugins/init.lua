@@ -185,31 +185,7 @@ require('lazy').setup({
     opts = {},
   },
 
-  -- { 'ntpeters/vim-better-whitespace' },
-  -- -- Using packer.nvim
-  {
-    'johnfrankmorgan/whitespace.nvim',
-    config = function()
-      require('whitespace-nvim').setup({
-        -- configuration options and their defaults
-
-        -- `highlight` configures which highlight is used to display
-        -- trailing whitespace
-        highlight = 'DiffDelete',
-
-        -- `ignored_filetypes` configures which filetypes to ignore when
-        -- displaying trailing whitespace
-        ignored_filetypes = { 'lazy', 'dashboard', 'TelescopePrompt', 'Trouble', 'help' },
-
-        -- `ignore_terminal` configures whether to ignore terminal buffers
-        ignore_terminal = true,
-      })
-
-      -- remove trailing whitespace with a keybinding
-      vim.keymap.set('n', '<Leader>t', require('whitespace-nvim').trim)
-    end
-  },
-
+  { 'ntpeters/vim-better-whitespace' },
   { 'tpope/vim-sleuth' },
 
   {
@@ -382,7 +358,6 @@ require('lazy').setup({
 
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
     config = require('plugins.treesitter'),
     dependencies = {
       'JoosepAlviste/nvim-ts-context-commentstring',
