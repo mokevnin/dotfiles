@@ -27,7 +27,7 @@ require('lazy').setup({
       {
         'williamboman/mason.nvim',
         build = function()
-          pcall(vim.cmd, 'MasonUpdate')
+          pcall(vim.api.nvim_command, 'MasonUpdate')
         end,
       },
       { 'nvim-tree/nvim-web-devicons' },
@@ -207,13 +207,41 @@ require('lazy').setup({
   { 'tpope/vim-surround' },
   { 'windwp/nvim-spectre' },
   { 'dyng/ctrlsf.vim' },
+
+  -- {
+  --   "mfussenegger/nvim-dap",
+  --   opts = {},
+  --   dependencies = {
+  --   },
+  -- },
+  {
+    "rcarriga/nvim-dap-ui",
+    opts = {},
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "theHamsta/nvim-dap-virtual-text"
+    },
+    config = function()
+      require("dapui").setup()
+      require("nvim-dap-virtual-text").setup {
+        commented = true,
+      }
+    end
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = {
+      ensure_installed = { "python", "php", "js", "node2", "javadbg", "javatest" }
+    },
+  },
+
   {
     'marko-cerovac/material.nvim',
     priority = 1000,
     config = function()
       require('material').setup {
         plugins = {
-          -- "dap",
+          "dap",
           "dashboard",
           "gitsigns",
           -- "hop",

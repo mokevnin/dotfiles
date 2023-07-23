@@ -23,7 +23,7 @@ vim.o.number             = true --- Shows current line number
 -- showtabline    = 2,                       --- Always show tabs
 vim.o.signcolumn         = "yes:1" --- Add extra sign column next to line number
 vim.o.ignorecase         = true
-vim.o.smartcase          = true --- Uses case in search
+vim.o.smartcase          = true    --- Uses case in search
 -- smartindent    = true,                    --- Makes indenting smart
 -- smarttab       = true,                    --- Makes tabbing smarter will realize you have 2 vs 4
 -- softtabstop    = 2,                       --- Insert 2 spaces for a tab
@@ -58,4 +58,10 @@ vim.g.loaded_netrwPlugin = 1
 vim.diagnostic.config({
   virtual_text = false,
   update_in_insert = true,
+  float = {
+    show_header = true,
+    source = 'always',
+    border = 'rounded',
+    focusable = false,
+  },
 })

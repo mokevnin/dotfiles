@@ -75,7 +75,7 @@ bind("v", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", opts)
 
 bind('n', '<leader>e', vim.diagnostic.open_float, opts)
 
-  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 bind('n', '<leader>q', "<cmd>lua require'qf'.toggle('l', true)<cr>", opts)
 bind('n', "<leader>b", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
 
@@ -95,3 +95,8 @@ bind('n', '<C-n>', ':NvimTreeFindFile<CR>')
 bind('n', '[c', function()
   require('treesitter-context').go_to_context()
 end)
+
+bind("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
+bind("n", "<leader>dk", "<cmd>lua require'dap'.continue()<cr>")
+bind("n", "<leader>dt", "<cmd>lua require'dapui'.toggle()<cr>")
+bind("n", "<leader>ds", "<cmd>lua require'dap'.disconnect({ terminateDebuggee = true })<cr>")

@@ -71,6 +71,8 @@ Configure = function()
   -- mason_lspconfig.setup({
   --   ensure_installed = servers
   -- })
+  lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
+
 
   lsp_config.jsonls.setup {
     settings = {
@@ -219,7 +221,7 @@ Configure = function()
         extra_args = { '-c', './config/checkstyle/checkstyle.xml' },
       }),
       null_ls.builtins.formatting.shfmt,
-      null_ls.builtins.diagnostics.selene,
+      -- null_ls.builtins.diagnostics.selene,
       -- null_ls.builtins.diagnostics.markdownlint,
       null_ls.builtins.diagnostics.markuplint,
       null_ls.builtins.diagnostics.puglint,

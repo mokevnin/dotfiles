@@ -8,5 +8,4 @@ TAGS
 .DS_Store
 
 fixtures/_build
-nvim/plugin/*
 .null*
