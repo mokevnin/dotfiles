@@ -32,8 +32,10 @@ linux*)
 	;;
 darwin*)
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
+  brew install jesseduffield/lazygit/lazygit
+
 	yes | brew upgrade asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed
-	yes | brew upgrade pandoc actionlint shellcheck checkmake
+	yes | brew upgrade pandoc actionlint shellcheck checkmake lazygit
 	;;
 *)
 	echo 'Everything is ready. Go to the next step'
