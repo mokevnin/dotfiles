@@ -25,12 +25,18 @@ return {
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
-  { 'slim-template/vim-slim' },
-  { 'tpope/vim-rails' },
-  --     use 'slim-template/vim-slim'
-  { 'dhruvasagar/vim-table-mode' },
-  { 'tree-sitter/tree-sitter-embedded-template' },
-  { 'RRethy/nvim-treesitter-endwise' },
-  { 'windwp/nvim-ts-autotag' },
-  { 'dyng/ctrlsf.vim' },
+	{ "slim-template/vim-slim" },
+	{ "tpope/vim-rails" },
+	--     use 'slim-template/vim-slim'
+	{ "dhruvasagar/vim-table-mode" },
+	{ "tree-sitter/tree-sitter-embedded-template" },
+	{ "RRethy/nvim-treesitter-endwise" },
+	{ "windwp/nvim-ts-autotag" },
+	{ "dyng/ctrlsf.vim" },
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		opts = {},
+	},
 }
