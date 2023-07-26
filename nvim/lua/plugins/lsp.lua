@@ -2,17 +2,13 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		opts = {
-      diagnostics = {
-        underline = true,
-        virtual_text = false,
-        -- update_in_insert = true,
-        -- float = {
-        --   show_header = true,
-        --   source = 'always',
-        --   border = 'rounded',
-        --   focusable = false,
-        -- },
-      },
+			diagnostics = {
+				underline = true,
+				virtual_text = false,
+				float = {
+					border = "rounded",
+				},
+			},
 			autoformat = false,
 			servers = {
 				ltex = {

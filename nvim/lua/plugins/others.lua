@@ -1,11 +1,7 @@
 return {
 	{ -- maybe https://github.com/0x00-ketsu/autosave.nvim
 		"0x00-ketsu/autosave.nvim",
-		opts = {
-      -- conditions = {
-      --   filetype_is_not = { "lua" }
-      -- },
-    },
+		opts = {},
 	},
 	{
 		"Wansmer/treesj",
