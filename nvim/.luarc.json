@@ -1,5 +1,4 @@
 {
     "diagnostics.disable": [
-        "missing-fields"
     ]
 }
