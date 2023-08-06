@@ -8,3 +8,5 @@ vim.o.langmap =
 vim.o.relativenumber = false
 vim.o.spelllang = "ru_ru,en_us"
 vim.o.linebreak = true
+
+vim.env.JDTLS_JVM_ARGS="-javaagent:$HOME/.config/nvim/files/lombok.jar"
