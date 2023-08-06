@@ -12,9 +12,9 @@ bind("n", "о", "gj", opts)
 bind("i", "<C-г>", "<C-G>u<C-U>", opts)
 bind("i", "<C-ц>", "<C-G>u<C-W>", opts)
 
-bind('n', '[c', function()
-  require('treesitter-context').go_to_context()
+bind("n", "[c", function()
+  require("treesitter-context").go_to_context()
 end)
 
-vim.keymap.set('n', '<leader>[', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>")
-vim.keymap.set('n', '<leader>]', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>")
+vim.keymap.set("n", "<leader>[", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>")
+vim.keymap.set("n", "<leader>]", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>")
