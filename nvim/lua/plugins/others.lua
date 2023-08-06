@@ -1,4 +1,5 @@
 return {
+  { "isobit/vim-caddyfile" },
   { -- maybe https://github.com/0x00-ketsu/autosave.nvim
     "0x00-ketsu/autosave.nvim",
     opts = {},
