@@ -2,11 +2,11 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      window = {
-        mappings = {
-          ["o"] = "toggle_node",
-        },
-      },
+      -- window = {
+      --   mappings = {
+      --     ["o"] = "open",
+      --   },
+      -- },
       filesystem = {
         bind_to_cwd = true,
         window = {
