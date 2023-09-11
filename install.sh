@@ -34,7 +34,11 @@ darwin*)
 
 	yes | brew install asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed
 	yes | brew install pandoc actionlint shellcheck checkmake lazygit
-  yes | brew install lua nodejs ruby golang openjdk
+  yes | brew install lua nodejs golang openjdk php composer
+
+  # https://www.geekbits.io/how-to-install-nerd-fonts-on-mac/
+  brew tap homebrew/cask-fonts
+  brew install --cask font-hack-nerd-font
 	;;
 *)
 	echo 'Everything is ready. Go to the next step'
@@ -42,7 +46,7 @@ darwin*)
 esac
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
-sed -i'.bak' 's/^plugins=.*$/plugins=(git vi-mode fzf docker you-should-use)/' ~/.zshrc
+sed -i'.bak' 's/^plugins=.*$/plugins=(git asdf vi-mode fzf docker you-should-use)/' ~/.zshrc
 # git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || true
 # echo ". \$HOME/.asdf/asdf.sh" >~/.oh-my-zsh/custom/asdf.zsh
 echo "alias fixssh='eval \$(tmux showenv -s SSH_AUTH_SOCK)'" >~/.oh-my-zsh/custom/useful.zsh
@@ -53,7 +57,7 @@ echo "alias fixssh='eval \$(tmux showenv -s SSH_AUTH_SOCK)'" >~/.oh-my-zsh/custo
 #
 # asdf plugin add nodejs || true
 # asdf plugin add php || true
-# asdf plugin add ruby || true
+asdf plugin add ruby || true
 # asdf plugin add golang || true
 # asdf plugin add java || true
 
@@ -67,8 +71,8 @@ echo "alias fixssh='eval \$(tmux showenv -s SSH_AUTH_SOCK)'" >~/.oh-my-zsh/custo
 # asdf install nodejs latest
 # asdf global nodejs latest
 #
-# asdf install ruby latest
-# asdf global ruby latest
+asdf install ruby latest
+asdf global ruby latest
 #
 # asdf install php latest
 # asdf global php latest

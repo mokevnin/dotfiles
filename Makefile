@@ -2,17 +2,14 @@ all: install nvim-configure deps-install
 
 TAGS := all
 
-PACKER_PATH=~/.local/share/nvim/site/pack/packer/start
-
 install:
 	./install.sh
 
 nvim-configure:
-	rm -rf nvim/plugin || exit 0
-	rm -rf ~/.local/share/nvim || exit 0
-	rm -rf ~/.config/nvim || exit 0
-	rm -rf $(PACKER_PATH) || exit 0
-	mkdir -p ~/.config
+	# rm -rf nvim/plugin || exit 0
+	# rm -rf ~/.local/share/nvim || exit 0
+	# rm -rf ~/.config/nvim || exit 0
+	# mkdir -p ~/.config
 	ln -snf $(PWD)/nvim ~/.config/nvim
 	# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
@@ -41,7 +38,7 @@ deps-composer:
 deps-npm:
 	npm install -g neovim
 	npm install -g prettier eslint eslint-plugin-import eslint-plugin-node
-	npx install-peerdeps -g eslint-config-airbnb
+	npx install-peerdeps -yg eslint-config-airbnb
 	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
 	npm install -g yaml-language-server markuplint markdownlint-cli bash-language-server jsonlint
 	npm install -g dockerfile-language-server-nodejs
