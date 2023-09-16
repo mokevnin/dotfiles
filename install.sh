@@ -47,7 +47,7 @@ darwin*)
 esac
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
-sed -i'.bak' 's/^plugins=.*$/plugins=(git asdf vi-mode fzf docker you-should-use)/' ~/.zshrc
+sed -i'.bak' 's/^plugins=.*$/plugins=(git asdf vi-mode fzf docker docker-compose you-should-use)/' ~/.zshrc
 # git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || true
 # echo ". \$HOME/.asdf/asdf.sh" >~/.oh-my-zsh/custom/asdf.zsh
 echo "alias fixssh='eval \$(tmux showenv -s SSH_AUTH_SOCK)'" >~/.oh-my-zsh/custom/useful.zsh
