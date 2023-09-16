@@ -34,7 +34,8 @@ darwin*)
 
 	yes | brew install asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed
 	yes | brew install pandoc actionlint shellcheck checkmake lazygit
-  yes | brew install lua nodejs golang openjdk php composer
+  yes | brew install lua nodejs golang php composer
+  yes | brew install --cask temurin
 
   # https://www.geekbits.io/how-to-install-nerd-fonts-on-mac/
   brew tap homebrew/cask-fonts
