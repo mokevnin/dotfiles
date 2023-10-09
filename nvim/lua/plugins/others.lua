@@ -1,4 +1,9 @@
 return {
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {}, -- this is equalent to setup({}) function
+  },
   { "isobit/vim-caddyfile" },
   { -- maybe https://github.com/0x00-ketsu/autosave.nvim
     "0x00-ketsu/autosave.nvim",

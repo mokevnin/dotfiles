@@ -6,7 +6,7 @@ return {
         plugins = {
           "dap",
           "dashboard",
-          -- "gitsigns",
+          "gitsigns",
           -- "hop",
           "indent-blankline",
           "lspsaga",
