@@ -9,7 +9,6 @@ return {
           border = "rounded",
         },
       },
-      autoformat = false,
       servers = {
         ltex = {
           settings = {

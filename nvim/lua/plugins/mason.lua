@@ -7,13 +7,4 @@ return {
       table.insert(opts.ensure_installed, "google-java-format")
     end,
   },
-  -- {
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   opts = function(_, opts)
-  --     local nls = require("null-ls")
-  --     opts.sources = vim.list_extend(opts.sources, {
-  --       nls.builtins.formatting.google_java_format,
-  --     })
-  --   end,
-  -- },
 }
