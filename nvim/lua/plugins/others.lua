@@ -39,7 +39,6 @@ return {
   { "dhruvasagar/vim-table-mode" },
   { "tree-sitter/tree-sitter-embedded-template" },
   { "RRethy/nvim-treesitter-endwise" },
-  { "windwp/nvim-ts-autotag" },
   { "dyng/ctrlsf.vim" },
   {
     "kylechui/nvim-surround",

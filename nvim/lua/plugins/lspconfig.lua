@@ -10,6 +10,9 @@ return {
         },
       },
       servers = {
+        kotlin_language_server = {},
+        lemminx = {},
+        marksman = {},
         ltex = {
           settings = {
             ltex = {
