@@ -1,5 +1,10 @@
 return {
   {
+    "tigion/nvim-asciidoc-preview",
+    ft = { "asciidoc" },
+    -- opts = {},
+  },
+  {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {}, -- this is equalent to setup({}) function
