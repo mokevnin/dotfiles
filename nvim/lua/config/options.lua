@@ -10,6 +10,4 @@ vim.o.spelllang = "ru_ru,en_us"
 vim.o.linebreak = true
 vim.g.autoformat = false
 
-vim.g.material_style = "deep ocean"
-
 require("lazyvim.util").get_root = vim.loop.cwd
