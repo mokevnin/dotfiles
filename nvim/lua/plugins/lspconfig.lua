@@ -11,6 +11,7 @@ return {
       },
       servers = {
         kotlin_language_server = {},
+        bashls = {},
         lemminx = {},
         ltex = {
           settings = {
