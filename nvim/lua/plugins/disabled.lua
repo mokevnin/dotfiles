@@ -4,5 +4,6 @@ return {
   { "rcarriga/nvim-notify", enabled = false },
   { "folke/flash.nvim", enabled = false },
   { "ggandor/flit.nvim", enabled = false },
+  { "echasnovski/mini.pairs", enabled = false },
   -- { "ggandor/leap.nvim", enabled = false },
 }

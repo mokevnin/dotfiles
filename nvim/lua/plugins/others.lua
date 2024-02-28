@@ -7,7 +7,7 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    opts = {}, -- this is equalent to setup({}) function
+    opts = {},
   },
   { "isobit/vim-caddyfile" },
   { -- maybe https://github.com/0x00-ketsu/autosave.nvim
@@ -38,10 +38,10 @@ return {
   { "RRethy/nvim-treesitter-endwise" },
   { "dyng/ctrlsf.vim" },
   { "digitaltoad/vim-pug" },
-  {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
-    opts = {},
-  },
+  -- {
+  --   "kylechui/nvim-surround",
+  --   version = "*", -- Use for stability; omit to use `main` branch for the latest features
+  --   event = "VeryLazy",
+  --   opts = {},
+  -- },
 }
