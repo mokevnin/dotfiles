@@ -13,6 +13,7 @@ return {
         kotlin_language_server = {},
         bashls = {},
         lemminx = {},
+        phpactor = {},
         ltex = {
           settings = {
             ltex = {
