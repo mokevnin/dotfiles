@@ -11,9 +11,14 @@ return {
       },
       servers = {
         kotlin_language_server = {},
+        html = {
+          filetypes = { 'html', 'blade' }
+        },
         bashls = {},
         lemminx = {},
-        phpactor = {},
+        phpactor = {
+          filetypes = { 'php', 'blade' }
+        },
         ltex = {
           settings = {
             ltex = {
