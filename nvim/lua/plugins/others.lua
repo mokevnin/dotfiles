@@ -1,8 +1,13 @@
 return {
+  -- {
+  --   "adalessa/laravel.nvim",
+  --   ft = { "php" },
+  --   opts = {},
+  -- },
   {
     "tigion/nvim-asciidoc-preview",
     ft = { "asciidoc" },
-    -- opts = {},
+    opts = {},
   },
   {
     "windwp/nvim-autopairs",
