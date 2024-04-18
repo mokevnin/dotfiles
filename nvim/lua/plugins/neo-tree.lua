@@ -8,6 +8,7 @@ return {
       --   },
       -- },
       filesystem = {
+        follow_current_file = { enabled = false },
         bind_to_cwd = true,
         window = {
           mappings = {
