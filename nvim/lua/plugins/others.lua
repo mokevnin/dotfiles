@@ -4,6 +4,9 @@ return {
   --   ft = { "php" },
   --   opts = {},
   -- },
+  -- {
+  --   "towolf/vim-helm",
+  -- },
   {
     "tigion/nvim-asciidoc-preview",
     ft = { "asciidoc" },

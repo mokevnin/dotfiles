@@ -2,9 +2,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      inlay_hints = {
-        enabled = true,
-      },
+      -- inlay_hints = {
+      --   enabled = true,
+      -- },
       codelens = {
         enabled = false,
       },
@@ -17,6 +17,8 @@ return {
       },
       servers = {
         kotlin_language_server = {},
+        -- https://www.arthurkoziel.com/json-schemas-in-neovim/
+        -- helm_ls = {},
         -- https://github.com/typescript-language-server/typescript-language-server/pull/218
         -- https://github.com/microsoft/TypeScript/issues/13270
         tsserver = {

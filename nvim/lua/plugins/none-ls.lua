@@ -3,9 +3,12 @@ return {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local null_ls = require("null-ls")
-      opts.sources = vim.list_extend(opts.sources or {}, {
+      opts.sources = {
         null_ls.builtins.diagnostics.phpstan,
+        null_ls.builtins.diagnostics.phpcs,
         null_ls.builtins.formatting.phpcsfixer,
+        null_ls.builtins.formatting.phpcbf,
+        null_ls.builtins.formatting.pint,
         -- nls.builtins.code_actions.gitsigns,
         -- -- go
         -- nls.builtins.code_actions.gomodifytags,
@@ -17,7 +20,7 @@ return {
         -- other
         -- nls.builtins.formatting.stylua,
         -- nls.builtins.formatting.shfmt,
-      })
+      }
       return opts
     end,
   },
