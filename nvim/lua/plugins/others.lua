@@ -8,6 +8,29 @@ return {
   --   "towolf/vim-helm",
   -- },
   {
+    "otavioschwanck/telescope-alternate",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    lazy = true,
+    opts = {
+      mappings = {
+        {
+          "app/Http/Controllers/(.*)Controller.php",
+          {
+            { "tests/Feature/[1]Test.php", "Test" },
+            { 'resources/js/Pages/[1]/*.tsx', 'View' },
+          },
+        },
+        {
+          "tests/Feature/(.*)Test.php",
+          {
+            { "app/Http/Controllers/[1]Controller.php", "Controller" }
+          },
+        },
+      },
+    },
+  },
+
+  {
     "tigion/nvim-asciidoc-preview",
     ft = { "asciidoc" },
     opts = {},
