@@ -8,29 +8,6 @@ return {
   --   "towolf/vim-helm",
   -- },
   {
-    "otavioschwanck/telescope-alternate",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    lazy = true,
-    opts = {
-      mappings = {
-        {
-          "app/Http/Controllers/(.*)Controller.php",
-          {
-            { "tests/Feature/[1]Test.php", "Test" },
-            { 'resources/js/Pages/[1]/*.tsx', 'View' },
-          },
-        },
-        {
-          "tests/Feature/(.*)Test.php",
-          {
-            { "app/Http/Controllers/[1]Controller.php", "Controller" }
-          },
-        },
-      },
-    },
-  },
-
-  {
     "tigion/nvim-asciidoc-preview",
     ft = { "asciidoc" },
     opts = {},
@@ -41,9 +18,14 @@ return {
     opts = {},
   },
   { "isobit/vim-caddyfile" },
-  { -- maybe https://github.com/0x00-ketsu/autosave.nvim
-    "0x00-ketsu/autosave.nvim",
-    opts = {},
+  {
+    "okuuva/auto-save.nvim",
+    cmd = "ASToggle", -- optional for lazy loading on command
+    event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
+    opts = {
+      -- your config goes here
+      -- or just leave it empty :)
+    },
   },
   {
     "Wansmer/treesj",

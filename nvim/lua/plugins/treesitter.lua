@@ -16,10 +16,10 @@ return {
         enable = true,
       }
 
-      local tbl_filetypes = require("nvim-ts-autotag.internal").tbl_filetypes
+      -- local tbl_filetypes = require("nvim-ts-autotag.internal").tbl_filetypes
       opts.autotag = {
         enable = true,
-        filetypes = vim.list_extend(tbl_filetypes, { 'blade' })
+        -- filetypes = vim.list_extend(tbl_filetypes, { 'blade' })
       }
 
       opts.select = {
