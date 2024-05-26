@@ -12,10 +12,4 @@ vim.g.autoformat = false
 
 vim.g.root_spec = { "cwd" }
 
-vim.filetype.add({
-  pattern = {
-    [".*%.blade%.php"] = "blade",
-  },
-})
-
 vim.o.smartindent = false

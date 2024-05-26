@@ -67,12 +67,12 @@ return {
         --   },
         -- },
         html = {
-          filetypes = { "html", "blade" },
+          -- filetypes = { "html", "blade" },
         },
         bashls = {},
         lemminx = {},
         phpactor = {
-          filetypes = { "php", "blade" },
+          -- filetypes = { "php", "blade" },
         },
         ltex = {
           settings = {
