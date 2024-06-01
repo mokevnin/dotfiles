@@ -6,12 +6,12 @@ install:
 	./install.sh
 
 nvim-configure:
-	# rm -rf nvim/plugin || exit 0
-	# rm -rf ~/.local/share/nvim || exit 0
-	# rm -rf ~/.config/nvim || exit 0
-	# mkdir -p ~/.config
+	rm -rf ~/.config/nvim
+	rm -rf ~/.local/share/nvim
+	rm -rf ~/.local/state/nvim
+	rm -rf ~/.cache/nvim
+	# rm -rf ~/.config/nvim/.git
 	ln -snf $(PWD)/nvim ~/.config/nvim
-	# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 deps-install: deps-gem deps-composer deps-npm deps-pip deps-go
 
@@ -22,7 +22,7 @@ deps-pip:
 	# pip3 install --upgrade autopep8 flake8 bandit pytype # black
 
 deps-gem:
-	# gem install --no-document neovim
+	gem install --no-document neovim
 	# gem install --no-document solargraph solargraph-rails
 	# gem install --no-document rubocop rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
 	# gem install --no-document sorbet sorbet-runtime

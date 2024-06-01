@@ -13,12 +13,12 @@ return {
           n = {},
         },
       },
-      pickers = {
-        buffers = {
-          ignore_current_buffer = true,
-          sort_mru = true,
-        },
-      },
+      -- pickers = {
+      --   buffers = {
+      --     ignore_current_buffer = true,
+      --     sort_mru = true,
+      --   },
+      -- },
     },
   },
   {

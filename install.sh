@@ -32,7 +32,7 @@ darwin*)
   eval "$(/opt/homebrew/bin/brew shellenv)"
   brew install jesseduffield/lazygit/lazygit
 
-	yes | brew install asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed
+	yes | brew install asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed wget
 	yes | brew install pandoc actionlint shellcheck checkmake lazygit
   yes | brew install lua nodejs golang php composer
   yes | brew install --cask temurin

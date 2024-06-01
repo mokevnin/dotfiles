@@ -45,12 +45,12 @@ return {
   },
   { "slim-template/vim-slim" },
   { "tpope/vim-rails" },
-  --     use 'slim-template/vim-slim'
+  use 'slim-template/vim-slim'
   { "dhruvasagar/vim-table-mode" },
-  { "tree-sitter/tree-sitter-embedded-template" },
+  -- { "tree-sitter/tree-sitter-embedded-template" },
   { "RRethy/nvim-treesitter-endwise" },
   { "dyng/ctrlsf.vim" },
-  { "digitaltoad/vim-pug" },
+  -- { "digitaltoad/vim-pug" },
   -- {
   --   "kylechui/nvim-surround",
   --   version = "*", -- Use for stability; omit to use `main` branch for the latest features

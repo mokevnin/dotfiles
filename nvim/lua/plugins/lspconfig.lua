@@ -9,14 +9,15 @@ return {
       --   enabled = false,
       -- },
       diagnostics = {
-        -- underline = true,
+        --   -- underline = true,
         virtual_text = false,
-        -- float = {
-        --   border = "rounded",
-        -- },
+        --   -- float = {
+        --   --   border = "rounded",
+        --   -- },
       },
       servers = {
-        kotlin_language_server = {},
+        ruby_lsp = {},
+        -- kotlin_language_server = {},
         -- https://www.arthurkoziel.com/json-schemas-in-neovim/
         -- helm_ls = {},
         -- https://github.com/typescript-language-server/typescript-language-server/pull/218

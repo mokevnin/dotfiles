@@ -1,11 +1,18 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = function(_, opts)
-      table.insert(opts.ensure_installed, "phpstan")
-      table.insert(opts.ensure_installed, "phpcs")
-      table.insert(opts.ensure_installed, "phpcbf")
-      table.insert(opts.ensure_installed, "php-cs-fixer")
-    end,
+    opts = {
+      ensure_installed = {
+        "phpstan",
+        "phpcs",
+        "phpcbf",
+        "php-cs-fixer",
+        "ruby-lsp"
+        -- table.insert(opts.ensure_installed, "phpstan")
+        -- table.insert(opts.ensure_installed, "phpcs")
+        -- table.insert(opts.ensure_installed, "phpcbf")
+        -- table.insert(opts.ensure_installed, "php-cs-fixer")
+      },
+    },
   },
 }
