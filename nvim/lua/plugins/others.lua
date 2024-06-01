@@ -45,7 +45,7 @@ return {
   },
   { "slim-template/vim-slim" },
   { "tpope/vim-rails" },
-  use 'slim-template/vim-slim'
+  { 'slim-template/vim-slim' },
   { "dhruvasagar/vim-table-mode" },
   -- { "tree-sitter/tree-sitter-embedded-template" },
   { "RRethy/nvim-treesitter-endwise" },
