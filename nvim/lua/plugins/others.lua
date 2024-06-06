@@ -52,9 +52,5 @@ return {
   { "dyng/ctrlsf.vim" },
   -- { "digitaltoad/vim-pug" },
   -- {
-  --   "kylechui/nvim-surround",
-  --   version = "*", -- Use for stability; omit to use `main` branch for the latest features
-  --   event = "VeryLazy",
-  --   opts = {},
-  -- },
+  { "kylechui/nvim-surround" },
 }
