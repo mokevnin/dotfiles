@@ -4,9 +4,6 @@ return {
     opts = {
       ensure_installed = {
         "phpstan",
-        "phpcs",
-        "phpcbf",
-        "php-cs-fixer",
         "ruby-lsp",
         "pint",
         "tlint",
