@@ -35,6 +35,20 @@ return {
           },
         },
         {
+          "app/Models/(.*).php",
+          {
+            -- { "tests/Models/[1]Test.php", "Test" },
+            { "database/factories/[1]Factory.php", "Factory" },
+          },
+        },
+        {
+          "database/factories/(.*)Factory.php",
+          {
+            -- { "tests/Models/[1]Test.php", "Test" },
+            { "app/Models/[1].php", "Model" },
+          },
+        },
+        {
           "tests/Feature/(.*)Test.php",
           {
             { "app/Http/Controllers/[1]Controller.php", "Controller" },
