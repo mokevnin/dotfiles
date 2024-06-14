@@ -37,7 +37,7 @@ return {
         {
           "app/Models/(.*).php",
           {
-            -- { "tests/Models/[1]Test.php", "Test" },
+            { "tests/Unit/[1]Test.php", "Test" },
             { "database/factories/[1]Factory.php", "Factory" },
           },
         },
@@ -52,6 +52,12 @@ return {
           "tests/Feature/(.*)Test.php",
           {
             { "app/Http/Controllers/[1]Controller.php", "Controller" },
+          },
+        },
+        {
+          "tests/Unit/(.*)Test.php",
+          {
+            { "app/Models/[1].php", "Model" },
           },
         },
         {
