@@ -34,9 +34,10 @@ darwin*)
 
 	yes | brew install asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed wget
 	yes | brew install viu chafa sox ast-grep asciidoctor
-	yes | brew install pandoc actionlint shellcheck checkmake lazygit
+	yes | brew install pandoc actionlint shellcheck checkmake lazygit markdownlint-cli2
   yes | brew install lua nodejs golang php composer luarocks
   yes | brew install --cask temurin
+  yes | brew install jstkdng/programs/ueberzugpp
 
   # https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e
   brew install font-ubuntu-nerd-font
