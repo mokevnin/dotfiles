@@ -33,13 +33,13 @@ darwin*)
   brew install jesseduffield/lazygit/lazygit
 
 	yes | brew install asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed wget
+	yes | brew install viu chafa sox ast-grep asciidoctor
 	yes | brew install pandoc actionlint shellcheck checkmake lazygit
-  yes | brew install lua nodejs golang php composer
+  yes | brew install lua nodejs golang php composer luarocks
   yes | brew install --cask temurin
 
-  # https://www.geekbits.io/how-to-install-nerd-fonts-on-mac/
-  brew tap homebrew/cask-fonts
-  brew install --cask font-hack-nerd-font
+  # https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e
+  brew install font-ubuntu-nerd-font
 	;;
 *)
 	echo 'Everything is ready. Go to the next step'
