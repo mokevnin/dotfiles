@@ -22,7 +22,7 @@ deps-pip:
 	# pip3 install --upgrade autopep8 flake8 bandit pytype # black
 
 deps-gem:
-	gem install --no-document neovim neovim-ruby-host asciidoctor asciidoctor-diagram
+	gem install --no-document neovim asciidoctor asciidoctor-diagram
 	# gem install --no-document solargraph solargraph-rails
 	# gem install --no-document rubocop rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
 	# gem install --no-document sorbet sorbet-runtime
