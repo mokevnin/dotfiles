@@ -16,8 +16,6 @@ return {
         --   -- },
       },
       servers = {
-        ruby_lsp = {},
-        tsp_server = {},
         -- kotlin_language_server = {},
         -- https://www.arthurkoziel.com/json-schemas-in-neovim/
         -- helm_ls = {},
@@ -68,11 +66,11 @@ return {
         --     },
         --   },
         -- },
-        html = {
-          -- filetypes = { "html", "blade" },
-        },
-        bashls = {},
-        lemminx = {},
+        -- html = {
+        --   -- filetypes = { "html", "blade" },
+        -- },
+        -- bashls = {},
+        -- lemminx = {},
         ltex = {
           settings = {
             ltex = {

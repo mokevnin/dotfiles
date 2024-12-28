@@ -1,6 +1,13 @@
 {
   "extras": [
-
+    "lazyvim.plugins.extras.formatting.biome",
+    "lazyvim.plugins.extras.lang.ruby",
+    "lazyvim.plugins.extras.lang.sql",
+    "lazyvim.plugins.extras.lang.tailwind",
+    "lazyvim.plugins.extras.lang.toml",
+    "lazyvim.plugins.extras.util.dot",
+    "lazyvim.plugins.extras.util.mini-hipatterns",
+    "lazyvim.plugins.extras.util.project"
   ],
   "news": {
     "NEWS.md": "10960"

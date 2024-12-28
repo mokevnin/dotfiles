@@ -2,9 +2,9 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      -- endwise = {
-      --   enable = true,
-      -- },
+      endwise = {
+        enable = true,
+      },
       -- textobjects = {
       --   swap = {
       --     enable = true,

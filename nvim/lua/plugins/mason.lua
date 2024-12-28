@@ -4,7 +4,6 @@ return {
     opts = {
       ensure_installed = {
         "phpstan",
-        "ruby-lsp",
         "pint",
         "tlint",
         -- table.insert(opts.ensure_installed, "phpstan")
