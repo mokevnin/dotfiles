@@ -13,10 +13,16 @@ return {
     opts = {},
   },
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {},
+    "echasnovski/mini.pairs",
+    opts = {
+      modes = { command = false }
+    }
   },
+  -- {
+  --   "windwp/nvim-autopairs",
+  --   event = "InsertEnter",
+  --   opts = {},
+  -- },
   { "isobit/vim-caddyfile" },
   {
     "okuuva/auto-save.nvim",
@@ -43,25 +49,24 @@ return {
       require("window-picker").setup()
     end,
   },
-  { "slim-template/vim-slim" },
-  { "tpope/vim-rails" },
-  { "slim-template/vim-slim" },
+  -- { "tpope/vim-rails" },
+  -- { "slim-template/vim-slim" },
   { "dhruvasagar/vim-table-mode" },
   -- { "tree-sitter/tree-sitter-embedded-template" },
   { "RRethy/nvim-treesitter-endwise" },
   { "dyng/ctrlsf.vim" },
   -- { "digitaltoad/vim-pug" },
   -- {
-  {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end,
-  },
+  -- {
+  --   "kylechui/nvim-surround",
+  --   version = "*", -- Use for stability; omit to use `main` branch for the latest features
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("nvim-surround").setup({
+  --       -- Configuration here, or leave empty to use defaults
+  --     })
+  --   end,
+  -- },
   -- lazy.nvim
   {
     "robitx/gp.nvim",

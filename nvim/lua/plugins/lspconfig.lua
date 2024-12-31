@@ -16,6 +16,7 @@ return {
         --   -- },
       },
       servers = {
+        cssls = {},
         -- kotlin_language_server = {},
         -- https://www.arthurkoziel.com/json-schemas-in-neovim/
         -- helm_ls = {},

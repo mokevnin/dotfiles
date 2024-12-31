@@ -13,6 +13,7 @@ return {
         window = {
           mappings = {
             ["/"] = "none",
+            ["e"] = "open",
           },
         },
         -- follow_current_file = { enabled = true },

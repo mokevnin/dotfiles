@@ -14,3 +14,5 @@ vim.g.autoformat = false
 vim.g.root_spec = { "cwd" }
 
 vim.o.smartindent = false
+
+vim.g.snacks_animate = false
