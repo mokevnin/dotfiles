@@ -1,4 +1,11 @@
 return {
+  {
+    "echasnovski/mini.pairs",
+    event = "VeryLazy",
+    opts = {
+      modes = { command = false },
+    },
+  },
   -- {
   --   "adalessa/laravel.nvim",
   --   ft = { "php" },
@@ -11,12 +18,6 @@ return {
     "tigion/nvim-asciidoc-preview",
     ft = { "asciidoc" },
     opts = {},
-  },
-  {
-    "echasnovski/mini.pairs",
-    opts = {
-      modes = { command = false }
-    }
   },
   -- {
   --   "windwp/nvim-autopairs",
@@ -54,29 +55,17 @@ return {
   { "dhruvasagar/vim-table-mode" },
   -- { "tree-sitter/tree-sitter-embedded-template" },
   { "RRethy/nvim-treesitter-endwise" },
-  { "dyng/ctrlsf.vim" },
+  -- { "dyng/ctrlsf.vim" },
   -- { "digitaltoad/vim-pug" },
   -- {
-  -- {
-  --   "kylechui/nvim-surround",
-  --   version = "*", -- Use for stability; omit to use `main` branch for the latest features
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require("nvim-surround").setup({
-  --       -- Configuration here, or leave empty to use defaults
-  --     })
-  --   end,
-  -- },
-  -- lazy.nvim
   {
-    "robitx/gp.nvim",
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
     config = function()
-      local conf = {
-        -- For customization, refer to Install > Configuration in the Documentation/Readme
-      }
-      require("gp").setup(conf)
-
-      -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
     end,
   },
 }

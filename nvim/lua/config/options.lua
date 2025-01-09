@@ -6,13 +6,13 @@ vim.o.langmap =
   "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 
 vim.o.relativenumber = false
-vim.o.spell = false
-vim.o.spelllang = "ru_ru,en_us"
-vim.o.linebreak = true
 vim.g.autoformat = false
+-- vim.o.spell = false
+-- vim.o.spelllang = "ru_ru,en_us"
+-- vim.o.linebreak = true
 
-vim.g.root_spec = { "cwd" }
+-- vim.g.root_spec = { "cwd" }
 
-vim.o.smartindent = false
+-- vim.o.smartindent = false
 
 vim.g.snacks_animate = false

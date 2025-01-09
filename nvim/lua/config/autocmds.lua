@@ -4,11 +4,11 @@
 
 -- https://www.reddit.com/r/neovim/comments/13zd9sc/is_there_a_way_to_configure_indentation_per/
 -- https://www.reddit.com/r/neovim/comments/vu1y6e/correct_way_to_set_language_specific_settings_in/
-vim.cmd([[
-  augroup myfiletypes
-    autocmd!
-    " autocmd FileType ruby,lua,eruby,yaml,javascript,typescript,html,css set ai sw=2 sts=2 et
-    " autocmd FileType java,kotlin,xml,php set ai sw=4 sts=4 et
-    " autocmd FileType asciidoc setlocal wrap
-  augroup END
-]])
+-- vim.cmd([[
+--   augroup myfiletypes
+--     autocmd!
+--     " autocmd FileType ruby,lua,eruby,yaml,javascript,typescript,html,css set ai sw=2 sts=2 et
+--     " autocmd FileType java,kotlin,xml,php set ai sw=4 sts=4 et
+--     " autocmd FileType asciidoc setlocal wrap
+--   augroup END
+-- ]])
