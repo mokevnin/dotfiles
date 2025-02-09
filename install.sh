@@ -20,7 +20,7 @@ linux*)
 	apt install -yy autoconf bison patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
 
 	# https://github.com/asdf-community/asdf-php/blob/master/.github/workflows/workflow.yml
-	apt install -yy autoconf bison build-essential curl gettext git libgd-dev libcurl4-openssl-dev libedit-dev libicu-dev libjpeg-dev libmysqlclient-dev libonig-dev libpng-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libzip-dev openssl pkg-config re2c zlib1g-dev
+	# apt install -yy autoconf bison build-essential curl gettext git libgd-dev libcurl4-openssl-dev libedit-dev libicu-dev libjpeg-dev libmysqlclient-dev libonig-dev libpng-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libzip-dev openssl pkg-config re2c zlib1g-dev
 
 	update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
 
@@ -32,15 +32,14 @@ darwin*)
   eval "$(/opt/homebrew/bin/brew shellenv)"
   brew install jesseduffield/lazygit/lazygit
 
-	yes | brew install asdf neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed wget
+	yes | brew install mise neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed wget
 	yes | brew install viu chafa sox ast-grep asciidoctor
 	yes | brew install pandoc actionlint shellcheck checkmake lazygit markdownlint-cli2
-  yes | brew install lua nodejs golang php composer luarocks
+  yes | brew install lua nodejs golang php composer luarocks ruby
   yes | brew install --cask temurin
-  yes | brew install jstkdng/programs/ueberzugpp
 
   # https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e
-  brew install font-ubuntu-nerd-font
+  yes | brew install font-ubuntu-nerd-font
 	;;
 *)
 	echo 'Everything is ready. Go to the next step'
@@ -48,51 +47,15 @@ darwin*)
 esac
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
-sed -i'.bak' 's/^plugins=.*$/plugins=(git asdf vi-mode fzf docker docker-compose you-should-use)/' ~/.zshrc
-# git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2 || true
-# echo ". \$HOME/.asdf/asdf.sh" >~/.oh-my-zsh/custom/asdf.zsh
+sed -i'.bak' 's/^plugins=.*$/plugins=(git mise vi-mode fzf docker docker-compose you-should-use)/' ~/.zshrc
+# https://mise.jdx.dev/getting-started.html
 echo "alias fixssh='eval \$(tmux showenv -s SSH_AUTH_SOCK)'" >~/.oh-my-zsh/custom/useful.zsh
 
 # git clone https://github.com/mokevnin/dotfiles ~/dotfiles || true
 
-# bash -c ". $HOME/.asdf/asdf.sh"
+# mise use --global ruby@latest
+# mise use --global nodejs@latest
 #
-# asdf plugin add nodejs || true
-# asdf plugin add php || true
-asdf plugin add ruby || true
-# asdf plugin add golang || true
-# asdf plugin add java || true
-
-# too slow
-
-# asdf plugin add lua https://github.com/Stratus3D/asdf-lua.git || true
-
-# asdf install lua latest
-# asdf global lua latest
-
-# asdf install nodejs latest
-# asdf global nodejs latest
-#
-asdf install ruby latest
-asdf global ruby latest
-#
-# asdf install php latest
-# asdf global php latest
-#
-# asdf install golang latest
-# asdf global golang latest
-#
-# asdf install java openjdk latest
-# asdf global java openjdk latest
-
-# if already existed
-
-# asdf update
-# asdf plugin update --all
-
-# export BOOTSTRAP_HASKELL_NONINTERACTIVE=1
-# curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
-# echo ". \$HOME/.ghcup/env" > ~/.oh-my-zsh/custom/ghcup.zsh
 
 REPO="$HOME/.oh-my-zsh/custom/plugins/you-should-use"
 git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$REPO" || true

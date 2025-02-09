@@ -8,7 +8,7 @@ vim.o.langmap =
 vim.o.relativenumber = false
 vim.g.autoformat = false
 -- vim.o.spell = false
--- vim.o.spelllang = "ru_ru,en_us"
+vim.o.spelllang = "ru_ru,en_us"
 -- vim.o.linebreak = true
 
 -- vim.g.root_spec = { "cwd" }

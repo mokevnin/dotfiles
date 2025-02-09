@@ -16,7 +16,12 @@ return {
         --   -- },
       },
       servers = {
-        cssls = {},
+        -- cssls = {},
+        -- https://github.com/Shopify/ruby-lsp/issues/2347
+        -- ruby_lsp = {
+        --   mason = false,
+        --   cmd = { vim.fn.expand("~/.asdf/shims/ruby-lsp") },
+        -- },
         -- kotlin_language_server = {},
         -- https://www.arthurkoziel.com/json-schemas-in-neovim/
         -- helm_ls = {},

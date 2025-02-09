@@ -14,11 +14,11 @@ return {
   -- {
   --   "towolf/vim-helm",
   -- },
-  {
-    "tigion/nvim-asciidoc-preview",
-    ft = { "asciidoc" },
-    opts = {},
-  },
+  -- {
+  --   "tigion/nvim-asciidoc-preview",
+  --   ft = { "asciidoc" },
+  --   opts = {},
+  -- },
   -- {
   --   "windwp/nvim-autopairs",
   --   event = "InsertEnter",
@@ -41,15 +41,15 @@ return {
     },
     opts = { use_default_keymaps = false, max_join_length = 150 },
   },
-  {
-    "s1n7ax/nvim-window-picker",
-    name = "window-picker",
-    event = "VeryLazy",
-    version = "2.*",
-    config = function()
-      require("window-picker").setup()
-    end,
-  },
+  -- {
+  --   "s1n7ax/nvim-window-picker",
+  --   name = "window-picker",
+  --   event = "VeryLazy",
+  --   version = "2.*",
+  --   config = function()
+  --     require("window-picker").setup()
+  --   end,
+  -- },
   -- { "tpope/vim-rails" },
   -- { "slim-template/vim-slim" },
   { "dhruvasagar/vim-table-mode" },
