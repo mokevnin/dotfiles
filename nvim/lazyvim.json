@@ -2,6 +2,7 @@
   "extras": [
     "lazyvim.plugins.extras.editor.inc-rename",
     "lazyvim.plugins.extras.formatting.biome",
+    "lazyvim.plugins.extras.lang.astro",
     "lazyvim.plugins.extras.lang.docker",
     "lazyvim.plugins.extras.lang.java",
     "lazyvim.plugins.extras.lang.json",
