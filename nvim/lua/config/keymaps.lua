@@ -16,10 +16,10 @@ bind("i", "<C-ц>", "<C-G>u<C-W>", opts)
 --   require("treesitter-context").go_to_context()
 -- end)
 --
-vim.keymap.set("n", "<leader>[", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>")
-vim.keymap.set("n", "<leader>]", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>")
+bind("n", "<leader>[", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", opts)
+bind("n", "<leader>]", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", opts)
 --
-vim.keymap.set("n", "<leader>fj", ":Neotree reveal<CR>", {})
+-- vim.keymap.set("n", "<leader>fj", ":Neotree reveal<CR>", {})
 -- vim.keymap.set('n', '<leader>fa', ':Telescope telescope-alternate alternate_file<CR>', {})
 --
 bind("n", "<leader>o", "<cmd>:Other<CR>", opts)

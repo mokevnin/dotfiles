@@ -1,7 +1,14 @@
 return {
   "folke/snacks.nvim",
+  keys = {
+    {
+      "<space>fj",
+      function()
+        Snacks.explorer.reveal()
+      end,
+    },
+  },
   opts = {
-    explorer = {},
     picker = {
       win = {
         input = {
@@ -15,6 +22,7 @@ return {
       },
       sources = {
         explorer = {
+          follow_file = false,
           -- follow_file = false,
         },
       },
