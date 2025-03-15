@@ -12,17 +12,20 @@ return {
     picker = {
       win = {
         input = {
-          -- keys = {
-          --   ["i"] = {
-          --     "confirm",
-          --     mode = { "n", "i" },
-          --   },
-          -- },
+          keys = {
+            -- ["/"] = "",
+            --   ["i"] = {
+            --     "confirm",
+            --     mode = { "n", "i" },
+            --   },
+          },
         },
       },
       sources = {
         explorer = {
+          -- finder = "files",
           follow_file = false,
+          -- supports_live = false,
           -- follow_file = false,
         },
       },

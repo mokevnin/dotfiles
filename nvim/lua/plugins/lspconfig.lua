@@ -17,6 +17,7 @@ return {
       },
       servers = {
         tsp_server = {},
+        sorbet = {},
         -- cssls = {},
         -- https://github.com/Shopify/ruby-lsp/issues/2347
         -- ruby_lsp = {
