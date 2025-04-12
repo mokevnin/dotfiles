@@ -18,6 +18,7 @@ return {
       servers = {
         tsp_server = {},
         sorbet = {},
+        docker_compose_language_service = {},
         -- cssls = {},
         -- https://github.com/Shopify/ruby-lsp/issues/2347
         -- ruby_lsp = {
