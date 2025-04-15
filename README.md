@@ -15,7 +15,7 @@
 sh -c "$(wget -O- https://raw.githubusercontent.com/mokevnin/dotfiles/main/install.sh)"
 
 # or
-git clone git@github.com:mokevnin/dotfiles.git
+git clone https://github.com/mokevnin/dotfiles.git
 make install # same when updating
 
 # configure nvim
