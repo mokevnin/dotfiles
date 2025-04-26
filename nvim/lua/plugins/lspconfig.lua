@@ -20,6 +20,8 @@ return {
         sorbet = {},
         autotools_ls = {},
         docker_compose_language_service = {},
+        oxlint = {},
+        somesass_ls = {},
         -- cssls = {},
         -- https://github.com/Shopify/ruby-lsp/issues/2347
         -- ruby_lsp = {
