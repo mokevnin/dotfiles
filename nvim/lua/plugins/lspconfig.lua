@@ -10,6 +10,8 @@ return {
       -- },
       diagnostics = {
         --   -- underline = true,
+        -- virtual_text = false,
+        -- virtual_lines = { current_line = true },
         virtual_text = false,
         --   -- float = {
         --   --   border = "rounded",
@@ -22,6 +24,15 @@ return {
         docker_compose_language_service = {},
         oxlint = {},
         somesass_ls = {},
+        ruby_lsp = {
+          init_options = {
+            addonSettings = {
+              ["Ruby LSP Rails"] = {
+                enablePendingMigrationsPrompt = false,
+              },
+            },
+          },
+        },
         -- cssls = {},
         -- https://github.com/Shopify/ruby-lsp/issues/2347
         -- ruby_lsp = {

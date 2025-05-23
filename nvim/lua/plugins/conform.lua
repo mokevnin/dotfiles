@@ -8,9 +8,16 @@ return {
           "pint",
           "tlint",
         },
+        java = { "spotless" },
         haml = { "haml_lint" },
       },
       formatters = {
+        spotless = {
+          command = "./gradlew",
+          args = { "spotlessApply" },
+          cwd = require("conform.util").root_file({ "build.gradle.kts" }),
+          stdin = false,
+        },
         -- haml_lint = {
         --   -- command = "haml-lint",
         --   -- args = function(self, ctx)
