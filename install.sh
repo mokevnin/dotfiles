@@ -40,6 +40,7 @@ darwin*)
 
   # https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e
   yes | brew install font-ubuntu-nerd-font
+  yes | brew install font-hack-nerd-font
 
   echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
 
