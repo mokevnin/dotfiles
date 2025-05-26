@@ -32,14 +32,17 @@ darwin*)
   eval "$(/opt/homebrew/bin/brew shellenv)"
   brew install jesseduffield/lazygit/lazygit
 
-	yes | brew install mise neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed wget
-	yes | brew install viu chafa sox ast-grep asciidoctor
+	yes | brew install mise neovim git the_silver_searcher fzf bat htop fd ncdu tldr httpie git-delta ripgrep gnu-sed wget overmind
+	yes | brew install viu chafa sox ast-grep
 	yes | brew install pandoc actionlint shellcheck checkmake lazygit markdownlint-cli2
-  yes | brew install lua nodejs golang php composer luarocks ruby
+  # yes | brew install lua nodejs golang php composer luarocks ruby
   yes | brew install --cask temurin
 
   # https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e
   yes | brew install font-ubuntu-nerd-font
+
+  echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
+
 	;;
 *)
 	echo 'Everything is ready. Go to the next step'
@@ -48,7 +51,7 @@ esac
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
 sed -i'.bak' 's/^plugins=.*$/plugins=(git mise vi-mode fzf docker docker-compose you-should-use)/' ~/.zshrc
-# https://mise.jdx.dev/getting-started.html
+
 echo "alias fixssh='eval \$(tmux showenv -s SSH_AUTH_SOCK)'" >~/.oh-my-zsh/custom/useful.zsh
 
 # git clone https://github.com/mokevnin/dotfiles ~/dotfiles || true
