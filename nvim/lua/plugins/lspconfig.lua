@@ -20,6 +20,7 @@ return {
       servers = {
         tsp_server = {},
         sorbet = {},
+        cssls = {},
         autotools_ls = {},
         docker_compose_language_service = {},
         oxlint = {},
