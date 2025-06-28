@@ -1,5 +1,38 @@
 return {
   {
+    "olimorris/codecompanion.nvim",
+    opts = {},
+    config = function()
+      require("codecompanion").setup({
+        strategies = {
+          chat = {
+            adapter = "openai",
+          },
+          inline = {
+            adapter = "openai",
+          },
+          cmd = {
+            adapter = "openai",
+          },
+        },
+        -- extensions = {
+        --   mcphub = {
+        --     callback = "mcphub.extensions.codecompanion",
+        --     opts = {
+        --       make_vars = true,
+        --       make_slash_commands = true,
+        --       show_result_in_chat = true,
+        --     },
+        --   },
+        -- },
+      })
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+  {
     "echasnovski/mini.pairs",
     event = "VeryLazy",
     opts = {
