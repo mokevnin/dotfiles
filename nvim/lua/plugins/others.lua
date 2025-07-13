@@ -1,5 +1,14 @@
 return {
   {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      code = {
+        enabled = false,
+        -- sign = true,
+      }
+    },
+  },
+  {
     "olimorris/codecompanion.nvim",
     opts = {},
     config = function()
