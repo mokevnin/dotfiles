@@ -3,9 +3,9 @@ return {
     "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
-        "phpstan",
-        "pint",
-        "tlint",
+        -- "phpstan",
+        -- "pint",
+        -- "tlint",
         "haml-lint"
         -- table.insert(opts.ensure_installed, "phpstan")
         -- table.insert(opts.ensure_installed, "phpcs")

@@ -20,10 +20,10 @@ return {
       servers = {
         tsp_server = {},
         sorbet = {},
-        cssls = {},
+        -- cssls = {},
         autotools_ls = {},
         docker_compose_language_service = {},
-        oxlint = {},
+        -- oxlint = {},
         somesass_ls = {},
         ruby_lsp = {
           init_options = {

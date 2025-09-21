@@ -1,53 +1,65 @@
 return {
   {
+    "nvim-mini/mini.ai",
+    opts = function(_, opts)
+      local ai = require("mini.ai")
+      opts.custom_textobjects = opts.custom_textobjects or {}
+
+      opts.custom_textobjects.v = ai.gen_spec.treesitter({
+        a = "@propvalue.outer", -- "around value"
+        i = "@propvalue.inner", -- "inner value"
+      })
+    end,
+  },
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
       code = {
         enabled = false,
         -- sign = true,
-      }
+      },
     },
   },
-  {
-    "olimorris/codecompanion.nvim",
-    opts = {},
-    config = function()
-      require("codecompanion").setup({
-        strategies = {
-          chat = {
-            adapter = "openai",
-          },
-          inline = {
-            adapter = "openai",
-          },
-          cmd = {
-            adapter = "openai",
-          },
-        },
-        -- extensions = {
-        --   mcphub = {
-        --     callback = "mcphub.extensions.codecompanion",
-        --     opts = {
-        --       make_vars = true,
-        --       make_slash_commands = true,
-        --       show_result_in_chat = true,
-        --     },
-        --   },
-        -- },
-      })
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-  },
-  {
-    "nvim-mini/mini.pairs",
-    event = "VeryLazy",
-    opts = {
-      modes = { command = false },
-    },
-  },
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   opts = {},
+  --   config = function()
+  --     require("codecompanion").setup({
+  --       strategies = {
+  --         chat = {
+  --           adapter = "openai",
+  --         },
+  --         inline = {
+  --           adapter = "openai",
+  --         },
+  --         cmd = {
+  --           adapter = "openai",
+  --         },
+  --       },
+  --       -- extensions = {
+  --       --   mcphub = {
+  --       --     callback = "mcphub.extensions.codecompanion",
+  --       --     opts = {
+  --       --       make_vars = true,
+  --       --       make_slash_commands = true,
+  --       --       show_result_in_chat = true,
+  --       --     },
+  --       --   },
+  --       -- },
+  --     })
+  --   end,
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  -- },
+  -- {
+  --   "nvim-mini/mini.pairs",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     modes = { command = false },
+  --   },
+  -- },
   -- {
   --   "adalessa/laravel.nvim",
   --   ft = { "php" },
@@ -66,7 +78,7 @@ return {
   --   event = "InsertEnter",
   --   opts = {},
   -- },
-  { "isobit/vim-caddyfile" },
+  -- { "isobit/vim-caddyfile" },
   {
     "okuuva/auto-save.nvim",
     cmd = "ASToggle", -- optional for lazy loading on command
