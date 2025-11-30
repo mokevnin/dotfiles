@@ -7,9 +7,19 @@ return {
         Snacks.explorer.reveal()
       end,
     },
+    {
+      "<leader>fa",
+      function()
+        Snacks.picker.pick("alternate_files")
+      end,
+      desc = "Alternate Files",
+    },
   },
-  opts = {
-    picker = {
+  opts = function(_, opts)
+    local alternate_picker = require("config.alternate_picker")
+
+    opts = opts or {}
+    opts.picker = vim.tbl_deep_extend("force", {
       win = {
         input = {
           keys = {
@@ -29,11 +39,20 @@ return {
           -- follow_file = false,
         },
       },
-    },
-    -- picker = {
-    --   win = {
-    --     ["<c-u>"] = { "unix_line_discard", mode = { "i", "n" } },
-    --   },
-    -- },
-  },
+    }, opts.picker or {})
+
+    opts.picker.sources = opts.picker.sources or {}
+    opts.picker.sources["alternate_files"] = opts.picker.sources["alternate_files"]
+      or {
+        title = "Alternate Files",
+        prompt = "Alt ",
+        finder = alternate_picker.finder,
+        format = "file",
+        preview = "preview",
+        confirm = "jump",
+        show_empty = true,
+      }
+
+    return opts
+  end,
 }

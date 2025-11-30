@@ -21,5 +21,3 @@ bind("n", "<leader>]", "<Cmd>call append(line('.'),     repeat([''], v:count1))<
 --
 -- vim.keymap.set("n", "<leader>fj", ":Neotree reveal<CR>", {})
 -- vim.keymap.set('n', '<leader>fa', ':Telescope telescope-alternate alternate_file<CR>', {})
---
-bind("n", "<leader>o", "<cmd>:Other<CR>", opts)
