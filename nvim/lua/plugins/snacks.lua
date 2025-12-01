@@ -42,6 +42,15 @@ return {
     }, opts.picker or {})
 
     opts.picker.sources = opts.picker.sources or {}
+
+    opts.picker.sources.files = vim.tbl_deep_extend("force", {
+      exclude = { "*.rbi" },
+    }, opts.picker.sources.files or {})
+
+    opts.picker.sources.explorer = vim.tbl_deep_extend("force", {
+      exclude = { "*.rbi" },
+    }, opts.picker.sources.explorer or {})
+
     opts.picker.sources["alternate_files"] = opts.picker.sources["alternate_files"]
       or {
         title = "Alternate Files",
