@@ -48,7 +48,7 @@ return {
         prompt = "Alt ",
         finder = alternate_picker.finder,
         format = "file",
-        preview = "preview",
+        preview = "file",
         confirm = "jump",
         show_empty = true,
       }
