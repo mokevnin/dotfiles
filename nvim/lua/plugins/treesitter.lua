@@ -5,6 +5,9 @@ return {
       endwise = {
         enable = true,
       },
+      indent = {
+        disable = { "java" },
+      },
       -- textobjects = {
       --   swap = {
       --     enable = true,

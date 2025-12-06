@@ -23,13 +23,21 @@ return {
       win = {
         input = {
           keys = {
-            -- ["/"] = "",
+            ["/"] = false,
             --   ["i"] = {
             --     "confirm",
             --     mode = { "n", "i" },
             --   },
           },
         },
+        list = {
+          keys = {
+            ["/"] = false,
+          },
+        },
+      },
+      layout = {
+        -- hidden = { "input" },
       },
       sources = {
         explorer = {

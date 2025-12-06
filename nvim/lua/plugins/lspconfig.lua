@@ -2,9 +2,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      -- inlay_hints = {
-      --   enabled = true,
-      -- },
+      inlay_hints = {
+        enabled = true,
+      },
       -- codelens = {
       --   enabled = false,
       -- },
@@ -24,7 +24,7 @@ return {
         autotools_ls = {},
         docker_compose_language_service = {},
         -- oxlint = {},
-        somesass_ls = {},
+        -- somesass_ls = {},
         ruby_lsp = {
           init_options = {
             addonSettings = {
@@ -34,6 +34,57 @@ return {
             },
           },
         },
+        tsgo = {
+          keys = {
+            {
+              "<leader>ca",
+              vim.lsp.buf.code_action,
+              desc = "Code Action (tsgo)",
+              mode = { "n", "x" },
+            },
+            { "<leader>co", LazyVim.lsp.action["source.organizeImports"], desc = "Organize Imports" },
+            { "<leader>cM", LazyVim.lsp.action["source.addMissingImports.ts"], desc = "Add Missing Imports" },
+            { "<leader>cu", LazyVim.lsp.action["source.removeUnused.ts"], desc = "Remove Unused" },
+            { "<leader>cD", LazyVim.lsp.action["source.fixAll.ts"], desc = "Fix All" },
+          },
+          settings = {
+            typescript = {
+              inlayHints = {
+                parameterNames = {
+                  enabled = "all",
+                  suppressWhenArgumentMatchesName = false,
+                },
+                parameterTypes = { enabled = true },
+                variableTypes = {
+                  enabled = true,
+                  suppressWhenTypeMatchesName = false,
+                },
+                propertyDeclarationTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                enumMemberValues = { enabled = true },
+              },
+            },
+            javascript = {
+              inlayHints = {
+                parameterNames = {
+                  enabled = "all",
+                  suppressWhenArgumentMatchesName = false,
+                },
+                parameterTypes = { enabled = true },
+                variableTypes = {
+                  enabled = true,
+                  suppressWhenTypeMatchesName = false,
+                },
+                propertyDeclarationTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                enumMemberValues = { enabled = true },
+              },
+            },
+          },
+        },
+        vtsls = { enabled = false },
+        ts_ls = { enabled = false },
+        tsserver = { enabled = false },
         -- cssls = {},
         -- https://github.com/Shopify/ruby-lsp/issues/2347
         -- ruby_lsp = {
@@ -102,6 +153,41 @@ return {
             },
           },
         },
+      },
+      setup = {
+        tsgo = function(_, opts)
+          local orig_on_attach = opts.on_attach
+          opts.on_attach = function(client, bufnr)
+            if orig_on_attach then
+              orig_on_attach(client, bufnr)
+            end
+
+            local cap = client.server_capabilities.codeActionProvider
+            local kinds = {
+              "quickfix",
+              "refactor",
+              "refactor.extract",
+              "refactor.inline",
+              "refactor.rewrite",
+              "source",
+              "source.organizeImports",
+              "source.organizeImports.ts",
+              "source.addMissingImports",
+              "source.fixAll",
+              "source.addMissingImports.ts",
+              "source.removeUnused",
+              "source.removeUnused.ts",
+            }
+
+            if type(cap) == "table" then
+              cap.codeActionKinds = kinds
+              cap.resolveProvider = true
+            else
+              -- tsgo may omit codeActionProvider; force-enable so LazyVim keybinds work.
+              client.server_capabilities.codeActionProvider = { codeActionKinds = kinds, resolveProvider = true }
+            end
+          end
+        end,
       },
     },
   },

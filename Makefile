@@ -36,7 +36,7 @@ deps-composer:
 		# phpactor/phpactor
 
 deps-npm:
-	npm install -g neovim markdown-toc markdownlint-cli2
+	npm install -g neovim markdown-toc markdownlint-cli2 @zed-industries/codex-acp @github/copilot
 	# npm install -g prettier eslint eslint-plugin-import eslint-plugin-node
 	# npx install-peerdeps -yg eslint-config-airbnb
 	# npm install -g stylelint stylelint-config-recommended stylelint-config-standard
