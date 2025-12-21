@@ -17,5 +17,5 @@ vim.g.root_spec = { "cwd" }
 
 vim.g.snacks_animate = false
 
--- Treat Rails Jbuilder templates as Ruby files
 vim.filetype.add({ extension = { jbuilder = "ruby" } })
+vim.filetype.add({ extension = { rbi = "ruby" } })

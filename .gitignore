@@ -10,3 +10,4 @@ TAGS
 fixtures/_build
 .null*
 .nvimlog
+.tmp

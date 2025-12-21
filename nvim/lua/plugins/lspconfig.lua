@@ -162,30 +162,6 @@ return {
               orig_on_attach(client, bufnr)
             end
 
-            local cap = client.server_capabilities.codeActionProvider
-            local kinds = {
-              "quickfix",
-              "refactor",
-              "refactor.extract",
-              "refactor.inline",
-              "refactor.rewrite",
-              "source",
-              "source.organizeImports",
-              "source.organizeImports.ts",
-              "source.addMissingImports",
-              "source.fixAll",
-              "source.addMissingImports.ts",
-              "source.removeUnused",
-              "source.removeUnused.ts",
-            }
-
-            if type(cap) == "table" then
-              cap.codeActionKinds = kinds
-              cap.resolveProvider = true
-            else
-              -- tsgo may omit codeActionProvider; force-enable so LazyVim keybinds work.
-              client.server_capabilities.codeActionProvider = { codeActionKinds = kinds, resolveProvider = true }
-            end
           end
         end,
       },
