@@ -22,12 +22,7 @@ deps-pip:
 	# pip3 install --upgrade autopep8 flake8 bandit pytype # black
 
 deps-gem:
-	gem install --no-document neovim # asciidoctor asciidoctor-diagram
-	# gem install --no-document solargraph solargraph-rails
-	# gem install --no-document rubocop rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
-	# gem install --no-document sorbet sorbet-runtime
-	# gem install --no-document haml_lint slim_lint erb_lint
-	# gem install --no-document brakeman reek
+	gem install --no-document neovim
 
 deps-composer:
 	# composer --no-interaction global require \
@@ -36,7 +31,7 @@ deps-composer:
 		# phpactor/phpactor
 
 deps-npm:
-	npm install -g neovim markdown-toc markdownlint-cli2 @zed-industries/codex-acp @github/copilot
+	npm install -g neovim markdown-toc markdownlint-cli2
 	# npm install -g prettier eslint eslint-plugin-import eslint-plugin-node
 	# npx install-peerdeps -yg eslint-config-airbnb
 	# npm install -g stylelint stylelint-config-recommended stylelint-config-standard
@@ -44,7 +39,7 @@ deps-npm:
 	# npm install -g dockerfile-language-server-nodejs
 
 deps-brew:
-	brew install biome pipx
+	brew install codex copilot-cli opencode
 
 deps-go:
 	# go install honnef.co/go/tools/cmd/staticcheck@latest
