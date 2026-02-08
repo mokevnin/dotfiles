@@ -40,6 +40,29 @@ M.mappings = {
     },
   },
   {
+    pattern = "/app/mailers/(.*)_mailer%.rb",
+    targets = {
+      "/app/views/%1_mailer/*",
+      "/app/views/%1_mailer/**/*",
+      "/test/mailers/%1_mailer_test.rb",
+    },
+  },
+  {
+    pattern = "/app/views/(.*)_mailer/.*",
+    targets = {
+      "/app/mailers/%1_mailer.rb",
+      "/test/mailers/%1_mailer_test.rb",
+    },
+  },
+  {
+    pattern = "/test/mailers/(.*)_mailer_test%.rb",
+    targets = {
+      "/app/mailers/%1_mailer.rb",
+      "/app/views/%1_mailer/*",
+      "/app/views/%1_mailer/**/*",
+    },
+  },
+  {
     pattern = "/app/models/(.*)%.rb",
     targets = {
       "/test/models/%1_test.rb",
