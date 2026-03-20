@@ -19,3 +19,5 @@ vim.g.snacks_animate = false
 
 vim.filetype.add({ extension = { jbuilder = "ruby" } })
 vim.filetype.add({ extension = { rbi = "ruby" } })
+
+vim.g.lazyvim_ts_lsp = "tsgo"

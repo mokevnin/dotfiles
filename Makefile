@@ -39,7 +39,7 @@ deps-npm:
 	# npm install -g dockerfile-language-server-nodejs
 
 deps-brew:
-	brew install codex copilot-cli opencode claude-code
+	brew install codex copilot-cli anomalyco/tap/opencode claude-code
 
 deps-go:
 	# go install honnef.co/go/tools/cmd/staticcheck@latest
