@@ -11,7 +11,7 @@ vim.g.autoformat = false
 vim.o.spelllang = "ru_ru,en_us"
 -- vim.o.linebreak = true
 
-vim.g.root_spec = { "cwd" }
+-- vim.g.root_spec = { "cwd" }
 
 -- vim.o.smartindent = false
 
@@ -20,4 +20,4 @@ vim.g.snacks_animate = false
 vim.filetype.add({ extension = { jbuilder = "ruby" } })
 vim.filetype.add({ extension = { rbi = "ruby" } })
 
--- vim.g.lazyvim_ts_lsp = "tsgo"
+vim.g.lazyvim_ts_lsp = "tsgo"

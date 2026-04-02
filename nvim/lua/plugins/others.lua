@@ -1,5 +1,9 @@
 return {
   {
+    "davidmh/mdx.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
+  {
     "nvim-mini/mini.ai",
     opts = function(_, opts)
       local ai = require("mini.ai")
