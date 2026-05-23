@@ -26,6 +26,8 @@ return {
         -- oxlint = {},
         -- somesass_ls = {},
         ruby_lsp = {
+          mason = false,
+          cmd = { "/opt/homebrew/bin/mise", "x", "--", "bundle", "exec", "ruby-lsp" },
           init_options = {
             addonSettings = {
               ["Ruby LSP Rails"] = {
