@@ -81,12 +81,9 @@ Makefile существует ровно для двух вещей: поста�
 | tldr | tealdeer |
 | the_silver_searcher | ripgrep |
 
-Вне mise осталось два исключения:
-
-- **`yc`** (Yandex Cloud) — нет ни в одном бэкенде, ставится своим скриптом
-  в `[bootstrap.hooks.post-tools]`, каталог добавляется в PATH управляемой строкой
-- **`wget`, `sox`, ghostty и шрифты** — через `[bootstrap.packages]` как
-  `brew:`/`brew-cask:`, но их всё равно ставит mise, Homebrew не требуется
+`wget`, `sox`, ghostty, yandex-cloud-cli и шрифты идут через
+`[bootstrap.packages]` как `brew:`/`brew-cask:` — ставит их всё равно mise,
+Homebrew для этого не нужен.
 
 ## VIM
 
