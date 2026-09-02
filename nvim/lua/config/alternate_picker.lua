@@ -49,7 +49,8 @@ end
 local function substitute_captures(target, captures)
   local expanded = target
   for i, capture in ipairs(captures) do
-    expanded = expanded:gsub("%%" .. i, capture)
+    -- escape % in the replacement, otherwise gsub treats it as a capture reference
+    expanded = expanded:gsub("%%" .. i, (capture:gsub("%%", "%%%%")))
   end
   return expanded
 end
@@ -73,7 +74,7 @@ local function relpath(path, root)
   if not root then
     return path
   end
-  local ok, rel = pcall(vim.fs.relpath, path, root)
+  local ok, rel = pcall(vim.fs.relpath, root, path)
   return ok and rel or path
 end
 

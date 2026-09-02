@@ -2,10 +2,11 @@ return {
   "folke/snacks.nvim",
   keys = {
     {
-      "<space>fj",
+      "<leader>fj",
       function()
         Snacks.explorer.reveal()
       end,
+      desc = "Reveal File in Explorer",
     },
     {
       "<leader>fa",

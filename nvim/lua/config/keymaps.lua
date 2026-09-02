@@ -16,8 +16,18 @@ bind("i", "<C-ц>", "<C-G>u<C-W>", opts)
 --   require("treesitter-context").go_to_context()
 -- end)
 --
-bind("n", "<leader>[", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", opts)
-bind("n", "<leader>]", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", opts)
+bind(
+  "n",
+  "<leader>[",
+  "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>",
+  vim.tbl_extend("force", opts, { desc = "Add blank line above" })
+)
+bind(
+  "n",
+  "<leader>]",
+  "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>",
+  vim.tbl_extend("force", opts, { desc = "Add blank line below" })
+)
 --
 -- vim.keymap.set("n", "<leader>fj", ":Neotree reveal<CR>", {})
 -- vim.keymap.set('n', '<leader>fa', ':Telescope telescope-alternate alternate_file<CR>', {})

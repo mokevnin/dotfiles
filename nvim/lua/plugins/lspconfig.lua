@@ -19,7 +19,12 @@ return {
       },
       servers = {
         tsp_server = {},
-        sorbet = {},
+        -- default root markers are Gemfile/.git, which starts srb in every ruby
+        -- project next to ruby_lsp and rubocop -- only start it where sorbet lives
+        sorbet = {
+          root_markers = { "sorbet" },
+          workspace_required = true,
+        },
         -- cssls = {},
         autotools_ls = {},
         docker_compose_language_service = {},

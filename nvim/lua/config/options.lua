@@ -17,6 +17,10 @@ vim.o.spelllang = "ru_ru,en_us"
 
 vim.g.snacks_animate = false
 
+-- neither provider is installed and nothing here uses them
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+
 vim.filetype.add({ extension = { jbuilder = "ruby" } })
 vim.filetype.add({ extension = { rbi = "ruby" } })
 

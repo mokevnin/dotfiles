@@ -110,7 +110,13 @@ return {
   -- },
   -- { "tpope/vim-rails" },
   -- { "slim-template/vim-slim" },
-  { "dhruvasagar/vim-table-mode" },
+  {
+    "dhruvasagar/vim-table-mode",
+    cmd = { "TableModeToggle", "TableModeEnable", "Tableize", "TableSort", "TableAddFormula", "TableModeRealign" },
+    keys = {
+      { "<leader>tm", "<cmd>TableModeToggle<cr>", desc = "Table Mode" },
+    },
+  },
   -- { "tree-sitter/tree-sitter-embedded-template" },
   { "RRethy/nvim-treesitter-endwise" },
   -- { "dyng/ctrlsf.vim" },
@@ -120,10 +126,6 @@ return {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end,
+    opts = {},
   },
 }
