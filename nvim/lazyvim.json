@@ -18,6 +18,7 @@
     "lazyvim.plugins.extras.lang.sql",
     "lazyvim.plugins.extras.lang.toml",
     "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.lang.typescript.tsgo",
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.linting.eslint",
     "lazyvim.plugins.extras.test.core",

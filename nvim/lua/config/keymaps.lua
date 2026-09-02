@@ -6,9 +6,10 @@ local bind = vim.keymap.set
 local opts = { silent = true, noremap = true }
 --
 -- -- for russian layout
+-- буквенные маппинги (в т.ч. LazyVim'ские j/k -> gj/gk) переводит langmapper,
+-- руками остаются только Ctrl-комбинации в insert: langmapper по умолчанию не
+-- хакает insert-режим, а нам нужен именно вариант с разрывом undo (<C-G>u)
 bind("i", "<c-х>", "<C-[>", opts)
-bind("n", "л", "gk", opts)
-bind("n", "о", "gj", opts)
 bind("i", "<C-г>", "<C-G>u<C-U>", opts)
 bind("i", "<C-ц>", "<C-G>u<C-W>", opts)
 --

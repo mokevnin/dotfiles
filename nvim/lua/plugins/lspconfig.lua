@@ -41,15 +41,9 @@ return {
             },
           },
         },
-        vtsls = {
-          settings = {
-            typescript = {
-              experimental = {
-                useTsgo = true,
-              },
-            },
-          },
-        },
+        -- vtsls тут больше нет: extra lang.typescript.tsgo переключает ts_lsp
+        -- на отдельный сервер tsgo и сам гасит vtsls, так что его настройки
+        -- (включая ручной experimental.useTsgo) были бы мёртвым кодом
         -- cssls = {},
         -- https://github.com/Shopify/ruby-lsp/issues/2347
         -- ruby_lsp = {

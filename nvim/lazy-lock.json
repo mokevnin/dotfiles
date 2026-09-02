@@ -16,8 +16,10 @@
   "helm-ls.nvim": { "branch": "main", "commit": "20df43509b02a3ce3c6b3eee254d6e2bffa9a370" },
   "inc-rename.nvim": { "branch": "main", "commit": "ddff8bd3eccedf043bd73f5bf89cf90d2d6d8105" },
   "kotlin.nvim": { "branch": "main", "commit": "1a25f753aba7a697ba467485e1cfe05844075b17" },
+  "langmapper.nvim": { "branch": "main", "commit": "49462fd9f4f33cf8cfbaa779ba07d3c0b255cc06" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lazydev.nvim": { "branch": "main", "commit": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d" },
+  "live-preview.nvim": { "branch": "main", "commit": "a6307fa340ed7c0d96f5c567afc8c991aad94ce0" },
   "lualine.nvim": { "branch": "master", "commit": "221ce6b2d999187044529f49da6554a92f740a96" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "40276c4df7e6bdce6801d6c035c6227f9115a855" },
@@ -65,7 +67,6 @@
   "vim-dadbod": { "branch": "master", "commit": "6d1d41da4873a445c5605f2005ad2c68c99d8770" },
   "vim-dadbod-completion": { "branch": "master", "commit": "a8dac0b3cf6132c80dc9b18bef36d4cf7a9e1fe6" },
   "vim-dadbod-ui": { "branch": "master", "commit": "afd07819d8efcefc3317205b855ad4e3513b0011" },
-  "vim-table-mode": { "branch": "master", "commit": "bb025308a45c67c7c8f0763ba37bc2ee3f534df0" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
   "yanky.nvim": { "branch": "main", "commit": "dd6689fdda85f66cab7d9b1a1664625f3be0920d" }
 }

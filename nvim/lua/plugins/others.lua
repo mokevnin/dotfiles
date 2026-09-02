@@ -110,13 +110,6 @@ return {
   -- },
   -- { "tpope/vim-rails" },
   -- { "slim-template/vim-slim" },
-  {
-    "dhruvasagar/vim-table-mode",
-    cmd = { "TableModeToggle", "TableModeEnable", "Tableize", "TableSort", "TableAddFormula", "TableModeRealign" },
-    keys = {
-      { "<leader>tm", "<cmd>TableModeToggle<cr>", desc = "Table Mode" },
-    },
-  },
   -- { "tree-sitter/tree-sitter-embedded-template" },
   { "RRethy/nvim-treesitter-endwise" },
   -- { "dyng/ctrlsf.vim" },
