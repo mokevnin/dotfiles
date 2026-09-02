@@ -106,10 +106,20 @@ return {
         -- },
         -- bashls = {},
         -- lemminx = {},
-        ltex = {
+        -- maintained fork of the abandoned ltex-ls; its languagetool 6.8 no longer
+        -- trips the JAXP entity limit that JDK 24+ tightened, so no JVM workaround
+        ltex_plus = {
+          -- only silences the cosmetic native-access warning from bundled jansi
+          cmd_env = {
+            JAVA_OPTS = "--enable-native-access=ALL-UNNAMED",
+          },
           settings = {
             ltex = {
               language = "ru-RU",
+              -- default is "fine", which spams every checked fragment into lsp.log
+              ["ltex-ls"] = {
+                logLevel = "severe",
+              },
             },
           },
         },
