@@ -56,18 +56,37 @@ Makefile существует ровно для двух вещей: поста�
 Добавить системный пакет — `mise bootstrap packages use brew:foo`.
 Забрать в репо изменённый дотфайл — `mise bootstrap dotfiles add ~/.foo`.
 
-## Замены утилит
+## Что стоит
 
-Часть классики заменена на современные аналоги, которые есть в бэкендах mise:
+Всё в `[tools]`, ставится `mise install`. Сейчас 64 тула:
+
+- **языки** — go, java (temurin 25), node, python, ruby, pnpm, ansible
+- **навигация** — zoxide, eza, yazi, fd, fzf, ripgrep, television нет (хватает fzf)
+- **git/forge** — lazygit, delta, difftastic, gh, glab
+- **инфра** — docker-cli, docker-compose, lazydocker, terraform, helm, kubectl, k9s, kubectx, stern, sentry-cli
+- **AI** — claude-code, codex, copilot-cli, opencode
+- **разное** — atuin, bat, bottom, dust, duf, gdu, glow, hyperfine, jq, yq, just, sd, tokei, watchexec, xh, sesh, viu, chafa, pandoc
+
+Заменённая классика:
 
 | было | стало |
 |---|---|
 | htop | bottom (`btm`) |
 | ncdu | gdu |
+| du / df | dust / duf |
 | httpie | xh |
 | gnu-sed | sd |
+| ls | eza |
+| cd | zoxide |
 | tldr | tealdeer |
-| the_silver_searcher | ripgrep (уже был) |
+| the_silver_searcher | ripgrep |
+
+Вне mise осталось два исключения:
+
+- **`yc`** (Yandex Cloud) — нет ни в одном бэкенде, ставится своим скриптом
+  в `[bootstrap.hooks.post-tools]`, каталог добавляется в PATH управляемой строкой
+- **`wget`, `sox`, ghostty и шрифты** — через `[bootstrap.packages]` как
+  `brew:`/`brew-cask:`, но их всё равно ставит mise, Homebrew не требуется
 
 ## VIM
 

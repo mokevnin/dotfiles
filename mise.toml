@@ -20,28 +20,64 @@ node = "26.8.1"
 python = "latest"
 ruby = "latest"
 
+pnpm = "latest"
+
 # cli
 actionlint = "latest"
 air = "latest"
+ansible = "latest"
+"pipx:ansible-lint" = "latest"
 ast-grep = "latest"
+atuin = "latest"             # история шелла с поиском и синком
 bat = "latest"
 bottom = "latest"            # btm, вместо htop
+claude-code = "latest"
+codex = "latest"
+copilot-cli = "latest"
 delta = "latest"
+difftastic = "latest"        # структурный diff, понимает синтаксис
+docker-cli = "latest"
+docker-compose = "latest"
+duf = "latest"               # вместо df
+dust = "latest"              # вместо du
+eza = "latest"               # вместо ls
 fd = "latest"
 fzf = "latest"
 gdu = "latest"               # вместо ncdu
+gh = "latest"
+glab = "latest"
+glow = "latest"              # markdown в терминале
+hyperfine = "latest"         # бенчмарк команд
+helm = "latest"
+jq = "latest"
+just = "latest"
+k9s = "latest"
+kubectl = "latest"
+kubectx = "latest"
+lazydocker = "latest"
 lazygit = "latest"
 markdownlint-cli2 = "latest"
 neovim = "latest"
+opencode = "latest"
 overmind = "latest"
 pandoc = "latest"
+pipx = "latest"           # нужен для бэкенда pipx: (ansible, ansible-lint)
 ripgrep = "latest"
 sd = "latest"                # вместо gnu-sed
+sentry-cli = "latest"
 shellcheck = "latest"
+stern = "latest"
 tealdeer = "latest"          # даёт tldr
+terraform = "latest"
+tokei = "latest"             # статистика по коду
+watchexec = "latest"         # запуск команды на изменение файлов
 xh = "latest"                # вместо httpie
+yazi = "latest"              # файловый менеджер, превью картинок через chafa/viu
+yq = "latest"
+zoxide = "latest"            # умный cd
 "ubi:atanunq/viu" = "latest"
 "ubi:hpjansson/chafa" = "latest"
+"ubi:joshmedeski/sesh" = "latest"   # менеджер tmux-сессий
 
 # хосты nvim-провайдеров, должны жить внутри активных node/ruby
 "npm:neovim" = "latest"
@@ -52,6 +88,7 @@ xh = "latest"                # вместо httpie
 [bootstrap.packages]
 "brew:wget" = "latest"
 "brew:sox" = "latest"
+"brew-cask:ghostty" = "latest"
 "brew-cask:font-ubuntu-nerd-font" = "latest"
 "brew-cask:font-hack-nerd-font" = "latest"
 "apt:zsh" = "latest"
@@ -71,6 +108,10 @@ xh = "latest"                # вместо httpie
 "~/.config/nvim" = "nvim"
 "~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
 "~/.oh-my-zsh/custom/useful.zsh" = { content = "alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'\n" }
+# у atuin нет плагина oh-my-zsh
+"~/.zshrc/atuin" = { line = 'eval "$(atuin init zsh)"' }
+# yc ставится своим скриптом мимо mise, его каталог надо добавить в PATH
+"~/.zshrc/yc" = { line = 'export PATH="$HOME/.local/yandex-cloud/bin:$PATH"' }
 
 [bootstrap.mise_shell_activate]
 zshrc = "activate"
@@ -83,7 +124,12 @@ login_shell = "/bin/zsh"
 run = '[ -d "$HOME/.oh-my-zsh" ] || RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
 
 # oh-my-zsh умеет включать плагины сам, идемпотентно
+# Yandex Cloud CLI ставится только собственным скриптом
+[bootstrap.hooks.post-tools]
+# проверяем файл, а не PATH: в хуке ~/.local/yandex-cloud/bin ещё не подключён
+run = '[ -x "$HOME/.local/yandex-cloud/bin/yc" ] || curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash -s -- -i "$HOME/.local/yandex-cloud" -n'
+
 [tasks.bootstrap]
 description = "Включить плагины oh-my-zsh"
 # `omz plugin enable` возвращает 1, если плагин уже включён — это не ошибка
-run = "zsh -ic 'omz plugin enable git mise vi-mode fzf docker docker-compose you-should-use' || true"
+run = "zsh -ic 'omz plugin enable git mise vi-mode fzf docker docker-compose you-should-use zoxide eza gh' || true"
