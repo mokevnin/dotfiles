@@ -89,7 +89,6 @@ zoxide = "latest"            # умный cd
 "brew:wget" = "latest"
 "brew:sox" = "latest"
 "brew-cask:ghostty" = "latest"
-"brew-cask:yandex-cloud-cli" = "latest"
 "brew-cask:font-ubuntu-nerd-font" = "latest"
 "brew-cask:font-hack-nerd-font" = "latest"
 "apt:zsh" = "latest"
@@ -109,6 +108,8 @@ zoxide = "latest"            # умный cd
 "~/.config/nvim" = "nvim"
 "~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
 "~/.oh-my-zsh/custom/useful.zsh" = { content = "alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'\n" }
+# yc ставится своим скриптом (см. хук post-tools), его каталог надо добавить в PATH
+"~/.zshrc/yc" = { line = 'export PATH="$HOME/.local/yandex-cloud/bin:$PATH"' }
 # у atuin нет плагина oh-my-zsh
 "~/.zshrc/atuin" = { line = 'eval "$(atuin init zsh)"' }
 
@@ -123,6 +124,13 @@ login_shell = "/bin/zsh"
 run = '[ -d "$HOME/.oh-my-zsh" ] || RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
 
 # oh-my-zsh умеет включать плагины сам, идемпотентно
+# Каск yandex-cloud-cli существует, но поставить его не выходит: brew выполняет
+# стансу installer-script через sudo, а mise на этом каске теряет путь к бинарю
+# (brew-cask: binary artifact 'yandex-cloud-cli/bin/yc' was not found).
+# Поэтому — родной скрипт вендора, он работает без root.
+[bootstrap.hooks.post-tools]
+run = '[ -x "$HOME/.local/yandex-cloud/bin/yc" ] || curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash -s -- -i "$HOME/.local/yandex-cloud" -n'
+
 [tasks.bootstrap]
 description = "Включить плагины oh-my-zsh"
 # `omz plugin enable` возвращает 1, если плагин уже включён — это не ошибка

@@ -81,9 +81,15 @@ Makefile существует ровно для двух вещей: поста�
 | tldr | tealdeer |
 | the_silver_searcher | ripgrep |
 
-`wget`, `sox`, ghostty, yandex-cloud-cli и шрифты идут через
-`[bootstrap.packages]` как `brew:`/`brew-cask:` — ставит их всё равно mise,
-Homebrew для этого не нужен.
+`wget`, `sox`, ghostty и шрифты идут через `[bootstrap.packages]` как
+`brew:`/`brew-cask:` — ставит их всё равно mise, Homebrew для этого не нужен.
+
+Одно исключение — **`yc`** (Yandex Cloud). Каск `yandex-cloud-cli` есть, но
+поставить его не выходит ни тем, ни другим путём: `brew` выполняет стансу
+`installer script` через `sudo`, а mise на этом каске теряет путь к бинарю
+(`binary artifact 'yandex-cloud-cli/bin/yc' was not found`). Поэтому yc ставится
+родным скриптом вендора из `[bootstrap.hooks.post-tools]` — он работает без root —
+а его каталог добавляется в PATH управляемой строкой в `[dotfiles]`.
 
 ## VIM
 
