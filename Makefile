@@ -19,3 +19,4 @@ upgrade:
 
 lint:
 	actionlint
+	cd nvim && stylua --check lua

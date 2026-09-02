@@ -67,6 +67,7 @@ sd = "latest"                # вместо gnu-sed
 sentry-cli = "latest"
 shellcheck = "latest"
 stern = "latest"
+stylua = "latest"            # форматтер lua, им же проверяется конфиг nvim в CI
 tealdeer = "latest"          # даёт tldr
 terraform = "latest"
 tokei = "latest"             # статистика по коду

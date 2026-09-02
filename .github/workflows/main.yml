@@ -18,13 +18,19 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # ставит mise, ставит только actionlint и кэширует — всё это работа самого action
+      # ставит mise, ставит только линтеры и кэширует — всё это работа самого action
       - uses: jdx/mise-action@v4
         with:
-          install_args: actionlint
+          install_args: actionlint stylua
 
       - name: Bootstrap plan
         run: mise bootstrap --dry-run
 
-      - name: Lint
+      - name: Lint workflows
         run: actionlint
+
+      # основное содержимое репозитория — конфиг nvim, до этого его не проверял никто.
+      # .stylua.toml лежит в nvim/, поэтому запускать надо оттуда
+      - name: Lint lua
+        working-directory: nvim
+        run: stylua --check lua
