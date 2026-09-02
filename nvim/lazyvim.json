@@ -1,7 +1,6 @@
 {
   "extras": [
     "lazyvim.plugins.extras.ai.copilot",
-    "lazyvim.plugins.extras.ai.sidekick",
     "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.editor.inc-rename",

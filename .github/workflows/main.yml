@@ -9,37 +9,22 @@ on:
       - main
 
 jobs:
-  ubuntu:
-    runs-on: ubuntu-20.04
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     steps:
+      - uses: actions/checkout@v7
 
-      - uses: actions/checkout@v2
-      - name: Nvim install config files
-        run: |
-          make nvim-install
+      # ставит mise, ставит только actionlint и кэширует — всё это работа самого action
+      - uses: jdx/mise-action@v4
+        with:
+          install_args: actionlint
 
-      - name: Dotfiles install
-        run: |
-          make dotfiles-install
+      - name: Bootstrap plan
+        run: mise bootstrap --dry-run
 
-      - name: Apt install
-        run: |
-          sudo apt-get update
-          sudo make ubuntu-prepare OPTIONS="--dry-run"
-
-  macos:
-    runs-on: macos-latest
-    steps:
-
-      - uses: actions/checkout@v2
-      - name: Nvim install config files
-        run: |
-          make nvim-install
-
-      - name: Dotfiles install
-        run: |
-          make dotfiles-install
-
-      # - name: Brew install
-      #   run: |
-      #     make macos-prepare OPTIONS="--dry-run"
+      - name: Lint
+        run: actionlint

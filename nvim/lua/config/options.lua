@@ -19,3 +19,7 @@ vim.g.snacks_animate = false
 
 vim.filetype.add({ extension = { jbuilder = "ruby" } })
 vim.filetype.add({ extension = { rbi = "ruby" } })
+
+-- node/ruby hosts come from mise (npm:neovim / gem:neovim), not from a global npm/gem prefix
+vim.g.node_host_prog = vim.fn.expand("~/.local/share/mise/installs/npm-neovim/latest/node_modules/neovim/bin/cli.js")
+vim.g.ruby_host_prog = vim.fn.expand("~/.local/share/mise/shims/neovim-ruby-host")

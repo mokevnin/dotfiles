@@ -1,52 +1,21 @@
-jall: install nvim-configure deps-install
+.PHONY: install mise bootstrap upgrade lint
 
-TAGS := all
+# Makefile нужен ровно для двух вещей: поставить сам mise (единственное, что он
+# не может поставить себе сам) и дать короткие имена его командам.
+# Всё остальное описано декларативно в mise.toml.
 
-install:
-	./install.sh
+install: mise bootstrap
 
-nvim-configure:
-	rm -rf ~/.config/nvim
-	rm -rf ~/.local/share/nvim
-	rm -rf ~/.local/state/nvim
-	rm -rf ~/.cache/nvim
+mise:
+	@command -v mise >/dev/null 2>&1 && exit 0; \
+	if command -v brew >/dev/null 2>&1; then brew install mise; \
+	else curl -fsSL https://mise.run | sh; fi
 
-	ln -snf $(PWD)/nvim ~/.config/nvim
+bootstrap:
+	mise bootstrap --yes
 
-deps-install: deps-gem deps-composer deps-npm deps-pip deps-go
+upgrade:
+	mise upgrade
 
-deps-pip:
-	# pip2 install --upgrade pynvim
-	# pipx install pynvim
-	# pip3 install --upgrade vim-vint spellcheck yamllint codespell ansible-lint
-	# pip3 install --upgrade autopep8 flake8 bandit pytype # black
-
-deps-gem:
-	gem install --no-document neovim
-
-deps-composer:
-	# composer --no-interaction global require \
-	# 	squizlabs/php_codesniffer \
-	# 	phpstan/phpstan
-		# phpactor/phpactor
-
-deps-npm:
-	npm install -g neovim markdown-toc markdownlint-cli2
-	# npm install -g prettier eslint eslint-plugin-import eslint-plugin-node
-	# npx install-peerdeps -yg eslint-config-airbnb
-	# npm install -g stylelint stylelint-config-recommended stylelint-config-standard
-	# npm install -g yaml-language-server markuplint markdownlint-cli bash-language-server jsonlint
-	# npm install -g dockerfile-language-server-nodejs
-
-deps-brew:
-	brew install codex copilot-cli anomalyco/tap/opencode claude-code gemini-cli
-
-deps-go:
-	# go install honnef.co/go/tools/cmd/staticcheck@latest
-	# GO111MODULE=on go install golang.org/x/tools/gopls@latest
-
-deps-luarock:
-	# luarocks install luacheck
-
-# nvim-log:
-# 	tail -f kjj
+lint:
+	actionlint

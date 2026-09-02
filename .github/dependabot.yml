@@ -1,0 +1,10 @@
+version: 2
+updates:
+  # Единственная экосистема, которую понимает dependabot в этом репо.
+  # Тулы в mise.toml почти все на "latest" и обновляются `mise upgrade`.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci
