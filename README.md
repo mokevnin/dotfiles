@@ -65,7 +65,7 @@ Makefile существует ровно для двух вещей: поста�
 - **git/forge** — lazygit, delta, difftastic, gh, glab
 - **инфра** — docker-cli, docker-compose, lazydocker, terraform, helm, kubectl, k9s, kubectx, stern, sentry-cli
 - **AI** — claude-code, codex, copilot-cli, opencode
-- **разное** — atuin, bat, bottom, dust, duf, gdu, glow, hyperfine, jq, yq, just, sd, tokei, watchexec, xh, sesh, viu, chafa, pandoc
+- **разное** — atuin, bat, bottom, dust, duf, gdu, glow, hyperfine, jq, yq, just, sd, tokei, watchexec, xh, sesh, viu, pandoc
 
 Заменённая классика:
 

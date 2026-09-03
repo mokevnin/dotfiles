@@ -73,12 +73,11 @@ terraform = "latest"
 tokei = "latest"             # статистика по коду
 watchexec = "latest"         # запуск команды на изменение файлов
 xh = "latest"                # вместо httpie
-yazi = "latest"              # файловый менеджер, превью картинок через chafa/viu
+yazi = "latest"              # файловый менеджер, превью картинок через viu
 yq = "latest"
 zoxide = "latest"            # умный cd
-"ubi:atanunq/viu" = "latest"
-"ubi:hpjansson/chafa" = "latest"
-"ubi:joshmedeski/sesh" = "latest"   # менеджер tmux-сессий
+"github:atanunq/viu" = "latest"
+"github:joshmedeski/sesh" = "latest"   # менеджер tmux-сессий
 
 # хосты nvim-провайдеров, должны жить внутри активных node/ruby
 "npm:neovim" = "latest"
