@@ -8,6 +8,11 @@
 
 [settings]
 idiomatic_version_file_enable_tools = []
+# 64 тула на "latest" — это десятки запросов к api.github.com, а анонимный
+# лимит там 60 в час, отсюда 429 на upgrade. Токен берём у gh, в репо он не
+# лежит; если gh ещё не авторизован (свежая машина), mise просто ругнётся
+# в warning и пойдёт анонимно.
+github.credential_command = "gh auth token"
 dotfiles.root = "~/dotfiles"
 dotfiles.default_mode = "symlink"
 
