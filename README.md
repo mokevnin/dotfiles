@@ -96,14 +96,22 @@ Makefile существует ровно для двух вещей: поста�
 | tldr | tealdeer |
 | the_silver_searcher | ripgrep |
 
-`wget`, `sox`, `tmux` (его требуют sesh и overmind, сами не тянут), `git-lfs`
-(фильтр `lfs` прописан в `gitconfig`), ghostty, шрифты, Docker Desktop (без
-демона `docker-cli` бесполезен) и 1Password (его `op-ssh-sign` подписывает
-коммиты) идут через `[bootstrap.packages]` как `brew:`/`brew-cask:`. Командует
-установкой mise, но работает он через сам Homebrew, поэтому на свежем маке brew
-ставится хуком `[bootstrap.hooks.pre-packages]` (неинтерактивно, но пароль для
-sudo установщик спросит — каск `docker-desktop` его тоже требует). Префикс brew
-добавляется в PATH управляемой строкой в `[dotfiles]`.
+Через `[bootstrap.packages]` (`brew:`/`brew-cask:`) идёт всё, чего нет в mise:
+
+- `wget`, `sox`, `tmux` (его требуют sesh и overmind, сами не тянут), `git-lfs`
+  (фильтр `lfs` прописан в `gitconfig`);
+- ghostty и nerd-шрифты;
+- Docker Desktop (без демона `docker-cli` бесполезен) и 1Password (его
+  `op-ssh-sign` подписывает коммиты);
+- GUI: Chrome, VS Code, GitHub Desktop, Slack, Telegram, WhatsApp, ChatGPT,
+  Claude, OBS, Audacity, Zoom, NordVPN.
+
+Командует установкой mise, но работает он через сам Homebrew, поэтому на свежем
+маке brew ставится хуком `[bootstrap.hooks.pre-packages]` — неинтерактивно, но
+пароль для sudo установщик спросит. Пароль спросят и каски-`pkg`
+(`docker-desktop`, `zoom`, `nordvpn`): brew ставит их через `installer(8)`, а не
+копированием бандла. Префикс brew добавляется в PATH управляемой строкой в
+`[dotfiles]`.
 
 Одно исключение — **`yc`** (Yandex Cloud). Каск `yandex-cloud-cli` есть, но
 поставить его не выходит ни тем, ни другим путём: `brew` выполняет стансу

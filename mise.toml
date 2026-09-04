@@ -102,6 +102,18 @@ run = '[ "$(uname)" != Darwin ] || command -v brew >/dev/null 2>&1 || [ -x /opt/
 "brew-cask:docker-desktop" = "latest"   # docker-cli без демона бесполезен
 "brew-cask:1password" = "latest"        # op-ssh-sign подписывает коммиты
 "brew-cask:google-chrome" = "latest"
+"brew-cask:visual-studio-code" = "latest"
+"brew-cask:github" = "latest"
+"brew-cask:slack" = "latest"
+"brew-cask:telegram" = "latest"
+"brew-cask:whatsapp" = "latest"
+"brew-cask:chatgpt" = "latest"
+"brew-cask:claude" = "latest"
+"brew-cask:obs" = "latest"
+"brew-cask:audacity" = "latest"
+# каски-pkg: brew ставит их через installer(8), то есть спросит пароль
+"brew-cask:zoom" = "latest"
+"brew-cask:nordvpn" = "latest"
 "brew-cask:font-ubuntu-nerd-font" = "latest"
 "brew-cask:font-hack-nerd-font" = "latest"
 "apt:zsh" = "latest"
