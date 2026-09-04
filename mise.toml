@@ -101,6 +101,7 @@ run = '[ "$(uname)" != Darwin ] || command -v brew >/dev/null 2>&1 || [ -x /opt/
 "brew-cask:ghostty" = "latest"
 "brew-cask:docker-desktop" = "latest"   # docker-cli без демона бесполезен
 "brew-cask:1password" = "latest"        # op-ssh-sign подписывает коммиты
+"brew-cask:google-chrome" = "latest"
 "brew-cask:font-ubuntu-nerd-font" = "latest"
 "brew-cask:font-hack-nerd-font" = "latest"
 "apt:zsh" = "latest"
