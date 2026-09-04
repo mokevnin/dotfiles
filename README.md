@@ -41,11 +41,12 @@ Makefile существует ровно для двух вещей: поста�
 | Секция `mise.toml` | Что описывает |
 |---|---|
 | `[tools]` | Языки и CLI-утилиты. Бэкенды: реестр, `npm:`, `gem:`, `ubi:` |
-| `[bootstrap.packages]` | Системные пакеты. `brew:`/`brew-cask:` mise ставит сам, Homebrew не нужен; `apt:` пропускается на macOS |
+| `[bootstrap.packages]` | Системные пакеты. `brew:`/`brew-cask:` mise ставит через Homebrew; `apt:` пропускается на macOS |
 | `[bootstrap.repos]` | Git-репозитории (плагин you-should-use) |
 | `[dotfiles]` | Симлинки: `~/.config/nvim`, `~/.config/mise/config.toml` |
 | `[bootstrap.mise_shell_activate]` | Блок `mise activate` в `.zshrc` между маркерами |
 | `[bootstrap.user]` | login shell |
+| `[bootstrap.hooks.pre-packages]` | Установка Homebrew на macOS перед `brew:`-пакетами |
 | `[bootstrap.hooks.pre-repos]` | Установка oh-my-zsh перед клонированием его плагинов |
 | `[tasks.bootstrap]` | `omz plugin enable` — единственное, что осталось императивным |
 
@@ -82,7 +83,10 @@ Makefile существует ровно для двух вещей: поста�
 | the_silver_searcher | ripgrep |
 
 `wget`, `sox`, ghostty и шрифты идут через `[bootstrap.packages]` как
-`brew:`/`brew-cask:` — ставит их всё равно mise, Homebrew для этого не нужен.
+`brew:`/`brew-cask:`. Командует установкой mise, но работает он через сам
+Homebrew, поэтому на свежем маке brew ставится хуком `[bootstrap.hooks.pre-packages]`
+(неинтерактивно, но пароль для sudo установщик спросит). Его префикс добавляется
+в PATH управляемой строкой в `[dotfiles]`.
 
 Одно исключение — **`yc`** (Yandex Cloud). Каск `yandex-cloud-cli` есть, но
 поставить его не выходит ни тем, ни другим путём: `brew` выполняет стансу

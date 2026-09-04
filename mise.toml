@@ -84,7 +84,14 @@ zoxide = "latest"            # умный cd
 "npm:markdown-toc" = "latest"
 "gem:neovim" = "latest"
 
-# Системные пакеты. mise ставит brew-формулы сам, Homebrew ставить не нужно.
+# Homebrew mise поставить себе не может, а brew:/brew-cask: он ставит через сам
+# brew — значит brew должен появиться раньше пакетов. Только на macOS: на Linux
+# всё идёт через apt:. NONINTERACTIVE=1 — чтобы установщик не ждал Enter при
+# --yes; пароль для sudo он всё равно спросит.
+[bootstrap.hooks.pre-packages]
+run = '[ "$(uname)" != Darwin ] || command -v brew >/dev/null 2>&1 || [ -x /opt/homebrew/bin/brew ] || [ -x /usr/local/bin/brew ] || NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+
+# Системные пакеты. brew:/brew-cask: ставит mise, но руками самого Homebrew.
 [bootstrap.packages]
 "brew:wget" = "latest"
 "brew:sox" = "latest"
@@ -112,6 +119,9 @@ zoxide = "latest"            # умный cd
 "~/.zshrc/yc" = { line = 'export PATH="$HOME/.local/yandex-cloud/bin:$PATH"' }
 # у atuin нет плагина oh-my-zsh
 "~/.zshrc/atuin" = { line = 'eval "$(atuin init zsh)"' }
+# установщик Homebrew в неинтерактивном режиме сам .zshrc не правит,
+# а brew-формулы (wget, sox) лежат в его префиксе
+"~/.zshrc/brew" = { line = '[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"' }
 
 [bootstrap.mise_shell_activate]
 zshrc = "activate"
