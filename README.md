@@ -1,6 +1,7 @@
 # dotfiles
 
 Вся машина описана декларативно в одном файле — [`mise.toml`](mise.toml).
+Только под macOS.
 Его применяет [`mise bootstrap`](https://mise.jdx.dev/bootstrap.html): системные
 пакеты, git-репозитории, симлинки дотфайлов, активация шелла, login shell и тулы.
 
@@ -51,7 +52,7 @@ Makefile существует ровно для двух вещей: поста�
 | Секция `mise.toml` | Что описывает |
 |---|---|
 | `[tools]` | Языки и CLI-утилиты. Бэкенды: реестр, `npm:`, `gem:`, `pipx:`, `github:` |
-| `[bootstrap.packages]` | Системные пакеты. `brew:`/`brew-cask:` mise ставит через Homebrew; `apt:` пропускается на macOS |
+| `[bootstrap.packages]` | Системные пакеты и GUI-приложения. `brew:`/`brew-cask:` mise ставит через сам Homebrew |
 | `[bootstrap.repos]` | Git-репозитории (плагин you-should-use) |
 | `[dotfiles]` | Симлинки (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`) и управляемые строки в `.zshrc` |
 | `[bootstrap.mise_shell_activate]` | Блок `mise activate` в `.zshrc` между маркерами |

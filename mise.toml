@@ -1,5 +1,6 @@
-# Единственный конфиг машины. Симлинкуется в ~/.config/mise/config.toml,
-# поэтому тулы и bootstrap-описание доступны глобально.
+# Единственный конфиг машины, только под macOS. Симлинкуется в
+# ~/.config/mise/config.toml, поэтому тулы и bootstrap-описание доступны
+# глобально.
 #
 # Свежая машина:  mise bootstrap --from https://github.com/mokevnin/dotfiles.git --from-dir ~/dotfiles --yes
 # (по https — ssh-ключей на новой машине ещё нет; bootstrap запускать из ~/dotfiles)
@@ -86,11 +87,10 @@ zoxide = "latest"            # умный cd
 "gem:neovim" = "latest"
 
 # Homebrew mise поставить себе не может, а brew:/brew-cask: он ставит через сам
-# brew — значит brew должен появиться раньше пакетов. Только на macOS: на Linux
-# всё идёт через apt:. NONINTERACTIVE=1 — чтобы установщик не ждал Enter при
-# --yes; пароль для sudo он всё равно спросит.
+# brew — значит brew должен появиться раньше пакетов. NONINTERACTIVE=1 — чтобы
+# установщик не ждал Enter при --yes; пароль для sudo он всё равно спросит.
 [bootstrap.hooks.pre-packages]
-run = '[ "$(uname)" != Darwin ] || command -v brew >/dev/null 2>&1 || [ -x /opt/homebrew/bin/brew ] || [ -x /usr/local/bin/brew ] || NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+run = 'command -v brew >/dev/null 2>&1 || [ -x /opt/homebrew/bin/brew ] || [ -x /usr/local/bin/brew ] || NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
 
 # Системные пакеты. brew:/brew-cask: ставит mise, но руками самого Homebrew.
 [bootstrap.packages]
@@ -116,17 +116,6 @@ run = '[ "$(uname)" != Darwin ] || command -v brew >/dev/null 2>&1 || [ -x /opt/
 "brew-cask:nordvpn" = "latest"
 "brew-cask:font-ubuntu-nerd-font" = "latest"
 "brew-cask:font-hack-nerd-font" = "latest"
-"apt:zsh" = "latest"
-"apt:git" = "latest"
-"apt:curl" = "latest"
-"apt:wget" = "latest"
-"apt:sox" = "latest"
-"apt:zip" = "latest"
-"apt:exuberant-ctags" = "latest"
-"apt:build-essential" = "latest"
-"apt:python3-pip" = "latest"
-"apt:tmux" = "latest"
-"apt:git-lfs" = "latest"
 
 [bootstrap.repos]
 "~/.oh-my-zsh/custom/plugins/you-should-use" = { url = "https://github.com/MichaelAquilina/zsh-you-should-use.git", ref = "master" }
