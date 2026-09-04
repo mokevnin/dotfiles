@@ -1,7 +1,8 @@
 # Единственный конфиг машины. Симлинкуется в ~/.config/mise/config.toml,
 # поэтому тулы и bootstrap-описание доступны глобально.
 #
-# Свежая машина:  mise bootstrap --from git@github.com:mokevnin/dotfiles.git --from-dir ~/dotfiles --yes
+# Свежая машина:  mise bootstrap --from https://github.com/mokevnin/dotfiles.git --from-dir ~/dotfiles --yes
+# (по https — ssh-ключей на новой машине ещё нет; bootstrap запускать из ~/dotfiles)
 # Уже склонировано: mise bootstrap --yes
 
 [settings]
@@ -122,6 +123,11 @@ run = '[ "$(uname)" != Darwin ] || command -v brew >/dev/null 2>&1 || [ -x /opt/
 "~/.config/nvim" = "nvim"
 "~/.gitconfig" = "gitconfig"
 "~/.oh-my-zsh/custom/useful.zsh" = { content = "alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'\n" }
+# ~/.local/bin — туда mise.run кладёт бинарь, иначе блок mise activate ниже
+# не найдёт сам mise. Шимы в хвосте: все строки отсюда попадают в .zshrc до
+# блока активации, то есть atuin ниже без них в свежем шелле ещё не виден
+# (активация всё равно ставит настоящие пути впереди шимов).
+"~/.zshrc/mise-path" = { line = 'export PATH="$HOME/.local/bin:$PATH:$HOME/.local/share/mise/shims"' }
 # у atuin нет плагина oh-my-zsh
 "~/.zshrc/atuin" = { line = 'eval "$(atuin init zsh)"' }
 # установщик Homebrew в неинтерактивном режиме сам .zshrc не правит,
