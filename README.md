@@ -5,42 +5,96 @@
 Его применяет [`mise bootstrap`](https://mise.jdx.dev/bootstrap.html): системные
 пакеты, git-репозитории, симлинки дотфайлов, активация шелла, login shell и тулы.
 
-## Установка
+## Новый мак, с нуля
 
-Свежая машина, с нуля. `git` и `make` на чистой macOS — заглушки, поэтому
-первая же команда попросит поставить Xcode Command Line Tools; можно заранее:
+Пять шагов. Три раза спросят пароль — это нормально, ниже сказано где.
+
+### 1. Xcode Command Line Tools
+
+`git` и `make` на чистой macOS — заглушки, поэтому первая же команда откроет
+GUI-диалог установки. Лучше запустить его сразу и дождаться:
 
 ```sh
 xcode-select --install
 ```
 
-Дальше, mise ещё нет (единственное, что он не может поставить себе сам).
-URL по https — ssh-ключей на новой машине пока нет:
+### 2. Достать токен GitHub
+
+`[tools]` почти целиком на `latest`, поэтому mise ходит за версиями в
+`api.github.com`, где анонимно можно 60 запросов в час — на 64 тула этого не
+хватает. Обычно токен берётся у `gh` (`github.credential_command` в
+`[settings]`), но на свежей машине `gh` ещё не авторизован, так что на первый
+прогон PAT надо достать из 1Password руками (с телефона или веба). Без токена
+bootstrap не падает, но тонет в `429` и ретраях.
+
+### 3. Склонировать по https
+
+Ssh-ключей на новой машине ещё нет, поэтому не `git@`:
 
 ```sh
 git clone https://github.com/mokevnin/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-export GITHUB_TOKEN=…  # см. ниже, иначе установка упрётся в лимит GitHub
-make install           # поставит mise через brew или mise.run, потом mise bootstrap --yes
 ```
 
-`GITHUB_TOKEN` тут не для доступа к приватному, а для лимитов: `[tools]`
-почти целиком на `latest`, и mise ходит за версиями в `api.github.com`, где
-анонимно можно 60 запросов в час. Обычно токен берётся у `gh`
-(`github.credential_command` в `[settings]`), но на свежей машине `gh` ещё не
-авторизован — поэтому токен на первый прогон достать из 1Password руками.
-Без него bootstrap не падает, но будет тонуть в `429` и ретраях.
+Позже, когда ключи на месте: `git remote set-url origin git@github.com:mokevnin/dotfiles.git`.
 
-`mise bootstrap` запускать **из `~/dotfiles`** (почему — ниже) и с `--yes`:
-без него mise на первом запуске спросит, доверяешь ли ты конфигу.
+### 4. Запустить
 
-Если mise уже есть, всё делается одной командой:
+```sh
+export GITHUB_TOKEN=…   # из шага 2
+make install
+```
+
+`make install` = поставить сам mise (через brew, если он есть, иначе `mise.run`
+в `~/.local/bin`) и выполнить `mise bootstrap --yes`. Запускать **из
+`~/dotfiles`** — почему, написано ниже в «Что где». Флаг `--yes` нужен ещё и
+затем, чтобы mise не спрашивал, доверяешь ли ты конфигу.
+
+Что произойдёт, по порядку:
+
+| | |
+|---|---|
+| хук `pre-packages` | ставит Homebrew — **спросит пароль** |
+| `[bootstrap.packages]` | brew-формулы и каски, включая GUI-приложения. Каски-`pkg` (`docker-desktop`, `zoom`, `nordvpn`) идут через `installer(8)` и **спросят пароль** |
+| хук `pre-repos` | ставит oh-my-zsh |
+| `[bootstrap.repos]` | клонирует плагин you-should-use |
+| `[dotfiles]` | симлинки `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig` и управляемые строки в `.zshrc` |
+| `[bootstrap.mise_shell_activate]` | блок `mise activate` в `.zshrc` |
+| `[bootstrap.user]` | login shell на `/bin/zsh` — **спросит пароль** |
+| `mise install` | 64 тула. Самая долгая часть |
+| хук `post-tools` | ставит `yc` скриптом вендора |
+| `[tasks.bootstrap]` | `omz plugin enable` |
+
+Если mise на машине уже есть, шаги 3–4 сворачиваются в одну команду:
 
 ```sh
 mise bootstrap --from https://github.com/mokevnin/dotfiles.git --from-dir ~/dotfiles --yes
 ```
 
-Потом переключить remote на ssh: `git remote set-url origin git@github.com:mokevnin/dotfiles.git`.
+### 5. Новый шелл
+
+```sh
+exec zsh
+```
+
+До этого ни тулов, ни omz-плагинов в текущей сессии не будет — `.zshrc`
+дописали уже после её старта.
+
+### Что дальше — руками
+
+Репо описывает машину, но не аккаунты. Само не приедет:
+
+- ssh-ключи и `~/.ssh/config` — у ключей агент 1Password (`IdentityAgent`),
+  им же подписываются коммиты (`op-ssh-sign` в `gitconfig`)
+- логины: `gh auth login`, `glab auth login`, `atuin login`, claude, codex
+- токены: `~/.npmrc` (npmjs + npm.pkg.github.com), а также
+  `CODEX_GITHUB_PERSONAL_ACCESS_TOKEN` и `YANDEX_TRACKER_MCP_TOKEN` в `.zshrc` —
+  им место в 1Password, а не в открытом виде
+- `~/.kube`, `~/.docker` и прочий стейт клиентов
+- первый запуск Docker Desktop и 1Password — они попросят разрешений системы
+
+Проверить, что всё сошлось: `mise bootstrap status` — там должно быть
+`installed`/`applied` по каждой строке.
 
 ## Команды
 
@@ -82,6 +136,13 @@ Makefile существует ровно для двух вещей: поста�
 Добавить тул — строка в `[tools]`, потом `mise install`.
 Добавить системный пакет — `mise bootstrap packages use brew:foo`.
 Забрать в репо изменённый дотфайл — `mise bootstrap dotfiles add ~/.foo`.
+
+Репозиторий публичный, так что `dotfiles add` — единственное место, где сюда
+может утечь секрет: команда копирует файл целиком. Перед коммитом смотреть, что
+именно приехало. Токены и ключи тут не хранятся и не должны — им место
+в 1Password. В `gitconfig` из чувствительного только `user.signingkey`, и это
+**публичная** половина ssh-ключа, ровно та, что и так лежит на
+<https://github.com/mokevnin.keys>.
 
 ## Что стоит
 
@@ -135,15 +196,3 @@ Makefile существует ровно для двух вещей: поста�
 ## VIM
 
 [LazyVim](https://www.lazyvim.org/), конфиг в `nvim/`.
-
-## Чего репо не переносит
-
-Дотфайлы описывают машину, но не аккаунты. После bootstrap на новой машине
-руками:
-
-- ssh-ключи и `~/.ssh/config` (у ключей агент 1Password, `IdentityAgent`)
-- логины: `gh auth login`, `glab auth login`, `atuin login`, claude, codex
-- токены: `~/.npmrc` (npmjs + npm.pkg.github.com), а также
-  `CODEX_GITHUB_PERSONAL_ACCESS_TOKEN` и `YANDEX_TRACKER_MCP_TOKEN` в `.zshrc` —
-  им место в 1Password, а не в открытом виде
-- `~/.kube`, `~/.docker` и прочий стейт клиентов
