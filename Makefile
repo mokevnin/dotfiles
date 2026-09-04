@@ -4,6 +4,10 @@
 # не может поставить себе сам) и дать короткие имена его командам.
 # Всё остальное описано декларативно в mise.toml.
 
+# mise.run кладёт бинарь в ~/.local/bin, которого нет в PATH по умолчанию, —
+# без этой строки цель bootstrap на свежем маке падает с command not found.
+export PATH := $(HOME)/.local/bin:$(PATH)
+
 install: mise bootstrap
 
 mise:

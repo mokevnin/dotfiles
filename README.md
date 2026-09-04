@@ -6,19 +6,29 @@
 
 ## Установка
 
-Свежая машина, с нуля:
+Свежая машина, с нуля. `git` и `make` на чистой macOS — заглушки, поэтому
+первая же команда попросит поставить Xcode Command Line Tools; можно заранее:
 
 ```sh
-mise bootstrap --from git@github.com:mokevnin/dotfiles.git --from-dir ~/dotfiles --yes
+xcode-select --install
 ```
 
-Если mise ещё не стоит (единственное, что он не может поставить себе сам):
+Дальше, mise ещё нет (единственное, что он не может поставить себе сам).
+URL по https — ssh-ключей на новой машине пока нет:
 
 ```sh
-git clone git@github.com:mokevnin/dotfiles.git ~/dotfiles
+git clone https://github.com/mokevnin/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 make install          # поставит mise через brew или mise.run, потом mise bootstrap --yes
 ```
+
+Если mise уже есть, всё делается одной командой:
+
+```sh
+mise bootstrap --from https://github.com/mokevnin/dotfiles.git --from-dir ~/dotfiles --yes
+```
+
+Потом переключить remote на ssh: `git remote set-url origin git@github.com:mokevnin/dotfiles.git`.
 
 ## Команды
 
@@ -40,10 +50,10 @@ Makefile существует ровно для двух вещей: поста�
 
 | Секция `mise.toml` | Что описывает |
 |---|---|
-| `[tools]` | Языки и CLI-утилиты. Бэкенды: реестр, `npm:`, `gem:`, `ubi:` |
+| `[tools]` | Языки и CLI-утилиты. Бэкенды: реестр, `npm:`, `gem:`, `pipx:`, `github:` |
 | `[bootstrap.packages]` | Системные пакеты. `brew:`/`brew-cask:` mise ставит через Homebrew; `apt:` пропускается на macOS |
 | `[bootstrap.repos]` | Git-репозитории (плагин you-should-use) |
-| `[dotfiles]` | Симлинки: `~/.config/nvim`, `~/.config/mise/config.toml` |
+| `[dotfiles]` | Симлинки (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`) и управляемые строки в `.zshrc` |
 | `[bootstrap.mise_shell_activate]` | Блок `mise activate` в `.zshrc` между маркерами |
 | `[bootstrap.user]` | login shell |
 | `[bootstrap.hooks.pre-packages]` | Установка Homebrew на macOS перед `brew:`-пакетами |
@@ -51,7 +61,11 @@ Makefile существует ровно для двух вещей: поста�
 | `[tasks.bootstrap]` | `omz plugin enable` — единственное, что осталось императивным |
 
 `mise.toml` симлинкуется в `~/.config/mise/config.toml`, поэтому тулы глобальные
-и доступны из любой директории.
+и доступны из любой директории. Но `mise bootstrap` надо запускать **из
+`~/dotfiles`**: источники в `[dotfiles]` относительные, а mise разрешает их
+относительно того файла конфига, через который загрузился, — из домашней
+директории это `~/.config/mise/`, и все источники «пропадают». Абсолютные пути
+тут не помогают: тогда падает CI, где репозиторий лежит не в `~/dotfiles`.
 
 Добавить тул — строка в `[tools]`, потом `mise install`.
 Добавить системный пакет — `mise bootstrap packages use brew:foo`.
@@ -82,11 +96,14 @@ Makefile существует ровно для двух вещей: поста�
 | tldr | tealdeer |
 | the_silver_searcher | ripgrep |
 
-`wget`, `sox`, ghostty и шрифты идут через `[bootstrap.packages]` как
-`brew:`/`brew-cask:`. Командует установкой mise, но работает он через сам
-Homebrew, поэтому на свежем маке brew ставится хуком `[bootstrap.hooks.pre-packages]`
-(неинтерактивно, но пароль для sudo установщик спросит). Его префикс добавляется
-в PATH управляемой строкой в `[dotfiles]`.
+`wget`, `sox`, `tmux` (его требуют sesh и overmind, сами не тянут), `git-lfs`
+(фильтр `lfs` прописан в `gitconfig`), ghostty, шрифты, Docker Desktop (без
+демона `docker-cli` бесполезен) и 1Password (его `op-ssh-sign` подписывает
+коммиты) идут через `[bootstrap.packages]` как `brew:`/`brew-cask:`. Командует
+установкой mise, но работает он через сам Homebrew, поэтому на свежем маке brew
+ставится хуком `[bootstrap.hooks.pre-packages]` (неинтерактивно, но пароль для
+sudo установщик спросит — каск `docker-desktop` его тоже требует). Префикс brew
+добавляется в PATH управляемой строкой в `[dotfiles]`.
 
 Одно исключение — **`yc`** (Yandex Cloud). Каск `yandex-cloud-cli` есть, но
 поставить его не выходит ни тем, ни другим путём: `brew` выполняет стансу
@@ -98,3 +115,15 @@ Homebrew, поэтому на свежем маке brew ставится хук
 ## VIM
 
 [LazyVim](https://www.lazyvim.org/), конфиг в `nvim/`.
+
+## Чего репо не переносит
+
+Дотфайлы описывают машину, но не аккаунты. После bootstrap на новой машине
+руками:
+
+- ssh-ключи и `~/.ssh/config` (у ключей агент 1Password, `IdentityAgent`)
+- логины: `gh auth login`, `glab auth login`, `atuin login`, claude, codex
+- токены: `~/.npmrc` (npmjs + npm.pkg.github.com), а также
+  `CODEX_GITHUB_PERSONAL_ACCESS_TOKEN` и `YANDEX_TRACKER_MCP_TOKEN` в `.zshrc` —
+  им место в 1Password, а не в открытом виде
+- `~/.kube`, `~/.docker` и прочий стейт клиентов

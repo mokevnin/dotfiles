@@ -1,0 +1,33 @@
+[user]
+	name = Kirill Mokevnin
+	email = mokevnin@gmail.com
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6iksm2XCHg7SsmBtEDOPI1B1aH0XtmR1InL9wphnICiCnUggi2EIDjxOHVbSnKVIVKgg6roBNBCcYsScWTbZiO9u+KfgMgG6F6H/zyD97TVazlK4wshw8EsZXQhUFPkG3xbyaGNUb82vfjnYuivyj8gQZRM39+jfI/mkKDzwImOE3rmNJoWBodjgLDFFtzM5HmcBqrb1STDjqJwFzrakyHVh7L7Hm9mYWzZNtmPRFzVrYvsrxx8M0QtBEAJx/k4ehHWc6wQR1BnTNGiKxGoiGZG/XPSRqQG+c+l6kxE9041YaBlLhXVjJYfw60xd2qYGRRvpE1p0oLK85LmsVCJcd
+
+[init]
+	defaultBranch = main
+
+# подпись коммитов ssh-ключом через агент 1Password (каска brew-cask:1password)
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
+# требует git-lfs (brew:git-lfs)
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+# gh идёт из mise, поэтому без абсолютного пути
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+
+[includeIf "gitdir:~/hexlet-exercise-kit/**"]
+	path = ~/hexlet-exercise-kit/.githooks/gitconfig

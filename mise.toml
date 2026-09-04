@@ -95,7 +95,11 @@ run = '[ "$(uname)" != Darwin ] || command -v brew >/dev/null 2>&1 || [ -x /opt/
 [bootstrap.packages]
 "brew:wget" = "latest"
 "brew:sox" = "latest"
+"brew:tmux" = "latest"       # нужен sesh и overmind, сами они его не тянут
+"brew:git-lfs" = "latest"    # фильтр lfs прописан в gitconfig
 "brew-cask:ghostty" = "latest"
+"brew-cask:docker-desktop" = "latest"   # docker-cli без демона бесполезен
+"brew-cask:1password" = "latest"        # op-ssh-sign подписывает коммиты
 "brew-cask:font-ubuntu-nerd-font" = "latest"
 "brew-cask:font-hack-nerd-font" = "latest"
 "apt:zsh" = "latest"
@@ -107,21 +111,24 @@ run = '[ "$(uname)" != Darwin ] || command -v brew >/dev/null 2>&1 || [ -x /opt/
 "apt:exuberant-ctags" = "latest"
 "apt:build-essential" = "latest"
 "apt:python3-pip" = "latest"
+"apt:tmux" = "latest"
+"apt:git-lfs" = "latest"
 
 [bootstrap.repos]
 "~/.oh-my-zsh/custom/plugins/you-should-use" = { url = "https://github.com/MichaelAquilina/zsh-you-should-use.git", ref = "master" }
 
 [dotfiles]
+"~/.config/mise/config.toml" = "mise.toml"
 "~/.config/nvim" = "nvim"
-"~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
+"~/.gitconfig" = "gitconfig"
 "~/.oh-my-zsh/custom/useful.zsh" = { content = "alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'\n" }
-# yc ставится своим скриптом (см. хук post-tools), его каталог надо добавить в PATH
-"~/.zshrc/yc" = { line = 'export PATH="$HOME/.local/yandex-cloud/bin:$PATH"' }
 # у atuin нет плагина oh-my-zsh
 "~/.zshrc/atuin" = { line = 'eval "$(atuin init zsh)"' }
 # установщик Homebrew в неинтерактивном режиме сам .zshrc не правит,
 # а brew-формулы (wget, sox) лежат в его префиксе
 "~/.zshrc/brew" = { line = '[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"' }
+# yc ставится своим скриптом (см. хук post-tools), его каталог надо добавить в PATH
+"~/.zshrc/yc" = { line = 'export PATH="$HOME/.local/yandex-cloud/bin:$PATH"' }
 
 [bootstrap.mise_shell_activate]
 zshrc = "activate"
