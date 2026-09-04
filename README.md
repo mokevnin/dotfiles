@@ -20,8 +20,19 @@ URL по https — ssh-ключей на новой машине пока нет
 ```sh
 git clone https://github.com/mokevnin/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-make install          # поставит mise через brew или mise.run, потом mise bootstrap --yes
+export GITHUB_TOKEN=…  # см. ниже, иначе установка упрётся в лимит GitHub
+make install           # поставит mise через brew или mise.run, потом mise bootstrap --yes
 ```
+
+`GITHUB_TOKEN` тут не для доступа к приватному, а для лимитов: `[tools]`
+почти целиком на `latest`, и mise ходит за версиями в `api.github.com`, где
+анонимно можно 60 запросов в час. Обычно токен берётся у `gh`
+(`github.credential_command` в `[settings]`), но на свежей машине `gh` ещё не
+авторизован — поэтому токен на первый прогон достать из 1Password руками.
+Без него bootstrap не падает, но будет тонуть в `429` и ретраях.
+
+`mise bootstrap` запускать **из `~/dotfiles`** (почему — ниже) и с `--yes`:
+без него mise на первом запуске спросит, доверяешь ли ты конфигу.
 
 Если mise уже есть, всё делается одной командой:
 
