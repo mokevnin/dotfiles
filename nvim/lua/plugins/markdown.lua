@@ -11,10 +11,11 @@ return {
     -- свой форк: в upstream вшит mermaid 11.3.0 -- его забыли добавить в
     -- еженедельное обновление зависимостей, чинится в
     -- brianhuster/live-preview.nvim#378. Поверх этого в ветке свой вкус:
-    -- look "handDrawn" и темы neo/neo-dark. Наверх это не отправляем -- стиль
-    -- дело вкусовое, а форк всё равно нужен, пока #378 не вмёржен
+    -- look "neo" и темы neo/neo-dark -- в mermaid 12 neo обещают дефолтом,
+    -- так что рисуем тем же, чем будет рисовать upstream. Наверх это не
+    -- отправляем -- стиль дело вкусовое, а форк нужен, пока #378 не вмёржен
     "mokevnin/live-preview.nvim",
-    branch = "mermaid-handdrawn",
+    branch = "mermaid-neo",
     dependencies = { "folke/snacks.nvim" },
     cmd = "LivePreview",
     -- ft на самих keys, а не на плагине: иначе он грузился бы на каждом
