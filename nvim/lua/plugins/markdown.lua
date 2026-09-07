@@ -19,8 +19,21 @@ return {
     },
     -- у плагина нет setup(), конфиг ставится отдельной функцией
     config = function()
+      -- дефолтный порт 5500 один на все инстансы nvim, а ошибку bind плагин
+      -- глотает молча: вторая сессия уходит в браузер на сервер первой и
+      -- получает 404. Поэтому просим у ядра свободный порт на каждый инстанс
+      local port = 5500
+      local probe = vim.uv.new_tcp()
+      if probe then
+        if probe:bind("127.0.0.1", 0) then
+          port = probe:getsockname().port
+        end
+        probe:close()
+      end
+
       require("livepreview.config").set({
         picker = "snacks.picker",
+        port = port,
       })
     end,
   },
