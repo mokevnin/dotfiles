@@ -8,12 +8,13 @@ return {
   { "iamcco/markdown-preview.nvim", enabled = false },
 
   {
-    -- свой форк, пока не вмёржен brianhuster/live-preview.nvim#377: в upstream
-    -- вшит mermaid 11.3.0 (его забыли добавить в еженедельное обновление
-    -- зависимостей), а look "neo" появился заметно позже. Как вмёржат --
-    -- вернуть "brianhuster/live-preview.nvim" и убрать branch
+    -- свой форк: в upstream вшит mermaid 11.3.0 -- его забыли добавить в
+    -- еженедельное обновление зависимостей, чинится в
+    -- brianhuster/live-preview.nvim#378. Поверх этого в ветке свой вкус:
+    -- look "handDrawn" и темы neo/neo-dark. Наверх это не отправляем -- стиль
+    -- дело вкусовое, а форк всё равно нужен, пока #378 не вмёржен
     "mokevnin/live-preview.nvim",
-    branch = "mermaid-neo",
+    branch = "mermaid-handdrawn",
     dependencies = { "folke/snacks.nvim" },
     cmd = "LivePreview",
     -- ft на самих keys, а не на плагине: иначе он грузился бы на каждом
