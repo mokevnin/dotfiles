@@ -8,13 +8,12 @@ return {
   { "iamcco/markdown-preview.nvim", enabled = false },
 
   {
-    -- свой форк: в upstream вшит mermaid 11.3.0 -- его забыли добавить в
-    -- еженедельное обновление зависимостей, чинится в
+    -- свой форк только ради свежего mermaid: в upstream вшит 11.3.0 -- его
+    -- забыли добавить в еженедельное обновление зависимостей, чинится в
     -- brianhuster/live-preview.nvim#378, но и тот PR пинит мажор на 11.
-    -- В ветке -- mermaid 12: там look "neo" и темы redux-color/
-    -- redux-dark-color стали дефолтом, ими и рисуем, так что картинка та
-    -- же, что у upstream по умолчанию. Наверх не отправляем -- форк нужен,
-    -- пока #378 не вмёржен, а мажор в нём не поднят
+    -- В ветке -- mermaid 12 на его же дефолтах: look "neo" не просим, он
+    -- дефолтный, а темы названы (redux-color / redux-dark-color) только
+    -- потому, что тёмную схему mermaid сам не определяет
     "mokevnin/live-preview.nvim",
     branch = "mermaid-neo",
     dependencies = { "folke/snacks.nvim" },
