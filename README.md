@@ -47,8 +47,8 @@ export GITHUB_TOKEN=…   # from step 2
 make install
 ```
 
-`make install` = install mise itself (`brew install mise`, so Homebrew has to be
-there already) and run `mise bootstrap --yes`. Run it **from
+`make install` = install Homebrew, install mise with it, and run `mise bootstrap
+--yes`. Nothing has to be on the machine beforehand. Run it **from
 `~/dotfiles`** — why, is explained below in "What lives where". The `--yes` flag
 is also what keeps mise from asking whether you trust the config.
 
@@ -56,7 +56,9 @@ What happens, in order:
 
 | | |
 |---|---|
-| `pre-packages` hook | installs Homebrew — **asks for a password** |
+| `brew` target | installs Homebrew if it is missing — **asks for a password** |
+| `mise` target | `brew install mise` |
+| `pre-packages` hook | the same Homebrew installer, for the case where bootstrap is run without the Makefile. Here brew already exists, so it does nothing |
 | `[bootstrap.packages]` | brew formulae and casks, GUI apps included. `pkg` casks (`docker-desktop`, `zoom`, `nordvpn`) go through `installer(8)` and **ask for a password** |
 | `[bootstrap.repos]` | clones oh-my-zsh — only its plugin files are used |
 | `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, `~/.config/starship.toml`, `~/.config/zsh/rc.zsh`, and writes the one line of `.zshrc` that sources the last of them |
@@ -105,7 +107,7 @@ whatever is still missing.
 ## Commands
 
 ```sh
-make install                 # the only thing make is for: install mise, then bootstrap
+make install                 # the only thing make is for: brew, then mise, then bootstrap
 
 mise bootstrap --yes         # apply the config
 mise bootstrap --dry-run     # see what would change
@@ -116,8 +118,9 @@ mise run lint                # actionlint + stylua over the nvim config
 mise doctor project          # check the logins, keys and tokens done by hand
 ```
 
-The Makefile exists for exactly one thing: installing mise, the only piece that
-cannot install itself. Everything else is a mise command.
+The Makefile exists for exactly two things: installing Homebrew and installing
+mise with it — the only pieces that cannot install themselves. Everything else
+is a mise command.
 
 CI ([`.github/workflows/main.yml`](.github/workflows/main.yml)) runs
 `mise bootstrap --dry-run` on `macos-latest` and then the very same
