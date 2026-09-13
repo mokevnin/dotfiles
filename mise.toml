@@ -71,6 +71,7 @@ pipx = "latest"              # needed for the pipx: backend (ansible, ansible-li
 ripgrep = "latest"
 sd = "latest"                # replaces gnu-sed
 sentry-cli = "latest"
+starship = "latest"        # prompt, configured by starship.toml
 shellcheck = "latest"
 stern = "latest"
 stylua = "latest"            # lua formatter, also checks the nvim config in CI
@@ -134,38 +135,29 @@ adopt = true
 "brew-cask:font-ubuntu-nerd-font" = "latest"
 "brew-cask:font-hack-nerd-font" = "latest"
 
+# Only the plugin files are used — git, vi-mode and eza are sourced directly by
+# zsh/rc.zsh. The framework around them (themes, plugins=(), the updater) is not
+# loaded, so this is a plain clone rather than the installer script. Tracking
+# master is deliberate: the aliases come from upstream and updating them is the
+# point.
+[bootstrap.repos]
+"~/.oh-my-zsh" = { url = "https://github.com/ohmyzsh/ohmyzsh.git", ref = "master" }
+
 [dotfiles]
 "~/.config/mise/config.toml" = "mise.toml"
 "~/.config/nvim" = "nvim"
 "~/.gitconfig" = "gitconfig"
-"~/.oh-my-zsh/custom/useful.zsh" = { content = "alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'\n" }
-# ~/.local/bin is where mise.run drops the binary, without it the mise activate
-# block below would not find mise itself. Shims at the tail: every line from here
-# lands in .zshrc before the activation block, so without them atuin below is not
-# visible yet in a fresh shell (activation puts the real paths ahead of the shims
-# anyway).
-"~/.zshrc/mise-path" = { line = 'export PATH="$HOME/.local/bin:$PATH:$HOME/.local/share/mise/shims"' }
-# atuin has no oh-my-zsh plugin. It also takes over ctrl-r, which is why the fzf
-# omz plugin is not enabled — one searchable history is enough.
-"~/.zshrc/atuin" = { line = 'eval "$(atuin init zsh)"' }
-# zoxide binds `cd` itself rather than the default `z`: cd is what actually gets
-# typed here, so it is the one worth making frecency-aware. Not the omz plugin,
-# which hardcodes `z` — its override has to be exported before oh-my-zsh.sh runs,
-# and managed lines land after it.
-"~/.zshrc/zoxide" = { line = 'eval "$(zoxide init zsh --cmd cd)"' }
-# the Homebrew installer does not touch .zshrc in non-interactive mode, and the
-# brew formulae (wget, sox) live in its prefix
-"~/.zshrc/brew" = { line = '[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"' }
-
-[bootstrap.mise_shell_activate]
-zshrc = "activate"
+"~/.config/starship.toml" = "starship.toml"
+# The whole shell config, ordering included, is one tracked file. ~/.zshrc is
+# reduced to the single line that sources it — mise creates the file if it does
+# not exist, so nothing else has to put a .zshrc on a fresh machine. `mise
+# activate` lives in rc.zsh too, which is why there is no
+# [bootstrap.mise_shell_activate] block.
+"~/.config/zsh/rc.zsh" = "zsh/rc.zsh"
+"~/.zshrc/rc" = { line = 'source ~/.config/zsh/rc.zsh' }
 
 [bootstrap.user]
 login_shell = "/bin/zsh"
-
-# oh-my-zsh has to exist before the dotfiles phase, which writes into its custom/
-[bootstrap.hooks.pre-dotfiles]
-run = '[ -d "$HOME/.oh-my-zsh" ] || RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
 
 # The repo linters. Described here rather than in the Makefile or the workflow so
 # that the same thing runs locally and in CI, where the job just calls
@@ -180,14 +172,6 @@ run = ["actionlint", "cd nvim && stylua --check lua"]
 # oh-my-zsh can enable its own plugins, idempotently. This cannot become a
 # managed .zshrc line: plugins=() has to precede `source oh-my-zsh.sh`, and
 # managed lines are appended.
-[tasks.bootstrap]
-description = "Enable the oh-my-zsh plugins"
-# No mise plugin here: it runs `mise activate` the moment it finds the binary,
-# and [bootstrap.mise_shell_activate] already owns that — enabling it evaluates
-# the activation twice per shell. The completions come with the managed block.
-# `omz plugin enable` returns 1 when a plugin is already enabled — not an error
-run = "zsh -ic 'omz plugin enable git vi-mode eza' || true"
-
 # The repo describes the machine but not the accounts on it: ssh keys, logins and
 # tokens are still done by hand. These turn that checklist into something
 # runnable — `mise doctor project` reports what is still missing, while
@@ -214,6 +198,11 @@ hint = "Point IdentityAgent at the 1Password socket in ~/.ssh/config."
 description = "op-ssh-sign is in place — gitconfig signs every commit with it"
 run = '[ -x "/Applications/1Password.app/Contents/MacOS/op-ssh-sign" ]'
 hint = "Launch 1Password once and turn on the SSH agent."
+
+[doctor.checks.shell-secrets]
+description = "~/.config/zsh/local.zsh holds the exports that cannot be tracked"
+run = '[ -f "$HOME/.config/zsh/local.zsh" ]'
+hint = "Put CODEX_GITHUB_PERSONAL_ACCESS_TOKEN and YANDEX_TRACKER_MCP_TOKEN there, out of 1Password."
 
 [doctor.checks.npm-tokens]
 description = "~/.npmrc carries the npmjs and npm.pkg.github.com tokens"

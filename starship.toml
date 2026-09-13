@@ -1,0 +1,27 @@
+# Approximates the robbyrussell prompt this replaced: an arrow that goes red on
+# a non-zero exit, the directory, then the branch and its state.
+
+format = "$character$directory$git_branch$git_status$cmd_duration "
+add_newline = false
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+
+[directory]
+format = " [$path]($style) "
+style = "bold cyan"
+truncate_to_repo = false
+truncation_length = 3
+
+[git_branch]
+format = '[git:\(](bold blue)[$branch](bold red)[\)](bold blue)'
+
+[git_status]
+format = "[$all_status$ahead_behind](bold yellow)"
+
+# Anything slower than this gets its runtime printed, which robbyrussell had no
+# equivalent for.
+[cmd_duration]
+min_time = 2000
+format = " [$duration](bold yellow)"

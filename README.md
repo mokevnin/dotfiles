@@ -3,7 +3,7 @@
 The whole machine is described declaratively in a single file — [`mise.toml`](mise.toml).
 macOS only.
 It is applied by [`mise bootstrap`](https://mise.jdx.dev/bootstrap.html): system
-packages, dotfile symlinks, shell activation, login shell and tools.
+packages, git repos, dotfile symlinks, login shell and tools.
 
 ## A new mac, from scratch
 
@@ -58,12 +58,10 @@ What happens, in order:
 |---|---|
 | `pre-packages` hook | installs Homebrew — **asks for a password** |
 | `[bootstrap.packages]` | brew formulae and casks, GUI apps included. `pkg` casks (`docker-desktop`, `zoom`, `nordvpn`) go through `installer(8)` and **ask for a password** |
-| `pre-dotfiles` hook | installs oh-my-zsh |
-| `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, the `useful.zsh` snippet for oh-my-zsh, and the managed lines in `.zshrc` (`mise-path`, `atuin`, `zoxide`, `brew`) |
-| `[bootstrap.mise_shell_activate]` | the `mise activate` block in `.zshrc` |
+| `[bootstrap.repos]` | clones oh-my-zsh — only its plugin files are used |
+| `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, `~/.config/starship.toml`, `~/.config/zsh/rc.zsh`, and writes the one line of `.zshrc` that sources the last of them |
 | `[bootstrap.user]` | login shell set to `/bin/zsh` — **asks for a password** |
 | `mise install` | the whole toolset, `yc` included. The longest part |
-| `[tasks.bootstrap]` | `omz plugin enable` |
 
 If mise is already on the machine, steps 3–4 collapse into a single command:
 
@@ -77,8 +75,8 @@ mise bootstrap --from https://github.com/mokevnin/dotfiles.git --from-dir ~/dotf
 exec zsh
 ```
 
-Until then neither the tools nor the omz plugins exist in the current session —
-`.zshrc` was written after it had already started.
+Until then none of this exists in the current session — `.zshrc` was written
+after it had already started.
 
 ### What is left to do by hand
 
@@ -91,7 +89,9 @@ their own:
 - logins: `gh auth login`, `glab auth login`, `atuin login`, claude, codex
 - tokens: `~/.npmrc` (npmjs + npm.pkg.github.com), plus
   `CODEX_GITHUB_PERSONAL_ACCESS_TOKEN` and `YANDEX_TRACKER_MCP_TOKEN` in
-  `.zshrc` — those belong in 1Password, not in plain text
+  `~/.config/zsh/local.zsh` — the one shell file that is deliberately untracked,
+  sourced last by `rc.zsh`. This repo is public, so nothing secret can live in
+  it; `local.zsh` is where those exports go instead
 - `~/.kube`, `~/.docker` and the rest of the client state
 - the first launch of Docker Desktop and 1Password — they will ask for system
   permissions
@@ -124,20 +124,37 @@ CI ([`.github/workflows/main.yml`](.github/workflows/main.yml)) runs
 `mise run lint`, so the lint is described in one place and not duplicated in the
 workflow.
 
+## The shell
+
+`~/.zshrc` is generated and holds exactly one line — it sources
+[`zsh/rc.zsh`](zsh/rc.zsh), where the whole config lives, ordering included.
+mise creates `.zshrc` itself when it is missing, so nothing has to put one on a
+fresh machine: zsh is already the macOS default.
+
+There is no oh-my-zsh framework here, but its plugins are still used. `git`,
+`vi-mode` and `eza` are ordinary zsh scripts and get sourced straight out of the
+clone — the git aliases (`gst`, `gd`, `gpra`, ...) come from upstream and are not
+retyped here. What is skipped is everything around them: themes, `plugins=()`,
+`oh-my-zsh.sh`, the updater. That was most of the startup time and none of the
+value; the prompt is [starship](starship.toml) instead, configured to look like
+the `robbyrussell` theme it replaced.
+
+The tradeoff is that `plugins/<name>/<name>.plugin.zsh` is an internal path
+rather than a promised interface, and `[bootstrap.repos]` tracks `master`. If an
+upstream change ever breaks a plugin, pin `ref` to a tag.
+
 ## What lives where
 
 | `mise.toml` section | What it describes |
 |---|---|
 | `[tools]` | Languages and CLI utilities. Backends: registry, `npm:`, `gem:`, `pipx:`, `github:`, `http:` |
 | `[bootstrap.packages]` | System packages and GUI apps. `brew:`/`brew-cask:` are installed by mise through Homebrew itself |
-| `[dotfiles]` | Symlinks (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`), the `useful.zsh` snippet for oh-my-zsh and the managed lines in `.zshrc` (`mise-path`, `atuin`, `zoxide`, `brew`) |
-| `[bootstrap.mise_shell_activate]` | The `mise activate` block in `.zshrc`, between markers |
+| `[bootstrap.repos]` | The oh-my-zsh clone, for its plugin files |
+| `[dotfiles]` | Symlinks (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, `~/.config/starship.toml`, `~/.config/zsh/rc.zsh`) and the single `source` line in `.zshrc` |
 | `[bootstrap.user]` | Login shell |
 | `[bootstrap.hooks.pre-packages]` | Installs Homebrew on macOS before the `brew:` packages |
-| `[bootstrap.hooks.pre-dotfiles]` | Installs oh-my-zsh, which the dotfiles phase writes into |
 | `[doctor.checks.*]` | Probes for the accounts the repo cannot install — run by `mise doctor project` |
 | `[tasks.lint]` | `actionlint` + `stylua`, the same task locally and in CI |
-| `[tasks.bootstrap]` | `omz plugin enable` — the only install step left imperative |
 
 `mise.toml` is symlinked into `~/.config/mise/config.toml`, so the tools are
 global and available from any directory. But `mise bootstrap` has to be run
