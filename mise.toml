@@ -182,8 +182,11 @@ run = ["actionlint", "cd nvim && stylua --check lua"]
 # managed lines are appended.
 [tasks.bootstrap]
 description = "Enable the oh-my-zsh plugins"
+# No mise plugin here: it runs `mise activate` the moment it finds the binary,
+# and [bootstrap.mise_shell_activate] already owns that — enabling it evaluates
+# the activation twice per shell. The completions come with the managed block.
 # `omz plugin enable` returns 1 when a plugin is already enabled — not an error
-run = "zsh -ic 'omz plugin enable git mise vi-mode eza' || true"
+run = "zsh -ic 'omz plugin enable git vi-mode eza' || true"
 
 # The repo describes the machine but not the accounts on it: ssh keys, logins and
 # tokens are still done by hand. These turn that checklist into something
