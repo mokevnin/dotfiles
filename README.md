@@ -114,7 +114,7 @@ mise bootstrap --dry-run     # see what would change
 mise bootstrap status        # state of every declarative part
 mise bootstrap --only tools  # apply just one part
 mise upgrade                 # update the tools
-mise run lint                # actionlint + stylua over the nvim config
+mise run lint                # actionlint, stylua, taplo, typos, gitleaks
 mise doctor project          # check the logins, keys and tokens done by hand
 ```
 
@@ -157,7 +157,7 @@ upstream change ever breaks a plugin, pin `ref` to a tag.
 | `[bootstrap.user]` | Login shell |
 | `[bootstrap.hooks.pre-packages]` | Installs Homebrew on macOS before the `brew:` packages |
 | `[doctor.checks.*]` | Probes for the accounts the repo cannot install — run by `mise doctor project` |
-| `[tasks.lint]` | `actionlint` + `stylua`, the same task locally and in CI |
+| `[tasks.lint]` | `actionlint`, `stylua`, `taplo`, `typos` and `gitleaks` — the same task locally and in CI |
 
 `mise.toml` is symlinked into `~/.config/mise/config.toml`, so the tools are
 global and available from any directory. But `mise bootstrap` has to be run
