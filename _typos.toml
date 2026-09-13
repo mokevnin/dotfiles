@@ -1,0 +1,4 @@
+# nvim's lockfile is generated and is a list of upstream plugin names, not prose
+# — noice.nvim alone trips the dictionary.
+[files]
+extend-exclude = ["nvim/lazy-lock.json"]

@@ -51,6 +51,7 @@ eza = "latest"               # replaces ls
 fd = "latest"
 gdu = "latest"               # replaces ncdu
 gh = "latest"
+gitleaks = "latest"          # secret scan, this repo is public
 glab = "latest"
 glow = "latest"              # markdown in the terminal
 hyperfine = "latest"         # command benchmarks
@@ -75,9 +76,11 @@ starship = "latest"        # prompt, configured by starship.toml
 shellcheck = "latest"
 stern = "latest"
 stylua = "latest"            # lua formatter, also checks the nvim config in CI
+taplo = "latest"             # the one thing [tasks.lint] was not checking: toml
 tealdeer = "latest"          # provides tldr
 terraform = "latest"
 tokei = "latest"             # code statistics
+typos = "latest"             # spelling, the repo is english-only
 watchexec = "latest"         # runs a command on file changes
 xh = "latest"                # replaces httpie
 yazi = "latest"              # file manager, image previews through viu
@@ -91,7 +94,6 @@ zoxide = "latest"            # smart cd
 # curl|bash-ed from a hook. The version is pinned by hand: that URL has no
 # listing mise could resolve "latest" from.
 "http:yc" = { version = "1.34.0", url = "https://storage.yandexcloud.net/yandexcloud-yc/release/{{version}}/darwin/arm64/yc", bin = "yc" }
-"github:joshmedeski/sesh" = "latest"   # tmux session manager
 
 # nvim provider hosts, have to live inside the active node/ruby
 "npm:neovim" = "latest"
@@ -114,7 +116,7 @@ adopt = true
 [bootstrap.packages]
 "brew:wget" = "latest"
 "brew:sox" = "latest"
-"brew:tmux" = "latest"       # required by sesh and overmind, neither pulls it in
+"brew:tmux" = "latest"       # overmind runs the Procfile in a tmux session and does not pull it in
 "brew:git-lfs" = "latest"    # the lfs filter is set up in .gitconfig
 "brew-cask:ghostty" = "latest"
 "brew-cask:docker-desktop" = "latest"   # docker-cli is useless without a daemon
@@ -165,9 +167,21 @@ login_shell = "/bin/zsh"
 # cwd — hence the cd. dir is pinned to {{cwd}} because this file is also the
 # global config, whose config root is $HOME rather than the repo.
 [tasks.lint]
-description = "actionlint + stylua"
+description = "actionlint, stylua, taplo, typos, gitleaks"
 dir = "{{cwd}}"
-run = ["actionlint", "cd nvim && stylua --check lua"]
+run = [
+  "actionlint",
+  "cd nvim && stylua --check lua",
+  # lint, not fmt: taplo's formatter wants the trailing comments in this file on
+  # its own column, and turning alignment off collapses them to a single space.
+  # Neither is the layout here, and the check is for broken toml anyway — this
+  # file is the machine, a syntax error in it is not a thing to push.
+  "taplo lint mise.toml",
+  "typos",
+  # `git`, not `dir`: a secret that reached a commit and was removed afterwards
+  # is still public, and this repo is. Needs fetch-depth: 0 in the workflow.
+  "gitleaks git .",
+]
 
 # oh-my-zsh can enable its own plugins, idempotently. This cannot become a
 # managed .zshrc line: plugins=() has to precede `source oh-my-zsh.sh`, and
