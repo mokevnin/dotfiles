@@ -2,9 +2,11 @@
 # the line that sources this file, so anything that has to survive a fresh
 # machine lives here.
 
-# mise's own binary (mise.run drops it into ~/.local/bin) plus the shims, so the
-# tools evaluated below are resolvable before `mise activate` puts the real
-# paths ahead of them.
+# ~/.local/bin is where `uv tool install` puts its binaries (mypy, ty, prek and
+# the rest), and nothing adds it to PATH on its own. The shims at the tail are a
+# fallback for processes that never run `mise activate` — GUI apps, launchd —
+# because inside this shell activate resolves the tools to their real paths and
+# the shims are never reached.
 export PATH="$HOME/.local/bin:$PATH:$HOME/.local/share/mise/shims"
 
 # Homebrew's prefix, where the brew formulae live. Deliberately before

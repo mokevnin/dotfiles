@@ -47,8 +47,8 @@ export GITHUB_TOKEN=…   # from step 2
 make install
 ```
 
-`make install` = install mise itself (via brew if it is there, otherwise
-`mise.run` into `~/.local/bin`) and run `mise bootstrap --yes`. Run it **from
+`make install` = install mise itself (`brew install mise`, so Homebrew has to be
+there already) and run `mise bootstrap --yes`. Run it **from
 `~/dotfiles`** — why, is explained below in "What lives where". The `--yes` flag
 is also what keeps mise from asking whether you trust the config.
 
