@@ -35,7 +35,7 @@ air = "latest"
 ansible = "latest"
 "pipx:ansible-lint" = "latest"
 ast-grep = "latest"
-atuin = "latest"             # shell history with search and sync
+atuin = "latest"             # searchable shell history, local only (no sync login)
 bat = "latest"
 bottom = "latest"            # btm, replaces htop
 claude-code = "latest"
@@ -49,7 +49,6 @@ duf = "latest"               # replaces df
 dust = "latest"              # replaces du
 eza = "latest"               # replaces ls
 fd = "latest"
-fzf = "latest"
 gdu = "latest"               # replaces ncdu
 gh = "latest"
 glab = "latest"
@@ -149,7 +148,8 @@ adopt = true
 # visible yet in a fresh shell (activation puts the real paths ahead of the shims
 # anyway).
 "~/.zshrc/mise-path" = { line = 'export PATH="$HOME/.local/bin:$PATH:$HOME/.local/share/mise/shims"' }
-# atuin has no oh-my-zsh plugin
+# atuin has no oh-my-zsh plugin. It also takes over ctrl-r, which is why the fzf
+# omz plugin is not enabled — one searchable history is enough.
 "~/.zshrc/atuin" = { line = 'eval "$(atuin init zsh)"' }
 # the Homebrew installer does not touch .zshrc in non-interactive mode, and the
 # brew formulae (wget, sox) live in its prefix
@@ -181,7 +181,7 @@ run = ["actionlint", "cd nvim && stylua --check lua"]
 [tasks.bootstrap]
 description = "Enable the oh-my-zsh plugins"
 # `omz plugin enable` returns 1 when a plugin is already enabled — not an error
-run = "zsh -ic 'omz plugin enable git mise vi-mode fzf docker docker-compose you-should-use zoxide eza gh' || true"
+run = "zsh -ic 'omz plugin enable git mise vi-mode docker docker-compose you-should-use zoxide eza gh' || true"
 
 # The repo describes the machine but not the accounts on it: ssh keys, logins and
 # tokens are still done by hand. These turn that checklist into something
@@ -198,12 +198,6 @@ timeout = "10s"
 description = "glab is authenticated"
 run = "glab auth status"
 hint = "Run `glab auth login`."
-timeout = "10s"
-
-[doctor.checks.atuin]
-description = "atuin is logged in and syncing the shell history"
-run = "atuin status"
-hint = "Run `atuin login`."
 timeout = "10s"
 
 [doctor.checks.ssh-agent]
