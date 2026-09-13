@@ -6,7 +6,7 @@
 [init]
 	defaultBranch = main
 
-# подпись коммитов ssh-ключом через агент 1Password (каска brew-cask:1password)
+# commits signed with an ssh key through the 1Password agent (brew-cask:1password)
 [commit]
 	gpgsign = true
 [gpg]
@@ -14,14 +14,14 @@
 [gpg "ssh"]
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 
-# требует git-lfs (brew:git-lfs)
+# requires git-lfs (brew:git-lfs)
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 
-# gh идёт из mise, поэтому без абсолютного пути
+# gh comes from mise, hence no absolute path
 [credential "https://github.com"]
 	helper =
 	helper = !gh auth git-credential

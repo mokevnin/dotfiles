@@ -1,11 +1,11 @@
 .PHONY: install mise
 
-# Makefile нужен ровно для одного: поставить сам mise — единственное, что он не
-# может поставить себе сам. Всё остальное описано декларативно в mise.toml,
-# а команды — это сам mise: `mise bootstrap`, `mise upgrade`, `mise run lint`.
+# The Makefile is here for exactly one thing: installing mise, the only piece
+# mise cannot install for itself. Everything else is declared in mise.toml, and
+# the commands are mise's own: `mise bootstrap`, `mise upgrade`, `mise run lint`.
 
-# mise.run кладёт бинарь в ~/.local/bin, которого нет в PATH по умолчанию, —
-# без этой строки install на свежем маке падает с command not found.
+# mise.run drops the binary into ~/.local/bin, which is not on PATH by default —
+# without this line install fails on a fresh mac with command not found.
 export PATH := $(HOME)/.local/bin:$(PATH)
 
 install: mise

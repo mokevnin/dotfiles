@@ -14,20 +14,21 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # ставит mise, ставит только линтеры и кэширует — всё это работа самого action
+      # installs mise, installs the linters only, and caches — all the action's own work
       - uses: jdx/mise-action@v4
         with:
           install_args: actionlint stylua
 
-      # на раннере уже есть свой ~/.gitconfig, и без --force-dotfiles план падает
-      # на "refusing to overwrite existing files". Это всё равно --dry-run,
-      # ничего не пишется.
+      # the runner already has its own ~/.gitconfig, and without --force-dotfiles
+      # the plan fails with "refusing to overwrite existing files". This is still
+      # a --dry-run, nothing gets written.
       - name: Bootstrap plan
         run: mise bootstrap --dry-run --force-dotfiles
 
-      # что именно линтуется — описано таском в mise.toml, чтобы локально и здесь
-      # гонялось одно и то же. Автоустановку тулов для таска гасим: mise-action
-      # уже поставил actionlint и stylua, иначе таск потянет все тулы из [tools]
+      # what gets linted is described by a task in mise.toml so that the same thing
+      # runs locally and here. Task tool auto-install is off: mise-action has
+      # already installed actionlint and stylua, otherwise the task would pull in
+      # every tool from [tools]
       - name: Lint
         run: mise run lint
         env:

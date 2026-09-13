@@ -60,11 +60,10 @@ What happens, in order:
 | `[bootstrap.packages]` | brew formulae and casks, GUI apps included. `pkg` casks (`docker-desktop`, `zoom`, `nordvpn`) go through `installer(8)` and **ask for a password** |
 | `pre-repos` hook | installs oh-my-zsh |
 | `[bootstrap.repos]` | clones the you-should-use plugin |
-| `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, the `useful.zsh` snippet for oh-my-zsh, and the managed lines in `.zshrc` (`mise-path`, `atuin`, `brew`, `yc`) |
+| `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, the `useful.zsh` snippet for oh-my-zsh, and the managed lines in `.zshrc` (`mise-path`, `atuin`, `brew`) |
 | `[bootstrap.mise_shell_activate]` | the `mise activate` block in `.zshrc` |
 | `[bootstrap.user]` | login shell set to `/bin/zsh` — **asks for a password** |
-| `mise install` | the whole toolset. The longest part |
-| `post-tools` hook | installs `yc` from the vendor script |
+| `mise install` | the whole toolset, `yc` included. The longest part |
 | `[tasks.bootstrap]` | `omz plugin enable` |
 
 If mise is already on the machine, steps 3–4 collapse into a single command:
@@ -129,12 +128,11 @@ workflow.
 | `[tools]` | Languages and CLI utilities. Backends: registry, `npm:`, `gem:`, `pipx:`, `github:` |
 | `[bootstrap.packages]` | System packages and GUI apps. `brew:`/`brew-cask:` are installed by mise through Homebrew itself |
 | `[bootstrap.repos]` | Git repos (the you-should-use plugin) |
-| `[dotfiles]` | Symlinks (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`), the `useful.zsh` snippet for oh-my-zsh and the managed lines in `.zshrc` (`mise-path`, `atuin`, `brew`, `yc`) |
+| `[dotfiles]` | Symlinks (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`), the `useful.zsh` snippet for oh-my-zsh and the managed lines in `.zshrc` (`mise-path`, `atuin`, `brew`) |
 | `[bootstrap.mise_shell_activate]` | The `mise activate` block in `.zshrc`, between markers |
 | `[bootstrap.user]` | Login shell |
 | `[bootstrap.hooks.pre-packages]` | Installs Homebrew on macOS before the `brew:` packages |
 | `[bootstrap.hooks.pre-repos]` | Installs oh-my-zsh before its plugins get cloned |
-| `[bootstrap.hooks.post-tools]` | Installs `yc` from the vendor script |
 | `[tasks.lint]` | `actionlint` + `stylua`, the same task locally and in CI |
 | `[tasks.bootstrap]` | `omz plugin enable` — the only install step left imperative |
 

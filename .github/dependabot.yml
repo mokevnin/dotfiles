@@ -1,7 +1,7 @@
 version: 2
 updates:
-  # Единственная экосистема, которую понимает dependabot в этом репо.
-  # Тулы в mise.toml почти все на "latest" и обновляются `mise upgrade`.
+  # The only ecosystem dependabot understands in this repo. The tools in
+  # mise.toml are almost all on "latest" and are updated by `mise upgrade`.
   - package-ecosystem: github-actions
     directory: /
     schedule:
