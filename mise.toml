@@ -134,9 +134,6 @@ adopt = true
 "brew-cask:font-ubuntu-nerd-font" = "latest"
 "brew-cask:font-hack-nerd-font" = "latest"
 
-[bootstrap.repos]
-"~/.oh-my-zsh/custom/plugins/you-should-use" = { url = "https://github.com/MichaelAquilina/zsh-you-should-use.git", ref = "master" }
-
 [dotfiles]
 "~/.config/mise/config.toml" = "mise.toml"
 "~/.config/nvim" = "nvim"
@@ -151,6 +148,11 @@ adopt = true
 # atuin has no oh-my-zsh plugin. It also takes over ctrl-r, which is why the fzf
 # omz plugin is not enabled — one searchable history is enough.
 "~/.zshrc/atuin" = { line = 'eval "$(atuin init zsh)"' }
+# zoxide binds `cd` itself rather than the default `z`: cd is what actually gets
+# typed here, so it is the one worth making frecency-aware. Not the omz plugin,
+# which hardcodes `z` — its override has to be exported before oh-my-zsh.sh runs,
+# and managed lines land after it.
+"~/.zshrc/zoxide" = { line = 'eval "$(zoxide init zsh --cmd cd)"' }
 # the Homebrew installer does not touch .zshrc in non-interactive mode, and the
 # brew formulae (wget, sox) live in its prefix
 "~/.zshrc/brew" = { line = '[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"' }
@@ -161,8 +163,8 @@ zshrc = "activate"
 [bootstrap.user]
 login_shell = "/bin/zsh"
 
-# oh-my-zsh has to exist before its plugin is cloned into custom/
-[bootstrap.hooks.pre-repos]
+# oh-my-zsh has to exist before the dotfiles phase, which writes into its custom/
+[bootstrap.hooks.pre-dotfiles]
 run = '[ -d "$HOME/.oh-my-zsh" ] || RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
 
 # The repo linters. Described here rather than in the Makefile or the workflow so
@@ -181,7 +183,7 @@ run = ["actionlint", "cd nvim && stylua --check lua"]
 [tasks.bootstrap]
 description = "Enable the oh-my-zsh plugins"
 # `omz plugin enable` returns 1 when a plugin is already enabled — not an error
-run = "zsh -ic 'omz plugin enable git mise vi-mode docker docker-compose you-should-use zoxide eza gh' || true"
+run = "zsh -ic 'omz plugin enable git mise vi-mode eza' || true"
 
 # The repo describes the machine but not the accounts on it: ssh keys, logins and
 # tokens are still done by hand. These turn that checklist into something

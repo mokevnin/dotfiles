@@ -3,7 +3,7 @@
 The whole machine is described declaratively in a single file — [`mise.toml`](mise.toml).
 macOS only.
 It is applied by [`mise bootstrap`](https://mise.jdx.dev/bootstrap.html): system
-packages, git repos, dotfile symlinks, shell activation, login shell and tools.
+packages, dotfile symlinks, shell activation, login shell and tools.
 
 ## A new mac, from scratch
 
@@ -58,9 +58,8 @@ What happens, in order:
 |---|---|
 | `pre-packages` hook | installs Homebrew — **asks for a password** |
 | `[bootstrap.packages]` | brew formulae and casks, GUI apps included. `pkg` casks (`docker-desktop`, `zoom`, `nordvpn`) go through `installer(8)` and **ask for a password** |
-| `pre-repos` hook | installs oh-my-zsh |
-| `[bootstrap.repos]` | clones the you-should-use plugin |
-| `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, the `useful.zsh` snippet for oh-my-zsh, and the managed lines in `.zshrc` (`mise-path`, `atuin`, `brew`) |
+| `pre-dotfiles` hook | installs oh-my-zsh |
+| `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, the `useful.zsh` snippet for oh-my-zsh, and the managed lines in `.zshrc` (`mise-path`, `atuin`, `zoxide`, `brew`) |
 | `[bootstrap.mise_shell_activate]` | the `mise activate` block in `.zshrc` |
 | `[bootstrap.user]` | login shell set to `/bin/zsh` — **asks for a password** |
 | `mise install` | the whole toolset, `yc` included. The longest part |
@@ -131,12 +130,11 @@ workflow.
 |---|---|
 | `[tools]` | Languages and CLI utilities. Backends: registry, `npm:`, `gem:`, `pipx:`, `github:`, `http:` |
 | `[bootstrap.packages]` | System packages and GUI apps. `brew:`/`brew-cask:` are installed by mise through Homebrew itself |
-| `[bootstrap.repos]` | Git repos (the you-should-use plugin) |
-| `[dotfiles]` | Symlinks (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`), the `useful.zsh` snippet for oh-my-zsh and the managed lines in `.zshrc` (`mise-path`, `atuin`, `brew`) |
+| `[dotfiles]` | Symlinks (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`), the `useful.zsh` snippet for oh-my-zsh and the managed lines in `.zshrc` (`mise-path`, `atuin`, `zoxide`, `brew`) |
 | `[bootstrap.mise_shell_activate]` | The `mise activate` block in `.zshrc`, between markers |
 | `[bootstrap.user]` | Login shell |
 | `[bootstrap.hooks.pre-packages]` | Installs Homebrew on macOS before the `brew:` packages |
-| `[bootstrap.hooks.pre-repos]` | Installs oh-my-zsh before its plugins get cloned |
+| `[bootstrap.hooks.pre-dotfiles]` | Installs oh-my-zsh, which the dotfiles phase writes into |
 | `[doctor.checks.*]` | Probes for the accounts the repo cannot install — run by `mise doctor project` |
 | `[tasks.lint]` | `actionlint` + `stylua`, the same task locally and in CI |
 | `[tasks.bootstrap]` | `omz plugin enable` — the only install step left imperative |
