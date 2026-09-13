@@ -183,9 +183,6 @@ run = [
   "gitleaks git .",
 ]
 
-# oh-my-zsh can enable its own plugins, idempotently. This cannot become a
-# managed .zshrc line: plugins=() has to precede `source oh-my-zsh.sh`, and
-# managed lines are appended.
 # The repo describes the machine but not the accounts on it: ssh keys, logins and
 # tokens are still done by hand. These turn that checklist into something
 # runnable — `mise doctor project` reports what is still missing, while
