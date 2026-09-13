@@ -1,163 +1,183 @@
 # dotfiles
 
-Вся машина описана декларативно в одном файле — [`mise.toml`](mise.toml).
-Только под macOS.
-Его применяет [`mise bootstrap`](https://mise.jdx.dev/bootstrap.html): системные
-пакеты, git-репозитории, симлинки дотфайлов, активация шелла, login shell и тулы.
+The whole machine is described declaratively in a single file — [`mise.toml`](mise.toml).
+macOS only.
+It is applied by [`mise bootstrap`](https://mise.jdx.dev/bootstrap.html): system
+packages, git repos, dotfile symlinks, shell activation, login shell and tools.
 
-## Новый мак, с нуля
+## A new mac, from scratch
 
-Пять шагов. Три раза спросят пароль — это нормально, ниже сказано где.
+Five steps. You will be asked for a password three times — that is normal, it is
+spelled out below where.
 
 ### 1. Xcode Command Line Tools
 
-`git` и `make` на чистой macOS — заглушки, поэтому первая же команда откроет
-GUI-диалог установки. Лучше запустить его сразу и дождаться:
+On a clean macOS `git` and `make` are stubs, so the very first command pops up
+the GUI installer. Better to launch it up front and wait:
 
 ```sh
 xcode-select --install
 ```
 
-### 2. Достать токен GitHub
+### 2. Get a GitHub token
 
-`[tools]` почти целиком на `latest`, поэтому mise ходит за версиями в
-`api.github.com`, где анонимно можно 60 запросов в час — на 64 тула этого не
-хватает. Обычно токен берётся у `gh` (`github.credential_command` в
-`[settings]`), но на свежей машине `gh` ещё не авторизован, так что на первый
-прогон PAT надо достать из 1Password руками (с телефона или веба). Без токена
-bootstrap не падает, но тонет в `429` и ретраях.
+`[tools]` is almost entirely on `latest`, so mise goes to `api.github.com` for
+versions, where anonymous access gets 60 requests per hour — not enough for 64
+tools. Normally the token comes from `gh` (`github.credential_command` in
+`[settings]`), but on a fresh machine `gh` is not authenticated yet, so for the
+first run the PAT has to be pulled out of 1Password by hand (from a phone or the
+web). Without a token bootstrap does not fail, but it drowns in `429`s and
+retries.
 
-### 3. Склонировать по https
+### 3. Clone over https
 
-Ssh-ключей на новой машине ещё нет, поэтому не `git@`:
+There are no ssh keys on a new machine yet, so not `git@`:
 
 ```sh
 git clone https://github.com/mokevnin/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
-Позже, когда ключи на месте: `git remote set-url origin git@github.com:mokevnin/dotfiles.git`.
+Later, once the keys are in place: `git remote set-url origin git@github.com:mokevnin/dotfiles.git`.
 
-### 4. Запустить
+### 4. Run it
 
 ```sh
-export GITHUB_TOKEN=…   # из шага 2
+export GITHUB_TOKEN=…   # from step 2
 make install
 ```
 
-`make install` = поставить сам mise (через brew, если он есть, иначе `mise.run`
-в `~/.local/bin`) и выполнить `mise bootstrap --yes`. Запускать **из
-`~/dotfiles`** — почему, написано ниже в «Что где». Флаг `--yes` нужен ещё и
-затем, чтобы mise не спрашивал, доверяешь ли ты конфигу.
+`make install` = install mise itself (via brew if it is there, otherwise
+`mise.run` into `~/.local/bin`) and run `mise bootstrap --yes`. Run it **from
+`~/dotfiles`** — why, is explained below in "What lives where". The `--yes` flag
+is also what keeps mise from asking whether you trust the config.
 
-Что произойдёт, по порядку:
+What happens, in order:
 
 | | |
 |---|---|
-| хук `pre-packages` | ставит Homebrew — **спросит пароль** |
-| `[bootstrap.packages]` | brew-формулы и каски, включая GUI-приложения. Каски-`pkg` (`docker-desktop`, `zoom`, `nordvpn`) идут через `installer(8)` и **спросят пароль** |
-| хук `pre-repos` | ставит oh-my-zsh |
-| `[bootstrap.repos]` | клонирует плагин you-should-use |
-| `[dotfiles]` | симлинки `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig` и управляемые строки в `.zshrc` |
-| `[bootstrap.mise_shell_activate]` | блок `mise activate` в `.zshrc` |
-| `[bootstrap.user]` | login shell на `/bin/zsh` — **спросит пароль** |
-| `mise install` | 64 тула. Самая долгая часть |
-| хук `post-tools` | ставит `yc` скриптом вендора |
+| `pre-packages` hook | installs Homebrew — **asks for a password** |
+| `[bootstrap.packages]` | brew formulae and casks, GUI apps included. `pkg` casks (`docker-desktop`, `zoom`, `nordvpn`) go through `installer(8)` and **ask for a password** |
+| `pre-repos` hook | installs oh-my-zsh |
+| `[bootstrap.repos]` | clones the you-should-use plugin |
+| `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, the `useful.zsh` snippet for oh-my-zsh, and the managed lines in `.zshrc` (`mise-path`, `atuin`, `brew`, `yc`) |
+| `[bootstrap.mise_shell_activate]` | the `mise activate` block in `.zshrc` |
+| `[bootstrap.user]` | login shell set to `/bin/zsh` — **asks for a password** |
+| `mise install` | 64 tools. The longest part |
+| `post-tools` hook | installs `yc` from the vendor script |
 | `[tasks.bootstrap]` | `omz plugin enable` |
 
-Если mise на машине уже есть, шаги 3–4 сворачиваются в одну команду:
+If mise is already on the machine, steps 3–4 collapse into a single command:
 
 ```sh
 mise bootstrap --from https://github.com/mokevnin/dotfiles.git --from-dir ~/dotfiles --yes
 ```
 
-### 5. Новый шелл
+### 5. A new shell
 
 ```sh
 exec zsh
 ```
 
-До этого ни тулов, ни omz-плагинов в текущей сессии не будет — `.zshrc`
-дописали уже после её старта.
+Until then neither the tools nor the omz plugins exist in the current session —
+`.zshrc` was written after it had already started.
 
-### Что дальше — руками
+### What is left to do by hand
 
-Репо описывает машину, но не аккаунты. Само не приедет:
+The repo describes the machine, but not the accounts. These will not show up on
+their own:
 
-- ssh-ключи и `~/.ssh/config` — у ключей агент 1Password (`IdentityAgent`),
-  им же подписываются коммиты (`op-ssh-sign` в `gitconfig`)
-- логины: `gh auth login`, `glab auth login`, `atuin login`, claude, codex
-- токены: `~/.npmrc` (npmjs + npm.pkg.github.com), а также
-  `CODEX_GITHUB_PERSONAL_ACCESS_TOKEN` и `YANDEX_TRACKER_MCP_TOKEN` в `.zshrc` —
-  им место в 1Password, а не в открытом виде
-- `~/.kube`, `~/.docker` и прочий стейт клиентов
-- первый запуск Docker Desktop и 1Password — они попросят разрешений системы
+- ssh keys and `~/.ssh/config` — the keys live in the 1Password agent
+  (`IdentityAgent`), and the same agent signs commits (`op-ssh-sign` in
+  `gitconfig`)
+- logins: `gh auth login`, `glab auth login`, `atuin login`, claude, codex
+- tokens: `~/.npmrc` (npmjs + npm.pkg.github.com), plus
+  `CODEX_GITHUB_PERSONAL_ACCESS_TOKEN` and `YANDEX_TRACKER_MCP_TOKEN` in
+  `.zshrc` — those belong in 1Password, not in plain text
+- `~/.kube`, `~/.docker` and the rest of the client state
+- the first launch of Docker Desktop and 1Password — they will ask for system
+  permissions
 
-Проверить, что всё сошлось: `mise bootstrap status` — там должно быть
-`installed`/`applied` по каждой строке.
+To check that everything lined up: `mise bootstrap status` — every line there
+should read `installed`/`applied`.
 
-## Команды
+## Commands
 
 ```sh
 make install     # mise + mise bootstrap --yes
 make bootstrap   # mise bootstrap --yes
 make upgrade     # mise upgrade
-make lint        # actionlint
+make lint        # actionlint + stylua --check on the nvim config
 
-mise bootstrap --dry-run     # посмотреть, что изменится
-mise bootstrap status        # состояние всех декларативных частей
-mise bootstrap --only tools  # применить только часть
+mise bootstrap --dry-run     # see what would change
+mise bootstrap status        # state of every declarative part
+mise bootstrap --only tools  # apply just one part
 ```
 
-Makefile существует ровно для двух вещей: поставить сам mise и дать короткие
-имена его командам. Никакой логики установки в нём нет.
+The Makefile exists for exactly two things: to install mise itself and to give
+short names to its commands. There is no install logic in it.
 
-## Что где
+CI ([`.github/workflows/main.yml`](.github/workflows/main.yml)) runs the same
+checks on `macos-latest`: `mise bootstrap --dry-run`, then `actionlint` and
+`stylua --check` over `nvim/lua`.
 
-| Секция `mise.toml` | Что описывает |
+## What lives where
+
+| `mise.toml` section | What it describes |
 |---|---|
-| `[tools]` | Языки и CLI-утилиты. Бэкенды: реестр, `npm:`, `gem:`, `pipx:`, `github:` |
-| `[bootstrap.packages]` | Системные пакеты и GUI-приложения. `brew:`/`brew-cask:` mise ставит через сам Homebrew |
-| `[bootstrap.repos]` | Git-репозитории (плагин you-should-use) |
-| `[dotfiles]` | Симлинки (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`) и управляемые строки в `.zshrc` |
-| `[bootstrap.mise_shell_activate]` | Блок `mise activate` в `.zshrc` между маркерами |
-| `[bootstrap.user]` | login shell |
-| `[bootstrap.hooks.pre-packages]` | Установка Homebrew на macOS перед `brew:`-пакетами |
-| `[bootstrap.hooks.pre-repos]` | Установка oh-my-zsh перед клонированием его плагинов |
-| `[tasks.bootstrap]` | `omz plugin enable` — единственное, что осталось императивным |
+| `[tools]` | Languages and CLI utilities. Backends: registry, `npm:`, `gem:`, `pipx:`, `github:` |
+| `[bootstrap.packages]` | System packages and GUI apps. `brew:`/`brew-cask:` are installed by mise through Homebrew itself |
+| `[bootstrap.repos]` | Git repos (the you-should-use plugin) |
+| `[dotfiles]` | Symlinks (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`), the `useful.zsh` snippet for oh-my-zsh and the managed lines in `.zshrc` (`mise-path`, `atuin`, `brew`, `yc`) |
+| `[bootstrap.mise_shell_activate]` | The `mise activate` block in `.zshrc`, between markers |
+| `[bootstrap.user]` | Login shell |
+| `[bootstrap.hooks.pre-packages]` | Installs Homebrew on macOS before the `brew:` packages |
+| `[bootstrap.hooks.pre-repos]` | Installs oh-my-zsh before its plugins get cloned |
+| `[bootstrap.hooks.post-tools]` | Installs `yc` from the vendor script |
+| `[tasks.bootstrap]` | `omz plugin enable` — the only thing left imperative |
 
-`mise.toml` симлинкуется в `~/.config/mise/config.toml`, поэтому тулы глобальные
-и доступны из любой директории. Но `mise bootstrap` надо запускать **из
-`~/dotfiles`**: источники в `[dotfiles]` относительные, а mise разрешает их
-относительно того файла конфига, через который загрузился, — из домашней
-директории это `~/.config/mise/`, и все источники «пропадают». Абсолютные пути
-тут не помогают: тогда падает CI, где репозиторий лежит не в `~/dotfiles`.
+`mise.toml` is symlinked into `~/.config/mise/config.toml`, so the tools are
+global and available from any directory. But `mise bootstrap` has to be run
+**from `~/dotfiles`**: the sources in `[dotfiles]` are relative, and mise
+resolves them against whichever config file it loaded through — from the home
+directory that is `~/.config/mise/`, and every source "disappears". Absolute
+paths do not help here: then CI breaks, where the repo does not live in
+`~/dotfiles`.
 
-Добавить тул — строка в `[tools]`, потом `mise install`.
-Добавить системный пакет — `mise bootstrap packages use brew:foo`.
-Забрать в репо изменённый дотфайл — `mise bootstrap dotfiles add ~/.foo`.
+To add a tool — a line in `[tools]`, then `mise install`.
+To add a system package — `mise bootstrap packages use brew:foo`.
+To pull a changed dotfile into the repo — `mise bootstrap dotfiles add ~/.foo`.
 
-Репозиторий публичный, так что `dotfiles add` — единственное место, где сюда
-может утечь секрет: команда копирует файл целиком. Перед коммитом смотреть, что
-именно приехало. Токены и ключи тут не хранятся и не должны — им место
-в 1Password. В `gitconfig` из чувствительного только `user.signingkey`, и это
-**публичная** половина ssh-ключа, ровно та, что и так лежит на
+The repository is public, so `dotfiles add` is the one place a secret could leak
+in here: the command copies the whole file. Look at what actually arrived before
+committing. Tokens and keys are not kept here and must not be — they belong in
+1Password. The only sensitive-looking thing in `gitconfig` is `user.signingkey`,
+and that is the **public** half of an ssh key, exactly the one already sitting at
 <https://github.com/mokevnin.keys>.
 
-## Что стоит
+## What is installed
 
-Всё в `[tools]`, ставится `mise install`. Сейчас 64 тула:
+Everything is in `[tools]`, installed by `mise install`. Currently 64 tools:
 
-- **языки** — go, java (temurin 25), node, python, ruby, pnpm, ansible
-- **навигация** — zoxide, eza, yazi, fd, fzf, ripgrep, television нет (хватает fzf)
+- **languages** — go, java (temurin 25), node (pinned to an exact version),
+  python, ruby, pnpm, ansible
+- **navigation** — zoxide, eza, yazi, fd, fzf, ripgrep, no television (fzf is
+  enough)
 - **git/forge** — lazygit, delta, difftastic, gh, glab
-- **инфра** — docker-cli, docker-compose, lazydocker, terraform, helm, kubectl, k9s, kubectx, stern, sentry-cli
+- **infra** — docker-cli, docker-compose, lazydocker, terraform, helm, kubectl,
+  k9s, kubectx, stern, sentry-cli
 - **AI** — claude-code, codex, copilot-cli, opencode
-- **разное** — atuin, bat, bottom, dust, duf, gdu, glow, hyperfine, jq, yq, just, sd, tokei, watchexec, xh, sesh, viu, pandoc
+- **linters and formatters** — actionlint, ansible-lint, markdownlint-cli2,
+  shellcheck, stylua (the last two also run over this repo in CI), ast-grep
+- **running and measuring** — just, air, overmind, watchexec, hyperfine, tokei
+- **the rest** — neovim, atuin, bat, bottom, dust, duf, gdu, glow, jq, yq, sd,
+  xh, sesh, viu, pandoc, tealdeer, pipx (the backend for `pipx:`)
+- **nvim provider hosts** — `npm:neovim`, `gem:neovim`, plus `npm:markdown-toc`;
+  they have to live inside the active node/ruby
 
-Заменённая классика:
+Replaced classics:
 
-| было | стало |
+| was | became |
 |---|---|
 | htop | bottom (`btm`) |
 | ncdu | gdu |
@@ -169,30 +189,32 @@ Makefile существует ровно для двух вещей: поста�
 | tldr | tealdeer |
 | the_silver_searcher | ripgrep |
 
-Через `[bootstrap.packages]` (`brew:`/`brew-cask:`) идёт всё, чего нет в mise:
+Everything that is not in mise goes through `[bootstrap.packages]`
+(`brew:`/`brew-cask:`):
 
-- `wget`, `sox`, `tmux` (его требуют sesh и overmind, сами не тянут), `git-lfs`
-  (фильтр `lfs` прописан в `gitconfig`);
-- ghostty и nerd-шрифты;
-- Docker Desktop (без демона `docker-cli` бесполезен) и 1Password (его
-  `op-ssh-sign` подписывает коммиты);
+- `wget`, `sox`, `tmux` (required by sesh and overmind, which do not pull it in
+  themselves), `git-lfs` (the `lfs` filter is set up in `gitconfig`);
+- ghostty and the nerd fonts;
+- Docker Desktop (without a daemon `docker-cli` is useless) and 1Password (its
+  `op-ssh-sign` signs the commits);
 - GUI: Chrome, VS Code, GitHub Desktop, Slack, Telegram, WhatsApp, ChatGPT,
   Claude, OBS, Audacity, Zoom, NordVPN.
 
-Командует установкой mise, но работает он через сам Homebrew, поэтому на свежем
-маке brew ставится хуком `[bootstrap.hooks.pre-packages]` — неинтерактивно, но
-пароль для sudo установщик спросит. Пароль спросят и каски-`pkg`
-(`docker-desktop`, `zoom`, `nordvpn`): brew ставит их через `installer(8)`, а не
-копированием бандла. Префикс brew добавляется в PATH управляемой строкой в
-`[dotfiles]`.
+mise drives the installation, but it works through Homebrew itself, so on a
+fresh mac brew is installed by the `[bootstrap.hooks.pre-packages]` hook —
+non-interactively, but the installer will still ask for a sudo password. The
+`pkg` casks (`docker-desktop`, `zoom`, `nordvpn`) ask for one too: brew installs
+them via `installer(8)` rather than by copying a bundle. The brew prefix is added
+to `PATH` by a managed line in `[dotfiles]`.
 
-Одно исключение — **`yc`** (Yandex Cloud). Каск `yandex-cloud-cli` есть, но
-поставить его не выходит ни тем, ни другим путём: `brew` выполняет стансу
-`installer script` через `sudo`, а mise на этом каске теряет путь к бинарю
-(`binary artifact 'yandex-cloud-cli/bin/yc' was not found`). Поэтому yc ставится
-родным скриптом вендора из `[bootstrap.hooks.post-tools]` — он работает без root —
-а его каталог добавляется в PATH управляемой строкой в `[dotfiles]`.
+There is one exception — **`yc`** (Yandex Cloud). The `yandex-cloud-cli` cask
+exists, but it cannot be installed either way: `brew` runs the `installer script`
+stanza through `sudo`, and mise loses the path to the binary on that cask
+(`binary artifact 'yandex-cloud-cli/bin/yc' was not found`). So yc is installed
+from the vendor's own script in `[bootstrap.hooks.post-tools]` — that one works
+without root — and its directory is added to `PATH` by a managed line in
+`[dotfiles]`.
 
 ## VIM
 
-[LazyVim](https://www.lazyvim.org/), конфиг в `nvim/`.
+[LazyVim](https://www.lazyvim.org/), config in `nvim/`.
