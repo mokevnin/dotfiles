@@ -125,7 +125,7 @@ workflow.
 
 | `mise.toml` section | What it describes |
 |---|---|
-| `[tools]` | Languages and CLI utilities. Backends: registry, `npm:`, `gem:`, `pipx:`, `github:` |
+| `[tools]` | Languages and CLI utilities. Backends: registry, `npm:`, `gem:`, `pipx:`, `github:`, `http:` |
 | `[bootstrap.packages]` | System packages and GUI apps. `brew:`/`brew-cask:` are installed by mise through Homebrew itself |
 | `[bootstrap.repos]` | Git repos (the you-should-use plugin) |
 | `[dotfiles]` | Symlinks (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`), the `useful.zsh` snippet for oh-my-zsh and the managed lines in `.zshrc` (`mise-path`, `atuin`, `brew`) |
