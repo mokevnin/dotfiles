@@ -98,7 +98,10 @@ their own:
   permissions
 
 To check that everything lined up: `mise bootstrap status` — every line there
-should read `installed`/`applied`.
+should read `installed`/`applied`. That covers the declarative parts only; the
+hand-made half of this list is checked by `mise doctor project`, which probes
+the logins, the 1Password ssh agent and the npm tokens and prints a hint for
+whatever is still missing.
 
 ## Commands
 
@@ -111,6 +114,7 @@ mise bootstrap status        # state of every declarative part
 mise bootstrap --only tools  # apply just one part
 mise upgrade                 # update the tools
 mise run lint                # actionlint + stylua over the nvim config
+mise doctor project          # check the logins, keys and tokens done by hand
 ```
 
 The Makefile exists for exactly one thing: installing mise, the only piece that
@@ -133,6 +137,7 @@ workflow.
 | `[bootstrap.user]` | Login shell |
 | `[bootstrap.hooks.pre-packages]` | Installs Homebrew on macOS before the `brew:` packages |
 | `[bootstrap.hooks.pre-repos]` | Installs oh-my-zsh before its plugins get cloned |
+| `[doctor.checks.*]` | Probes for the accounts the repo cannot install — run by `mise doctor project` |
 | `[tasks.lint]` | `actionlint` + `stylua`, the same task locally and in CI |
 | `[tasks.bootstrap]` | `omz plugin enable` — the only install step left imperative |
 

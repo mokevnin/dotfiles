@@ -182,3 +182,41 @@ run = ["actionlint", "cd nvim && stylua --check lua"]
 description = "Enable the oh-my-zsh plugins"
 # `omz plugin enable` returns 1 when a plugin is already enabled — not an error
 run = "zsh -ic 'omz plugin enable git mise vi-mode fzf docker docker-compose you-should-use zoxide eza gh' || true"
+
+# The repo describes the machine but not the accounts on it: ssh keys, logins and
+# tokens are still done by hand. These turn that checklist into something
+# runnable — `mise doctor project` reports what is still missing, while
+# `mise bootstrap status` covers only the declarative parts. Checks just inspect
+# state; mise never runs the hints.
+[doctor.checks.gh]
+description = "gh is authenticated — git credentials come from it, see gitconfig"
+run = "gh auth status"
+hint = "Run `gh auth login`."
+timeout = "10s"
+
+[doctor.checks.glab]
+description = "glab is authenticated"
+run = "glab auth status"
+hint = "Run `glab auth login`."
+timeout = "10s"
+
+[doctor.checks.atuin]
+description = "atuin is logged in and syncing the shell history"
+run = "atuin status"
+hint = "Run `atuin login`."
+timeout = "10s"
+
+[doctor.checks.ssh-agent]
+description = "ssh keys are served by the 1Password agent"
+run = 'grep -q IdentityAgent "$HOME/.ssh/config"'
+hint = "Point IdentityAgent at the 1Password socket in ~/.ssh/config."
+
+[doctor.checks.commit-signing]
+description = "op-ssh-sign is in place — gitconfig signs every commit with it"
+run = '[ -x "/Applications/1Password.app/Contents/MacOS/op-ssh-sign" ]'
+hint = "Launch 1Password once and turn on the SSH agent."
+
+[doctor.checks.npm-tokens]
+description = "~/.npmrc carries the npmjs and npm.pkg.github.com tokens"
+run = 'grep -q _authToken "$HOME/.npmrc"'
+hint = "Copy the tokens out of 1Password into ~/.npmrc."
