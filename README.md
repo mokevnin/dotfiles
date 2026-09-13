@@ -104,22 +104,23 @@ should read `installed`/`applied`.
 ## Commands
 
 ```sh
-make install     # mise + mise bootstrap --yes
-make bootstrap   # mise bootstrap --yes
-make upgrade     # mise upgrade
-make lint        # actionlint + stylua --check on the nvim config
+make install                 # the only thing make is for: install mise, then bootstrap
 
+mise bootstrap --yes         # apply the config
 mise bootstrap --dry-run     # see what would change
 mise bootstrap status        # state of every declarative part
 mise bootstrap --only tools  # apply just one part
+mise upgrade                 # update the tools
+mise run lint                # actionlint + stylua over the nvim config
 ```
 
-The Makefile exists for exactly two things: to install mise itself and to give
-short names to its commands. There is no install logic in it.
+The Makefile exists for exactly one thing: installing mise, the only piece that
+cannot install itself. Everything else is a mise command.
 
-CI ([`.github/workflows/main.yml`](.github/workflows/main.yml)) runs the same
-checks on `macos-latest`: `mise bootstrap --dry-run`, then `actionlint` and
-`stylua --check` over `nvim/lua`.
+CI ([`.github/workflows/main.yml`](.github/workflows/main.yml)) runs
+`mise bootstrap --dry-run` on `macos-latest` and then the very same
+`mise run lint`, so the lint is described in one place and not duplicated in the
+workflow.
 
 ## What lives where
 
@@ -134,7 +135,8 @@ checks on `macos-latest`: `mise bootstrap --dry-run`, then `actionlint` and
 | `[bootstrap.hooks.pre-packages]` | Installs Homebrew on macOS before the `brew:` packages |
 | `[bootstrap.hooks.pre-repos]` | Installs oh-my-zsh before its plugins get cloned |
 | `[bootstrap.hooks.post-tools]` | Installs `yc` from the vendor script |
-| `[tasks.bootstrap]` | `omz plugin enable` — the only thing left imperative |
+| `[tasks.lint]` | `actionlint` + `stylua`, the same task locally and in CI |
+| `[tasks.bootstrap]` | `omz plugin enable` — the only install step left imperative |
 
 `mise.toml` is symlinked into `~/.config/mise/config.toml`, so the tools are
 global and available from any directory. But `mise bootstrap` has to be run

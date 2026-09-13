@@ -161,6 +161,14 @@ run = '[ -d "$HOME/.oh-my-zsh" ] || RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(cu
 [bootstrap.hooks.post-tools]
 run = '[ -x "$HOME/.local/yandex-cloud/bin/yc" ] || curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash -s -- -i "$HOME/.local/yandex-cloud" -n'
 
+# Линтеры репозитория. Описаны здесь, а не в Makefile и не в workflow, чтобы
+# локально и в CI гонялось ровно одно и то же: CI дёргает `mise run lint`.
+# .stylua.toml лежит в nvim/, а stylua ищет его от cwd — отсюда cd.
+[tasks.lint]
+description = "actionlint + stylua"
+dir = "{{cwd}}"
+run = ["actionlint", "cd nvim && stylua --check lua"]
+
 [tasks.bootstrap]
 description = "Включить плагины oh-my-zsh"
 # `omz plugin enable` возвращает 1, если плагин уже включён — это не ошибка

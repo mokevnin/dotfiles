@@ -19,14 +19,16 @@ jobs:
         with:
           install_args: actionlint stylua
 
+      # на раннере уже есть свой ~/.gitconfig, и без --force-dotfiles план падает
+      # на "refusing to overwrite existing files". Это всё равно --dry-run,
+      # ничего не пишется.
       - name: Bootstrap plan
-        run: mise bootstrap --dry-run
+        run: mise bootstrap --dry-run --force-dotfiles
 
-      - name: Lint workflows
-        run: actionlint
-
-      # основное содержимое репозитория — конфиг nvim, до этого его не проверял никто.
-      # .stylua.toml лежит в nvim/, поэтому запускать надо оттуда
-      - name: Lint lua
-        working-directory: nvim
-        run: stylua --check lua
+      # что именно линтуется — описано таском в mise.toml, чтобы локально и здесь
+      # гонялось одно и то же. Автоустановку тулов для таска гасим: mise-action
+      # уже поставил actionlint и stylua, иначе таск потянет все тулы из [tools]
+      - name: Lint
+        run: mise run lint
+        env:
+          MISE_TASK_RUN_AUTO_INSTALL: "false"
