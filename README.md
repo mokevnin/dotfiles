@@ -167,8 +167,8 @@ Everything is in `[tools]`, installed by `mise install`. Currently 64 tools:
 - **infra** — docker-cli, docker-compose, lazydocker, terraform, helm, kubectl,
   k9s, kubectx, stern, sentry-cli
 - **AI** — claude-code, codex, copilot-cli, opencode
-- **linters and formatters** — actionlint, ansible-lint, markdownlint-cli2,
-  shellcheck, stylua (the last two also run over this repo in CI), ast-grep
+- **linters and formatters** — actionlint, stylua (these two also lint this repo
+  in CI), ansible-lint, markdownlint-cli2, shellcheck, ast-grep
 - **running and measuring** — just, air, overmind, watchexec, hyperfine, tokei
 - **the rest** — neovim, atuin, bat, bottom, dust, duf, gdu, glow, jq, yq, sd,
   xh, sesh, viu, pandoc, tealdeer, pipx (the backend for `pipx:`)
