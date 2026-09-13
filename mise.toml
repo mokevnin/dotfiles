@@ -115,7 +115,7 @@ adopt = true
 "brew:wget" = "latest"
 "brew:sox" = "latest"
 "brew:tmux" = "latest"       # required by sesh and overmind, neither pulls it in
-"brew:git-lfs" = "latest"    # the lfs filter is set up in gitconfig
+"brew:git-lfs" = "latest"    # the lfs filter is set up in .gitconfig
 "brew-cask:ghostty" = "latest"
 "brew-cask:docker-desktop" = "latest"   # docker-cli is useless without a daemon
 "brew-cask:1password" = "latest"        # op-ssh-sign signs the commits
@@ -146,7 +146,7 @@ adopt = true
 [dotfiles]
 "~/.config/mise/config.toml" = "mise.toml"
 "~/.config/nvim" = "nvim"
-"~/.gitconfig" = "gitconfig"
+"~/.gitconfig" = ".gitconfig"
 "~/.config/starship.toml" = "starship.toml"
 # The whole shell config, ordering included, is one tracked file. ~/.zshrc is
 # reduced to the single line that sources it — mise creates the file if it does
@@ -178,7 +178,7 @@ run = ["actionlint", "cd nvim && stylua --check lua"]
 # `mise bootstrap status` covers only the declarative parts. Checks just inspect
 # state; mise never runs the hints.
 [doctor.checks.gh]
-description = "gh is authenticated — git credentials come from it, see gitconfig"
+description = "gh is authenticated — git credentials come from it, see .gitconfig"
 run = "gh auth status"
 hint = "Run `gh auth login`."
 timeout = "10s"
@@ -195,7 +195,7 @@ run = 'grep -q IdentityAgent "$HOME/.ssh/config"'
 hint = "Point IdentityAgent at the 1Password socket in ~/.ssh/config."
 
 [doctor.checks.commit-signing]
-description = "op-ssh-sign is in place — gitconfig signs every commit with it"
+description = "op-ssh-sign is in place — .gitconfig signs every commit with it"
 run = '[ -x "/Applications/1Password.app/Contents/MacOS/op-ssh-sign" ]'
 hint = "Launch 1Password once and turn on the SSH agent."
 
