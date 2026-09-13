@@ -22,11 +22,11 @@ xcode-select --install
 ### 2. Get a GitHub token
 
 `[tools]` is almost entirely on `latest`, so mise goes to `api.github.com` for
-versions, where anonymous access gets 60 requests per hour — not enough for 64
-tools. Normally the token comes from `gh` (`github.credential_command` in
-`[settings]`), but on a fresh machine `gh` is not authenticated yet, so for the
-first run the PAT has to be pulled out of 1Password by hand (from a phone or the
-web). Without a token bootstrap does not fail, but it drowns in `429`s and
+versions, where anonymous access gets 60 requests per hour — not enough for a
+toolset this size. Normally the token comes from `gh`
+(`github.credential_command` in `[settings]`), but on a fresh machine `gh` is not
+authenticated yet, so for the first run the PAT has to be pulled out of 1Password
+by hand (from a phone or the web). Without a token bootstrap does not fail, but it drowns in `429`s and
 retries.
 
 ### 3. Clone over https
@@ -63,7 +63,7 @@ What happens, in order:
 | `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, the `useful.zsh` snippet for oh-my-zsh, and the managed lines in `.zshrc` (`mise-path`, `atuin`, `brew`, `yc`) |
 | `[bootstrap.mise_shell_activate]` | the `mise activate` block in `.zshrc` |
 | `[bootstrap.user]` | login shell set to `/bin/zsh` — **asks for a password** |
-| `mise install` | 64 tools. The longest part |
+| `mise install` | the whole toolset. The longest part |
 | `post-tools` hook | installs `yc` from the vendor script |
 | `[tasks.bootstrap]` | `omz plugin enable` |
 
@@ -147,6 +147,7 @@ paths do not help here: then CI breaks, where the repo does not live in
 To add a tool — a line in `[tools]`, then `mise install`.
 To add a system package — `mise bootstrap packages use brew:foo`.
 To pull a changed dotfile into the repo — `mise bootstrap dotfiles add ~/.foo`.
+To see what is actually installed right now — `mise ls`.
 
 The repository is public, so `dotfiles add` is the one place a secret could leak
 in here: the command copies the whole file. Look at what actually arrived before
@@ -154,66 +155,6 @@ committing. Tokens and keys are not kept here and must not be — they belong in
 1Password. The only sensitive-looking thing in `gitconfig` is `user.signingkey`,
 and that is the **public** half of an ssh key, exactly the one already sitting at
 <https://github.com/mokevnin.keys>.
-
-## What is installed
-
-Everything is in `[tools]`, installed by `mise install`. Currently 64 tools:
-
-- **languages** — go, java (temurin 25), node (pinned to an exact version),
-  python, ruby, pnpm, ansible
-- **navigation** — zoxide, eza, yazi, fd, fzf, ripgrep, no television (fzf is
-  enough)
-- **git/forge** — lazygit, delta, difftastic, gh, glab
-- **infra** — docker-cli, docker-compose, lazydocker, terraform, helm, kubectl,
-  k9s, kubectx, stern, sentry-cli
-- **AI** — claude-code, codex, copilot-cli, opencode
-- **linters and formatters** — actionlint, stylua (these two also lint this repo
-  in CI), ansible-lint, markdownlint-cli2, shellcheck, ast-grep
-- **running and measuring** — just, air, overmind, watchexec, hyperfine, tokei
-- **the rest** — neovim, atuin, bat, bottom, dust, duf, gdu, glow, jq, yq, sd,
-  xh, sesh, viu, pandoc, tealdeer, pipx (the backend for `pipx:`)
-- **nvim provider hosts** — `npm:neovim`, `gem:neovim`, plus `npm:markdown-toc`;
-  they have to live inside the active node/ruby
-
-Replaced classics:
-
-| was | became |
-|---|---|
-| htop | bottom (`btm`) |
-| ncdu | gdu |
-| du / df | dust / duf |
-| httpie | xh |
-| gnu-sed | sd |
-| ls | eza |
-| cd | zoxide |
-| tldr | tealdeer |
-| the_silver_searcher | ripgrep |
-
-Everything that is not in mise goes through `[bootstrap.packages]`
-(`brew:`/`brew-cask:`):
-
-- `wget`, `sox`, `tmux` (required by sesh and overmind, which do not pull it in
-  themselves), `git-lfs` (the `lfs` filter is set up in `gitconfig`);
-- ghostty and the nerd fonts;
-- Docker Desktop (without a daemon `docker-cli` is useless) and 1Password (its
-  `op-ssh-sign` signs the commits);
-- GUI: Chrome, VS Code, GitHub Desktop, Slack, Telegram, WhatsApp, ChatGPT,
-  Claude, OBS, Audacity, Zoom, NordVPN.
-
-mise drives the installation, but it works through Homebrew itself, so on a
-fresh mac brew is installed by the `[bootstrap.hooks.pre-packages]` hook —
-non-interactively, but the installer will still ask for a sudo password. The
-`pkg` casks (`docker-desktop`, `zoom`, `nordvpn`) ask for one too: brew installs
-them via `installer(8)` rather than by copying a bundle. The brew prefix is added
-to `PATH` by a managed line in `[dotfiles]`.
-
-There is one exception — **`yc`** (Yandex Cloud). The `yandex-cloud-cli` cask
-exists, but it cannot be installed either way: `brew` runs the `installer script`
-stanza through `sudo`, and mise loses the path to the binary on that cask
-(`binary artifact 'yandex-cloud-cli/bin/yc' was not found`). So yc is installed
-from the vendor's own script in `[bootstrap.hooks.post-tools]` — that one works
-without root — and its directory is added to `PATH` by a managed line in
-`[dotfiles]`.
 
 ## VIM
 
