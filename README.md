@@ -7,7 +7,7 @@ packages, git repos, dotfile symlinks, login shell and tools.
 
 ## A new mac, from scratch
 
-Five steps. You will be asked for a password three times — that is normal, it is
+Five steps. You will be asked for a password twice — that is normal, it is
 spelled out below where.
 
 ### 1. Xcode Command Line Tools
@@ -62,7 +62,7 @@ What happens, in order:
 | `[bootstrap.packages]` | brew formulae and casks, GUI apps included. `pkg` casks (`docker-desktop`, `zoom`, `nordvpn`) go through `installer(8)` and **ask for a password** |
 | `[bootstrap.repos]` | clones oh-my-zsh — only its plugin files are used |
 | `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, `~/.config/starship.toml`, `~/.config/zsh/rc.zsh`, and writes the one line of `.zshrc` that sources the last of them |
-| `[bootstrap.user]` | login shell set to `/bin/zsh` — **asks for a password** |
+| `[bootstrap.user]` | login shell set to `/bin/zsh`. macOS has shipped zsh as the default since Catalina, so on a stock mac this is already true and nothing happens — the line is here to state it, not to change it |
 | `mise install` | the whole toolset, `yc` included. The longest part |
 
 If mise is already on the machine, steps 3–4 collapse into a single command:
