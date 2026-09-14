@@ -35,26 +35,26 @@ air = "latest"
 ansible = "latest"
 "pipx:ansible-lint" = "latest"
 ast-grep = "latest"
-atuin = "latest"                # searchable shell history, local only (no sync login)
+atuin = "latest"               # searchable shell history, local only (no sync login)
 bat = "latest"
-bottom = "latest"               # btm, replaces htop
+bottom = "latest"              # btm, replaces htop
 claude-code = "latest"
 codex = "latest"
 copilot-cli = "latest"
 delta = "latest"
-difftastic = "latest"           # structural diff, understands syntax
+difftastic = "latest"          # structural diff, understands syntax
 docker-cli = "latest"
 docker-compose = "latest"
-duf = "latest"                  # replaces df
-dust = "latest"                 # replaces du
-eza = "latest"                  # replaces ls
+duf = "latest"                 # replaces df
+dust = "latest"                # replaces du
+eza = "latest"                 # replaces ls
 fd = "latest"
-gdu = "latest"                  # replaces ncdu
+gdu = "latest"                 # replaces ncdu
 gh = "latest"
-gitleaks = "latest"             # secret scan, this repo is public
+gitleaks = "latest"            # secret scan, this repo is public
 glab = "latest"
-glow = "latest"                 # markdown in the terminal
-hyperfine = "latest"            # command benchmarks
+glow = "latest"                # markdown in the terminal
+hyperfine = "latest"           # command benchmarks
 helm = "latest"
 jq = "latest"
 just = "latest"
@@ -68,7 +68,11 @@ neovim = "latest"
 opencode = "latest"
 overmind = "latest"
 pandoc = "latest"
-pipx = "latest"                 # needed for the pipx: backend (ansible, ansible-lint)
+pipx = "latest"                # needed for the pipx: backend (ansible, ansible-lint)
+# Not used directly: pipx's own completion is generated through argcomplete, so
+# misecompsync installs this itself when it is not declared and `mise prune`
+# takes it away again. Declaring it ends that loop.
+"pipx:argcomplete" = "latest"
 ripgrep = "latest"
 sd = "latest"                   # replaces gnu-sed
 sentry-cli = "latest"
@@ -87,6 +91,11 @@ yazi = "latest"                 # file manager, image previews through viu
 yq = "latest"
 zoxide = "latest"               # smart cd
 "github:atanunq/viu" = "latest"
+# Generates the shell completions for everything above. Almost none of these
+# tools ship a completion file — each prints one from a subcommand, with a
+# different flag per tool — and this carries the table of those flags so that
+# this repo does not have to. See "The shell" in the README.
+"github:alltuner/mise-completions-sync" = "latest"
 # The yandex-cloud-cli cask works, but it only wraps the vendor install.sh: the
 # plain binary cannot be a `binary` artifact, because it is ad-hoc signed and a
 # quarantined copy is killed by Gatekeeper, and its `uninstall delete:` asks for
@@ -101,7 +110,19 @@ zoxide = "latest"               # smart cd
 "npm:neovim" = "latest"
 "npm:markdown-toc" = "latest"
 "gem:neovim" = "latest"
-"github:alltuner/mise-completions-sync" = "latest"
+
+# Completions are generated, not tracked. postinstall covers the day-to-day —
+# it runs once per `mise install`/`upgrade` batch, not once per tool, and
+# --new-only limits the work to what actually changed. On a fresh machine
+# misecompsync is installed by [tools] above, so post-tools is the first moment
+# it exists: that run is the full one, and it is also where mise's own _mise
+# comes from. `|| true` because --install refuses to replace a file it did not
+# write, and a completion file is not worth failing a bootstrap over.
+[hooks]
+postinstall = "misecompsync --shell zsh --new-only"
+
+[bootstrap.hooks.post-tools]
+run = "mise completion zsh --install || true; misecompsync --shell zsh"
 
 # mise cannot install Homebrew itself, and it installs brew:/brew-cask: through
 # brew — so brew has to show up before the packages. NONINTERACTIVE=1 keeps the
@@ -160,6 +181,10 @@ adopt = true
 # [bootstrap.mise_shell_activate] block.
 "~/.config/zsh/rc.zsh" = "zsh/rc.zsh"
 "~/.zshrc/rc" = { line = 'source ~/.config/zsh/rc.zsh' }
+# The four tools misecompsync's built-in registry does not cover. Not an XDG
+# path: the override is read through the dirs crate, which on macOS means
+# ~/Library/Application Support rather than the ~/.local/share the README names.
+"~/Library/Application Support/mise-completions-sync/registry.toml" = "zsh/completions-registry.toml"
 
 [bootstrap.user]
 login_shell = "/bin/zsh"

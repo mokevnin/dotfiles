@@ -18,68 +18,22 @@ export PATH="$HOME/.local/bin:$PATH:$HOME/.local/share/mise/shims"
 eval "$(mise activate zsh)"
 
 # Completions. Almost nothing here ships a completion file — each tool prints
-# one from a subcommand instead, and the flag differs per tool, hence the table.
-# Running twenty of those on every prompt would be twenty forks, so the output
-# is cached as an autoloadable _<tool> and regenerated only when the tool behind
-# it changed. What marks that is the resolved path: mise keeps every version in
-# its own directory, so an upgrade moves the binary and `:A` reports a new path.
-# A timestamp alone would not do — mise restores the mtime the release archive
-# carried, which is the upstream build time and can predate the cache. The mtime
-# is still checked as well, for the tools replaced in place (brew, ~/.local/bin).
-# $commands is zsh's own PATH hash and `read < file` is a builtin, so the warm
-# path costs no forks. All of it has to happen before compinit, which reads fpath
-# once.
-_zcomp="$HOME/.cache/zsh/completions"
-[[ -d $_zcomp ]] || mkdir -p "$_zcomp"
-for _spec in \
-  'mise:completion zsh' \
-  'yc:completion zsh' \
-  'gh:completion -s zsh' \
-  'glab:completion -s zsh' \
-  'kubectl:completion zsh' \
-  'helm:completion zsh' \
-  'k9s:completion zsh' \
-  'stern:--completion=zsh' \
-  'docker:completion zsh' \
-  'just:--completions zsh' \
-  'pnpm:completion zsh' \
-  'atuin:gen-completions --shell zsh' \
-  'fd:--gen-completions zsh' \
-  'rg:--generate complete-zsh' \
-  'xh:--generate complete-zsh' \
-  'bat:--completion zsh' \
-  'delta:--generate-completion zsh' \
-  'watchexec:--completions zsh' \
-  'ast-grep:completions zsh' \
-  'sentry-cli:completions zsh' \
-  'gitleaks:completion zsh' \
-  'taplo:completions zsh' \
-  'yq:completion zsh'
-do
-  _tool="${_spec%%:*}"
-  _bin="${commands[$_tool]}"
-  [[ -n $_bin ]] || continue
-  _file="$_zcomp/_$_tool"
-  _stamp="$_zcomp/.$_tool.src"
-  _real="${_bin:A}"
-  _prev=''
-  [[ -r $_stamp ]] && read -r _prev < "$_stamp"
-  if [[ ! -s $_file || $_prev != $_real || $_real -nt $_file ]]; then
-    if "$_tool" ${=_spec#*:} >| "$_file" 2>/dev/null; then
-      print -r -- "$_real" >| "$_stamp"
-    else
-      rm -f "$_file" "$_stamp"
-    fi
-  fi
-done
-fpath=("$_zcomp" $fpath)
-unset _spec _tool _bin _file _stamp _real _prev
+# one from a subcommand instead, and the flag differs per tool. misecompsync
+# knows those flags for 130-odd tools and writes the files; the mise hooks that
+# call it are in mise.toml, and the four tools it does not know about are in
+# zsh/completions-registry.toml. Nothing is generated at startup — these are two
+# directories of finished files, and they only have to be on fpath before
+# compinit reads it. The second one is where `mise completion zsh --install`
+# puts mise's own, kept apart so that `misecompsync clean` cannot reach it.
+fpath=(
+  "$HOME/.local/share/mise-completions/zsh"
+  "$HOME/.local/share/zsh/site-functions"
+  $fpath
+)
 
 # oh-my-zsh used to be the only thing calling compinit. Without this line a
-# fresh machine has no completion at all. -d pins the dump next to the generated
-# files instead of ~/.zcompdump, so `rm -rf $_zcomp` is a full reset.
-autoload -Uz compinit && compinit -d "$_zcomp/.zcompdump"
-unset _zcomp
+# fresh machine has no completion at all.
+autoload -Uz compinit && compinit
 
 # oh-my-zsh plugins, sourced as plain files. They are ordinary zsh scripts and
 # need nothing from the framework — no $ZSH, no plugins=(), no oh-my-zsh.sh.

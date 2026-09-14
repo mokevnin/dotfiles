@@ -146,17 +146,26 @@ The tradeoff is that `plugins/<name>/<name>.plugin.zsh` is an internal path
 rather than a promised interface, and `[bootstrap.repos]` tracks `master`. If an
 upstream change ever breaks a plugin, pin `ref` to a tag.
 
-Completions are generated, not vendored. Almost none of the tools in `[tools]`
-ship a completion file — each prints one from a subcommand instead, and the flag
-differs per tool, so `rc.zsh` carries a table of them. The output is cached in
-`~/.cache/zsh/completions` as an autoloadable `_<tool>` and regenerated only when
-the tool behind it changed, which keeps the twenty-odd generators off the startup
-path. What marks a change is the resolved path of the binary, recorded next to
-the cache: each version mise installs lives in its own directory, so an upgrade
-moves the binary. A timestamp would not be enough on its own — mise restores the
-mtime the release archive carried, which is the upstream build time and can
-predate the cache. Delete the directory to force a full rebuild; the `compinit`
-dump lives there too.
+Completions are generated, not tracked. Almost none of the tools in `[tools]`
+ship a completion file — each prints one from a subcommand, and the flag differs
+per tool. [mise-completions-sync](https://github.com/alltuner/mise-completions-sync)
+keeps the table of those flags for 130-odd tools, which is a table this repo then
+does not have to keep; it is declared in `[tools]` like everything else and
+called from two hooks in `mise.toml`. `postinstall` runs after every
+`mise install` or `mise upgrade` and regenerates only what changed;
+`[bootstrap.hooks.post-tools]` does the full pass on a fresh machine, at the
+first moment the tool itself exists, and installs mise's own `_mise` alongside.
+
+The four tools its registry does not know about — `yc`, `docker-cli`,
+`sentry-cli`, `taplo` — are in [`zsh/completions-registry.toml`](zsh/completions-registry.toml),
+which is merged on top of the built-in one. Note that the override is read
+through the `dirs` crate, so on macOS it belongs in `~/Library/Application
+Support`, not the `~/.local/share` path the upstream README names.
+
+`rc.zsh` itself generates nothing at startup. It puts the two finished
+directories on `fpath` before `compinit`: the one misecompsync writes and
+`~/.local/share/zsh/site-functions`, where `mise completion zsh --install` puts
+`_mise`. They are kept apart so `misecompsync clean` cannot reach the latter.
 
 ## What lives where
 

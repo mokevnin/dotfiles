@@ -1,0 +1,20 @@
+# The tools misecompsync's built-in registry does not cover, merged on top of it
+# rather than replacing it, so this file only carries the difference. Symlinked
+# by [dotfiles] in mise.toml — and not to an XDG path: the override is read
+# through the dirs crate, which on macOS means ~/Library/Application Support.
+#
+# Keys are mise tool names with the backend prefix stripped ("http:yc" is
+# matched as yc); completion_name is the executable where the two differ.
+schema_version = 1
+
+[tools]
+# Not in mise's registry at all — declared as an http: tool in mise.toml.
+yc = { zsh = "yc completion zsh", bash = "yc completion bash" }
+
+# Upstream has this as `docker`, but mise calls the tool docker-cli and the key
+# has to be the tool name.
+docker-cli = { completion_name = "docker", zsh = "docker completion zsh", bash = "docker completion bash", fish = "docker completion fish" }
+
+# `completions`, not `completion` — both take the shell as a plain argument.
+sentry-cli = "completions"
+taplo = "completions"
