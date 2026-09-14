@@ -20,11 +20,15 @@ eval "$(mise activate zsh)"
 # Completions. Almost nothing here ships a completion file — each tool prints
 # one from a subcommand instead, and the flag differs per tool, hence the table.
 # Running twenty of those on every prompt would be twenty forks, so the output
-# is cached as an autoloadable _<tool> and regenerated only when the binary is
-# newer than the cache. mise keeps every version in its own directory, so an
-# upgrade moves the binary and `-nt` sees it. $commands is zsh's own PATH hash —
-# a lookup in it costs nothing, unlike `command -v` in a subshell. All of this
-# has to happen before compinit, which reads fpath once.
+# is cached as an autoloadable _<tool> and regenerated only when the tool behind
+# it changed. What marks that is the resolved path: mise keeps every version in
+# its own directory, so an upgrade moves the binary and `:A` reports a new path.
+# A timestamp alone would not do — mise restores the mtime the release archive
+# carried, which is the upstream build time and can predate the cache. The mtime
+# is still checked as well, for the tools replaced in place (brew, ~/.local/bin).
+# $commands is zsh's own PATH hash and `read < file` is a builtin, so the warm
+# path costs no forks. All of it has to happen before compinit, which reads fpath
+# once.
 _zcomp="$HOME/.cache/zsh/completions"
 [[ -d $_zcomp ]] || mkdir -p "$_zcomp"
 for _spec in \
@@ -56,12 +60,20 @@ do
   _bin="${commands[$_tool]}"
   [[ -n $_bin ]] || continue
   _file="$_zcomp/_$_tool"
-  if [[ ! -s $_file || $_bin -nt $_file ]]; then
-    "$_tool" ${=_spec#*:} >| "$_file" 2>/dev/null || rm -f "$_file"
+  _stamp="$_zcomp/.$_tool.src"
+  _real="${_bin:A}"
+  _prev=''
+  [[ -r $_stamp ]] && read -r _prev < "$_stamp"
+  if [[ ! -s $_file || $_prev != $_real || $_real -nt $_file ]]; then
+    if "$_tool" ${=_spec#*:} >| "$_file" 2>/dev/null; then
+      print -r -- "$_real" >| "$_stamp"
+    else
+      rm -f "$_file" "$_stamp"
+    fi
   fi
 done
 fpath=("$_zcomp" $fpath)
-unset _spec _tool _bin _file
+unset _spec _tool _bin _file _stamp _real _prev
 
 # oh-my-zsh used to be the only thing calling compinit. Without this line a
 # fresh machine has no completion at all. -d pins the dump next to the generated
