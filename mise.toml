@@ -35,26 +35,26 @@ air = "latest"
 ansible = "latest"
 "pipx:ansible-lint" = "latest"
 ast-grep = "latest"
-atuin = "latest"             # searchable shell history, local only (no sync login)
+atuin = "latest"                # searchable shell history, local only (no sync login)
 bat = "latest"
-bottom = "latest"            # btm, replaces htop
+bottom = "latest"               # btm, replaces htop
 claude-code = "latest"
 codex = "latest"
 copilot-cli = "latest"
 delta = "latest"
-difftastic = "latest"        # structural diff, understands syntax
+difftastic = "latest"           # structural diff, understands syntax
 docker-cli = "latest"
 docker-compose = "latest"
-duf = "latest"               # replaces df
-dust = "latest"              # replaces du
-eza = "latest"               # replaces ls
+duf = "latest"                  # replaces df
+dust = "latest"                 # replaces du
+eza = "latest"                  # replaces ls
 fd = "latest"
-gdu = "latest"               # replaces ncdu
+gdu = "latest"                  # replaces ncdu
 gh = "latest"
-gitleaks = "latest"          # secret scan, this repo is public
+gitleaks = "latest"             # secret scan, this repo is public
 glab = "latest"
-glow = "latest"              # markdown in the terminal
-hyperfine = "latest"         # command benchmarks
+glow = "latest"                 # markdown in the terminal
+hyperfine = "latest"            # command benchmarks
 helm = "latest"
 jq = "latest"
 just = "latest"
@@ -68,38 +68,40 @@ neovim = "latest"
 opencode = "latest"
 overmind = "latest"
 pandoc = "latest"
-pipx = "latest"              # needed for the pipx: backend (ansible, ansible-lint)
+pipx = "latest"                 # needed for the pipx: backend (ansible, ansible-lint)
 ripgrep = "latest"
-sd = "latest"                # replaces gnu-sed
+sd = "latest"                   # replaces gnu-sed
 sentry-cli = "latest"
-starship = "latest"        # prompt, configured by starship.toml
+starship = "latest"             # prompt, configured by starship.toml
 shellcheck = "latest"
 stern = "latest"
-stylua = "latest"            # lua formatter, also checks the nvim config in CI
-taplo = "latest"             # the one thing [tasks.lint] was not checking: toml
-tealdeer = "latest"          # provides tldr
+stylua = "latest"               # lua formatter, also checks the nvim config in CI
+taplo = "latest"                # the one thing [tasks.lint] was not checking: toml
+tealdeer = "latest"             # provides tldr
 terraform = "latest"
-tokei = "latest"             # code statistics
-typos = "latest"             # spelling, the repo is english-only
-watchexec = "latest"         # runs a command on file changes
-xh = "latest"                # replaces httpie
-yazi = "latest"              # file manager, image previews through viu
+tokei = "latest"                # code statistics
+typos = "latest"                # spelling, the repo is english-only
+watchexec = "latest"            # runs a command on file changes
+xh = "latest"                   # replaces httpie
+yazi = "latest"                 # file manager, image previews through viu
 yq = "latest"
-zoxide = "latest"            # smart cd
+zoxide = "latest"               # smart cd
 "github:atanunq/viu" = "latest"
-# The yandex-cloud-cli cask exists but cannot be installed either way: brew runs
-# its installer-script stanza through sudo, and mise loses the path to the binary
-# ("binary artifact 'yandex-cloud-cli/bin/yc' was not found"). The vendor ships
-# plain versioned binaries, so yc is declared as an http: tool instead of being
-# curl|bash-ed from a hook. release/stable holds the current version number and
-# nothing else, which is the plain-text format version_list_url reads — so this
-# resolves "latest" and `mise upgrade` picks new releases up on its own.
+# The yandex-cloud-cli cask works, but it only wraps the vendor install.sh: the
+# plain binary cannot be a `binary` artifact, because it is ad-hoc signed and a
+# quarantined copy is killed by Gatekeeper, and its `uninstall delete:` asks for
+# a sudo password. The vendor ships plain versioned binaries, so yc is declared
+# as an http: tool instead of being curl|bash-ed from a hook. release/stable
+# holds the current version number and nothing else, which is the plain-text
+# format version_list_url reads — so this resolves "latest" and `mise upgrade`
+# picks new releases up on its own.
 "http:yc" = { version = "latest", url = "https://storage.yandexcloud.net/yandexcloud-yc/release/{{version}}/darwin/arm64/yc", bin = "yc", version_list_url = "https://storage.yandexcloud.net/yandexcloud-yc/release/stable" }
 
 # nvim provider hosts, have to live inside the active node/ruby
 "npm:neovim" = "latest"
 "npm:markdown-toc" = "latest"
 "gem:neovim" = "latest"
+"github:alltuner/mise-completions-sync" = "latest"
 
 # mise cannot install Homebrew itself, and it installs brew:/brew-cask: through
 # brew — so brew has to show up before the packages. NONINTERACTIVE=1 keeps the
@@ -117,11 +119,11 @@ adopt = true
 [bootstrap.packages]
 "brew:wget" = "latest"
 "brew:sox" = "latest"
-"brew:tmux" = "latest"       # overmind runs the Procfile in a tmux session and does not pull it in
-"brew:git-lfs" = "latest"    # the lfs filter is set up in .gitconfig
+"brew:tmux" = "latest"                    # overmind runs the Procfile in a tmux session and does not pull it in
+"brew:git-lfs" = "latest"                 # the lfs filter is set up in .gitconfig
 "brew-cask:ghostty" = "latest"
-"brew-cask:docker-desktop" = "latest"   # docker-cli is useless without a daemon
-"brew-cask:1password" = "latest"        # op-ssh-sign signs the commits
+"brew-cask:docker-desktop" = "latest"     # docker-cli is useless without a daemon
+"brew-cask:1password" = "latest"          # op-ssh-sign signs the commits
 "brew-cask:google-chrome" = "latest"
 "brew-cask:visual-studio-code" = "latest"
 "brew-cask:github" = "latest"
