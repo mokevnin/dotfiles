@@ -17,9 +17,57 @@ export PATH="$HOME/.local/bin:$PATH:$HOME/.local/share/mise/shims"
 
 eval "$(mise activate zsh)"
 
+# Completions. Almost nothing here ships a completion file — each tool prints
+# one from a subcommand instead, and the flag differs per tool, hence the table.
+# Running twenty of those on every prompt would be twenty forks, so the output
+# is cached as an autoloadable _<tool> and regenerated only when the binary is
+# newer than the cache. mise keeps every version in its own directory, so an
+# upgrade moves the binary and `-nt` sees it. $commands is zsh's own PATH hash —
+# a lookup in it costs nothing, unlike `command -v` in a subshell. All of this
+# has to happen before compinit, which reads fpath once.
+_zcomp="$HOME/.cache/zsh/completions"
+[[ -d $_zcomp ]] || mkdir -p "$_zcomp"
+for _spec in \
+  'mise:completion zsh' \
+  'yc:completion zsh' \
+  'gh:completion -s zsh' \
+  'glab:completion -s zsh' \
+  'kubectl:completion zsh' \
+  'helm:completion zsh' \
+  'k9s:completion zsh' \
+  'stern:--completion=zsh' \
+  'docker:completion zsh' \
+  'just:--completions zsh' \
+  'pnpm:completion zsh' \
+  'atuin:gen-completions --shell zsh' \
+  'fd:--gen-completions zsh' \
+  'rg:--generate complete-zsh' \
+  'xh:--generate complete-zsh' \
+  'bat:--completion zsh' \
+  'delta:--generate-completion zsh' \
+  'watchexec:--completions zsh' \
+  'ast-grep:completions zsh' \
+  'sentry-cli:completions zsh' \
+  'gitleaks:completion zsh' \
+  'taplo:completions zsh' \
+  'yq:completion zsh'
+do
+  _tool="${_spec%%:*}"
+  _bin="${commands[$_tool]}"
+  [[ -n $_bin ]] || continue
+  _file="$_zcomp/_$_tool"
+  if [[ ! -s $_file || $_bin -nt $_file ]]; then
+    "$_tool" ${=_spec#*:} >| "$_file" 2>/dev/null || rm -f "$_file"
+  fi
+done
+fpath=("$_zcomp" $fpath)
+unset _spec _tool _bin _file
+
 # oh-my-zsh used to be the only thing calling compinit. Without this line a
-# fresh machine has no completion at all.
-autoload -Uz compinit && compinit
+# fresh machine has no completion at all. -d pins the dump next to the generated
+# files instead of ~/.zcompdump, so `rm -rf $_zcomp` is a full reset.
+autoload -Uz compinit && compinit -d "$_zcomp/.zcompdump"
+unset _zcomp
 
 # oh-my-zsh plugins, sourced as plain files. They are ordinary zsh scripts and
 # need nothing from the framework — no $ZSH, no plugins=(), no oh-my-zsh.sh.

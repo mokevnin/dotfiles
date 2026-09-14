@@ -146,6 +146,16 @@ The tradeoff is that `plugins/<name>/<name>.plugin.zsh` is an internal path
 rather than a promised interface, and `[bootstrap.repos]` tracks `master`. If an
 upstream change ever breaks a plugin, pin `ref` to a tag.
 
+Completions are generated, not vendored. Almost none of the tools in `[tools]`
+ship a completion file — each prints one from a subcommand instead, and the flag
+differs per tool, so `rc.zsh` carries a table of them. The output is cached in
+`~/.cache/zsh/completions` as an autoloadable `_<tool>` and regenerated only when
+the binary turns out to be newer than the cache, which keeps the twenty-odd
+generators off the startup path: each version mise installs lives in its own
+directory, so an upgrade moves the binary and the timestamp test catches it.
+Delete the directory to force a full rebuild — the `compinit` dump lives there
+too.
+
 ## What lives where
 
 | `mise.toml` section | What it describes |
