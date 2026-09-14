@@ -23,7 +23,7 @@ compile = false
 # languages / runtimes
 go = "latest"
 java = "temurin-25"
-node = "26.8.1"
+node = "26.8.2"
 python = "latest"
 ruby = "latest"
 
@@ -91,9 +91,10 @@ zoxide = "latest"            # smart cd
 # its installer-script stanza through sudo, and mise loses the path to the binary
 # ("binary artifact 'yandex-cloud-cli/bin/yc' was not found"). The vendor ships
 # plain versioned binaries, so yc is declared as an http: tool instead of being
-# curl|bash-ed from a hook. The version is pinned by hand: that URL has no
-# listing mise could resolve "latest" from.
-"http:yc" = { version = "1.34.0", url = "https://storage.yandexcloud.net/yandexcloud-yc/release/{{version}}/darwin/arm64/yc", bin = "yc" }
+# curl|bash-ed from a hook. release/stable holds the current version number and
+# nothing else, which is the plain-text format version_list_url reads — so this
+# resolves "latest" and `mise upgrade` picks new releases up on its own.
+"http:yc" = { version = "latest", url = "https://storage.yandexcloud.net/yandexcloud-yc/release/{{version}}/darwin/arm64/yc", bin = "yc", version_list_url = "https://storage.yandexcloud.net/yandexcloud-yc/release/stable" }
 
 # nvim provider hosts, have to live inside the active node/ruby
 "npm:neovim" = "latest"
