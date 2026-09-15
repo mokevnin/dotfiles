@@ -35,11 +35,13 @@ fpath=(
 # fresh machine has no completion at all.
 autoload -Uz compinit && compinit
 
-# terraform is the one tool that does not print a completion file — its
-# `-install-autocomplete` appends a bash-style `complete -C` line that hands the
-# completion back to the binary itself, so it needs bashcompinit and cannot live
-# in completions-registry.toml with the rest. The shim is used rather than the
-# installed path: that one carries the version in it and goes stale on upgrade.
+# terraform is the one tool with no completion file to generate — its
+# `-install-autocomplete` appends a bash-style `complete -C` line that hands
+# completion back to the binary itself, so it needs bashcompinit and has nothing
+# for completions-registry.toml to call. That command writes into ~/.zshrc, the
+# one file that is not tracked, so the line is kept here instead. The shim, not
+# the installs/ path it writes: the shim resolves the version mise pins for the
+# current directory, and is not an absolute path to one machine's home.
 autoload -U +X bashcompinit && bashcompinit
 _tf="$HOME/.local/share/mise/shims/terraform"
 [ -x "$_tf" ] && complete -o nospace -C "$_tf" terraform

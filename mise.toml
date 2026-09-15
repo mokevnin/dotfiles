@@ -215,6 +215,14 @@ run = [
   # skips them and their receipts stay at the version that was installed, which
   # is why `brew outdated` keeps naming versions long gone from /Applications.
   "brew upgrade --cask --greedy",
+  # A cask ends up owned by whichever of the two installed it, and neither can
+  # see the other's bookkeeping: mise writes .mise-cask.toml where brew wants
+  # .metadata, so brew skips mise's casks and mise declines brew's ("installed
+  # and managed by Homebrew"). Running both is what covers the whole set. This
+  # is also why `brew doctor` reports invalid Caskroom metadata for anything
+  # mise installed, and `mise bootstrap packages status` calls anything brew
+  # reinstalled missing — the two never agree, and both apps are fine.
+  "mise bootstrap packages upgrade --yes",
 ]
 
 [tasks.lint]
