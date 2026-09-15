@@ -42,6 +42,7 @@ claude-code = "latest"
 codex = "latest"
 copilot-cli = "latest"
 delta = "latest"
+devcontainer-cli = "latest"    # the `devcontainer` binary devcontainers.nvim drives
 difftastic = "latest"          # structural diff, understands syntax
 docker-cli = "latest"
 docker-compose = "latest"
