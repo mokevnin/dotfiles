@@ -83,7 +83,11 @@ stylua = "latest"               # lua formatter, also checks the nvim config in 
 taplo = "latest"                # the one thing [tasks.lint] was not checking: toml
 tealdeer = "latest"             # provides tldr
 terraform = "latest"
-tokei = "latest"                # code statistics
+tokei = "latest"                # code statistics, replaces scc
+# nvim-treesitter shells out to this to compile a parser that has no prebuilt
+# artifact. The brew formula is tree-sitter-cli; in the registry it is the
+# aqua package under the plain name.
+tree-sitter = "latest"
 typos = "latest"                # spelling, the repo is english-only
 watchexec = "latest"            # runs a command on file changes
 xh = "latest"                   # replaces httpie
@@ -137,11 +141,34 @@ run = 'command -v brew >/dev/null 2>&1 || [ -x /opt/homebrew/bin/brew ] || [ -x 
 adopt = true
 
 # System packages. brew:/brew-cask: are installed by mise, but through Homebrew itself.
+# Everything Homebrew still owns is listed here — anything it held that mise can
+# install instead was removed, so `brew leaves` and this block now say the same
+# thing and `mise run upgrade` covers the whole machine.
 [bootstrap.packages]
+"brew:git" = "latest"                     # brew installs mise, and mise cannot manage the git it was cloned with
+"brew:mise" = "latest"                    # self-update is disabled in this build; brew is what moves it
 "brew:wget" = "latest"
 "brew:sox" = "latest"
 "brew:tmux" = "latest"                    # overmind runs the Procfile in a tmux session and does not pull it in
 "brew:git-lfs" = "latest"                 # the lfs filter is set up in .gitconfig
+# Runtimes and libraries with no mise equivalent. vips is what the ruby
+# image_processing gem links against, luarocks is for nvim's lua rocks, and
+# watchman is the file watcher jest and react-native expect to find on PATH.
+"brew:postgresql@17" = "latest"
+"brew:composer" = "latest"                # pulls php in as a dependency
+"brew:vips" = "latest"
+"brew:luarocks" = "latest"
+"brew:watchman" = "latest"
+"brew:playwright-cli" = "latest"
+# yazi shells out to these for its previews and finds them by name on PATH;
+# nothing declares them as dependencies, so without this block a `brew
+# autoremove` takes them and previews go quiet instead of failing loudly.
+"brew:ffmpeg" = "latest"                  # ffprobe, video thumbnails
+"brew:poppler" = "latest"                 # pdftoppm, pdf pages
+"brew:imagemagick" = "latest"
+"brew:chafa" = "latest"                   # images in a terminal without a graphics protocol
+"brew:resvg" = "latest"                   # svg
+"brew:sevenzip" = "latest"                # 7zz, archive contents
 "brew-cask:ghostty" = "latest"
 "brew-cask:docker-desktop" = "latest"     # docker-cli is useless without a daemon
 "brew-cask:1password" = "latest"          # op-ssh-sign signs the commits
@@ -160,6 +187,9 @@ adopt = true
 "brew-cask:nordvpn" = "latest"
 "brew-cask:font-ubuntu-nerd-font" = "latest"
 "brew-cask:font-hack-nerd-font" = "latest"
+"brew-cask:font-symbols-only-nerd-font" = "latest"   # starship draws its glyphs from this one
+"brew-cask:gcloud-cli" = "latest"
+"brew-cask:ngrok" = "latest"
 
 # Only the plugin files are used — git, vi-mode and eza are sourced directly by
 # zsh/rc.zsh. The framework around them (themes, plugins=(), the updater) is not
