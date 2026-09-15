@@ -194,6 +194,24 @@ login_shell = "/bin/zsh"
 # `mise run lint`. .stylua.toml lives in nvim/ and stylua looks for it from the
 # cwd — hence the cd. dir is pinned to {{cwd}} because this file is also the
 # global config, whose config root is $HOME rather than the repo.
+# `mise upgrade` walks [tools] and nothing else, and [bootstrap.packages] is a
+# bootstrap-time description — so the brew half of the machine was never being
+# updated by anything. `mise bootstrap packages upgrade` does not close the gap
+# on its own: it declines every cask that carries a Homebrew receipt ("installed
+# and managed by Homebrew; leaving unchanged"), which here is all of them. brew
+# is the only thing that upgrades the brew side, so this task calls both.
+[tasks.upgrade]
+description = "update the mise tools and everything Homebrew installed"
+run = [
+  "mise upgrade",
+  "brew update",
+  "brew upgrade",
+  # --greedy: most of the casks here are self-updating apps. Without it brew
+  # skips them and their receipts stay at the version that was installed, which
+  # is why `brew outdated` keeps naming versions long gone from /Applications.
+  "brew upgrade --cask --greedy",
+]
+
 [tasks.lint]
 description = "actionlint, stylua, taplo, typos, gitleaks"
 dir = "{{cwd}}"

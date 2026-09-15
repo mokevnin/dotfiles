@@ -113,7 +113,8 @@ mise bootstrap --yes         # apply the config
 mise bootstrap --dry-run     # see what would change
 mise bootstrap status        # state of every declarative part
 mise bootstrap --only tools  # apply just one part
-mise upgrade                 # update the tools
+mise upgrade                 # update the [tools] half only
+mise run upgrade             # update everything: the tools and the brew side
 mise run lint                # actionlint, stylua, taplo, typos, gitleaks
 mise doctor project          # check the logins, keys and tokens done by hand
 ```
@@ -121,6 +122,13 @@ mise doctor project          # check the logins, keys and tokens done by hand
 The Makefile exists for exactly two things: installing Homebrew and installing
 mise with it — the only pieces that cannot install themselves. Everything else
 is a mise command.
+
+`mise upgrade` is only half an update: it walks `[tools]` and stops there, and
+`[bootstrap.packages]` describes the machine at bootstrap time rather than
+tracking it afterwards. `mise bootstrap packages upgrade` does not finish the
+job either — it leaves alone every cask that already carries a Homebrew
+receipt, which is all of them here. `mise run upgrade` is the one that updates
+both halves.
 
 CI ([`.github/workflows/main.yml`](.github/workflows/main.yml)) runs
 `mise bootstrap --dry-run` on `macos-latest` and then the very same
@@ -178,6 +186,7 @@ directories on `fpath` before `compinit`: the one misecompsync writes and
 | `[bootstrap.user]` | Login shell |
 | `[bootstrap.hooks.pre-packages]` | Installs Homebrew on macOS before the `brew:` packages |
 | `[doctor.checks.*]` | Probes for the accounts the repo cannot install — run by `mise doctor project` |
+| `[tasks.upgrade]` | Updates both halves of the machine — `mise upgrade` for `[tools]`, `brew upgrade` for everything Homebrew owns |
 | `[tasks.lint]` | `actionlint`, `stylua`, `taplo`, `typos` and `gitleaks` — the same task locally and in CI |
 
 `mise.toml` is symlinked into `~/.config/mise/config.toml`, so the tools are
