@@ -154,7 +154,8 @@ adopt = true
 # Runtimes and libraries with no mise equivalent. vips is what the ruby
 # image_processing gem links against, luarocks is for nvim's lua rocks, and
 # watchman is the file watcher jest and react-native expect to find on PATH.
-"brew:postgresql@17" = "latest"
+# No postgres here on purpose — databases run in Docker. php pulls libpq in, so
+# the `pg` gem still builds.
 "brew:composer" = "latest"                # pulls php in as a dependency
 "brew:vips" = "latest"
 "brew:luarocks" = "latest"
