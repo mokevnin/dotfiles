@@ -152,7 +152,6 @@ adopt = true
 "brew-cask:1password" = "latest"          # op-ssh-sign signs the commits
 "brew-cask:google-chrome" = "latest"
 "brew-cask:visual-studio-code" = "latest"
-"brew-cask:github" = "latest"
 "brew-cask:slack" = "latest"
 "brew-cask:telegram" = "latest"
 "brew-cask:whatsapp" = "latest"
@@ -163,8 +162,6 @@ adopt = true
 # pkg casks: brew installs them through installer(8), so they ask for a password
 "brew-cask:zoom" = "latest"
 "brew-cask:nordvpn" = "latest"
-"brew-cask:font-ubuntu-nerd-font" = "latest"
-"brew-cask:font-hack-nerd-font" = "latest"
 
 # Only the plugin files are used — git, vi-mode and eza are sourced directly by
 # zsh/rc.zsh. The framework around them (themes, plugins=(), the updater) is not
@@ -211,7 +208,7 @@ run = [
   "mise upgrade",
   "brew update",
   "brew upgrade",
-  # No --greedy on purpose: 14 of the 17 casks here update themselves, so it
+  # No --greedy on purpose: 13 of the 14 casks here update themselves, so it
   # would re-download gigabytes of Chrome, Docker Desktop and VS Code to move a
   # receipt that describes an app already current on disk. The cost of leaving
   # it off is that `brew outdated --cask` keeps naming versions long gone from
