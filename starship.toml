@@ -1,7 +1,7 @@
 # Approximates the robbyrussell prompt this replaced: an arrow that goes red on
 # a non-zero exit, the directory, then the branch and its state.
 
-format = "$character$directory$git_branch$git_status$cmd_duration "
+format = "$character$directory$git_branch$git_status "
 add_newline = false
 
 [character]
@@ -20,8 +20,3 @@ format = '[git:\(](bold blue)[$branch](bold red)[\)](bold blue)'
 [git_status]
 format = "[$all_status$ahead_behind](bold yellow)"
 
-# Anything slower than this gets its runtime printed, which robbyrussell had no
-# equivalent for.
-[cmd_duration]
-min_time = 2000
-format = " [$duration](bold yellow)"
