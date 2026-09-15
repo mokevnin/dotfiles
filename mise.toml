@@ -207,13 +207,12 @@ description = "update the mise tools and everything Homebrew installed"
 run = [
   "mise upgrade",
   "brew update",
-  "brew upgrade",
-  # No --greedy on purpose: 13 of the 14 casks here update themselves, so it
-  # would re-download gigabytes of Chrome, Docker Desktop and VS Code to move a
-  # receipt that describes an app already current on disk. The cost of leaving
-  # it off is that `brew outdated --cask` keeps naming versions long gone from
-  # /Applications; run `brew upgrade --cask --greedy` by hand to resync those.
-  "brew upgrade --cask",
+  # -y because a task must not stop for a prompt: this Homebrew asks before
+  # touching casks that carry auto_updates, and 13 of the 14 here do. Plain
+  # `brew upgrade` already covers those, so there is no separate --cask step and
+  # no --greedy — the latter only adds casks pinned to :latest, at the price of
+  # re-downloading apps that update themselves.
+  "brew upgrade -y",
   # A cask ends up owned by whichever of the two installed it, and neither can
   # see the other's bookkeeping: mise writes .mise-cask.toml where brew wants
   # .metadata, so brew skips mise's casks and mise declines brew's ("installed
