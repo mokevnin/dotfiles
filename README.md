@@ -180,7 +180,7 @@ directories on `fpath` before `compinit`: the one misecompsync writes and
 | `mise.toml` section | What it describes |
 |---|---|
 | `[tools]` | Languages and CLI utilities. Backends: registry, `npm:`, `gem:`, `pipx:`, `github:`, `http:` |
-| `[bootstrap.packages]` | System packages and GUI apps. `brew:`/`brew-cask:` are installed by mise through Homebrew itself. Everything Homebrew owns is listed here — `brew leaves` and this block are meant to agree |
+| `[bootstrap.packages]` | System packages and GUI apps. `brew:`/`brew-cask:` are installed by mise through Homebrew itself |
 | `[bootstrap.repos]` | The oh-my-zsh clone, for its plugin files |
 | `[dotfiles]` | Symlinks (`~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, `~/.config/starship.toml`, `~/.config/zsh/rc.zsh`) and the single `source` line in `.zshrc` |
 | `[bootstrap.user]` | Login shell |

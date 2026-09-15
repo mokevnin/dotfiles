@@ -35,6 +35,16 @@ fpath=(
 # fresh machine has no completion at all.
 autoload -Uz compinit && compinit
 
+# terraform is the one tool that does not print a completion file — its
+# `-install-autocomplete` appends a bash-style `complete -C` line that hands the
+# completion back to the binary itself, so it needs bashcompinit and cannot live
+# in completions-registry.toml with the rest. The shim is used rather than the
+# installed path: that one carries the version in it and goes stale on upgrade.
+autoload -U +X bashcompinit && bashcompinit
+_tf="$HOME/.local/share/mise/shims/terraform"
+[ -x "$_tf" ] && complete -o nospace -C "$_tf" terraform
+unset _tf
+
 # oh-my-zsh plugins, sourced as plain files. They are ordinary zsh scripts and
 # need nothing from the framework — no $ZSH, no plugins=(), no oh-my-zsh.sh.
 # The clone they come from is declared in [bootstrap.repos]. Sourced before
