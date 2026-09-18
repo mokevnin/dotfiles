@@ -197,6 +197,44 @@ adopt = true
 [bootstrap.user]
 login_shell = "/bin/zsh"
 
+# The machine's own settings — the one part of it this repo did not describe.
+# Only what was actually changed here by hand is declared: the point is to
+# reproduce this machine, not to impose a taste, so everything still at the macOS
+# default is left undeclared. mise never writes these on its own — `mise
+# bootstrap`, or `mise bootstrap macos defaults apply`, does, and `mise bootstrap
+# macos defaults status` shows what differs. Apply restarts neither Dock nor
+# Finder; `killall Dock` picks the Dock ones up.
+[bootstrap.macos.dock]
+orientation = "left"                # vertical space is the scarce one on a laptop
+autohide = true
+
+[bootstrap.macos.keyboard]
+automatic_capitalization = false     # the two the friendly section covers
+automatic_spelling_correction = false
+
+# The rest of the same decision — macOS does not get to rewrite what was typed.
+# No friendly keys exist for these four, so they go in as raw NSGlobalDomain.
+[bootstrap.macos.defaults.NSGlobalDomain]
+NSAutomaticQuoteSubstitutionEnabled = false   # "" stay straight, which is what code needs
+NSAutomaticDashSubstitutionEnabled = false    # -- stays two hyphens
+NSAutomaticPeriodSubstitutionEnabled = false  # two spaces are two spaces
+NSAutomaticInlinePredictionEnabled = false
+
+[bootstrap.macos.trackpad]
+tap_to_click = true
+
+# Screenshots, which the friendly sections above do not cover. `location` is what
+# older macOS read and the two specific keys are what current versions read; all
+# three are set on this machine, so all three are declared. macOS does not create
+# the folder — without it a screenshot goes nowhere — hence the directory below.
+[bootstrap.macos.defaults."com.apple.screencapture"]
+location = "~/Downloads/Screenshots"
+location-screenshot = "~/Downloads/Screenshots"
+location-screenrecording = "~/Downloads/Screenshots"
+
+[bootstrap.directories."~/Downloads/Screenshots"]
+mode = "0755"
+
 # The repo linters. Described here rather than in the Makefile or the workflow so
 # that the same thing runs locally and in CI, where the job just calls
 # `mise run lint`. .stylua.toml lives in nvim/ and stylua looks for it from the

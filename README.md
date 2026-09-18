@@ -60,9 +60,11 @@ What happens, in order:
 | `mise` target | `brew install mise` |
 | `pre-packages` hook | the same Homebrew installer, for the case where bootstrap is run without the Makefile. Here brew already exists, so it does nothing |
 | `[bootstrap.packages]` | brew formulae and casks, GUI apps included. `pkg` casks (`docker-desktop`, `zoom`, `nordvpn`) go through `installer(8)` and **ask for a password** |
+| `[bootstrap.directories]` | creates `~/Downloads/Screenshots`, the folder the screenshot preference below points at. macOS does not create it, and a screenshot taken into a missing folder goes nowhere |
 | `[bootstrap.repos]` | clones oh-my-zsh — only its plugin files are used |
 | `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, `~/.config/starship.toml`, `~/.config/zsh/rc.zsh`, and writes the one line of `.zshrc` that sources the last of them |
 | `[bootstrap.user]` | login shell set to `/bin/zsh`. macOS has shipped zsh as the default since Catalina, so on a stock mac this is already true and nothing happens — the line is here to state it, not to change it |
+| `[bootstrap.macos]` | the preferences that were changed on this machine by hand: Dock on the left and hidden, tap to click, every text substitution off, screenshots into `~/Downloads/Screenshots`. Only these — anything still at the macOS default is deliberately not declared. Neither Dock nor Finder is restarted, so `killall Dock` afterwards |
 | `mise install` | the whole toolset, `yc` included. The longest part |
 
 If mise is already on the machine, steps 3–4 collapse into a single command:
