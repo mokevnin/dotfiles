@@ -13,6 +13,11 @@ idiomatic_version_file_enable_tools = []
 # comes from gh and is not kept in the repo; if gh is not authenticated yet
 # (fresh machine), mise just warns and goes on anonymously.
 github.credential_command = "gh auth token"
+# Everything here rides "latest", so a tool arrives the moment it is published —
+# including a release made from a stolen npm or GitHub token. A day of cooling is
+# what usually separates such a release from being yanked. Locked versions and
+# exact pins are exempt, and backends without release dates are unaffected.
+minimum_release_age = "24h"
 dotfiles.root = "~/dotfiles"
 dotfiles.default_mode = "symlink"
 
