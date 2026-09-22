@@ -18,6 +18,10 @@ github.credential_command = "gh auth token"
 # what usually separates such a release from being yanked. Locked versions and
 # exact pins are exempt, and backends without release dates are unaffected.
 minimum_release_age = "24h"
+# claude-code is the exception: it ships several builds a day and a fix for
+# yesterday's build is itself a release, so a day of waiting means running a
+# known-worse version. Excludes match the [tools] name, not the backend.
+minimum_release_age_excludes = ["claude-code"]
 # The aqua registry is baked in when mise itself is built, so a packaging fix
 # lands only with the next mise release — difftastic 0.71.0 renamed its assets
 # and every install failed until then. Fetching the registry instead costs one
