@@ -47,6 +47,9 @@ pnpm = "latest"
 actionlint = "latest"
 air = "latest"
 ansible = "latest"
+# pipx: and pypi: are the same backend and both install through uv; the old
+# spelling stays because ansible-lint warns about a "broken local setup" on
+# every run unless the path it runs from contains "pipx".
 "pipx:ansible-lint" = "latest"
 ast-grep = "latest"
 atuin = "latest"               # searchable shell history, local only (no sync login)
@@ -83,11 +86,6 @@ neovim = "latest"
 opencode = "latest"
 overmind = "latest"
 pandoc = "latest"
-pipx = "latest"                # needed for the pipx: backend (ansible, ansible-lint)
-# Not used directly: pipx's own completion is generated through argcomplete, so
-# misecompsync installs this itself when it is not declared and `mise prune`
-# takes it away again. Declaring it ends that loop.
-"pipx:argcomplete" = "latest"
 ripgrep = "latest"
 sd = "latest"                   # replaces gnu-sed
 sentry-cli = "latest"
@@ -104,6 +102,10 @@ tokei = "latest"                # code statistics, replaces scc
 # aqua package under the plain name.
 tree-sitter = "latest"
 typos = "latest"                # spelling, the repo is english-only
+# The installer behind the pypi: backend (ansible, ansible-lint). mise uses it
+# only when it resolves as a tool of its own — an undeclared uv is a shim with
+# no version, and `expose` in the ansible registry entry refuses to go on.
+uv = "latest"
 watchexec = "latest"            # runs a command on file changes
 xh = "latest"                   # replaces httpie
 yq = "latest"
