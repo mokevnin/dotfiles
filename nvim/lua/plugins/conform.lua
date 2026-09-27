@@ -4,10 +4,6 @@ return {
     opts = {
       -- log_level: vim.log.levels.DEBUG,
       formatters_by_ft = {
-        php = {
-          "pint",
-          "tlint",
-        },
         java = { "spotless_gradle" },
         -- haml = { "haml_lint" },
       },
