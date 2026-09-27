@@ -4,6 +4,20 @@ return {
     opts = {
       -- log_level: vim.log.levels.DEBUG,
       formatters_by_ft = {
+        -- lint --fix applies the autofixes; the diagnostics come from nvim-lint
+        php = { "mago_lint", "mago_format" },
+        -- oxfmt from lang.typescript.oxc covers these as well; markdown comes
+        -- from lang.markdown with prettier, which is not installed. toml stays
+        -- with taplo, the same tool that lints the toml in this repo
+        markdown = { "oxfmt", "markdownlint-cli2", "markdown-toc" },
+        ["markdown.mdx"] = { "oxfmt", "markdownlint-cli2", "markdown-toc" },
+        yaml = { "oxfmt" },
+        css = { "oxfmt" },
+        scss = { "oxfmt" },
+        less = { "oxfmt" },
+        html = { "oxfmt" },
+        graphql = { "oxfmt" },
+        handlebars = { "oxfmt" },
         java = { "spotless_gradle" },
         -- haml = { "haml_lint" },
       },

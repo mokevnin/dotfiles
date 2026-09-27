@@ -81,6 +81,7 @@ kubectl = "latest"
 kubectx = "latest"
 lazydocker = "latest"
 lazygit = "latest"
+mago = "latest"                 # php linter, formatter and analyzer; needs no php of its own
 markdownlint-cli2 = "latest"
 neovim = "latest"
 opencode = "latest"
