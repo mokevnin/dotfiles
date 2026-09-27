@@ -41,9 +41,8 @@ return {
             },
           },
         },
-        -- vtsls тут больше нет: extra lang.typescript.tsgo переключает ts_lsp
-        -- на отдельный сервер tsgo и сам гасит vtsls, так что его настройки
-        -- (включая ручной experimental.useTsgo) были бы мёртвым кодом
+        -- no vtsls here: the lang.typescript.tsc extra makes tsc the ts_lsp, so
+        -- LazyVim never imports the vtsls extra and its settings would be dead code
         -- cssls = {},
         -- https://github.com/Shopify/ruby-lsp/issues/2347
         -- ruby_lsp = {
