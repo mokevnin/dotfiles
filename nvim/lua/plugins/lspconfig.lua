@@ -27,6 +27,15 @@ return {
         },
         -- cssls = {},
         autotools_ls = {},
+        -- php completion and navigation; mago in conform/nvim-lint does the rest.
+        -- Not the lang.php extra: its phpactor needs php, which is not installed,
+        -- and it brings phpcs and php-cs-fixer, which would fight mago
+        intelephense = {},
+        -- spelling in code, the same checker as `typos` from mise.toml. Upstream
+        -- only roots it at a typos config, so .git is added for every other repo
+        typos_lsp = {
+          root_markers = { "typos.toml", "_typos.toml", ".typos.toml", "pyproject.toml", "Cargo.toml", ".git" },
+        },
         docker_compose_language_service = {},
         -- oxlint = {},
         -- somesass_ls = {},
