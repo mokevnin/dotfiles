@@ -28,6 +28,3 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !gh auth git-credential
-
-[includeIf "gitdir:~/hexlet-exercise-kit/**"]
-	path = ~/hexlet-exercise-kit/.githooks/gitconfig
