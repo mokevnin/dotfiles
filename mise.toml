@@ -29,6 +29,9 @@ minimum_release_age_excludes = ["claude-code", "codex"]
 aqua.baked_registry = false
 dotfiles.root = "~/dotfiles"
 dotfiles.default_mode = "symlink"
+# For `mise daemons`: projects are moving their dev services off
+# process-compose onto [daemons], which is still experimental.
+experimental = true
 
 [settings.ruby]
 compile = false
@@ -86,6 +89,9 @@ markdownlint-cli2 = "latest"
 neovim = "latest"
 opencode = "latest"
 overmind = "latest"
+# The supervisor behind `mise daemons`: mise only generates its config and does
+# not install it, and several [daemons] features need a recent release.
+pitchfork = "latest"
 pandoc = "latest"
 ripgrep = "latest"
 sd = "latest"                   # replaces gnu-sed
