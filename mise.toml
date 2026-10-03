@@ -269,6 +269,11 @@ run = [
   # no --greedy — the latter only adds casks pinned to :latest, at the price of
   # re-downloading apps that update themselves.
   "brew upgrade -y",
+  # With aqua.baked_registry = false, mise compiles the fetched registry into a
+  # cache that a newer mise may fail to decode even when the format directory
+  # (v9) stays the same — after brew moved mise to 2026.9.16 every aqua tool
+  # went missing. The sources stay, so the next lookup recompiles locally.
+  "rm -rf \"$(mise cache path)/aqua-registry/compiled\"",
   # A cask ends up owned by whichever of the two installed it, and neither can
   # see the other's bookkeeping: mise writes .mise-cask.toml where brew wants
   # .metadata, so brew skips mise's casks and mise declines brew's ("installed
