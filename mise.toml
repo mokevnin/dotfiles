@@ -95,7 +95,6 @@ pitchfork = "latest"
 pandoc = "latest"
 ripgrep = "latest"
 sd = "latest"                   # replaces gnu-sed
-sentry-cli = "latest"
 starship = "latest"             # prompt, configured by starship.toml
 shellcheck = "latest"
 stern = "latest"
@@ -288,6 +287,17 @@ run = [
   # mise installed, and `mise bootstrap packages status` calls anything brew
   # reinstalled missing — the two never agree, and both apps are fine.
   "mise bootstrap packages upgrade --yes",
+]
+
+# Everything that can be thrown away and rebuilt on demand. Docker is started
+# by hand, so its prune is skipped when the daemon is down instead of failing
+# the rest of the task.
+[tasks.clean]
+description = "prune docker, brew and unused mise versions"
+run = [
+  "if docker info >/dev/null 2>&1; then docker system prune -af --volumes; else echo 'docker is not running, skipped'; fi",
+  "brew cleanup --prune=all -s",
+  "mise prune --yes",
 ]
 
 [tasks.lint]
