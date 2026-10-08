@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
 
       # installs mise, installs the linters only, and caches — all the action's own work
-      - uses: jdx/mise-action@v4
+      - uses: jdx/mise-action@v5
         with:
           install_args: actionlint stylua taplo typos gitleaks
 
