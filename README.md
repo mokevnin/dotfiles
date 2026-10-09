@@ -117,7 +117,8 @@ mise bootstrap status        # state of every declarative part
 mise bootstrap --only tools  # apply just one part
 mise upgrade                 # update the [tools] half only
 mise run upgrade             # update everything: the tools and the brew side
-mise run lint                # actionlint, stylua, taplo, typos, gitleaks
+mise run lint                # repo linters from .mise.toml (run it inside this repo)
+mise -C nvim run lint        # just the neovim config: stylua
 mise doctor project          # check the logins, keys and tokens done by hand
 ```
 
@@ -141,7 +142,8 @@ themselves are fine either way.
 CI ([`.github/workflows/main.yml`](.github/workflows/main.yml)) runs
 `mise bootstrap --dry-run` on `macos-latest` and then the very same
 `mise run lint`, so the lint is described in one place and not duplicated in the
-workflow.
+workflow. Neovim has its own tasks in [`nvim/mise.toml`](nvim/mise.toml), which the
+repo lint calls.
 
 ## The shell
 
@@ -195,7 +197,8 @@ directories on `fpath` before `compinit`: the one misecompsync writes and
 | `[bootstrap.hooks.pre-packages]` | Installs Homebrew on macOS before the `brew:` packages |
 | `[doctor.checks.*]` | Probes for the accounts the repo cannot install — run by `mise doctor project` |
 | `[tasks.upgrade]` | Updates both halves of the machine — `mise upgrade` for `[tools]`, `brew upgrade` for everything Homebrew owns |
-| `[tasks.lint]` | `actionlint`, `stylua`, `taplo`, `typos` and `gitleaks` — the same task locally and in CI |
+| `[tasks.lint]` in `.mise.toml` | `actionlint`, the neovim lint, `taplo`, `typos` and `gitleaks` — the same task locally and in CI. Project-level on purpose: a task in this file would be global |
+| `[tasks.lint]` in `nvim/mise.toml` | `stylua --check` over the lua config |
 
 `mise.toml` is symlinked into `~/.config/mise/config.toml`, so the tools are
 global and available from any directory. But `mise bootstrap` has to be run

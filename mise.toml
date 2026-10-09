@@ -99,7 +99,7 @@ starship = "latest"             # prompt, configured by starship.toml
 shellcheck = "latest"
 stern = "latest"
 stylua = "latest"               # lua formatter, also checks the nvim config in CI
-taplo = "latest"                # the one thing [tasks.lint] was not checking: toml
+taplo = "latest"                # lints the toml, see .mise.toml
 tealdeer = "latest"             # provides tldr
 terraform = "latest"
 tokei = "latest"                # code statistics, replaces scc
@@ -252,11 +252,6 @@ location-screenrecording = "~/Downloads/Screenshots"
 [bootstrap.directories."~/Downloads/Screenshots"]
 mode = "0755"
 
-# The repo linters. Described here rather than in the Makefile or the workflow so
-# that the same thing runs locally and in CI, where the job just calls
-# `mise run lint`. .stylua.toml lives in nvim/ and stylua looks for it from the
-# cwd — hence the cd. dir is pinned to {{cwd}} because this file is also the
-# global config, whose config root is $HOME rather than the repo.
 # `mise upgrade` walks [tools] and nothing else, and [bootstrap.packages] is a
 # bootstrap-time description — so the brew half of the machine was never being
 # updated by anything. `mise bootstrap packages upgrade` does not close the gap
@@ -298,23 +293,6 @@ run = [
   "if docker info >/dev/null 2>&1; then docker system prune -af --volumes; else echo 'docker is not running, skipped'; fi",
   "brew cleanup --prune=all -s",
   "mise prune --yes",
-]
-
-[tasks.lint]
-description = "actionlint, stylua, taplo, typos, gitleaks"
-dir = "{{cwd}}"
-run = [
-  "actionlint",
-  "cd nvim && stylua --check lua",
-  # lint, not fmt: taplo's formatter wants the trailing comments in this file on
-  # its own column, and turning alignment off collapses them to a single space.
-  # Neither is the layout here, and the check is for broken toml anyway — this
-  # file is the machine, a syntax error in it is not a thing to push.
-  "taplo lint mise.toml",
-  "typos",
-  # `git`, not `dir`: a secret that reached a commit and was removed afterwards
-  # is still public, and this repo is. Needs fetch-depth: 0 in the workflow.
-  "gitleaks git .",
 ]
 
 # The repo describes the machine but not the accounts on it: ssh keys, logins and

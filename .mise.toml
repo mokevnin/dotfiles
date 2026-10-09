@@ -1,0 +1,19 @@
+# Project tasks for this repo. They live here and not in mise.toml because that
+# file is also the global config, and a task there shows up in every project.
+# Described once so the same thing runs locally and in CI, where the job just
+# calls `mise run lint`.
+[tasks.lint]
+description = "actionlint, nvim lint, taplo, typos, gitleaks"
+run = [
+  "actionlint",
+  "mise -C nvim run lint",
+  # lint, not fmt: taplo's formatter wants the trailing comments in this file on
+  # its own column, and turning alignment off collapses them to a single space.
+  # Neither is the layout here, and the check is for broken toml anyway — this
+  # file is the machine, a syntax error in it is not a thing to push.
+  "taplo lint mise.toml",
+  "typos",
+  # `git`, not `dir`: a secret that reached a commit and was removed afterwards
+  # is still public, and this repo is. Needs fetch-depth: 0 in the workflow.
+  "gitleaks git .",
+]

@@ -3,7 +3,7 @@
 # The Makefile is here for exactly two things: Homebrew and mise, the only
 # pieces mise cannot install for itself. Everything else is declared in
 # mise.toml, and the commands are mise's own: `mise bootstrap`, `mise upgrade`,
-# `mise run lint`.
+# `mise run lint` (defined in .mise.toml, so it only exists inside this repo).
 
 # On a fresh mac Homebrew's prefix is not on PATH — the installer only prints
 # the shellenv line, it never writes it anywhere — and every recipe line below
