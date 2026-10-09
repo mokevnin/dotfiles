@@ -58,8 +58,11 @@ ast-grep = "latest"
 atuin = "latest"               # searchable shell history, local only (no sync login)
 bat = "latest"
 bottom = "latest"              # btm, replaces htop
-claude-code = "latest"
-codex = "latest"
+# auto_update lets mise refresh these in the background (checked every 24h by
+# default, tool_update.check_duration): they ship several builds a day, and
+# waiting for the next manual `mise run upgrade` means running a stale one.
+claude-code = { version = "latest", auto_update = true }
+codex = { version = "latest", auto_update = true }
 copilot-cli = "latest"
 delta = "latest"
 devcontainer-cli = "latest"    # the `devcontainer` binary devcontainers.nvim drives
