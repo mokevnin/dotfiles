@@ -138,6 +138,7 @@ zoxide = "latest"               # smart cd
 "npm:neovim" = "latest"
 "npm:markdown-toc" = "latest"
 "gem:neovim" = "latest"
+aws-cli = { version = "latest", symlink_bins = "true" }
 
 # Completions are generated, not tracked. postinstall covers the day-to-day —
 # it runs once per `mise install`/`upgrade` batch, not once per tool, and
@@ -214,6 +215,11 @@ adopt = true
 # ~/Library/Application Support rather than the ~/.local/share the README names.
 "~/Library/Application Support/mise-completions-sync/registry.toml" = "zsh/completions-registry.toml"
 
+# The background half of auto_update on claude-code and codex above: a
+# LaunchAgent checks them hourly, so a launch never waits for a download.
+[bootstrap.services.mise-tool-update]
+builtin = "tool-update"
+
 [bootstrap.user]
 login_shell = "/bin/zsh"
 
@@ -264,7 +270,8 @@ mode = "0755"
 [tasks.upgrade]
 description = "update the mise tools and everything Homebrew installed"
 run = [
-  "mise upgrade",
+  # --global: only the tools declared here, whatever project the task runs from.
+  "mise upgrade --global",
   "brew update",
   # -y because a task must not stop for a prompt: this Homebrew asks before
   # touching casks that carry auto_updates, and 13 of the 14 here do. Plain
@@ -288,12 +295,17 @@ run = [
 ]
 
 # Everything that can be thrown away and rebuilt on demand. Docker is started
-# by hand, so its prune is skipped when the daemon is down instead of failing
+# by hand, so its prune skips itself when the daemon is down instead of failing
 # the rest of the task.
+[tasks."clean:docker"]
+description = "prune docker"
+skip_if = "! docker info >/dev/null 2>&1"
+run = "docker system prune -af --volumes"
+
 [tasks.clean]
 description = "prune docker, brew and unused mise versions"
+depends = ["clean:docker"]
 run = [
-  "if docker info >/dev/null 2>&1; then docker system prune -af --volumes; else echo 'docker is not running, skipped'; fi",
   "brew cleanup --prune=all -s",
   "mise prune --yes",
 ]
