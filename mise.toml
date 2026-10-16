@@ -139,6 +139,7 @@ zoxide = "latest"               # smart cd
 "npm:markdown-toc" = "latest"
 "gem:neovim" = "latest"
 aws-cli = { version = "latest", symlink_bins = "true" }
+"npm:sentry" = "latest"
 
 # Completions are generated, not tracked. postinstall covers the day-to-day —
 # it runs once per `mise install`/`upgrade` batch, not once per tool, and
