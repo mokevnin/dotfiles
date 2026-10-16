@@ -47,7 +47,7 @@ ruby = "latest"
 pnpm = "latest"
 
 # cli
-actionlint = "latest"
+jactionlint = "latest"
 air = "latest"
 ansible = "latest"
 # pipx: and pypi: are the same backend and both install through uv; the old
