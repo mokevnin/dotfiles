@@ -303,11 +303,16 @@ skip_if = "! docker info >/dev/null 2>&1"
 run = "docker system prune -af --volumes"
 
 [tasks.clean]
-description = "prune docker, brew and unused mise versions"
+description = "prune docker, brew, unused mise versions and the go and pnpm caches"
 depends = ["clean:docker"]
 run = [
   "brew cleanup --prune=all -s",
   "mise prune --yes",
+  # The go build cache is never trimmed by go itself and grows without bound
+  # (62G here); the next build just refills what it needs.
+  "go clean -cache",
+  # Only packages no project references anymore, so installs stay hardlinked.
+  "pnpm store prune",
 ]
 
 # The repo describes the machine but not the accounts on it: ssh keys, logins and
