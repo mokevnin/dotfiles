@@ -6,5 +6,9 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # a release is not picked up the week it comes out, same idea as
+    # minimum_release_age in mise.toml
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: ci
