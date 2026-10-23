@@ -298,25 +298,26 @@ run = [
   "mise bootstrap packages upgrade --yes",
 ]
 
-# Everything that can be thrown away and rebuilt on demand. Docker is started
-# by hand, so its prune skips itself when the daemon is down instead of failing
-# the rest of the task.
+# Everything that can be thrown away and rebuilt on demand. Every step is
+# best-effort: a failed prune is reported and the rest still runs. Docker is
+# started by hand, so its prune also skips itself when the daemon is down.
 [tasks."clean:docker"]
 description = "prune docker"
 skip_if = "! docker info >/dev/null 2>&1"
-run = "docker system prune -af --volumes"
+run = "docker system prune -af --volumes || echo 'docker prune failed, continuing'"
 
 [tasks.clean]
 description = "prune docker, brew, unused mise versions and the go and pnpm caches"
 depends = ["clean:docker"]
 run = [
-  "brew cleanup --prune=all -s",
-  "mise prune --yes",
+  "brew cleanup --prune=all -s || echo 'brew cleanup failed, continuing'",
+  "mise prune --yes || echo 'mise prune failed, continuing'",
   # The go build cache is never trimmed by go itself and grows without bound
-  # (62G here); the next build just refills what it needs.
-  "go clean -cache",
+  # (62G here); the next build just refills what it needs. It can fail with
+  # "directory not empty" when a build races the cleanup, which is harmless.
+  "go clean -cache || echo 'go clean failed, continuing'",
   # Only packages no project references anymore, so installs stay hardlinked.
-  "pnpm store prune",
+  "pnpm store prune || echo 'pnpm prune failed, continuing'",
 ]
 
 # The repo describes the machine but not the accounts on it: ssh keys, logins and
