@@ -307,7 +307,7 @@ skip_if = "! docker info >/dev/null 2>&1"
 run = "docker system prune -af --volumes || echo 'docker prune failed, continuing'"
 
 [tasks.clean]
-description = "prune docker, brew, unused mise versions and the go and pnpm caches"
+description = "prune docker, brew, unused mise versions and the go, golangci-lint, uv, npm, pnpm and trivy caches"
 depends = ["clean:docker"]
 run = [
   "brew cleanup --prune=all -s || echo 'brew cleanup failed, continuing'",
@@ -316,7 +316,16 @@ run = [
   # (62G here); the next build just refills what it needs. It can fail with
   # "directory not empty" when a build races the cleanup, which is harmless.
   "go clean -cache || echo 'go clean failed, continuing'",
-  # Only packages no project references anymore, so installs stay hardlinked.
+  # Both caches are keyed by path, so every agent worktree that builds or lints
+  # adds its own entries and nothing ever evicts them (9G and 10G here).
+  "golangci-lint cache clean || echo 'golangci-lint cache clean failed, continuing'",
+  "uv cache clean || echo 'uv cache clean failed, continuing'",
+  "npm cache clean --force || echo 'npm cache clean failed, continuing'",
+  "trivy clean --all || echo 'trivy clean failed, continuing'",
+  # Docker Scout's SBOM cache, 7G here, and not covered by the docker prune.
+  "rm -rf \"$HOME/.docker/scout\"",
+  # Only packages no project references anymore. Projects get their files cloned
+  # from the store (APFS copy-on-write), so du overstates every node_modules.
   "pnpm store prune || echo 'pnpm prune failed, continuing'",
 ]
 
