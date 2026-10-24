@@ -228,7 +228,7 @@ adopt = true
 builtin = "tool-update"
 
 [bootstrap.user]
-login_shell = "/bin/zsh"
+login_shell = "zsh"
 
 # The machine's own settings — the one part of it this repo did not describe.
 # Only what was actually changed here by hand is declared: the point is to
