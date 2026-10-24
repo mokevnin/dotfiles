@@ -203,7 +203,7 @@ adopt = true
 # master is deliberate: the aliases come from upstream and updating them is the
 # point.
 [bootstrap.repos]
-"~/.oh-my-zsh" = { url = "https://github.com/ohmyzsh/ohmyzsh.git", ref = "master" }
+"~/.oh-my-zsh" = { url = "https://github.com/ohmyzsh/ohmyzsh.git", ref = "master", depth = 1 }
 
 [dotfiles]
 "~/.config/mise/config.toml" = "mise.toml"
