@@ -37,6 +37,15 @@ return {
           root_markers = { "typos.toml", "_typos.toml", ".typos.toml", "pyproject.toml", "Cargo.toml", ".git" },
         },
         docker_compose_language_service = {},
+        -- mise.toml diagnostics, completion and task navigation, served by the
+        -- installed mise itself. Not in nvim-lspconfig or mason, so it is declared
+        -- in full; it ignores every toml that is not a mise config
+        mise = {
+          mason = false,
+          cmd = { "mise", "lsp" },
+          filetypes = { "toml" },
+          root_markers = { "mise.toml" },
+        },
         -- oxlint = {},
         -- somesass_ls = {},
         ruby_lsp = {
