@@ -12,7 +12,10 @@ idiomatic_version_file_enable_tools = []
 # where the anonymous limit is 60 per hour — hence the 429s on upgrade. The token
 # comes from gh and is not kept in the repo; if gh is not authenticated yet
 # (fresh machine), mise just warns and goes on anonymously.
-github.credential_command = "gh auth token"
+# gh itself is installed by mise and only its shim is on PATH, so the shim calls
+# mise, which calls this command again — a fork bomb (~3300 processes once).
+# The guard variable makes the nested call return empty instead of recursing.
+github.credential_command = '[ -n "$MISE_GH_TOKEN_LOOKUP" ] || MISE_GH_TOKEN_LOOKUP=1 gh auth token'
 # Everything here rides "latest", so a tool arrives the moment it is published —
 # including a release made from a stolen npm or GitHub token. A day of cooling is
 # what usually separates such a release from being yanked. Locked versions and
