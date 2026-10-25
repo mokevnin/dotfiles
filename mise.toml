@@ -196,6 +196,7 @@ adopt = true
 # pkg casks: brew installs them through installer(8), so they ask for a password
 "brew-cask:zoom" = "latest"
 "brew-cask:nordvpn" = "latest"
+"brew-cask:session-manager-plugin" = "latest"  # the aws-cli needs it for `aws ssm start-session`
 
 # Only the plugin files are used — git, vi-mode and eza are sourced directly by
 # zsh/rc.zsh. The framework around them (themes, plugins=(), the updater) is not
