@@ -20,8 +20,8 @@ eval "$(mise activate zsh)"
 # Completions. Almost nothing here ships a completion file — each tool prints
 # one from a subcommand instead, and the flag differs per tool. misecompsync
 # knows those flags for 130-odd tools and writes the files; the mise hooks that
-# call it are in mise.toml, and the four tools it does not know about are in
-# zsh/completions-registry.toml. Nothing is generated at startup — these are two
+# call it are in the mise config, and the four tools it does not know about are in
+# mise-completions-sync/registry.toml. Nothing is generated at startup — these are two
 # directories of finished files, and they only have to be on fpath before
 # compinit reads it. The second one is where `mise completion zsh --install`
 # puts mise's own, kept apart so that `misecompsync clean` cannot reach it.
@@ -38,7 +38,7 @@ autoload -Uz compinit && compinit
 # terraform is the one tool with no completion file to generate — its
 # `-install-autocomplete` appends a bash-style `complete -C` line that hands
 # completion back to the binary itself, so it needs bashcompinit and has nothing
-# for completions-registry.toml to call. That command writes into ~/.zshrc, the
+# for the completions registry to call. That command writes into ~/.zshrc, the
 # one file that is not tracked, so the line is kept here instead. The shim, not
 # the installs/ path it writes: the shim resolves the version mise pins for the
 # current directory, and is not an absolute path to one machine's home.

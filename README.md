@@ -1,6 +1,6 @@
 # dotfiles
 
-The whole machine is described declaratively in a single file — [`mise.toml`](mise.toml).
+The whole machine is described declaratively in a single file — [`mise.toml`](mise.toml), a symlink to [`home/.config/mise/config.toml`](home/.config/mise/config.toml). Everything that lands in `$HOME` lives under `home/` at the path it has there; the repo root holds only what belongs to the repo itself.
 macOS only.
 It is applied by [`mise bootstrap`](https://mise.jdx.dev/bootstrap.html): system
 packages, git repos, dotfile symlinks, login shell and tools.
@@ -118,7 +118,7 @@ mise bootstrap --only tools  # apply just one part
 mise upgrade                 # update the [tools] half only
 mise run upgrade             # update everything: the tools and the brew side
 mise run lint                # repo linters from .mise.toml (run it inside this repo)
-mise -C nvim run lint        # just the neovim config: stylua
+mise -C home/.config/nvim run lint        # just the neovim config: stylua
 mise doctor project          # check the logins, keys and tokens done by hand
 ```
 
@@ -142,13 +142,13 @@ themselves are fine either way.
 CI ([`.github/workflows/main.yml`](.github/workflows/main.yml)) runs
 `mise bootstrap --dry-run` on `macos-latest` and then the very same
 `mise run lint`, so the lint is described in one place and not duplicated in the
-workflow. Neovim has its own tasks in [`nvim/mise.toml`](nvim/mise.toml), which the
+workflow. Neovim has its own tasks in [`home/.config/nvim/mise.toml`](home/.config/nvim/mise.toml), which the
 repo lint calls.
 
 ## The shell
 
 `~/.zshrc` is generated and holds exactly one line — it sources
-[`zsh/rc.zsh`](zsh/rc.zsh), where the whole config lives, ordering included.
+[`rc.zsh`](home/.config/zsh/rc.zsh), where the whole config lives, ordering included.
 mise creates `.zshrc` itself when it is missing, so nothing has to put one on a
 fresh machine: zsh is already the macOS default.
 
@@ -157,7 +157,7 @@ There is no oh-my-zsh framework here, but its plugins are still used. `git`,
 clone — the git aliases (`gst`, `gd`, `gpra`, ...) come from upstream and are not
 retyped here. What is skipped is everything around them: themes, `plugins=()`,
 `oh-my-zsh.sh`, the updater. That was most of the startup time and none of the
-value; the prompt is [starship](starship.toml) instead, configured to look like
+value; the prompt is [starship](home/.config/starship.toml) instead, configured to look like
 the `robbyrussell` theme it replaced.
 
 The tradeoff is that `plugins/<name>/<name>.plugin.zsh` is an internal path
@@ -175,7 +175,7 @@ called from two hooks in `mise.toml`. `postinstall` runs after every
 first moment the tool itself exists, and installs mise's own `_mise` alongside.
 
 The four tools its registry does not know about — `yc`, `docker-cli`,
-`sentry-cli`, `taplo` — are in [`zsh/completions-registry.toml`](zsh/completions-registry.toml),
+`sentry-cli`, `taplo` — are in [`registry.toml`](home/Library/Application%20Support/mise-completions-sync/registry.toml),
 which is merged on top of the built-in one. Note that the override is read
 through the `dirs` crate, so on macOS it belongs in `~/Library/Application
 Support`, not the `~/.local/share` path the upstream README names.
@@ -198,7 +198,7 @@ directories on `fpath` before `compinit`: the one misecompsync writes and
 | `[doctor.checks.*]` | Probes for the accounts the repo cannot install — run by `mise doctor project` |
 | `[tasks.upgrade]` | Updates both halves of the machine — `mise upgrade` for `[tools]`, `brew upgrade` for everything Homebrew owns |
 | `[tasks.lint]` in `.mise.toml` | `actionlint`, the neovim lint, `taplo`, `typos` and `gitleaks` — the same task locally and in CI. Project-level on purpose: a task in this file would be global |
-| `[tasks.lint]` in `nvim/mise.toml` | `stylua --check` over the lua config |
+| `[tasks.lint]` in `home/.config/nvim/mise.toml` | `stylua --check` over the lua config |
 
 `mise.toml` is symlinked into `~/.config/mise/config.toml`, so the tools are
 global and available from any directory. But `mise bootstrap` has to be run
@@ -222,4 +222,4 @@ and that is the **public** half of an ssh key, exactly the one already sitting a
 
 ## VIM
 
-[LazyVim](https://www.lazyvim.org/), config in `nvim/`.
+[LazyVim](https://www.lazyvim.org/), config in `home/.config/nvim/`.

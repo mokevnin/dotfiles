@@ -1,5 +1,5 @@
 # Neovim's own tasks. .stylua.toml lives in this directory and stylua looks for
-# it from the cwd, so they run with nvim/ as the config root.
+# it from the cwd, so they run with the nvim config dir as the root.
 [tasks.lint]
 description = "stylua --check over the lua config"
 run = "stylua --check lua"

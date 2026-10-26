@@ -1,4 +1,4 @@
-# Project tasks for this repo. They live here and not in mise.toml because that
+# Project tasks for this repo. They live here and not in the global config because that
 # file is also the global config, and a task there shows up in every project.
 # Described once so the same thing runs locally and in CI, where the job just
 # calls `mise run lint`.
@@ -6,16 +6,16 @@
 description = "jactionlint, nvim lint, taplo, typos, gitleaks"
 run = [
   "jactionlint",
-  "mise -C nvim run lint",
+  "mise -C home/.config/nvim run lint",
   # lint, not fmt: taplo's formatter wants the trailing comments in this file on
   # its own column, and turning alignment off collapses them to a single space.
   # Neither is the layout here, and the check is for broken toml anyway — this
   # file is the machine, a syntax error in it is not a thing to push.
-  "taplo lint mise.toml",
+  "taplo lint home/.config/mise/config.toml",
   # taplo only knows toml, not mise: a misspelled key such as `experimantal`
   # parses fine and is silently ignored. explain flags it but exits 0 either
   # way, so the check is on its output.
-  "! mise config explain --file mise.toml | grep 'not a key mise reads'",
+  "! mise config explain --file home/.config/mise/config.toml | grep 'not a key mise reads'",
   "typos",
   # `git`, not `dir`: a secret that reached a commit and was removed afterwards
   # is still public, and this repo is. Needs fetch-depth: 0 in the workflow.
