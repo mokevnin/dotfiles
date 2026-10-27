@@ -175,7 +175,7 @@ run = 'command -v brew >/dev/null 2>&1 || [ -x /opt/homebrew/bin/brew ] || [ -x 
 adopt = true
 # Write Homebrew's cask metadata for casks that mise installs, so brew outdated,
 # brew upgrade and brew doctor recognise them (needs mise 2026.10.20+).
-# homebrew_metadata = true
+homebrew_metadata = true
 
 # System packages. brew:/brew-cask: are installed by mise, but through Homebrew itself.
 [bootstrap.packages]
