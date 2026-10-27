@@ -202,6 +202,7 @@ homebrew_metadata = true
 "brew-cask:zoom" = "latest"
 "brew-cask:nordvpn" = "latest"
 "brew-cask:session-manager-plugin" = "latest"  # the aws-cli needs it for `aws ssm start-session`
+"brew-cask:gcloud-cli" = "latest"
 
 # Only the plugin files are used — git, vi-mode and eza are sourced directly by
 # rc.zsh. The framework around them (themes, plugins=(), the updater) is not
