@@ -62,7 +62,6 @@ ansible = "latest"
 # every run unless the path it runs from contains "pipx".
 "pipx:ansible-lint" = "latest"
 ast-grep = "latest"
-atuin = "latest"               # searchable shell history, local only (no sync login)
 bat = "latest"
 bottom = "latest"              # btm, replaces htop
 # auto_update lets mise refresh these in the background (checked every 24h by
@@ -80,6 +79,7 @@ duf = "latest"                 # replaces df
 dust = "latest"                # replaces du
 eza = "latest"                 # replaces ls
 fd = "latest"
+fzf = "latest"                 # ctrl-r history search, ctrl-t file picker, alt-c cd
 gdu = "latest"                 # replaces ncdu
 gh = "latest"
 gitleaks = "latest"            # secret scan, this repo is public

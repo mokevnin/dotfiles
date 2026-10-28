@@ -90,7 +90,7 @@ their own:
 - ssh keys and `~/.ssh/config` — the keys live in the 1Password agent
   (`IdentityAgent`), and the same agent signs commits (`op-ssh-sign` in
   `.gitconfig`)
-- logins: `gh auth login`, `glab auth login`, `atuin login`, claude, codex
+- logins: `gh auth login`, `glab auth login`, claude, codex
 - tokens: `~/.npmrc` (npmjs + npm.pkg.github.com), plus
   `CODEX_GITHUB_PERSONAL_ACCESS_TOKEN` and `YANDEX_TRACKER_MCP_TOKEN` in
   `~/.config/zsh/local.zsh` — the one shell file that is deliberately untracked,

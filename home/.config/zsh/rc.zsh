@@ -50,14 +50,14 @@ unset _tf
 # oh-my-zsh plugins, sourced as plain files. They are ordinary zsh scripts and
 # need nothing from the framework — no $ZSH, no plugins=(), no oh-my-zsh.sh.
 # The clone they come from is declared in [bootstrap.repos]. Sourced before
-# atuin so that atuin's ctrl-r wins over the vi-mode binding.
+# fzf so that fzf's ctrl-r wins over the vi-mode binding.
 for _plugin in git vi-mode eza; do
   _file="$HOME/.oh-my-zsh/plugins/$_plugin/$_plugin.plugin.zsh"
   [ -r "$_file" ] && source "$_file"
 done
 unset _plugin _file
 
-eval "$(atuin init zsh)"
+source <(fzf --zsh)
 # zoxide binds `cd` itself rather than the default `z`: cd is what actually gets
 # typed here, so it is the one worth making frecency-aware.
 eval "$(zoxide init zsh --cmd cd)"
