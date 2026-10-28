@@ -70,7 +70,7 @@ What happens, in order:
 If mise is already on the machine, steps 3–4 collapse into a single command:
 
 ```sh
-mise bootstrap --from https://github.com/mokevnin/dotfiles.git --from-dir ~/dotfiles --yes
+mise bootstrap --from https://github.com/mokevnin/dotfiles.git --from-dir ~/dotfiles --config-dir home/.config/mise --yes
 ```
 
 ### 5. A new shell
@@ -200,7 +200,7 @@ directories on `fpath` before `compinit`: the one misecompsync writes and
 | `[tasks.lint]` in `.mise.toml` | `actionlint`, the neovim lint, `taplo`, `typos` and `gitleaks` — the same task locally and in CI. Project-level on purpose: a task in this file would be global |
 | `[tasks.lint]` in `home/.config/nvim/mise.toml` | `stylua --check` over the lua config |
 
-`mise.toml` is symlinked into `~/.config/mise/config.toml`, so the tools are
+`~/.config/mise` is a symlink to `home/.config/mise` (`--config-dir` above), so the tools are
 global and available from any directory. But `mise bootstrap` has to be run
 **from `~/dotfiles`**: the sources in `[dotfiles]` are relative, and mise
 resolves them against whichever config file it loaded through — from the home

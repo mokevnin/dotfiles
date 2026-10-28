@@ -1,9 +1,10 @@
 # The only config of the machine, macOS only. Lives in home/ at the path it has
-# under $HOME and is symlinked into ~/.config/mise/config.toml, so the tools and
-# the bootstrap description are available globally. mise.toml at the repo root is
-# a symlink back here: `mise bootstrap --from` wants a mise.toml at the root.
+# under $HOME; `mise bootstrap --config-dir` links ~/.config/mise to this
+# directory, so the tools and the bootstrap description are available globally.
+# mise.toml at the repo root is a symlink back here, for CI: there the repo is
+# a plain project and mise finds its config through that file.
 #
-# Fresh machine:   mise bootstrap --from https://github.com/mokevnin/dotfiles.git --from-dir ~/dotfiles --yes
+# Fresh machine:   mise bootstrap --from https://github.com/mokevnin/dotfiles.git --from-dir ~/dotfiles --config-dir home/.config/mise --yes
 # (over https — there are no ssh keys on a new machine yet; run bootstrap from ~/dotfiles)
 # Already cloned:  mise bootstrap --yes
 
@@ -213,7 +214,6 @@ homebrew_metadata = true
 "~/.oh-my-zsh" = { url = "https://github.com/ohmyzsh/ohmyzsh.git", ref = "master", depth = 1 }
 
 [dotfiles]
-"~/.config/mise/config.toml" = "~/dotfiles/home/.config/mise/config.toml"
 "~/.config/nvim" = "~/dotfiles/home/.config/nvim"
 "~/.gitconfig" = "~/dotfiles/home/.gitconfig"
 "~/.config/starship.toml" = "~/dotfiles/home/.config/starship.toml"
