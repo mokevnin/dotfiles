@@ -57,6 +57,13 @@ for _plugin in git vi-mode eza; do
 done
 unset _plugin _file
 
+# Ghostty sends ctrl+[ as the CSI u sequence ESC [ 91;5u, not as a bare ESC
+# (ghostty-org/ghostty#2976). zsh does not know it: the leading ESC drops into
+# vi command mode and the rest is run as vi commands, the final `u` undoing
+# whatever was just typed. Treat the sequence as ESC itself.
+bindkey -M viins '^[[91;5u' vi-cmd-mode
+bindkey -M vicmd '^[[91;5u' vi-cmd-mode
+
 source <(fzf --zsh)
 # zoxide binds `cd` itself rather than the default `z`: cd is what actually gets
 # typed here, so it is the one worth making frecency-aware.
