@@ -161,12 +161,14 @@ yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 postinstall = "misecompsync --shell zsh --new-only"
 
 [bootstrap.hooks.post-tools]
+description = "Generate zsh completions for mise and the tools"
 run = "mise completion zsh --install || true; misecompsync --shell zsh"
 
 # mise cannot install Homebrew itself, and it installs brew:/brew-cask: through
 # brew — so brew has to show up before the packages. NONINTERACTIVE=1 keeps the
 # installer from waiting on Enter under --yes; it still asks for a sudo password.
 [bootstrap.hooks.pre-packages]
+description = "Install Homebrew unless it is already there"
 run = 'command -v brew >/dev/null 2>&1 || [ -x /opt/homebrew/bin/brew ] || [ -x /usr/local/bin/brew ] || NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
 
 # Several GUI apps (Slack, Telegram, WhatsApp, Zoom, NordVPN) were installed by
