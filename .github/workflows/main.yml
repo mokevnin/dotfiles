@@ -8,7 +8,8 @@ on:
     branches:
       - main
 
-# Read-only: the job lints and publishes nothing, so the token needs nothing else.
+# Read-only: the check lints and publishes nothing, so the token needs nothing
+# else. Only automerge below asks for write, and only on its own job.
 permissions:
   contents: read
 
@@ -35,6 +36,11 @@ jobs:
         with:
           install_args: jactionlint stylua taplo typos gitleaks
 
+      # [dotfiles] points at ~/dotfiles/home, the clone's place on a real machine,
+      # while the runner checks out into its workspace — link it to where mise looks
+      - name: Link checkout to ~/dotfiles
+        run: ln -s "$GITHUB_WORKSPACE" "$HOME/dotfiles"
+
       # the runner already has its own ~/.gitconfig, and without --force-dotfiles
       # the plan fails with "refusing to overwrite existing files". This is still
       # a --dry-run, nothing gets written.
@@ -49,3 +55,23 @@ jobs:
         run: mise run lint
         env:
           MISE_TASK_RUN_AUTO_INSTALL: "false"
+
+  # Dependabot PRs merge themselves once the check above is green. main has no
+  # required checks, so `--auto` would not wait for anything — `needs` is the gate.
+  # A merge made with GITHUB_TOKEN does not start a push run on main; the PR run
+  # has already checked the same tree.
+  automerge:
+    needs: check
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      # --repo instead of a checkout; it also keeps gh from touching local branches
+      - name: Merge
+        run: gh pr merge "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --squash --delete-branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
