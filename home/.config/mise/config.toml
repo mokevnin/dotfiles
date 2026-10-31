@@ -86,6 +86,9 @@ gh = "latest"
 gitleaks = "latest"            # secret scan, this repo is public
 glab = "latest"
 glow = "latest"                # markdown in the terminal
+# Projects pin their own versions of these two; the global entry is what lets
+# `mise run clean` call them from outside any project to clear their caches.
+golangci-lint = "latest"
 hyperfine = "latest"           # command benchmarks
 helm = "latest"
 jq = "latest"
@@ -118,6 +121,7 @@ tokei = "latest"                # code statistics, replaces scc
 # artifact. The brew formula is tree-sitter-cli; in the registry it is the
 # aqua package under the plain name.
 tree-sitter = "latest"
+trivy = "latest"                # see golangci-lint above
 typos = "latest"                # spelling, the repo is english-only
 # The installer behind the pypi: backend (ansible, ansible-lint). mise uses it
 # only when it resolves as a tool of its own — an undeclared uv is a shim with
