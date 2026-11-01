@@ -292,6 +292,24 @@ description = "update the mise tools and everything Homebrew installed"
 run = [
   # --global: only the tools declared here, whatever project the task runs from.
   "mise upgrade --global",
+  # The pitchfork supervisor behind `mise daemons` keeps running the binary it
+  # was started from, so after an upgrade every pitchfork call warns that the
+  # CLI and the supervisor differ. Restart it only when its version is not the
+  # current one. --force kills the daemons with it (they are its children), so
+  # the ones that were running are started again by id: the supervisor's state
+  # keeps each one's directory. mise's postinstall hook is not the place for
+  # this: its docs say to restart services after `mise upgrade`, not inside it.
+  '''
+  sup=$(pgrep -f "pitchfork supervisor run" | head -1)
+  [ -n "$sup" ] || exit 0
+  was=$(ps -o command= -p "$sup" | sed -E 's#.*/installs/pitchfork/([^/]+)/.*#\1#')
+  now=$(pitchfork --version | awk '{print $2}')
+  [ "$was" = "$now" ] && exit 0
+  ids=$(pitchfork list --json 2>/dev/null | jq -r '.[] | select(.status == "running") | .id')
+  echo "pitchfork supervisor $was -> $now, restarting${ids:+ and starting again: $ids}"
+  pitchfork supervisor start --force
+  [ -z "$ids" ] || pitchfork start $ids
+  ''',
   "brew update",
   # -y because a task must not stop for a prompt: this Homebrew asks before
   # touching casks that carry auto_updates, and 13 of the 14 here do. Plain
