@@ -112,6 +112,7 @@ whatever is still missing.
 make install                 # the only thing make is for: brew, then mise, then bootstrap
 
 mise bootstrap --yes         # apply the config
+mise bootstrap --update --yes  # git pull --ff-only this checkout, then apply
 mise bootstrap --dry-run     # see what would change
 mise bootstrap status        # state of every declarative part
 mise bootstrap --only tools  # apply just one part
