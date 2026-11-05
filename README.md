@@ -131,14 +131,12 @@ is a mise command.
 `[bootstrap.packages]` describes the machine at bootstrap time rather than
 tracking it afterwards. `mise run upgrade` is the one that updates both halves.
 
-It calls Homebrew *and* `mise bootstrap packages upgrade`, because a cask is
-owned by whichever of the two installed it and neither reads the other's
-bookkeeping: mise leaves a `.mise-cask.toml` in the Caskroom where brew expects
-a `.metadata` directory. So brew skips the casks mise installed, and mise
-declines the ones brew did. The visible symptom is that `brew doctor` reports
-"invalid metadata" for mise's casks while `mise bootstrap packages status` calls
-brew's "missing" — chasing one clean breaks the other, and the applications
-themselves are fine either way.
+For the brew half it calls `brew upgrade` rather than
+`mise bootstrap packages upgrade`. With `homebrew_metadata = true` in
+`[bootstrap.brew]`, mise hands every cask it installs over to Homebrew — it
+writes the `.metadata` and the install receipt brew expects — so brew upgrades
+all of them, and `mise bootstrap packages upgrade` declines each one as
+"installed and managed by Homebrew".
 
 CI ([`.github/workflows/main.yml`](.github/workflows/main.yml)) runs
 `mise bootstrap --dry-run` on `macos-latest` and then the very same

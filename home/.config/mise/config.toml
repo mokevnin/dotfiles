@@ -283,10 +283,11 @@ mode = "0755"
 
 # `mise upgrade` walks [tools] and nothing else, and [bootstrap.packages] is a
 # bootstrap-time description — so the brew half of the machine was never being
-# updated by anything. `mise bootstrap packages upgrade` does not close the gap
-# on its own: it declines every cask that carries a Homebrew receipt ("installed
-# and managed by Homebrew; leaving unchanged"), which here is all of them. brew
-# is the only thing that upgrades the brew side, so this task calls both.
+# updated by anything. `mise bootstrap packages upgrade` does not close the gap:
+# with homebrew_metadata above, every cask mise installs is handed over to brew,
+# and mise then declines it ("installed and managed by Homebrew; leaving
+# unchanged"). So brew is the only thing that upgrades the brew side, and this
+# task calls it directly.
 [tasks.upgrade]
 description = "update the mise tools and everything Homebrew installed"
 run = [
@@ -312,7 +313,7 @@ run = [
   ''',
   "brew update",
   # -y because a task must not stop for a prompt: this Homebrew asks before
-  # touching casks that carry auto_updates, and 13 of the 14 here do. Plain
+  # touching casks that carry auto_updates, and most of the ones here do. Plain
   # `brew upgrade` already covers those, so there is no separate --cask step and
   # no --greedy — the latter only adds casks pinned to :latest, at the price of
   # re-downloading apps that update themselves.
@@ -322,14 +323,6 @@ run = [
   # (v9) stays the same — after brew moved mise to 2026.9.16 every aqua tool
   # went missing. The sources stay, so the next lookup recompiles locally.
   "rm -rf \"$(mise cache path)/aqua-registry/compiled\"",
-  # A cask ends up owned by whichever of the two installed it, and neither can
-  # see the other's bookkeeping: mise writes .mise-cask.toml where brew wants
-  # .metadata, so brew skips mise's casks and mise declines brew's ("installed
-  # and managed by Homebrew"). Running both is what covers the whole set. This
-  # is also why `brew doctor` reports invalid Caskroom metadata for anything
-  # mise installed, and `mise bootstrap packages status` calls anything brew
-  # reinstalled missing — the two never agree, and both apps are fine.
-  "mise bootstrap packages upgrade --yes",
 ]
 
 # Everything that can be thrown away and rebuilt on demand. Every step is
