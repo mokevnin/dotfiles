@@ -48,7 +48,7 @@ compile = false
 # languages / runtimes
 go = "latest"
 java = "temurin-25"
-node = "26.8.2"
+node = "26.13.0"
 python = "latest"
 ruby = "latest"
 
