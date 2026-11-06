@@ -118,6 +118,7 @@ mise bootstrap status        # state of every declarative part
 mise bootstrap --only tools  # apply just one part
 mise upgrade                 # update the [tools] half only
 mise run upgrade             # update everything: the tools and the brew side
+mise run clean               # drop caches, cargo targets and idle agent worktrees (also weekly via launchd)
 mise run lint                # repo linters from .mise.toml (run it inside this repo)
 mise -C home/.config/nvim run lint        # just the neovim config: stylua
 mise doctor project          # check the logins, keys and tokens done by hand

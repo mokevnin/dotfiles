@@ -240,6 +240,21 @@ homebrew_metadata = true
 [bootstrap.services.mise-tool-update]
 builtin = "tool-update"
 
+# `mise run clean` once a week, Sunday night: the target dirs, agent worktrees
+# and build caches it drops grow by tens of gigabytes a week, faster than anyone
+# remembers to run it. launchd runs a missed slot on wake. Its PATH is bare, so
+# Homebrew is added; the mise tools come from the task itself.
+[bootstrap.macos.launchd.agents.clean]
+program = "/opt/homebrew/bin/mise"
+args = ["run", "clean"]
+working_directory = "~"
+environment = { PATH = "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin" }
+start_calendar_interval = { weekday = 0, hour = 4, minute = 0 }
+process_type = "Background"
+nice = 10
+stdout_path = "/tmp/mise-clean.log"
+stderr_path = "/tmp/mise-clean.log"
+
 [bootstrap.user]
 login_shell = "zsh"
 
@@ -333,16 +348,53 @@ description = "prune docker"
 skip_if = "! docker info >/dev/null 2>&1"
 run = "docker system prune -af --volumes || echo 'docker prune failed, continuing'"
 
+# Agent worktrees (.claude/worktrees) are left behind by the sessions that made
+# them, each with its own node_modules and build output (five in hexlet held
+# 4G), and their mise.toml files keep old tool versions from `mise prune`. One
+# whose index has not changed for a week goes. `git worktree remove` refuses a
+# dirty one and keeps the branch, so no commit is lost; a detached HEAD has no
+# branch to keep its commits, so those worktrees are left for a human.
+[tasks."clean:worktrees"]
+description = "remove agent worktrees idle for a week"
+run = '''
+find "$HOME/projects" -maxdepth 6 \( -name node_modules -o -name .git -o -name target -o -name vendor \) -prune \
+  -o -type d -path '*/.claude/worktrees/*' -prune -print 2>/dev/null |
+while read -r wt; do
+  git -C "$wt" symbolic-ref -q HEAD >/dev/null 2>&1 || continue
+  index=$(git -C "$wt" rev-parse --path-format=absolute --git-path index) || continue
+  [ -n "$(find "$index" -mtime +7 2>/dev/null)" ] || continue
+  git -C "$wt" worktree remove "$wt" && echo "removed $wt"
+done || true
+'''
+
 [tasks.clean]
-description = "prune docker, brew, unused mise versions and the go, golangci-lint, uv, npm, pnpm and trivy caches"
-depends = ["clean:docker"]
+description = "prune docker, idle agent worktrees, brew, unused mise versions, cargo target dirs and the go, golangci-lint, uv, npm, pnpm and trivy caches"
+depends = ["clean:docker", "clean:worktrees"]
 run = [
   "brew cleanup --prune=all -s || echo 'brew cleanup failed, continuing'",
   "mise prune --yes || echo 'mise prune failed, continuing'",
+  # cargo never trims target/ either: every build adds artifacts and none go
+  # (easement's reached 71G), so the directory is dropped and the next build
+  # starts over. Removing it is all `cargo clean` does, and it needs no
+  # toolchain on PATH, which a project-pinned rust would not have here.
+  '''
+  find "$HOME/projects" -maxdepth 6 \( -name node_modules -o -name .git -o -name target -o -name vendor \) -prune \
+    -o -name Cargo.toml -print 2>/dev/null |
+  while read -r manifest; do
+    target="${manifest%/Cargo.toml}/target"
+    [ -d "$target" ] && rm -rf "$target" && echo "removed $target"
+  done || true
+  ''',
   # The go build cache is never trimmed by go itself and grows without bound
   # (62G here); the next build just refills what it needs. It can fail with
   # "directory not empty" when a build races the cleanup, which is harmless.
   "go clean -cache || echo 'go clean failed, continuing'",
+  # Agents give a task its own GOCACHE under ~/.cache so parallel builds do not
+  # share one (go-build-spec1120 and the like, 10G here); nothing reuses them.
+  "rm -rf \"$HOME\"/.cache/go-build-*",
+  # Every version of every module ever downloaded stays here (17G); the proxy
+  # serves them again on the next build.
+  "go clean -modcache || echo 'go clean -modcache failed, continuing'",
   # Both caches are keyed by path, so every agent worktree that builds or lints
   # adds its own entries and nothing ever evicts them (9G and 10G here).
   "golangci-lint cache clean || echo 'golangci-lint cache clean failed, continuing'",
