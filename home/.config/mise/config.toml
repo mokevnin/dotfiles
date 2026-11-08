@@ -8,8 +8,14 @@
 # (over https — there are no ssh keys on a new machine yet; run bootstrap from ~/dotfiles)
 # Already cloned:  mise bootstrap --yes
 
+min_version = "2026.11.4"
+
 [settings]
 idiomatic_version_file_enable_tools = []
+# Keep the last task output for `mise tasks log <task>`. prefix makes mise pipe
+# even a single task's output; the default interleave can bypass saved logs.
+task.logs = true
+task.output = "prefix"
 # A toolset this size on "latest" means dozens of requests to api.github.com,
 # where the anonymous limit is 60 per hour — hence the 429s on upgrade. The token
 # comes from gh and is not kept in the repo; if gh is not authenticated yet

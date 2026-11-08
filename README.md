@@ -2,6 +2,7 @@
 
 The whole machine is described declaratively in a single file — [`mise.toml`](mise.toml), a symlink to [`home/.config/mise/config.toml`](home/.config/mise/config.toml). Everything that lands in `$HOME` lives under `home/` at the path it has there; the repo root holds only what belongs to the repo itself.
 macOS only.
+Requires mise 2026.11.4 or newer; CI uses 2026.11.4 explicitly.
 It is applied by [`mise bootstrap`](https://mise.jdx.dev/bootstrap.html): system
 packages, git repos, dotfile symlinks, login shell and tools.
 
@@ -120,6 +121,8 @@ mise upgrade                 # update the [tools] half only
 mise run upgrade             # update everything: the tools and the brew side
 mise run clean               # drop caches, cargo targets and idle agent worktrees (also weekly via launchd)
 mise run lint                # repo linters from .mise.toml (run it inside this repo)
+mise tasks log lint          # saved output of the last lint run
+mise tasks history --summary # recent task results and typical durations for this project
 mise -C home/.config/nvim run lint        # just the neovim config: stylua
 mise doctor project          # check the logins, keys and tokens done by hand
 ```
@@ -127,6 +130,12 @@ mise doctor project          # check the logins, keys and tokens done by hand
 The Makefile exists for exactly two things: installing Homebrew and installing
 mise with it — the only pieces that cannot install themselves. Everything else
 is a mise command.
+
+Task output uses the `prefix` style and is saved for `mise tasks log <task>`.
+Each task keeps its most recent output (up to 4 MiB, with secrets redacted by
+mise). Tasks that set `raw`, `interactive` or bypass piping with `interleave`
+do not save output. Task history is enabled by mise by default and keeps the
+last 20 runs per task for each project.
 
 `mise upgrade` is only half an update: it walks `[tools]` and stops there, and
 `[bootstrap.packages]` describes the machine at bootstrap time rather than

@@ -34,6 +34,7 @@ jobs:
       # installs mise, installs the linters only, and caches — all the action's own work
       - uses: jdx/mise-action@6be3c7ed4c21d4f76b208d351d95aac273ebb76d # v5.2.4
         with:
+          version: 2026.11.4
           install_args: jactionlint stylua taplo typos gitleaks
 
       # [dotfiles] points at ~/dotfiles/home, the clone's place on a real machine,
