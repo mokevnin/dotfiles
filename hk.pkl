@@ -1,0 +1,21 @@
+amends "package://github.com/jdx/hk/releases/download/v2.13.0/hk@2.13.0#/Config.pkl"
+
+// Everything goes straight to main, so CI only sees a commit once it is public.
+// pre-push runs the same `mise run lint` as CI before anything leaves the
+// machine; a leaked secret caught after the push is already out. One step and
+// no globs: the task already knows what it lints, and betterleaks scans the
+// history, not the changed files. Installed by `mise run setup`.
+local lint = new Mapping<String, Step> {
+    ["lint"] {
+        check = "mise run lint"
+    }
+}
+
+hooks {
+    ["pre-push"] {
+        steps = lint
+    }
+    ["check"] {
+        steps = lint
+    }
+}

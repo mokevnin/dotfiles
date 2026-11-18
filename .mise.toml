@@ -3,7 +3,7 @@
 # Described once so the same thing runs locally and in CI, where the job just
 # calls `mise run lint`.
 [tasks.lint]
-description = "jactionlint, nvim lint, taplo, typos, gitleaks"
+description = "jactionlint, nvim lint, taplo, typos, agnix, betterleaks"
 run = [
   "jactionlint",
   "mise -C home/.config/nvim run lint",
@@ -17,7 +17,16 @@ run = [
   # way, so the check is on its output.
   "! mise config explain --file home/.config/mise/config.toml | grep 'not a key mise reads'",
   "typos",
+  # the skills in .agents/skills and their .claude/skills links; .agnix.toml
+  # holds the target and the one vendored exception. Warnings do not fail it.
+  "agnix .",
   # `git`, not `dir`: a secret that reached a commit and was removed afterwards
   # is still public, and this repo is. Needs fetch-depth: 0 in the workflow.
-  "gitleaks git .",
+  # -c because the repo config is not auto-loaded; --redact keeps a real find
+  # out of the public CI log.
+  "betterleaks git . -c .betterleaks.toml --redact --no-banner",
 ]
+
+[tasks.setup]
+description = "install the git hooks from hk.pkl (pre-push runs lint)"
+run = "hk install"

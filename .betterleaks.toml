@@ -1,0 +1,12 @@
+# Loaded with -c by `mise run lint` (see .mise.toml), on top of the default rules.
+[extend]
+useDefault = true
+
+# generic-password fires on the cask key "brew-cask:1password": the word is in
+# the app's name and the value is a version, not a secret. Matched on the whole
+# line so a real password elsewhere is still caught.
+[[allowlists]]
+description = "1Password cask name"
+targetRules = ["generic-password"]
+regexTarget = "line"
+regexes = ['''^\s*"brew-cask:1password"\s*=''']

@@ -1,0 +1,10 @@
+# The skills are what Claude Code loads from .claude/skills (symlinks into
+# .agents/skills), so they are checked against its rules, not the generic spec.
+target = "ClaudeCode"
+
+# Installed from mattpocock/skills and pinned in skills-lock.json, so a local
+# edit is overwritten on the next update. Its nested `metadata.credits` map
+# breaks the spec's string-to-string rule; Claude Code loads it anyway.
+[[overrides]]
+paths = [".agents/skills/pr/SKILL.md"]
+disabled_rules = ["AS-016"]

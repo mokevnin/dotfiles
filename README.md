@@ -121,6 +121,7 @@ mise upgrade                 # update the [tools] half only
 mise run upgrade             # update everything: the tools and the brew side
 mise run clean               # drop caches, cargo targets and idle agent worktrees (also weekly via launchd)
 mise run lint                # repo linters from .mise.toml (run it inside this repo)
+mise run setup               # git hooks from hk.pkl: pre-push runs the same lint
 mise tasks log lint          # saved output of the last lint run
 mise tasks history --summary # recent task results and typical durations for this project
 mise -C home/.config/nvim run lint        # just the neovim config: stylua
@@ -206,7 +207,7 @@ directories on `fpath` before `compinit`: the one misecompsync writes and
 | `[bootstrap.hooks.pre-packages]` | Installs Homebrew on macOS before the `brew:` packages |
 | `[doctor.checks.*]` | Probes for the accounts the repo cannot install — run by `mise doctor project` |
 | `[tasks.upgrade]` | Updates both halves of the machine — `mise upgrade` for `[tools]`, `brew upgrade` for everything Homebrew owns |
-| `[tasks.lint]` in `.mise.toml` | `actionlint`, the neovim lint, `taplo`, `typos` and `gitleaks` — the same task locally and in CI. Project-level on purpose: a task in this file would be global |
+| `[tasks.lint]` in `.mise.toml` | `actionlint`, the neovim lint, `taplo`, `typos`, `agnix` and `betterleaks` — the same task locally and in CI. Project-level on purpose: a task in this file would be global |
 | `[tasks.lint]` in `home/.config/nvim/mise.toml` | `stylua --check` over the lua config |
 
 `~/.config/mise` is a symlink to `home/.config/mise` (`--config-dir` above), so the tools are

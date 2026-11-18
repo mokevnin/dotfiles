@@ -23,7 +23,7 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 15
     steps:
-      # full history: gitleaks in the lint task scans every commit, and the
+      # full history: betterleaks in the lint task scans every commit, and the
       # default shallow checkout would hand it exactly one
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -35,7 +35,7 @@ jobs:
       - uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
         with:
           version: 2026.11.4
-          install_args: jactionlint stylua taplo typos gitleaks
+          install_args: jactionlint stylua taplo typos betterleaks github:agent-sh/agnix
 
       # [dotfiles] points at ~/dotfiles/home, the clone's place on a real machine,
       # while the runner checks out into its workspace — link it to where mise looks

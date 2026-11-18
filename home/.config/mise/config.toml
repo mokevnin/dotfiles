@@ -70,8 +70,15 @@ ansible = "latest"
 # spelling stays because ansible-lint warns about a "broken local setup" on
 # every run unless the path it runs from contains "pipx".
 "pipx:ansible-lint" = "latest"
+# lints the agent configs (CLAUDE.md, AGENTS.md, SKILL.md, hooks, MCP); not in
+# the registry yet, so straight from its GitHub releases
+"github:agent-sh/agnix" = "latest"
 ast-grep = "latest"
 bat = "latest"
+# secret scan, this repo is public. The successor to gitleaks by its original
+# author; same TOML rules and gitleaks:allow comments. latest stays on v1 until
+# v2 leaves release candidate.
+betterleaks = "latest"
 bottom = "latest"              # btm, replaces htop
 # auto_update lets mise refresh these in the background (checked every 24h by
 # default, tool_update.check_duration): they ship several builds a day, and
@@ -91,7 +98,6 @@ fd = "latest"
 fzf = "latest"                 # ctrl-r history search, ctrl-t file picker, alt-c cd
 gdu = "latest"                 # replaces ncdu
 gh = "latest"
-gitleaks = "latest"            # secret scan, this repo is public
 glab = "latest"
 glow = "latest"                # markdown in the terminal
 # Projects pin their own versions of these two; the global entry is what lets
@@ -99,6 +105,8 @@ glow = "latest"                # markdown in the terminal
 golangci-lint = "latest"
 hyperfine = "latest"           # command benchmarks
 helm = "latest"
+# git hooks from hk.pkl (pre-push runs `mise run lint` here); pkl evaluates it
+hk = "latest"
 jq = "latest"
 just = "latest"
 k9s = "latest"
@@ -115,6 +123,7 @@ overmind = "latest"
 # not install it, and several [daemons] features need a recent release.
 pitchfork = "latest"
 pandoc = "latest"
+pkl = "latest"
 ripgrep = "latest"
 sd = "latest"                   # replaces gnu-sed
 starship = "latest"             # prompt, configured by starship.toml
