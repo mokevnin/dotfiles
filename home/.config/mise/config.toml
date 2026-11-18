@@ -55,7 +55,9 @@ compile = false
 go = "latest"
 java = "temurin-25"
 node = "26.13.0"
-python = "latest"
+# Keep the fixed interpreter used by user uv tool environments installed.
+# Updating latest must not change their Python minor or let cleanup remove it.
+python = ["latest", "3.14.9"]
 ruby = "latest"
 
 pnpm = "latest"
@@ -228,6 +230,7 @@ homebrew_metadata = true
 [dotfiles]
 "~/.config/nvim" = "~/dotfiles/home/.config/nvim"
 "~/.gitconfig" = "~/dotfiles/home/.gitconfig"
+"~/.config/git/allowed_signers" = "~/dotfiles/home/.config/git/allowed_signers"
 "~/.config/starship.toml" = "~/dotfiles/home/.config/starship.toml"
 # The whole shell config, ordering included, is one tracked file. ~/.zshrc is
 # reduced to the single line that sources it — mise creates the file if it does
@@ -440,6 +443,16 @@ hint = "Point IdentityAgent at the 1Password socket in ~/.ssh/config."
 description = "op-ssh-sign is in place — .gitconfig signs every commit with it"
 run = '[ -x "/Applications/1Password.app/Contents/MacOS/op-ssh-sign" ]'
 hint = "Launch 1Password once and turn on the SSH agent."
+
+[doctor.checks.commit-verification]
+description = "the current SSH signing key is trusted for Git signature verification"
+run = '''
+signers_file=$(git config --get --path gpg.ssh.allowedSignersFile) || exit 1
+[ -f "$signers_file" ] || exit 1
+signing_key=$(git config --get user.signingkey) || exit 1
+grep -F -- "$signing_key" "$signers_file" >/dev/null
+'''
+hint = "Run mise bootstrap --only dotfiles from ~/dotfiles and check ~/.config/git/allowed_signers."
 
 [doctor.checks.shell-secrets]
 description = "~/.config/zsh/local.zsh holds the exports that cannot be tracked"
