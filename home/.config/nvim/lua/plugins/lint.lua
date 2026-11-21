@@ -35,8 +35,12 @@ return {
           cmd = function()
             return custom_gcl(vim.fn.expand("%:p:h")) or "golangci-lint"
           end,
-          -- until the project's binary is built the stock one only fails, so stay quiet
+          -- until the project's binary is built the stock one only fails, so stay quiet;
+          -- a file outside the cwd (the stdlib or a module opened by gd) is not the project's
           condition = function(ctx)
+            if not vim.startswith(ctx.filename, vim.fn.getcwd() .. "/") then
+              return false
+            end
             local bin = custom_gcl(ctx.dirname)
             return bin == nil or vim.fn.executable(bin) == 1
           end,
