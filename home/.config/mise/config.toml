@@ -91,6 +91,9 @@ devcontainer-cli = "latest"    # the `devcontainer` binary devcontainers.nvim dr
 difftastic = "latest"          # structural diff, understands syntax
 docker-cli = "latest"
 docker-compose = "latest"
+# credsStore "osxkeychain" in ~/.docker/config.json runs this; Docker Desktop
+# used to ship it, OrbStack keeps its copy inside the app off PATH.
+"github:docker/docker-credential-helpers" = { version = "latest", asset_pattern = "docker-credential-osxkeychain-*.darwin-arm64", bin = "docker-credential-osxkeychain" }
 duf = "latest"                 # replaces df
 dust = "latest"                # replaces du
 eza = "latest"                 # replaces ls
