@@ -389,7 +389,7 @@ done || true
 '''
 
 [tasks.clean]
-description = "prune docker, idle agent worktrees, brew, unused mise versions, cargo target dirs and the go, golangci-lint, uv, npm, npx, yarn, pnpm and trivy caches"
+description = "prune docker, idle agent worktrees, brew, unused mise versions, cargo target dirs and the go, golangci-lint, uv, npm, npx, yarn, pnpm, mise, gradle, nuget and trivy caches"
 depends = ["clean:docker", "clean:worktrees"]
 run = [
   "brew cleanup --prune=all -s || echo 'brew cleanup failed, continuing'",
@@ -433,6 +433,15 @@ run = [
   # Only packages no project references anymore. Projects get their files cloned
   # from the store (APFS copy-on-write), so du overstates every node_modules.
   "pnpm store prune || echo 'pnpm prune failed, continuing'",
+  # The global virtual store: no project here enables it, every one keeps its
+  # own node_modules/.pnpm, yet it reached 18G and store prune leaves it be.
+  # The dlx cache goes with it, its entries link there.
+  "rm -rf \"$HOME/Library/pnpm/store/v11/links\" \"$HOME/Library/Caches/pnpm/dlx\"",
+  # Downloaded tool archives and version lists (5G); mise prune keeps them.
+  "mise cache clear || echo 'mise cache clear failed, continuing'",
+  # Every dependency version a gradle or dotnet build ever fetched (4G, 2G);
+  # the next build downloads what it needs.
+  "rm -rf \"$HOME/.gradle/caches\" \"$HOME/.nuget/packages\"",
 ]
 
 # The repo describes the machine but not the accounts on it: ssh keys, logins and
