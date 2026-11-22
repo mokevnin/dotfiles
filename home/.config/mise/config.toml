@@ -369,17 +369,24 @@ description = "prune docker"
 skip_if = "! docker info >/dev/null 2>&1"
 run = "docker system prune -af --volumes || echo 'docker prune failed, continuing'"
 
-# Agent worktrees (.claude/worktrees) are left behind by the sessions that made
-# them, each with its own node_modules and build output (five in hexlet held
-# 4G), and their mise.toml files keep old tool versions from `mise prune`. One
-# whose index has not changed for a week goes. `git worktree remove` refuses a
-# dirty one and keeps the branch, so no commit is lost; a detached HEAD has no
-# branch to keep its commits, so those worktrees are left for a human.
+# Agent worktrees (.claude/worktrees, and .worktrees where a project's own
+# task puts them, as hexlet-exercise-kit does) are left behind by the
+# sessions that made them, each with its own node_modules and build output
+# (five in hexlet held 4G, the kit's held 9.6G), and their mise.toml files keep
+# old tool versions from `mise prune`. One whose index has not changed for a
+# week goes. `git worktree remove` refuses a dirty one and keeps the branch, so
+# no commit is lost; a detached HEAD has no branch to keep its commits, so
+# those worktrees are left for a human. Trees under .worktrees nest at the depth
+# of the clone they belong to, so they are found by their .git file.
 [tasks."clean:worktrees"]
 description = "remove agent worktrees idle for a week"
 run = '''
-find "$HOME/projects" -maxdepth 6 \( -name node_modules -o -name .git -o -name target -o -name vendor \) -prune \
-  -o -type d -path '*/.claude/worktrees/*' -prune -print 2>/dev/null |
+{
+  find "$HOME/projects" -maxdepth 6 \( -name node_modules -o -name .git -o -name target -o -name vendor \) -prune \
+    -o -type d -path '*/.claude/worktrees/*' -prune -print 2>/dev/null
+  find "$HOME"/*/.worktrees "$HOME"/projects/*/.worktrees -maxdepth 8 -name node_modules -prune \
+    -o -name .git -type f -exec grep -l '^gitdir: .*/worktrees/' {} + 2>/dev/null | sed 's|/\.git$||'
+} |
 while read -r wt; do
   git -C "$wt" symbolic-ref -q HEAD >/dev/null 2>&1 || continue
   index=$(git -C "$wt" rev-parse --path-format=absolute --git-path index) || continue
