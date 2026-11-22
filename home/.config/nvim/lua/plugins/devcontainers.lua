@@ -3,7 +3,7 @@ return {
     -- `:DevcontainersUp` starts the container described by .devcontainer/ in the
     -- project, `:DevcontainersExec cmd...` runs something inside it, and every
     -- language server of such a project is started inside it too. The daemon is
-    -- docker-desktop and the `devcontainer` binary it drives is devcontainer-cli,
+    -- OrbStack and the `devcontainer` binary it drives is devcontainer-cli,
     -- both declared in mise.toml.
     --
     -- A fork, for jedrzejboczar/devcontainers.nvim#8, which is what lsp_auto below

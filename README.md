@@ -60,7 +60,7 @@ What happens, in order:
 | `brew` target | installs Homebrew if it is missing — **asks for a password** |
 | `mise` target | `brew install mise` |
 | `pre-packages` hook | the same Homebrew installer, for the case where bootstrap is run without the Makefile. Here brew already exists, so it does nothing |
-| `[bootstrap.packages]` | brew formulae and casks, GUI apps included. `pkg` casks (`docker-desktop`, `zoom`, `nordvpn`, `session-manager-plugin`) go through `installer(8)` and **ask for a password** |
+| `[bootstrap.packages]` | brew formulae and casks, GUI apps included. `pkg` casks (`zoom`, `nordvpn`, `session-manager-plugin`) go through `installer(8)` and **ask for a password** |
 | `[bootstrap.directories]` | creates `~/Downloads/Screenshots`, the folder the screenshot preference below points at. macOS does not create it, and a screenshot taken into a missing folder goes nowhere |
 | `[bootstrap.repos]` | clones oh-my-zsh — only its plugin files are used |
 | `[dotfiles]` | symlinks `~/.config/nvim`, `~/.config/mise/config.toml`, `~/.gitconfig`, `~/.config/starship.toml`, `~/.config/zsh/rc.zsh`, and writes the one line of `.zshrc` that sources the last of them |
@@ -98,7 +98,7 @@ their own:
   sourced last by `rc.zsh`. This repo is public, so nothing secret can live in
   it; `local.zsh` is where those exports go instead
 - `~/.kube`, `~/.docker` and the rest of the client state
-- the first launch of Docker Desktop and 1Password — they will ask for system
+- the first launch of OrbStack and 1Password — they will ask for system
   permissions
 
 To check that everything lined up: `mise bootstrap status` — every line there

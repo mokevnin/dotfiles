@@ -211,7 +211,7 @@ homebrew_metadata = true
 "brew:tmux" = "latest"                    # overmind runs the Procfile in a tmux session and does not pull it in
 "brew:git-lfs" = "latest"                 # the lfs filter is set up in .gitconfig
 "brew-cask:ghostty" = "latest"
-"brew-cask:docker-desktop" = "latest"     # docker-cli is useless without a daemon
+"brew-cask:orbstack" = "latest"           # the docker daemon; docker-cli is useless without one
 "brew-cask:1password" = "latest"          # op-ssh-sign signs the commits
 "brew-cask:google-chrome" = "latest"
 "brew-cask:visual-studio-code" = "latest"
@@ -386,7 +386,7 @@ done || true
 '''
 
 [tasks.clean]
-description = "prune docker, idle agent worktrees, brew, unused mise versions, cargo target dirs and the go, golangci-lint, uv, npm, pnpm and trivy caches"
+description = "prune docker, idle agent worktrees, brew, unused mise versions, cargo target dirs and the go, golangci-lint, uv, npm, npx, yarn, pnpm and trivy caches"
 depends = ["clean:docker", "clean:worktrees"]
 run = [
   "brew cleanup --prune=all -s || echo 'brew cleanup failed, continuing'",
@@ -418,6 +418,12 @@ run = [
   "golangci-lint cache clean || echo 'golangci-lint cache clean failed, continuing'",
   "uv cache clean || echo 'uv cache clean failed, continuing'",
   "npm cache clean --force || echo 'npm cache clean failed, continuing'",
+  # npm cache clean leaves npx installs alone: every `npx -y pkg` keeps its own
+  # node_modules here forever (7G, one half-finished install alone 4G). Nothing
+  # here runs on npm anyway, pnpm dlx is the way to run a package.
+  "rm -rf \"$HOME/.npm/_npx\"",
+  # Left over from yarn berry projects; nothing here uses yarn anymore.
+  "rm -rf \"$HOME/.yarn/berry/cache\"",
   "trivy clean --all || echo 'trivy clean failed, continuing'",
   # Docker Scout's SBOM cache, 7G here, and not covered by the docker prune.
   "rm -rf \"$HOME/.docker/scout\"",
