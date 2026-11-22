@@ -441,9 +441,9 @@ run = [
   # from the store (APFS copy-on-write), so du overstates every node_modules.
   "pnpm store prune || echo 'pnpm prune failed, continuing'",
   # The global virtual store: no project here enables it, every one keeps its
-  # own node_modules/.pnpm, yet it reached 18G and store prune leaves it be.
-  # The dlx cache goes with it, its entries link there.
-  "rm -rf \"$HOME/Library/pnpm/store/v11/links\" \"$HOME/Library/Caches/pnpm/dlx\"",
+  # own node_modules/.pnpm, and pnpm dlx keeps its own cache, yet it reached 18G
+  # and store prune leaves it be.
+  "rm -rf \"$HOME/Library/pnpm/store/v11/links\"",
   # Downloaded tool archives and version lists (5G); mise prune keeps them.
   "mise cache clear || echo 'mise cache clear failed, continuing'",
   # Every dependency version a gradle or dotnet build ever fetched (4G, 2G);
