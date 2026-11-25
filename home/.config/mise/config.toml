@@ -385,9 +385,11 @@ run = "docker system prune -af --volumes || echo 'docker prune failed, continuin
 description = "remove agent worktrees idle for a week"
 run = '''
 {
-  find "$HOME/projects" -maxdepth 6 \( -name node_modules -o -name .git -o -name target -o -name vendor \) -prune \
+  find "$HOME/projects" -maxdepth 8 \( -name node_modules -o -name .git -o -name target -o -name vendor \) -prune \
     -o -type d -path '*/.claude/worktrees/*' -prune -print 2>/dev/null
-  find "$HOME"/*/.worktrees "$HOME"/projects/*/.worktrees -maxdepth 8 -name node_modules -prune \
+  # ~/projects/<org>/<repo>, and the clones a metarepo keeps in its repos/.
+  find "$HOME"/*/.worktrees "$HOME"/projects/*/*/.worktrees "$HOME"/projects/*/*/repos/*/.worktrees \
+    -maxdepth 8 -name node_modules -prune \
     -o -name .git -type f -exec grep -l '^gitdir: .*/worktrees/' {} + 2>/dev/null | sed 's|/\.git$||'
 } |
 while read -r wt; do
