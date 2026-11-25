@@ -336,6 +336,9 @@ run = [
   # the ones that were running are started again by id: the supervisor's state
   # keeps each one's directory. mise's postinstall hook is not the place for
   # this: its docs say to restart services after `mise upgrade`, not inside it.
+  # A daemon whose directory has since been deleted or moved cannot start again
+  # ("No such file or directory"); pitchfork still starts the others, and that
+  # failure must not stop the brew steps below.
   '''
   sup=$(pgrep -f "pitchfork supervisor run" | head -1)
   [ -n "$sup" ] || exit 0
@@ -345,7 +348,7 @@ run = [
   ids=$(pitchfork list --json 2>/dev/null | jq -r '.[] | select(.status == "running") | .id')
   echo "pitchfork supervisor $was -> $now, restarting${ids:+ and starting again: $ids}"
   pitchfork supervisor start --force
-  [ -z "$ids" ] || pitchfork start $ids
+  [ -z "$ids" ] || pitchfork start $ids || echo "some daemons did not start again, continuing"
   ''',
   "brew update",
   # -y because a task must not stop for a prompt: this Homebrew asks before
