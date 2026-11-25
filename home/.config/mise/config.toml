@@ -57,7 +57,7 @@ java = "temurin-25"
 node = "26.13.0"
 # Keep the fixed interpreter used by user uv tool environments installed.
 # Updating latest must not change their Python minor or let cleanup remove it.
-python = ["latest", "3.14.9"]
+python = ["latest", "3.14.10"]
 ruby = "latest"
 
 pnpm = "latest"
