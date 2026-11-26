@@ -90,7 +90,7 @@ their own:
 
 - ssh keys and `~/.ssh/config` — the keys live in the 1Password agent
   (`IdentityAgent`). GitHub and gitlab.hexlet.io are the exception: a copy of
-  the key sits in `~/.ssh/github` (pulled with `op read`, see the hint of
+  the key sits in `~/.ssh/id_home` (pulled with `op read`, see the hint of
   `mise doctor`), used by a `Host github.com gitlab.hexlet.io` block with
   `IdentityAgent none` and by `.gitconfig` to sign commits. That way push and
   signing keep working while 1Password is locked

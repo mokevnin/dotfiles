@@ -1,12 +1,12 @@
 [user]
 	name = Kirill Mokevnin
 	email = mokevnin@gmail.com
-	signingkey = ~/.ssh/github
+	signingkey = ~/.ssh/id_home
 
 [init]
 	defaultBranch = main
 
-# commits signed with the ssh key copied out of 1Password to ~/.ssh/github,
+# commits signed with the ssh key copied out of 1Password to ~/.ssh/id_home,
 # so signing works while 1Password is locked
 [commit]
 	gpgsign = true

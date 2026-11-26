@@ -484,13 +484,13 @@ timeout = "10s"
 
 [doctor.checks.ssh-agent]
 description = "ssh keys are served by the 1Password agent, github.com and gitlab.hexlet.io by the key copy"
-run = 'grep -q IdentityAgent "$HOME/.ssh/config" && grep -q "IdentityFile ~/.ssh/github" "$HOME/.ssh/config"'
-hint = "Point IdentityAgent at the 1Password socket in ~/.ssh/config, and add a Host github.com gitlab.hexlet.io block above Host * with IdentityAgent none, IdentityFile ~/.ssh/github, IdentitiesOnly yes."
+run = 'grep -q IdentityAgent "$HOME/.ssh/config" && grep -q "IdentityFile ~/.ssh/id_home" "$HOME/.ssh/config"'
+hint = "Point IdentityAgent at the 1Password socket in ~/.ssh/config, and add a Host github.com gitlab.hexlet.io block above Host * with IdentityAgent none, IdentityFile ~/.ssh/id_home, IdentitiesOnly yes."
 
 [doctor.checks.commit-signing]
 description = "the ssh key copy is in place — .gitconfig signs every commit with it"
-run = '[ -f "$HOME/.ssh/github" ] && ssh-keygen -y -f "$HOME/.ssh/github" >/dev/null'
-hint = 'Copy the key out of 1Password: umask 077; op read --account mokevnins.1password.com "op://Private/Home SSH Key/private key?ssh-format=openssh" > ~/.ssh/github'
+run = '[ -f "$HOME/.ssh/id_home" ] && ssh-keygen -y -f "$HOME/.ssh/id_home" >/dev/null'
+hint = 'Copy the key out of 1Password: umask 077; op read --account mokevnins.1password.com "op://Private/Home SSH Key/private key?ssh-format=openssh" > ~/.ssh/id_home'
 
 [doctor.checks.commit-verification]
 description = "the current SSH signing key is trusted for Git signature verification"
