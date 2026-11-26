@@ -29,4 +29,37 @@ run = [
 
 [tasks.setup]
 description = "install the git hooks from hk.pkl (pre-push runs lint)"
-run = "hk install"
+run = [
+  "hk install",
+  # Off a terminal (an agent's push) hk prints a progress line per file, ~8K a
+  # push; --quiet keeps only failures. hk reads quiet from its flags alone, not
+  # from env, git config or hk.pkl, so it goes into the hook command itself.
+  '''
+  cmd=$(git config hook.hk-pre-push.command)
+  case $cmd in
+    *--quiet*) ;;
+    *) git config hook.hk-pre-push.command "$cmd \$([ -t 2 ] || echo --quiet)" ;;
+  esac
+  ''',
+]
+
+# The recurring "what is new in mise for us": min_version in the global config
+# marks the release it was last brought up to date with. Prints every release
+# since then, cut to the summary and the sections that can call for a config
+# change; Fixed, Performance, Documentation and the PR links are dropped, which
+# takes a dozen releases from ~60K to a size that reads in one go.
+[tasks.news]
+description = "mise releases since min_version in the global config: summary, Added, Changed, Breaking"
+quiet = true
+run = '''
+base=$(sed -n 's/^min_version = "\(.*\)"$/\1/p' home/.config/mise/config.toml)
+echo "min_version $base, installed $(mise --version | cut -d' ' -f1)"
+{ echo "$base"; gh release list -R jdx/mise -L 60 --json tagName -q '.[].tagName' | sed 's/^v//'; } |
+  sort -uV | sed "1,/^$base\$/d" |
+  while read -r v; do
+    echo; echo "# $v"
+    gh release view "v$v" -R jdx/mise --json body -q .body |
+      awk 'BEGIN { keep = 1 } /^## / { keep = /^## (Added|Changed|Breaking|Deprecated|Removed|Security)/ } keep' |
+      sed -E 's/ \[#[0-9]+\]\([^)]*\)//g; s/ \(@[^)]*\)//g' | cat -s
+  done
+'''

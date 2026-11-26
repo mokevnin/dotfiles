@@ -51,11 +51,20 @@ unset _tf
 # need nothing from the framework — no $ZSH, no plugins=(), no oh-my-zsh.sh.
 # The clone they come from is declared in [bootstrap.repos]. Sourced before
 # fzf so that fzf's ctrl-r wins over the vi-mode binding.
-for _plugin in git vi-mode eza; do
+_plugins=(git vi-mode eza)
+# Coding agents (Claude Code sets CLAUDECODE) run their commands in a snapshot
+# of this shell and write them for bash and GNU tools: the eza aliases break
+# `ls -lt`, and zsh leaves `$cmd args` unsplit, so `cmd="docker --context x";
+# $cmd ps` fails with "command not found".
+if [[ -n $CLAUDECODE ]]; then
+  _plugins=(${_plugins:#eza})
+  setopt sh_word_split
+fi
+for _plugin in $_plugins; do
   _file="$HOME/.oh-my-zsh/plugins/$_plugin/$_plugin.plugin.zsh"
   [ -r "$_file" ] && source "$_file"
 done
-unset _plugin _file
+unset _plugin _plugins _file
 
 # Ghostty sends ctrl+[ as the CSI u sequence ESC [ 91;5u, not as a bare ESC
 # (ghostty-org/ghostty#2976). zsh does not know it: the leading ESC drops into
