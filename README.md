@@ -89,10 +89,11 @@ The repo describes the machine, but not the accounts. These will not show up on
 their own:
 
 - ssh keys and `~/.ssh/config` — the keys live in the 1Password agent
-  (`IdentityAgent`). GitHub is the exception: a copy of the key sits in
-  `~/.ssh/github` (pulled with `op read`, see the hint of `mise doctor`), used
-  by a `Host github.com` block with `IdentityAgent none` and by `.gitconfig` to
-  sign commits. That way push and signing keep working while 1Password is locked
+  (`IdentityAgent`). GitHub and gitlab.hexlet.io are the exception: a copy of
+  the key sits in `~/.ssh/github` (pulled with `op read`, see the hint of
+  `mise doctor`), used by a `Host github.com gitlab.hexlet.io` block with
+  `IdentityAgent none` and by `.gitconfig` to sign commits. That way push and
+  signing keep working while 1Password is locked
 - logins: `gh auth login`, `glab auth login`, claude, codex
 - tokens: `~/.npmrc` (npmjs + npm.pkg.github.com), plus
   `CODEX_GITHUB_PERSONAL_ACCESS_TOKEN` and `YANDEX_TRACKER_MCP_TOKEN` in
