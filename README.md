@@ -89,8 +89,10 @@ The repo describes the machine, but not the accounts. These will not show up on
 their own:
 
 - ssh keys and `~/.ssh/config` — the keys live in the 1Password agent
-  (`IdentityAgent`), and the same agent signs commits (`op-ssh-sign` in
-  `.gitconfig`)
+  (`IdentityAgent`). GitHub is the exception: a copy of the key sits in
+  `~/.ssh/github` (pulled with `op read`, see the hint of `mise doctor`), used
+  by a `Host github.com` block with `IdentityAgent none` and by `.gitconfig` to
+  sign commits. That way push and signing keep working while 1Password is locked
 - logins: `gh auth login`, `glab auth login`, claude, codex
 - tokens: `~/.npmrc` (npmjs + npm.pkg.github.com), plus
   `CODEX_GITHUB_PERSONAL_ACCESS_TOKEN` and `YANDEX_TRACKER_MCP_TOKEN` in
@@ -226,8 +228,8 @@ To see what is actually installed right now — `mise ls`.
 The repository is public, so `dotfiles add` is the one place a secret could leak
 in here: the command copies the whole file. Look at what actually arrived before
 committing. Tokens and keys are not kept here and must not be — they belong in
-1Password. The only sensitive-looking thing in `.gitconfig` is `user.signingkey`,
-and that is the **public** half of an ssh key, exactly the one already sitting at
+1Password. `user.signingkey` in `.gitconfig` is just a path to the key copy outside
+the repo; the public half is in `home/.config/git/allowed_signers` and at
 <https://github.com/mokevnin.keys>.
 
 ## VIM

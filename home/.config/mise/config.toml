@@ -483,21 +483,22 @@ hint = "Run `glab auth login`."
 timeout = "10s"
 
 [doctor.checks.ssh-agent]
-description = "ssh keys are served by the 1Password agent"
-run = 'grep -q IdentityAgent "$HOME/.ssh/config"'
-hint = "Point IdentityAgent at the 1Password socket in ~/.ssh/config."
+description = "ssh keys are served by the 1Password agent, github.com by the key copy"
+run = 'grep -q IdentityAgent "$HOME/.ssh/config" && grep -q "IdentityFile ~/.ssh/github" "$HOME/.ssh/config"'
+hint = "Point IdentityAgent at the 1Password socket in ~/.ssh/config, and add a Host github.com block above Host * with IdentityAgent none, IdentityFile ~/.ssh/github, IdentitiesOnly yes."
 
 [doctor.checks.commit-signing]
-description = "op-ssh-sign is in place — .gitconfig signs every commit with it"
-run = '[ -x "/Applications/1Password.app/Contents/MacOS/op-ssh-sign" ]'
-hint = "Launch 1Password once and turn on the SSH agent."
+description = "the ssh key copy is in place — .gitconfig signs every commit with it"
+run = '[ -f "$HOME/.ssh/github" ] && ssh-keygen -y -f "$HOME/.ssh/github" >/dev/null'
+hint = 'Copy the key out of 1Password: umask 077; op read --account mokevnins.1password.com "op://Private/Home SSH Key/private key?ssh-format=openssh" > ~/.ssh/github'
 
 [doctor.checks.commit-verification]
 description = "the current SSH signing key is trusted for Git signature verification"
 run = '''
 signers_file=$(git config --get --path gpg.ssh.allowedSignersFile) || exit 1
 [ -f "$signers_file" ] || exit 1
-signing_key=$(git config --get user.signingkey) || exit 1
+key_file=$(git config --get --path user.signingkey) || exit 1
+signing_key=$(ssh-keygen -y -f "$key_file" | cut -d" " -f1,2) || exit 1
 grep -F -- "$signing_key" "$signers_file" >/dev/null
 '''
 hint = "Run mise bootstrap --only dotfiles from ~/dotfiles and check ~/.config/git/allowed_signers."

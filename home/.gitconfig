@@ -1,18 +1,18 @@
 [user]
 	name = Kirill Mokevnin
 	email = mokevnin@gmail.com
-	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6iksm2XCHg7SsmBtEDOPI1B1aH0XtmR1InL9wphnICiCnUggi2EIDjxOHVbSnKVIVKgg6roBNBCcYsScWTbZiO9u+KfgMgG6F6H/zyD97TVazlK4wshw8EsZXQhUFPkG3xbyaGNUb82vfjnYuivyj8gQZRM39+jfI/mkKDzwImOE3rmNJoWBodjgLDFFtzM5HmcBqrb1STDjqJwFzrakyHVh7L7Hm9mYWzZNtmPRFzVrYvsrxx8M0QtBEAJx/k4ehHWc6wQR1BnTNGiKxGoiGZG/XPSRqQG+c+l6kxE9041YaBlLhXVjJYfw60xd2qYGRRvpE1p0oLK85LmsVCJcd
+	signingkey = ~/.ssh/github
 
 [init]
 	defaultBranch = main
 
-# commits signed with an ssh key through the 1Password agent (brew-cask:1password)
+# commits signed with the ssh key copied out of 1Password to ~/.ssh/github,
+# so signing works while 1Password is locked
 [commit]
 	gpgsign = true
 [gpg]
 	format = ssh
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 	allowedSignersFile = ~/.config/git/allowed_signers
 
 # requires git-lfs (brew:git-lfs)
