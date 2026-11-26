@@ -460,6 +460,10 @@ run = [
   "rm -rf \"$HOME/Library/pnpm/store/v11/links\"",
   # Downloaded tool archives and version lists (5G); mise prune keeps them.
   "mise cache clear || echo 'mise cache clear failed, continuing'",
+  # That also takes the aqua registry and each tool's cached bin paths, and the
+  # shell hook runs in prefer-offline mode, so every prompt would warn about
+  # every aqua tool. An online lookup fetches the registry and refills the cache.
+  "mise bin-paths >/dev/null || echo 'mise bin-paths failed, continuing'",
   # Every dependency version a gradle or dotnet build ever fetched (4G, 2G);
   # the next build downloads what it needs.
   "rm -rf \"$HOME/.gradle/caches\" \"$HOME/.nuget/packages\"",
